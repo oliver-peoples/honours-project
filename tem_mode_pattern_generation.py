@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 
 def temModeFnXY(m: int, n: int, x: float, y: float, I_0: float = 1, w_0: float = 1, w: float = 1) -> float:
     
-    return I_0 * (w_0 / w)**2 * (physicistsHermite(m)((2**0.5 * x)/w) * math.exp(-x**2 / -w**2))**2 * (physicistsHermite(n)((2**0.5 * y)/w) * math.exp(-y**2 / -w**2))**2
+    return I_0 * (w_0 / w)**2 * (physicistsHermite(m)((2**0.5 * x)/w) * math.exp(-x**2 / w**2))**2 * (physicistsHermite(n)((2**0.5 * y)/w) * math.exp(-y**2 / w**2))**2
 
+<<<<<<< HEAD
 def main() -> None:
     
     grid_x = 100
@@ -31,6 +32,12 @@ def main() -> None:
             
     plt.imshow(intensity_vals)
     plt.show()
+=======
+def main():
+    
+    
+    
+>>>>>>> refs/remotes/origin/main
 
 if __name__ == "__main__":
     

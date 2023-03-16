@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/mnt/nvme0n1p1/honours-project/build",
+  "command": "/usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler   -g --generate-code=arch=compute_52,code=[compute_52,sm_52] -std=c++14 -x cu -c /mnt/nvme0n1p1/honours-project/tem_modes.cu -o CMakeFiles/tem_modes.dir/tem_modes.cu.o",
+  "file": "/mnt/nvme0n1p1/honours-project/tem_modes.cu"
+}
+]

@@ -1,0 +1,1 @@
+/usr/bin/g++ CMakeFiles/tem_modes.dir/tem_modes.cu.o -o tem_modes  -lrt -lpthread -ldl -lcudadevrt -lcudart_static -lrt -lpthread -ldl  -L"/usr/local/cuda/targets/x86_64-linux/lib/stubs" -L"/usr/local/cuda/targets/x86_64-linux/lib"

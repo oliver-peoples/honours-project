@@ -1,0 +1,3 @@
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/rebuild_cache.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/edit_cache.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/tem_modes.dir
