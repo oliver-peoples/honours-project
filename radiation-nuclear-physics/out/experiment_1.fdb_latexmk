@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1678921685 "/home/finn/Documents/honours-project/radiation-nuclear-physics/experiment_1.tex" "/home/finn/Documents/honours-project/radiation-nuclear-physics/out/experiment_1.pdf" "experiment_1" 1678921686
+["pdflatex"] 1678951276 "/home/finn/Documents/honours-project/radiation-nuclear-physics/experiment_1.tex" "/home/finn/Documents/honours-project/radiation-nuclear-physics/out/experiment_1.pdf" "experiment_1" 1678951277
   "/etc/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
-  "/home/finn/Documents/honours-project/radiation-nuclear-physics/experiment_1.tex" 1678921684 1871 98d0d8dfb6d231d49bc6c2d6412377a9 ""
-  "/home/finn/Documents/honours-project/radiation-nuclear-physics/out/experiment_1.aux" 1678921686 237 a4bcc11486eb9ef26aa4cf1c301477d3 ""
+  "/home/finn/Documents/honours-project/radiation-nuclear-physics/experiment_1.tex" 1678951276 1867 f3ca76eef2c478b20e3d26f290fdfbad ""
+  "/home/finn/Documents/honours-project/radiation-nuclear-physics/out/experiment_1.aux" 1678951276 237 a4bcc11486eb9ef26aa4cf1c301477d3 ""
   "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf/fonts/tfm/jknappen/ec/tcrm0600.tfm" 1136768653 1536 12e8c510d3e158fdd0e9a42e75118bd9 ""
@@ -39,11 +39,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1678096444 5175355 cdab57a66732305fc52dc8bf1694ca9d ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1678096493 2724540 cd115c7b4f4fc909b4f1ddcc4239f921 ""
-  "experiment_1.tex" 1678921684 1871 98d0d8dfb6d231d49bc6c2d6412377a9 ""
-  "out/experiment_1.aux" 1678921686 237 a4bcc11486eb9ef26aa4cf1c301477d3 "pdflatex"
+  "experiment_1.tex" 1678951276 1867 f3ca76eef2c478b20e3d26f290fdfbad ""
+  "out/experiment_1.aux" 1678951276 237 a4bcc11486eb9ef26aa4cf1c301477d3 "pdflatex"
   (generated)
+  "out/experiment_1.aux"
   "out/experiment_1.pdf"
+  "/home/finn/Documents/honours-project/radiation-nuclear-physics/out/experiment_1.log"
   "out/experiment_1.log"
   "/home/finn/Documents/honours-project/radiation-nuclear-physics/out/experiment_1.pdf"
-  "out/experiment_1.aux"
-  "/home/finn/Documents/honours-project/radiation-nuclear-physics/out/experiment_1.log"
