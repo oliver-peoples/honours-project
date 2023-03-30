@@ -12,11 +12,11 @@ def main() -> None:
     
     w = 1.
     
-    grid_x = 750
-    grid_y = 750
+    grid_x = 1750
+    grid_y = 1750
     
-    x_range = (-2.0, 2.0)
-    y_range = (-2.0, 2.0)
+    x_range = (-3.0, 3.0)
+    y_range = (-3.0, 3.0)
     
     y_linspace = np.linspace(*y_range, grid_y)
     x_linspace = np.linspace(*x_range, grid_x)
@@ -39,6 +39,8 @@ def main() -> None:
                 ),
                 x=y_linspace
             )
+            
+            print(volume)
             
             intensity_vals *= 1. / volume
                     
