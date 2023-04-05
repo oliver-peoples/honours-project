@@ -12,7 +12,7 @@ def backgroundRadiation() -> None:
     
     energy_counts = bin_counts.astype(dtype=np.float64)
     
-    energy_counts[:,0] = mca_coefficients[0] * (energy_counts[:,0] + 1) + mca_coefficients[1] * energy_counts[:,0] ** 2 + mca_coefficients[2] * energy_counts[:,0] ** 3
+    energy_counts[:,0] = mca_coefficients[0] + mca_coefficients[1] * energy_counts[:,0] + mca_coefficients[2] * energy_counts[:,0] ** 2
     
     plt.plot(energy_counts[:,0], energy_counts[:,1])
     plt.show()
