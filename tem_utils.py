@@ -41,3 +41,11 @@ def parallelTEM_Affine(m: int, n: int, y_val: float, grid_x: float, translation:
             intensity_vals[x_idx] = fastTEM(hermite_polynomial_m, hermite_polynomial_n, x_linspace[x_idx] - translation[0], y_val - translation[1])
             
     return intensity_vals
+
+def infiniteIntegrals():
+    
+    return (0.5 * math.sqrt(2) * )
+
+def normalizationCoefficient(m: int, w: float=1):
+    
+    
