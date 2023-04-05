@@ -17,6 +17,188 @@ matplotlib.rcParams['text.usetex'] = True
 
 def calibrationIsotopes() -> None:
     
+    calibration_isotopes = sorted(glob.glob(os.path.join('data', 'calibration_spectrum_*.Spe')))
+    
+    # set limits for plotting
+        
+    xlim = (0,1750)
+    ylim = (0,5000)
+    aspect = 1.5
+    aspect = (xlim[1]-xlim[0]) / (aspect * (ylim[1]-ylim[0]))
+    
+    _, truth_mca_coefficients = loadAsciiSpectrum(os.path.join('data','calibration_spectrum_bg.Spe'))
+    
+    # final calibration atop original calibration
+    
+    for calibration_isotope in calibration_isotopes:
+        
+        # load up the data
+    
+        bin_counts, mca_coefficients = loadAsciiSpectrum(calibration_isotope)
+        
+        calibration_isotope = os.path.basename(calibration_isotope)
+        calibration_isotope = os.path.splitext(calibration_isotope)[0]
+        
+        print(calibration_isotope)
+        
+        energy_counts = bin_counts.astype(dtype=np.float64)
+        
+        # map bin numbers to gamma ray energies
+        
+        energy_counts_og_mca = mca_coefficients[0] + mca_coefficients[1] * energy_counts[:,0] + mca_coefficients[2] * energy_counts[:,0] ** 2
+        energy_counts_final_mca = truth_mca_coefficients[0] + truth_mca_coefficients[1] * energy_counts[:,0] + truth_mca_coefficients[2] * energy_counts[:,0] ** 2
+        
+        smooth_energy_counts_og_mca = scipy.ndimage.gaussian_filter1d(energy_counts[:,1], 6)
+        smooth_energy_counts_final_mca = scipy.ndimage.gaussian_filter1d(energy_counts[:,1], 6)
+        
+        # plot smoothed values atop raw ones
+        
+        plt.plot(energy_counts_og_mca, energy_counts[:,1], c='b', alpha=0.5, linewidth=0.5, label=r'\bf{Raw Counts C.A.R.}')
+        plt.plot(energy_counts_og_mca, smooth_energy_counts_og_mca, 'k', linewidth=1.0, label=r'$\sigma=3$ \bf{Gaussian Smooth C.A.R.}')
+        plt.plot(energy_counts_final_mca, smooth_energy_counts_final_mca, 'k--', alpha=0.8, linewidth=0.75, label=r'$\sigma=3$ \bf{Gaussian Smooth F.C.}')
+        plt.legend(prop={'size':14})
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.xlim(xlim)
+        plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+        plt.ylim(ylim)
+        plt.yticks(fontsize=14)
+        plt.tight_layout()
+        plt.gca().set_aspect(aspect)
+        plt.savefig(f'figures/{calibration_isotope}_counts_overlay_both_mca.png', dpi=400, bbox_inches='tight')
+        plt.close()   
+    
+    # original calibration
+    
+    for calibration_isotope in calibration_isotopes:
+        
+        # load up the data
+    
+        bin_counts, mca_coefficients = loadAsciiSpectrum(calibration_isotope)
+        
+        calibration_isotope = os.path.basename(calibration_isotope)
+        calibration_isotope = os.path.splitext(calibration_isotope)[0]
+        
+        print(calibration_isotope)
+        
+        energy_counts = bin_counts.astype(dtype=np.float64)
+        
+        # map bin numbers to gamma ray energies
+        
+        energy_counts[:,0] = mca_coefficients[0] + mca_coefficients[1] * energy_counts[:,0] + mca_coefficients[2] * energy_counts[:,0] ** 2
+        smooth_energy_counts = scipy.ndimage.gaussian_filter1d(energy_counts[:,1], 6)
+        
+        # plot raw values
+        
+        plt.plot(energy_counts[:,0], energy_counts[:,1], 'b', linewidth=0.75, label=r'\bf{Raw Counts}')
+        plt.legend(prop={'size':14})
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.xlim(xlim)
+        plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+        plt.ylim(ylim)
+        plt.yticks(fontsize=14)
+        plt.tight_layout()
+        plt.gca().set_aspect(aspect)
+        plt.savefig(f'figures/{calibration_isotope}_counts_raw_og_mca.png', dpi=400, bbox_inches='tight')
+        plt.close()
+        
+        # plot smoothed values
+        
+        plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=0.75, label=r'$\sigma=3$ \bf{Gaussian Smooth}')
+        plt.legend(prop={'size':14})
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.xlim(xlim)
+        plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+        plt.ylim(ylim)
+        plt.yticks(fontsize=14)
+        plt.tight_layout()
+        plt.gca().set_aspect(aspect)
+        plt.savefig(f'figures/{calibration_isotope}_counts_smooth_og_mca.png', dpi=400, bbox_inches='tight')
+        plt.close()
+        
+        # plot smoothed values atop raw ones
+        
+        plt.plot(energy_counts[:,0], energy_counts[:,1], c='b', alpha=0.5, linewidth=0.5, label=r'\bf{Raw Counts}')
+        plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=1.0, label=r'$\sigma=3$ \bf{Gaussian Smooth}')
+        plt.legend(prop={'size':14})
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.xlim(xlim)
+        plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+        plt.ylim(ylim)
+        plt.yticks(fontsize=14)
+        plt.tight_layout()
+        plt.gca().set_aspect(aspect)
+        plt.savefig(f'figures/{calibration_isotope}_counts_overlay_og_mca.png', dpi=400, bbox_inches='tight')
+        plt.close()
+        
+    # final calibration
+    
+    for calibration_isotope in calibration_isotopes:
+        
+        # load up the data
+    
+        bin_counts, mca_coefficients = loadAsciiSpectrum(calibration_isotope)
+        
+        calibration_isotope = os.path.basename(calibration_isotope)
+        calibration_isotope = os.path.splitext(calibration_isotope)[0]
+        
+        print(calibration_isotope)
+        
+        energy_counts = bin_counts.astype(dtype=np.float64)
+        
+        # map bin numbers to gamma ray energies
+        
+        energy_counts[:,0] = truth_mca_coefficients[0] + truth_mca_coefficients[1] * energy_counts[:,0] + truth_mca_coefficients[2] * energy_counts[:,0] ** 2
+        smooth_energy_counts = scipy.ndimage.gaussian_filter1d(energy_counts[:,1], 6)
+        
+        # plot raw values
+        
+        plt.plot(energy_counts[:,0], energy_counts[:,1], 'b', linewidth=0.75, label=r'\bf{Raw Counts}')
+        plt.legend(prop={'size':14})
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.xlim(xlim)
+        plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+        plt.ylim(ylim)
+        plt.yticks(fontsize=14)
+        plt.tight_layout()
+        plt.gca().set_aspect(aspect)
+        plt.savefig(f'figures/{calibration_isotope}_counts_raw_final_mca.png', dpi=400, bbox_inches='tight')
+        plt.close()
+        
+        # plot smoothed values
+        
+        plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=0.75, label=r'$\sigma=3$ \bf{Gaussian Smooth}')
+        plt.legend(prop={'size':14})
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.xlim(xlim)
+        plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+        plt.ylim(ylim)
+        plt.yticks(fontsize=14)
+        plt.tight_layout()
+        plt.gca().set_aspect(aspect)
+        plt.savefig(f'figures/{calibration_isotope}_counts_smooth_final_mca.png', dpi=400, bbox_inches='tight')
+        plt.close()
+        
+        # plot smoothed values atop raw ones
+        
+        plt.plot(energy_counts[:,0], energy_counts[:,1], c='b', alpha=0.5, linewidth=0.5, label=r'\bf{Raw Counts}')
+        plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=1.0, label=r'$\sigma=3$ \bf{Gaussian Smooth}')
+        plt.legend(prop={'size':14})
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+        plt.xticks(fontsize=14)
+        plt.xlim(xlim)
+        plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+        plt.ylim(ylim)
+        plt.yticks(fontsize=14)
+        plt.tight_layout()
+        plt.gca().set_aspect(aspect)
+        plt.savefig(f'figures/{calibration_isotope}_counts_overlay_final_mca.png', dpi=400, bbox_inches='tight')
+        plt.close()   
     
 
 def backgroundRadiation() -> None:
@@ -42,7 +224,7 @@ def backgroundRadiation() -> None:
     # plot raw values
     
     plt.plot(energy_counts[:,0], energy_counts[:,1], 'b', linewidth=0.75)
-    plt.xlabel(r'\bf{Gamma Ray Energery (keV)}',fontsize=16)
+    plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
     plt.xticks(fontsize=14)
     plt.xlim(xlim)
     plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
@@ -56,7 +238,7 @@ def backgroundRadiation() -> None:
     # plot smoothed values
     
     plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=0.75)
-    plt.xlabel(r'\bf{Gamma Ray Energery (keV)}',fontsize=16)
+    plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
     plt.xticks(fontsize=14)
     plt.xlim(xlim)
     plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
@@ -72,7 +254,7 @@ def backgroundRadiation() -> None:
     plt.plot(energy_counts[:,0], energy_counts[:,1], c='b', alpha=0.5, linewidth=0.5, label=r'\bf{Raw Counts}')
     plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=1.0, label=r'$\sigma=3$ \bf{Gaussian Smooth}')
     plt.legend(prop={'size':14})
-    plt.xlabel(r'\bf{Gamma Ray Energery (keV)}',fontsize=16)
+    plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
     plt.xticks(fontsize=14)
     plt.xlim(xlim)
     plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
@@ -98,7 +280,7 @@ def mysteryIsotope() -> None:
     
     mystery_files = sorted(glob.glob(os.path.join('data','mystery_*.Spe')))
     
-    total_counts = np.zeros((mystery_file,2), dtype=np.float64)
+    total_counts = np.zeros((mystery_files,2), dtype=np.float64)
     
     file_counter = 0
     
@@ -134,7 +316,7 @@ def mysteryIsotope() -> None:
         plt.plot(bg_energy_counts[:,0], bg_smooth_energy_counts, 'k--', alpha=0.5, linewidth=0.75, label=r'$\sigma=3$ \bf{Background}')
         plt.plot(energy_counts[:,0], energy_counts[:,1], 'b', linewidth=0.75, label=r'\bf{Raw Counts}')
         plt.legend(prop={'size':14})
-        plt.xlabel(r'\bf{Gamma Ray Energery (keV)}',fontsize=16)
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
@@ -150,7 +332,7 @@ def mysteryIsotope() -> None:
         plt.plot(bg_energy_counts[:,0], bg_smooth_energy_counts, 'k--', alpha=0.5, linewidth=0.75, label=r'$\sigma=3$ \bf{Background}')
         plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=0.75, label=r'$\sigma=3$ \bf{Gaussian Smooth}')
         plt.legend(prop={'size':14})
-        plt.xlabel(r'\bf{Gamma Ray Energery (keV)}',fontsize=16)
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
@@ -167,7 +349,7 @@ def mysteryIsotope() -> None:
         plt.plot(energy_counts[:,0], energy_counts[:,1], c='b', alpha=0.5, linewidth=0.5, label=r'\bf{Raw Counts}')
         plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=1.0, label=r'$\sigma=3$ \bf{Gaussian Smooth}')
         plt.legend(prop={'size':14})
-        plt.xlabel(r'\bf{Gamma Ray Energery (keV)}',fontsize=16)
+        plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
@@ -225,7 +407,7 @@ def mysteryIsotope() -> None:
         counter += 1
         
     plt.legend(prop={'size':14})
-    plt.xlabel(r'\bf{Gamma Ray Energery (keV)}',fontsize=16)
+    plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
     plt.xticks(fontsize=14)
     plt.xlim(xlim)
     plt.ylabel(r'$\Delta$ \bf{Detections from First Recording}', fontsize=16)
