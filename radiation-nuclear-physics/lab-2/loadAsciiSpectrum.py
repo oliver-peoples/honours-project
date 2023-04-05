@@ -1,3 +1,7 @@
+# Oliver Kirkpatrick - oliver-peoples - 10.133.8.27 - finn@finna - Razer Blade Stealth 15
+# CONDA_ENV - Python 3.10.9 - Balloon Artificial Research Environment for Navigation and Autonomy (BallARENA) TASDCRC
+# 5/4/23 16:56
+
 from typing import Tuple, List
 import numpy as np
 
