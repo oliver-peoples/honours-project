@@ -1,8 +1,15 @@
 # Fdb version 3
+<<<<<<< HEAD
 ["pdflatex"] 1680685710 "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf" "report" 1680685718
   "/etc/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
   "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.aux" 1680685717 5077 6be9284c310277ebc5defb654169c83e ""
   "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" 1680685702 4445 20d58c0e33e503a934969ba8c80b011d ""
+=======
+["pdflatex"] 1680685890 "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf" "report" 1680685898
+  "/etc/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.aux" 1680685897 5625 8dfb7439127a25b51587e14d4ae4714b ""
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" 1680685881 4619 9f03100424a3ce8cf10894fc47fddbbe ""
+>>>>>>> 47bc9b3a34dcb9636449b8798d905a01d4e4a48e
   "/usr/share/texmf/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -28,7 +35,13 @@
   "/usr/share/texmf/fonts/tfm/public/cm/cmr8.tfm" 1136768653 1292 21c1c5bfeaebccffdb478fd231a0997d ""
   "/usr/share/texmf/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/share/texmf/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
+  "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
+<<<<<<< HEAD
+=======
+  "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
+>>>>>>> 47bc9b3a34dcb9636449b8798d905a01d4e4a48e
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texmf/fonts/type1/urw/times/utmb8a.pfb" 1136849748 44729 811d6c62865936705a31c797a1d5dada ""
@@ -112,6 +125,7 @@
   "figures/mystery_4_background_counts_overlay.png" 1680676834 288287 27e0a370b4cebb383d0fcc2aec782e85 ""
   "figures/mystery_5_background_counts_overlay.png" 1680676836 283622 724244b429f81deefe15c5b6d7daa6de ""
   "figures/mystery_6_background_counts_overlay.png" 1680676838 282126 d1b4eb007e80e10692d34e4d1bdc81d6 ""
+<<<<<<< HEAD
   "out/report.aux" 1680685717 5077 6be9284c310277ebc5defb654169c83e "pdflatex"
   "out/report.out" 1680685717 754 f96c45d528f2c3ce24a5c0e805be0278 "pdflatex"
   "report.tex" 1680685702 4445 20d58c0e33e503a934969ba8c80b011d ""
@@ -122,3 +136,15 @@
   "out/report.log"
   "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf"
   "out/report.aux"
+=======
+  "out/report.aux" 1680685897 5625 8dfb7439127a25b51587e14d4ae4714b "pdflatex"
+  "out/report.out" 1680685897 754 f96c45d528f2c3ce24a5c0e805be0278 "pdflatex"
+  "report.tex" 1680685881 4619 9f03100424a3ce8cf10894fc47fddbbe ""
+  (generated)
+  "out/report.aux"
+  "out/report.log"
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf"
+  "out/report.out"
+  "out/report.pdf"
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.log"
+>>>>>>> 47bc9b3a34dcb9636449b8798d905a01d4e4a48e
