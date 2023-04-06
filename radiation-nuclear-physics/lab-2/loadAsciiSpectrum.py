@@ -4,6 +4,7 @@
 
 from typing import Tuple, List
 import numpy as np
+from datetime import datetime
 
 def lineFlag(file, flag_word):
     cur_pos = file.tell()
@@ -27,6 +28,17 @@ def loadAsciiSpectrum(path: str):
     
     line: str
     
+    while not lineFlag(f, '$DATE_MEA:'):
+        
+        f.readline()
+        
+    f.readline()
+    
+    line = f.readline().strip('\n')
+    
+    datetime_object: datetime = datetime.strptime(line, '%m/%d/%Y %H:%M:%S')
+    epoch = datetime_object.timestamp() / 60
+    
     while not lineFlag(f, '$DATA:'):
         
         line = f.readline()
@@ -49,11 +61,11 @@ def loadAsciiSpectrum(path: str):
         
     while not lineFlag(f, '$MCA_CAL:'):
         
-        print(f.readline())
+        f.readline()
         
     f.readline()
     f.readline()
     
     mca_coefficients = [float(coefficient) for coefficient in f.readline().strip().split(' ')[:-1]]     
     
-    return bin_counts, mca_coefficients   
+    return bin_counts, mca_coefficients, epoch

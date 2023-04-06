@@ -1,15 +1,8 @@
 # Fdb version 3
-<<<<<<< HEAD
-["pdflatex"] 1680685710 "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf" "report" 1680685718
+["pdflatex"] 1680764855 "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf" "report" 1680768613
   "/etc/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
-  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.aux" 1680685717 5077 6be9284c310277ebc5defb654169c83e ""
-  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" 1680685702 4445 20d58c0e33e503a934969ba8c80b011d ""
-=======
-["pdflatex"] 1680685890 "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf" "report" 1680685898
-  "/etc/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
-  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.aux" 1680685897 5625 8dfb7439127a25b51587e14d4ae4714b ""
-  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" 1680685881 4619 9f03100424a3ce8cf10894fc47fddbbe ""
->>>>>>> 47bc9b3a34dcb9636449b8798d905a01d4e4a48e
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.aux" 1680764859 6096 3723ce078cb8c9336055afcf6839f2cf ""
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" 1680742288 5162 b5d728cbab48c225844370517758771b ""
   "/usr/share/texmf/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -37,11 +30,8 @@
   "/usr/share/texmf/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
-<<<<<<< HEAD
-=======
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
->>>>>>> 47bc9b3a34dcb9636449b8798d905a01d4e4a48e
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texmf/fonts/type1/urw/times/utmb8a.pfb" 1136849748 44729 811d6c62865936705a31c797a1d5dada ""
@@ -114,37 +104,24 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1678240956 5175355 cdab57a66732305fc52dc8bf1694ca9d ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1678240895 2724537 71621279059e9efef7e3bbda5e559014 ""
-  "figures/background_counts_overlay.png" 1680684852 221650 40354cc5259245589af0eaecc6c545fc ""
-  "figures/calibration_spectrum_co_counts_overlay_final_mca.png" 1680684844 116070 117a863f3e945f6260c9bfeaea02b1b1 ""
-  "figures/calibration_spectrum_cs_counts_overlay_both_mca.png" 1680684829 177314 3dba7912c2448ecc246f22d83899753c ""
-  "figures/calibration_spectrum_na_counts_overlay_both_mca.png" 1680684830 195557 aa50c338707061209c97450791f78138 ""
-  "figures/difference_counts_smooth.png" 1680676839 445607 473e420cef1ac4d1a30df55d02b2c5d0 ""
-  "figures/mystery_1_background_counts_overlay.png" 1680676828 300423 50448e39e09bc5d5c5ad851f50fbdba7 ""
-  "figures/mystery_2_background_counts_overlay.png" 1680676830 293637 21e93cc65a359ac768b8c00fe1cee67e ""
-  "figures/mystery_3_background_counts_overlay.png" 1680676832 291095 77b40853999d3a3374ac42b627ce75b4 ""
-  "figures/mystery_4_background_counts_overlay.png" 1680676834 288287 27e0a370b4cebb383d0fcc2aec782e85 ""
-  "figures/mystery_5_background_counts_overlay.png" 1680676836 283622 724244b429f81deefe15c5b6d7daa6de ""
-  "figures/mystery_6_background_counts_overlay.png" 1680676838 282126 d1b4eb007e80e10692d34e4d1bdc81d6 ""
-<<<<<<< HEAD
-  "out/report.aux" 1680685717 5077 6be9284c310277ebc5defb654169c83e "pdflatex"
-  "out/report.out" 1680685717 754 f96c45d528f2c3ce24a5c0e805be0278 "pdflatex"
-  "report.tex" 1680685702 4445 20d58c0e33e503a934969ba8c80b011d ""
+  "figures/background_counts_overlay.png" 1680768605 205558 ef39e09952736845b8c7499a638cf183 ""
+  "figures/calibration_spectrum_co_counts_overlay_final_mca.png" 1680768602 109430 c3f556c92f873f35519a9ad2b92a52fc ""
+  "figures/calibration_spectrum_cs_counts_overlay_both_mca.png" 1680768596 170591 a4beb1688c8a32eabda875a11caf9a17 ""
+  "figures/calibration_spectrum_na_counts_overlay_both_mca.png" 1680768596 187653 cd01781c7ade2932eafdec888cf3a44b ""
+  "figures/difference_counts_smooth.png" 1680768612 394727 06ef2b8bd9616b4a4c5ffd43f31a55f6 ""
+  "figures/mystery_1_background_counts_overlay.png" 1680768606 293146 f66f6264d16e0574231764c082a1b3e4 ""
+  "figures/mystery_2_background_counts_overlay.png" 1680768607 287683 44e5e071a11e24dc0ddb220f3e9cf4a2 ""
+  "figures/mystery_3_background_counts_overlay.png" 1680768608 284737 9877c3f1c284570680e336883a8e9a8a ""
+  "figures/mystery_4_background_counts_overlay.png" 1680768609 282054 63cdbec355976c5eea280bb5ceb47dc9 ""
+  "figures/mystery_5_background_counts_overlay.png" 1680768610 277376 231fb7fc39ae3a7467448498eded6f7f ""
+  "figures/mystery_6_background_counts_overlay.png" 1680768611 275406 3969d88ac0d76b818b68a653ca273bba ""
+  "out/report.aux" 1680764859 6096 3723ce078cb8c9336055afcf6839f2cf "pdflatex"
+  "out/report.out" 1680764859 754 f96c45d528f2c3ce24a5c0e805be0278 "pdflatex"
+  "report.tex" 1680742288 5162 b5d728cbab48c225844370517758771b ""
   (generated)
-  "out/report.pdf"
+  "out/report.aux"
   "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.log"
-  "out/report.out"
-  "out/report.log"
-  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf"
-  "out/report.aux"
-=======
-  "out/report.aux" 1680685897 5625 8dfb7439127a25b51587e14d4ae4714b "pdflatex"
-  "out/report.out" 1680685897 754 f96c45d528f2c3ce24a5c0e805be0278 "pdflatex"
-  "report.tex" 1680685881 4619 9f03100424a3ce8cf10894fc47fddbbe ""
-  (generated)
-  "out/report.aux"
-  "out/report.log"
   "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf"
   "out/report.out"
   "out/report.pdf"
-  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.log"
->>>>>>> 47bc9b3a34dcb9636449b8798d905a01d4e4a48e
+  "out/report.log"
