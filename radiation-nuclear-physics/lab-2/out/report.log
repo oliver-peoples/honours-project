@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/TeX Live for SUSE Linux) (preloaded format=pdflatex 2023.3.6)  5 APR 2023 20:06
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/TeX Live for SUSE Linux) (preloaded format=pdflatex 2023.3.8)  6 APR 2023 17:07
+>>>>>>> 125a4930ad1d959894f2082ef5a8aa4bc9b81df5
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -428,6 +432,7 @@ LaTeX Info: Redefining \nameref on input line 10.
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
+<<<<<<< HEAD
 LaTeX Font Info:    Trying to load font information for U+msa on input line 23.
  (/usr/share/texmf/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -460,6 +465,53 @@ File: figures/calibration_spectrum_co_counts_overlay_final_mca.png Graphic file 
 <use figures/calibration_spectrum_co_counts_overlay_final_mca.png>
 Package pdftex.def Info: figures/calibration_spectrum_co_counts_overlay_final_mca.png  used on input line 47.
 (pdftex.def)             Requested size: 239.39923pt x 166.9135pt.
+=======
+<figures/calibration_spectrum_cs_counts_overlay_both_mca.png, id=24, 455.301pt x 280.58827pt>
+File: figures/calibration_spectrum_cs_counts_overlay_both_mca.png Graphic file (type png)
+<use figures/calibration_spectrum_cs_counts_overlay_both_mca.png>
+Package pdftex.def Info: figures/calibration_spectrum_cs_counts_overlay_both_mca.png  used on input line 26.
+(pdftex.def)             Requested size: 239.39923pt x 147.53368pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
+ (/usr/share/texmf/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+ (/usr/share/texmf/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<figures/calibration_spectrum_na_counts_overlay_both_mca.png, id=26, 455.301pt x 280.58827pt>
+File: figures/calibration_spectrum_na_counts_overlay_both_mca.png Graphic file (type png)
+<use figures/calibration_spectrum_na_counts_overlay_both_mca.png>
+Package pdftex.def Info: figures/calibration_spectrum_na_counts_overlay_both_mca.png  used on input line 27.
+(pdftex.def)             Requested size: 239.39923pt x 147.53368pt.
+<figures/calibration_spectrum_co_counts_overlay_final_mca.png, id=27, 455.301pt x 280.58827pt>
+File: figures/calibration_spectrum_co_counts_overlay_final_mca.png Graphic file (type png)
+<use figures/calibration_spectrum_co_counts_overlay_final_mca.png>
+Package pdftex.def Info: figures/calibration_spectrum_co_counts_overlay_final_mca.png  used on input line 28.
+(pdftex.def)             Requested size: 239.39923pt x 147.53368pt.
+File: figures/calibration_spectrum_cs_counts_overlay_both_mca.png Graphic file (type png)
+<use figures/calibration_spectrum_cs_counts_overlay_both_mca.png>
+Package pdftex.def Info: figures/calibration_spectrum_cs_counts_overlay_both_mca.png  used on input line 30.
+(pdftex.def)             Requested size: 239.39923pt x 147.53368pt.
+
+Overfull \hbox (26.87848pt too wide) in paragraph at lines 28--30
+ [][]\OT1/ptm/m/n/10 ======= 
+ []
+
+File: figures/calibration_spectrum_na_counts_overlay_both_mca.png Graphic file (type png)
+<use figures/calibration_spectrum_na_counts_overlay_both_mca.png>
+Package pdftex.def Info: figures/calibration_spectrum_na_counts_overlay_both_mca.png  used on input line 31.
+(pdftex.def)             Requested size: 239.39923pt x 147.53368pt.
+File: figures/calibration_spectrum_co_counts_overlay_final_mca.png Graphic file (type png)
+<use figures/calibration_spectrum_co_counts_overlay_final_mca.png>
+Package pdftex.def Info: figures/calibration_spectrum_co_counts_overlay_final_mca.png  used on input line 32.
+(pdftex.def)             Requested size: 239.39923pt x 147.53368pt.
+
+Overfull \hbox (18.47882pt too wide) in paragraph at lines 32--34
+ [][]\OT1/ptm/m/n/10 >>>>>>> 
+ []
+
+>>>>>>> 125a4930ad1d959894f2082ef5a8aa4bc9b81df5
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -467,6 +519,53 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ]
+<<<<<<< HEAD
+=======
+Overfull \vbox (499.68684pt too high) has occurred while \output is active []
+
+<figures/background_counts_overlay.png, id=36, 455.301pt x 288.3573pt>
+File: figures/background_counts_overlay.png Graphic file (type png)
+<use figures/background_counts_overlay.png>
+Package pdftex.def Info: figures/background_counts_overlay.png  used on input line 39.
+(pdftex.def)             Requested size: 239.39923pt x 151.61864pt.
+<figures/difference_counts_smooth.png, id=37, 455.301pt x 277.33612pt>
+File: figures/difference_counts_smooth.png Graphic file (type png)
+<use figures/difference_counts_smooth.png>
+Package pdftex.def Info: figures/difference_counts_smooth.png  used on input line 45.
+(pdftex.def)             Requested size: 239.39923pt x 145.82368pt.
+ [2 <./figures/calibration_spectrum_cs_counts_overlay_both_mca.png> <./figures/calibration_spectrum_na_counts_overlay_both_mca.png> <./figures/calibration_spectrum_co_counts_overlay_final_mca.png> <./figures/background_counts_overlay.png> <./figures/difference_counts_smooth.png>] [3]
+<figures/mystery_1_background_counts_overlay.png, id=68, 455.301pt x 284.38245pt>
+File: figures/mystery_1_background_counts_overlay.png Graphic file (type png)
+<use figures/mystery_1_background_counts_overlay.png>
+Package pdftex.def Info: figures/mystery_1_background_counts_overlay.png  used on input line 69.
+(pdftex.def)             Requested size: 252.84283pt x 157.92525pt.
+<figures/mystery_2_background_counts_overlay.png, id=69, 455.301pt x 284.38245pt>
+File: figures/mystery_2_background_counts_overlay.png Graphic file (type png)
+<use figures/mystery_2_background_counts_overlay.png>
+Package pdftex.def Info: figures/mystery_2_background_counts_overlay.png  used on input line 71.
+(pdftex.def)             Requested size: 252.84283pt x 157.92525pt.
+<figures/mystery_3_background_counts_overlay.png, id=70, 455.301pt x 284.38245pt>
+File: figures/mystery_3_background_counts_overlay.png Graphic file (type png)
+<use figures/mystery_3_background_counts_overlay.png>
+Package pdftex.def Info: figures/mystery_3_background_counts_overlay.png  used on input line 72.
+(pdftex.def)             Requested size: 252.84283pt x 157.92525pt.
+<figures/mystery_4_background_counts_overlay.png, id=71, 455.301pt x 284.38245pt>
+File: figures/mystery_4_background_counts_overlay.png Graphic file (type png)
+<use figures/mystery_4_background_counts_overlay.png>
+Package pdftex.def Info: figures/mystery_4_background_counts_overlay.png  used on input line 74.
+(pdftex.def)             Requested size: 252.84283pt x 157.92525pt.
+<figures/mystery_5_background_counts_overlay.png, id=72, 455.301pt x 284.38245pt>
+File: figures/mystery_5_background_counts_overlay.png Graphic file (type png)
+<use figures/mystery_5_background_counts_overlay.png>
+Package pdftex.def Info: figures/mystery_5_background_counts_overlay.png  used on input line 75.
+(pdftex.def)             Requested size: 252.84283pt x 157.92525pt.
+<figures/mystery_6_background_counts_overlay.png, id=73, 455.301pt x 284.38245pt>
+File: figures/mystery_6_background_counts_overlay.png Graphic file (type png)
+<use figures/mystery_6_background_counts_overlay.png>
+Package pdftex.def Info: figures/mystery_6_background_counts_overlay.png  used on input line 77.
+(pdftex.def)             Requested size: 252.84283pt x 157.92525pt.
+
+>>>>>>> 125a4930ad1d959894f2082ef5a8aa4bc9b81df5
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -524,6 +623,7 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 3F55BC0AF9DC81D73B7C6DEDD98A4282;951.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  11313 strings out of 478994
  175641 string characters out of 5867239
  477036 words of memory out of 5000000
@@ -538,4 +638,20 @@ PDF statistics:
  109 compressed objects within 2 object streams
  30 named destinations out of 1000 (max. 500000)
  112 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+ 11303 strings out of 478994
+ 175293 string characters out of 5867239
+ 474935 words of memory out of 5000000
+ 28603 multiletter control sequences out of 15000+600000
+ 440888 words of font info for 98 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 71i,11n,79p,800b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/base/8r.enc}</usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmri8a.pfb>
+Output written on /mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf (5 pages, 2717435 bytes).
+PDF statistics:
+ 137 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
+ 29 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> 125a4930ad1d959894f2082ef5a8aa4bc9b81df5
 

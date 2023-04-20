@@ -1,4 +1,5 @@
 # Fdb version 3
+<<<<<<< HEAD
 ["bibtex out/report"] 1680689203 "out/report.aux" "out/report.bbl" "out/report" 1680689214
   "/usr/share/texmf/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
   "out/report.aux" 1680689214 6017 f8d0d5543cd0b53460904d8039c8efa7 "pdflatex"
@@ -10,6 +11,12 @@
   "/etc/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
   "/home/finn/Documents/honours-project/radiation-nuclear-physics/lab-2/out/report.aux" 1680689214 6017 f8d0d5543cd0b53460904d8039c8efa7 ""
   "/home/finn/Documents/honours-project/radiation-nuclear-physics/lab-2/report.tex" 1680689191 7387 dd574a9779d08b754dd24a1508b5b063 ""
+=======
+["pdflatex"] 1680764855 "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf" "report" 1680768613
+  "/etc/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.aux" 1680764859 6096 3723ce078cb8c9336055afcf6839f2cf ""
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/report.tex" 1680742288 5162 b5d728cbab48c225844370517758771b ""
+>>>>>>> 125a4930ad1d959894f2082ef5a8aa4bc9b81df5
   "/usr/share/texmf/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texmf/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -110,6 +117,7 @@
   "/usr/share/texmf/tex/latex/subfig/subfig.sty" 1158586182 21369 9ef165ca6df8815c92e693146a376c92 ""
   "/usr/share/texmf/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1617974667 40935 950c859ef6aa64cd9f8caa18792b2c7d ""
+<<<<<<< HEAD
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1678096444 5175355 cdab57a66732305fc52dc8bf1694ca9d ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1678096493 2724540 cd115c7b4f4fc909b4f1ddcc4239f921 ""
   "figures/background_counts_overlay.png" 1680687309 221650 40354cc5259245589af0eaecc6c545fc ""
@@ -128,9 +136,35 @@
   "out/report.out" 1680689214 951 3f55bc0af9dc81d73b7c6dedd98a4282 "pdflatex"
   "report.tex" 1680689191 7387 dd574a9779d08b754dd24a1508b5b063 ""
   (generated)
+=======
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1678240956 5175355 cdab57a66732305fc52dc8bf1694ca9d ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1678240895 2724537 71621279059e9efef7e3bbda5e559014 ""
+  "figures/background_counts_overlay.png" 1680768605 205558 ef39e09952736845b8c7499a638cf183 ""
+  "figures/calibration_spectrum_co_counts_overlay_final_mca.png" 1680768602 109430 c3f556c92f873f35519a9ad2b92a52fc ""
+  "figures/calibration_spectrum_cs_counts_overlay_both_mca.png" 1680768596 170591 a4beb1688c8a32eabda875a11caf9a17 ""
+  "figures/calibration_spectrum_na_counts_overlay_both_mca.png" 1680768596 187653 cd01781c7ade2932eafdec888cf3a44b ""
+  "figures/difference_counts_smooth.png" 1680768612 394727 06ef2b8bd9616b4a4c5ffd43f31a55f6 ""
+  "figures/mystery_1_background_counts_overlay.png" 1680768606 293146 f66f6264d16e0574231764c082a1b3e4 ""
+  "figures/mystery_2_background_counts_overlay.png" 1680768607 287683 44e5e071a11e24dc0ddb220f3e9cf4a2 ""
+  "figures/mystery_3_background_counts_overlay.png" 1680768608 284737 9877c3f1c284570680e336883a8e9a8a ""
+  "figures/mystery_4_background_counts_overlay.png" 1680768609 282054 63cdbec355976c5eea280bb5ceb47dc9 ""
+  "figures/mystery_5_background_counts_overlay.png" 1680768610 277376 231fb7fc39ae3a7467448498eded6f7f ""
+  "figures/mystery_6_background_counts_overlay.png" 1680768611 275406 3969d88ac0d76b818b68a653ca273bba ""
+  "out/report.aux" 1680764859 6096 3723ce078cb8c9336055afcf6839f2cf "pdflatex"
+  "out/report.out" 1680764859 754 f96c45d528f2c3ce24a5c0e805be0278 "pdflatex"
+  "report.tex" 1680742288 5162 b5d728cbab48c225844370517758771b ""
+  (generated)
+  "out/report.aux"
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.log"
+  "/mnt/nvme0n1p1/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf"
+>>>>>>> 125a4930ad1d959894f2082ef5a8aa4bc9b81df5
   "out/report.out"
   "out/report.aux"
   "out/report.pdf"
+<<<<<<< HEAD
   "/home/finn/Documents/honours-project/radiation-nuclear-physics/lab-2/out/report.log"
   "out/report.log"
   "/home/finn/Documents/honours-project/radiation-nuclear-physics/lab-2/out/report.pdf"
+=======
+  "out/report.log"
+>>>>>>> 125a4930ad1d959894f2082ef5a8aa4bc9b81df5

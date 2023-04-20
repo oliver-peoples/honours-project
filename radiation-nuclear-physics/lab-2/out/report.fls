@@ -669,6 +669,26 @@ INPUT ./figures/calibration_spectrum_co_counts_overlay_final_mca.png
 INPUT figures/calibration_spectrum_co_counts_overlay_final_mca.png
 INPUT ./figures/calibration_spectrum_co_counts_overlay_final_mca.png
 INPUT ./figures/calibration_spectrum_co_counts_overlay_final_mca.png
+<<<<<<< HEAD
+=======
+INPUT ./figures/calibration_spectrum_cs_counts_overlay_both_mca.png
+INPUT ./figures/calibration_spectrum_cs_counts_overlay_both_mca.png
+INPUT figures/calibration_spectrum_cs_counts_overlay_both_mca.png
+INPUT ./figures/calibration_spectrum_cs_counts_overlay_both_mca.png
+INPUT ./figures/calibration_spectrum_na_counts_overlay_both_mca.png
+INPUT ./figures/calibration_spectrum_na_counts_overlay_both_mca.png
+INPUT figures/calibration_spectrum_na_counts_overlay_both_mca.png
+INPUT ./figures/calibration_spectrum_na_counts_overlay_both_mca.png
+INPUT ./figures/calibration_spectrum_co_counts_overlay_final_mca.png
+INPUT ./figures/calibration_spectrum_co_counts_overlay_final_mca.png
+INPUT figures/calibration_spectrum_co_counts_overlay_final_mca.png
+INPUT ./figures/calibration_spectrum_co_counts_overlay_final_mca.png
+INPUT /usr/share/texmf/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+>>>>>>> 125a4930ad1d959894f2082ef5a8aa4bc9b81df5
 INPUT /usr/share/texmf/fonts/vf/adobe/times/ptmr7t.vf
 INPUT /usr/share/texmf/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
