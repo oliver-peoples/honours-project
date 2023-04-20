@@ -61,10 +61,10 @@ def calibrationIsotopes() -> None:
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-        plt.ylim(ylim)
+        # plt.ylim(ylim)
         plt.yticks(fontsize=14)
         plt.tight_layout()
-        plt.gca().set_aspect(aspect)
+        # plt.gca().set_aspect(aspect)
         plt.savefig(f'figures/{calibration_isotope}_counts_overlay_both_mca.png', dpi=400, bbox_inches='tight')
         plt.close()   
     
@@ -96,10 +96,10 @@ def calibrationIsotopes() -> None:
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-        plt.ylim(ylim)
+        # plt.ylim(ylim)
         plt.yticks(fontsize=14)
         plt.tight_layout()
-        plt.gca().set_aspect(aspect)
+        # plt.gca().set_aspect(aspect)
         plt.savefig(f'figures/{calibration_isotope}_counts_raw_og_mca.png', dpi=400, bbox_inches='tight')
         plt.close()
         
@@ -114,7 +114,7 @@ def calibrationIsotopes() -> None:
         plt.ylim(ylim)
         plt.yticks(fontsize=14)
         plt.tight_layout()
-        plt.gca().set_aspect(aspect)
+        # plt.gca().set_aspect(aspect)
         plt.savefig(f'figures/{calibration_isotope}_counts_smooth_og_mca.png', dpi=400, bbox_inches='tight')
         plt.close()
         
@@ -127,10 +127,10 @@ def calibrationIsotopes() -> None:
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-        plt.ylim(ylim)
+        # plt.ylim(ylim)
         plt.yticks(fontsize=14)
         plt.tight_layout()
-        plt.gca().set_aspect(aspect)
+        # plt.gca().set_aspect(aspect)
         plt.savefig(f'figures/{calibration_isotope}_counts_overlay_og_mca.png', dpi=400, bbox_inches='tight')
         plt.close()
         
@@ -162,10 +162,10 @@ def calibrationIsotopes() -> None:
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-        plt.ylim(ylim)
+        # plt.ylim(ylim)
         plt.yticks(fontsize=14)
         plt.tight_layout()
-        plt.gca().set_aspect(aspect)
+        # plt.gca().set_aspect(aspect)
         plt.savefig(f'figures/{calibration_isotope}_counts_raw_final_mca.png', dpi=400, bbox_inches='tight')
         plt.close()
         
@@ -177,10 +177,10 @@ def calibrationIsotopes() -> None:
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-        plt.ylim(ylim)
+        # plt.ylim(ylim)
         plt.yticks(fontsize=14)
         plt.tight_layout()
-        plt.gca().set_aspect(aspect)
+        # plt.gca().set_aspect(aspect)
         plt.savefig(f'figures/{calibration_isotope}_counts_smooth_final_mca.png', dpi=400, bbox_inches='tight')
         plt.close()
         
@@ -193,13 +193,12 @@ def calibrationIsotopes() -> None:
         plt.xticks(fontsize=14)
         plt.xlim(xlim)
         plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-        plt.ylim(ylim)
+        # plt.ylim(ylim)
         plt.yticks(fontsize=14)
         plt.tight_layout()
-        plt.gca().set_aspect(aspect)
+        # plt.gca().set_aspect(aspect)
         plt.savefig(f'figures/{calibration_isotope}_counts_overlay_final_mca.png', dpi=400, bbox_inches='tight')
-        plt.close()   
-    
+        plt.close()
 
 def backgroundRadiation() -> None:
     
@@ -232,10 +231,10 @@ def backgroundRadiation() -> None:
     plt.xticks(fontsize=14)
     plt.xlim(xlim)
     plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-    plt.ylim(ylim)
+    # plt.ylim(ylim)
     plt.yticks(fontsize=14)
     plt.tight_layout()
-    plt.gca().set_aspect(aspect)
+    # plt.gca().set_aspect(aspect)
     plt.savefig('figures/background_counts_raw.png', dpi=400, bbox_inches='tight')
     plt.close()
     
@@ -246,10 +245,10 @@ def backgroundRadiation() -> None:
     plt.xticks(fontsize=14)
     plt.xlim(xlim)
     plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-    plt.ylim(ylim)
+    # plt.ylim(ylim)
     plt.yticks(fontsize=14)
     plt.tight_layout()
-    plt.gca().set_aspect(aspect)
+    # plt.gca().set_aspect(aspect)
     plt.savefig('figures/background_counts_smooth.png', dpi=400, bbox_inches='tight')
     plt.close()
     
@@ -262,17 +261,216 @@ def backgroundRadiation() -> None:
     plt.xticks(fontsize=14)
     plt.xlim(xlim)
     plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
-    plt.ylim(ylim)
+    # plt.ylim(ylim)
     plt.yticks(fontsize=14)
     plt.tight_layout()
-    plt.gca().set_aspect(aspect)
+    # plt.gca().set_aspect(aspect)
     plt.savefig('figures/background_counts_overlay.png', dpi=400, bbox_inches='tight')
+    plt.close()
+    
+def attenuatingMaterial() -> None:
+    
+    # load up the background data
+    
+    bg_bin_counts, bg_mca_coefficients, _ = loadAsciiSpectrum(os.path.join('data','calibration_spectrum_bg.Spe'))
+    
+    bg_energy_counts = bg_bin_counts.astype(dtype=np.float64)
+    
+    # map bin numbers to gamma ray energies
+    
+    bg_energy_counts[:,0] = bg_mca_coefficients[0] + bg_mca_coefficients[1] * bg_energy_counts[:,0] + bg_mca_coefficients[2] * bg_energy_counts[:,0] ** 2
+    bg_smooth_energy_counts = scipy.ndimage.gaussian_filter1d(bg_energy_counts[:,1], 6)
+    bg_smooth_energy_counts *= 2
+    
+    # attenuator_files = sorted(glob.glob(os.path.join('data','mystery_*.Spe')))
+    attenuator_files = sorted(glob.glob(os.path.join('data','attenuator_*.Spe')))
+    
+    total_counts = np.zeros((len(attenuator_files),2), dtype=np.float64)
+    
+    file_counter = 0
+        
+    start_epoch = total_counts[0,0]
+    total_counts[:,0] -= total_counts[0,0]
+    print(total_counts)
+    
+    # x_range = total_counts[-1,0] - total_counts[0,0]
+    y_max = 10000 * round(np.max(total_counts[:,1]) / 10000) + 5000
+    aspect = 1.75
+    aspect = (75 / (aspect * y_max))
+    
+    t_span = np.linspace(0,75,10000)
+    theoretical_counts = total_counts[0,1] * np.exp(-9.46e-3 * t_span)
+    
+    ln_I_0 = np.log(total_counts[0,1])
+    ln_I = np.log(total_counts[:,1]) - ln_I_0
+    
+    total_counts[:,1] = ln_I
+    
+    for row in total_counts[:]:
+        
+        print(f'{row[0]:.4f}')
+    
+    for row in total_counts[:]:
+        
+        print(f'{row[1]:.4f}')
+    # plot all
+    
+    xlim = (0,1750)
+    ylim = (0,250)
+    aspect = 1.75
+    aspect = (xlim[1]-xlim[0]) / (aspect * (ylim[1]-ylim[0]))
+    
+    plt.plot(bg_energy_counts[:,0], bg_smooth_energy_counts, 'k--', alpha=0.5, linewidth=0.75, label=r'$\sigma_{G}=3$ \bf{Background}')
+    
+    counter = 0
+    
+    for attenuator_file in attenuator_files:
+        
+        # load up the data
+    
+        bin_counts, mca_coefficients, epoch = loadAsciiSpectrum(attenuator_file)
+        
+        epoch -= start_epoch
+        
+        attenuator_file = os.path.basename(attenuator_file)
+        attenuator_file = os.path.splitext(attenuator_file)[0]
+        
+        print(attenuator_file)
+        
+        energy_counts = bin_counts.astype(dtype=np.float64)
+        
+        # total_counts[file_counter,1] = np.sum(bin_counts[:,1])
+        
+        # map bin numbers to gamma ray energies
+        
+        energy_counts[:,0] = mca_coefficients[0] + mca_coefficients[1] * energy_counts[:,0] + mca_coefficients[2] * energy_counts[:,0] ** 2
+        smooth_energy_counts = scipy.ndimage.gaussian_filter1d(energy_counts[:,1], 6)
+        
+        # plot smoothed values
+        
+        plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=0.75, alpha=1.0 - 0.6 * (counter / (len(attenuator_files) - 1)), label=rf'$N={counter}$' + r' \bf{HVL}')
+        
+        counter += 1
+        
+    plt.legend(prop={'size':14})
+    plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+    plt.xticks(fontsize=14)
+    plt.xlim(xlim)
+    plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+    # plt.ylim(ylim)
+    plt.yticks(fontsize=14)
+    plt.tight_layout()
+    # plt.gca().set_aspect(aspect)
+    plt.savefig(f'figures/attenuator_isotope_all_spectra_smooth.png', dpi=400, bbox_inches='tight')
+    plt.close()
+    
+    # maximum and no attenuation
+    
+    counter = 0
+    
+    for attenuator_file in attenuator_files:
+        
+        if counter == 0 or counter == len(attenuator_files) - 1:
+        
+            # load up the data
+        
+            bin_counts, mca_coefficients, epoch = loadAsciiSpectrum(attenuator_file)
+            
+            epoch -= start_epoch
+            
+            attenuator_file = os.path.basename(attenuator_file)
+            attenuator_file = os.path.splitext(attenuator_file)[0]
+            
+            print(attenuator_file)
+            
+            energy_counts = bin_counts.astype(dtype=np.float64)
+            
+            # total_counts[file_counter,1] = np.sum(bin_counts[:,1])
+            
+            # map bin numbers to gamma ray energies
+            
+            energy_counts[:,0] = mca_coefficients[0] + mca_coefficients[1] * energy_counts[:,0] + mca_coefficients[2] * energy_counts[:,0] ** 2
+            smooth_energy_counts = scipy.ndimage.gaussian_filter1d(energy_counts[:,1], 6)
+            
+            # plot smoothed values
+            
+            plt.plot(energy_counts[:,0], smooth_energy_counts, 'k', linewidth=0.75, alpha=1.0 - 0.6 * (counter / (len(attenuator_files) - 1)), label=rf'$N_P={counter}$')
+            
+        counter += 1
+        
+    plt.legend(prop={'size':14})
+    plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+    plt.xticks(fontsize=14)
+    plt.xlim(xlim)
+    plt.ylabel(r'\bf{\# of Detections}', fontsize=16)
+    # plt.ylim(ylim)
+    plt.yticks(fontsize=14)
+    plt.tight_layout()
+    # plt.gca().set_aspect(aspect)
+    plt.savefig(f'figures/attenuated_unattenuated_spectra_smooth.png', dpi=400, bbox_inches='tight')
+    plt.close()
+        
+    # load up the data
+    
+    baseline_bin_counts, baseline_mca_coefficients, _ = loadAsciiSpectrum(attenuator_files[0])
+    
+    baseline_energy_counts = baseline_bin_counts.astype(dtype=np.float64)
+    
+    # map bin numbers to gamma ray energies
+    
+    baseline_energy_counts[:,0] = baseline_mca_coefficients[0] + baseline_mca_coefficients[1] * baseline_energy_counts[:,0] + baseline_mca_coefficients[2] * baseline_energy_counts[:,0] ** 2
+    baseline_smooth_energy_counts = scipy.ndimage.gaussian_filter1d(baseline_energy_counts[:,1], 6)
+    
+    # set limits for plotting
+        
+    xlim = (0,1750)
+    ylim = (-50,5)
+    aspect = 1.75
+    aspect = (xlim[1]-xlim[0]) / (aspect * (ylim[1]-ylim[0]))
+    
+    counter = 1
+    
+    plt.plot(list(xlim), [0,0], 'k', linewidth=1.0, label=r'$N=0$')
+        
+    for attenuator_file in attenuator_files[1:]:
+        
+        # load up the data
+    
+        bin_counts, mca_coefficients, _ = loadAsciiSpectrum(attenuator_file)
+        
+        attenuator_file = os.path.basename(attenuator_file)
+        attenuator_file = os.path.splitext(attenuator_file)[0]
+        
+        energy_counts = bin_counts.astype(dtype=np.float64)
+        
+        # map bin numbers to gamma ray energies
+        
+        energy_counts[:,0] = mca_coefficients[0] + mca_coefficients[1] * energy_counts[:,0] + mca_coefficients[2] * energy_counts[:,0] ** 2
+        smooth_energy_counts = scipy.ndimage.gaussian_filter1d(energy_counts[:,1], 6)
+        
+        # plot smoothed values
+        
+        plt.plot(energy_counts[:,0], smooth_energy_counts - baseline_smooth_energy_counts, 'k', linewidth=0.75, alpha=0.9 - 0.4 * (counter / (len(attenuator_files) - 1)))
+        
+        counter += 1
+        
+    plt.legend(prop={'size':14})
+    plt.xlabel(r'\bf{Gamma Ray Energy (keV)}',fontsize=16)
+    plt.xticks(fontsize=14)
+    plt.xlim(xlim)
+    plt.ylabel(r'$\Delta$ \bf{Detections}', fontsize=16)
+    # plt.ylim(ylim)
+    plt.yticks(fontsize=14)
+    plt.tight_layout()
+    # plt.gca().set_aspect(aspect)
+    plt.savefig(f'figures/attenuator_difference_counts_smooth.png', dpi=400, bbox_inches='tight')
     plt.close()
 
 def main() -> None:
     
     calibrationIsotopes()
     backgroundRadiation()
+    attenuatingMaterial()
 
 if __name__ == '__main__':
     
