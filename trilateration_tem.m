@@ -1,6 +1,8 @@
 clear;
 clc;
 
+addpath("matlab-functions")
+
 % functions we'll use:
 
 %   function g1 = g1_TEM(x, y, m, n, w, w_0, I_0)
@@ -130,6 +132,9 @@ plot(xy_emitter_1(1), xy_emitter_1(2), 'k+')
 plot(xy_emitter_2(1), xy_emitter_2(2), 'k+')
 contour(x_linspace, y_linspace, g_2_confocal_scan_intensities, [0.5], 'ShowText', 'On')
 axis equal tight
+
+f = gcf;
+exportgraphics(f,'g1_g2_plot.png','Resolution',900)
 
 
 
