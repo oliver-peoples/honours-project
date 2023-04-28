@@ -42,10 +42,10 @@ def parallelTEM_Affine(m: int, n: int, y_val: float, grid_x: float, translation:
             
     return intensity_vals
 
-def infiniteIntegrals():
+# def infiniteIntegrals():
     
-    return (0.5 * math.sqrt(2) * )
+#     return (0.5 * math.sqrt(2) * )
 
-def normalizationCoefficient(m: int, w: float=1):
+# def normalizationCoefficient(m: int, w: float=1):
     
     

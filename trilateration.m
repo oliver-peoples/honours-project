@@ -24,8 +24,8 @@ detector_inv_w = 1 / detector_w;
 exc_fn_rot = [ 0 0 0 ];
 exc_fn_rot = 3.14159 .* exc_fn_rot / 180;
 
-m_mat = [ 2 1 3 ];
-n_mat = [ 1 2 3 ];
+m_mat = [ 0 2 1 ];
+n_mat = [ 0 1 2 ];
 
 s_m_mat = s_mat(m_mat+1);
 s_n_mat = s_mat(n_mat+1);
@@ -38,7 +38,7 @@ inv_w_mat = 1./w_mat;
 p_0_emitter_1 = 1;
 xy_emitter_1 = [ -0.6300,-0.1276 ];
 
-nf_mat = 2 * 3.14159 * inv_w_mat.^2 .* s_m_mat .* s_n_mat;
+nf_mat = 2 * 3.14159 * w_mat.^2 .* s_m_mat .* s_n_mat;
 nf_mat = 1 ./ nf_mat;
 
 % emitter_1_excitation_intensity = normalization_factor * g1_TEM(xy_emitter_1, m_2, n_2, tem_1_w, 1, 1);
@@ -100,33 +100,26 @@ for excitation_fn = 1:numel(nf_mat)
     g_2(excitation_fn) = (2 * alpha) / (1 + alpha)^2;
 end
 
-
-
 % monte carlo sim
 num_samples = 501;
 
-variab = 0.1;
+variab = 0.0;
 
 %Set options for fminsearch
 options = optimset('TolFun',1e-8);
 
 noise_store = zeros(experiment_count,num_samples);
+    
+noise_model = 1 + variab * randn(experiment_count,1);
 
-for count = 1:num_samples
-    
-    noise_model = 1 + variab + randn(experiment_count,1);
-    
-    g_1_n = g_1 .* noise_model;
-    g_2_n = g_2 .* noise_model;
-    
-    noise_store(:,count) = noise_model;
-    
-    fun = @(xx)chi2_TEM(xx,g_1_n,g_2_n,p_0_emitter_1,detector_inv_w,w_mat,m_mat,n_mat,nf_mat, exc_fn_rot);
-    
-    xx_0 = [rand(1,4),0.5];
-    
-    [xx,chi2(count)] = fminsearch(fun,xx_0);
-end
+g_1_n = g_1 .* noise_model;
+g_2_n = g_2 .* noise_model;
+
+fun = @(xx)chi2_TEM(xx,g_1_n,g_2_n,p_0_emitter_1,detector_inv_w,w_mat,m_mat,n_mat,nf_mat, exc_fn_rot);
+
+xx_0 = [rand(1,4),0.5];
+
+[xx,chi2] = fminsearch(fun,xx_0);
 
 xx
 

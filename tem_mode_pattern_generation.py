@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import multiprocessing as mp
 from tem_utils import *
+import parula
 
 matplotlib.rcParams['text.usetex'] = True
 
@@ -44,21 +45,22 @@ def main() -> None:
             
             intensity_vals *= 1. / volume
                     
-            exec('plt.title(r"$\mathbf{TEM}_{' + str(m) + ',' + str(n) + '}$", fontsize=16)')
-            plt.pcolormesh(x_linspace / w, y_linspace / w, intensity_vals / np.max(intensity_vals), cmap='Blues')
-            plt.xlabel(r"$x/w$", fontsize=16)
-            plt.ylabel(r"$y/w$", fontsize=16)
-            plt.xticks(fontsize=14)
-            plt.yticks(fontsize=14)
+            # exec('plt.title(r"$\mathbf{TEM}_{' + str(m) + ',' + str(n) + '}$", fontsize=16)')
+            plt.pcolormesh(x_linspace / w, y_linspace / w, intensity_vals / np.max(intensity_vals), cmap=parula.parula)
+            plt.xlabel(r"$x/w$", fontsize=18)
+            plt.ylabel(r"$y/w$", fontsize=18)
+            plt.xticks(fontsize=16)
+            plt.yticks(fontsize=16)
             cbar = plt.colorbar()
-            cbar.set_label(r"$P_{x,y}/P_{max}$", fontsize=16, rotation=-90, labelpad=20)
+            cbar.ax.tick_params(labelsize=16)
+            cbar.set_label(r"$I\left(x,y\right)/I_{max}$", fontsize=18, rotation=-90, labelpad=20)
             # cbar.set_ticks
             plt.gca().set_aspect(1)
             plt.tight_layout()
-            plt.savefig(f'tem_m_{m}_n_{n}.png', dpi=1200, bbox_inches='tight')
+            plt.savefig(f'tem-modes/tem_m_{m}_n_{n}.jpg', dpi=500, bbox_inches='tight')
             plt.close()
             
-            np.savetxt(f'tem_m_{m}_n_{n}.csv', intensity_vals, delimiter=',')
+            # np.savetxt(f'tem_m_{m}_n_{n}.csv', intensity_vals, delimiter=',')
 
 if __name__ == "__main__":
     
