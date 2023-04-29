@@ -24,9 +24,5 @@ function [g1Pred,g2Pred] = Predictg1g2_onedetector(x1,x2,x0,P01,P02,sigma)
     
     g1Pred = (P1 + P2)./(P01 + P02);
     g2Pred = (2*alpha)./(1+alpha).^2;
-
-
-
-
 end
 

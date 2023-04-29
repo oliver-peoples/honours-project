@@ -3,7 +3,7 @@ clc;
 
 addpath('matlab-functions/')
 
-plot_vals = false;
+plot_vals = true;
 
 s_mat = [0.5 1 4 24];
 
@@ -24,8 +24,8 @@ detector_inv_w = 1 / detector_w;
 exc_fn_rot = [ 0 ];
 exc_fn_rot = 3.14159 .* exc_fn_rot / 180;
 
-m_mat = [ 1 ];
-n_mat = [ 1 ];
+m_mat = [ 3 ];
+n_mat = [ 2 ];
 
 s_m_mat = s_mat(m_mat+1);
 s_n_mat = s_mat(n_mat+1);
@@ -45,16 +45,16 @@ nf_mat = 1 ./ nf_mat;
 
 % emitter 2 setup
 
-p_0_emitter_2 = 0.1;
+p_0_emitter_2 = 0.3167;
 xy_emitter_2 = [0.5146,-0.5573];
 
-xy_diff = xy_emitter_2 - xy_emitter_1;
-
-xy_diff = xy_diff * 1. / sqrt(xy_diff(1) * xy_diff(1) + xy_diff(2) * xy_diff(2))
-
-xy_emitter_2 = xy_emitter_1 + xy_diff * 0.1;
-
-p_0_emitter_1 / p_0_emitter_2
+% xy_diff = xy_emitter_2 - xy_emitter_1;
+% 
+% xy_diff = xy_diff * 1. / sqrt(xy_diff(1) * xy_diff(1) + xy_diff(2) * xy_diff(2))
+% 
+% xy_emitter_2 = xy_emitter_1 + xy_diff * 0.1;
+% 
+% p_0_emitter_1 / p_0_emitter_2
 
 % emitter_2_excitation_intensity = normalization_factor * g1_TEM(xy_emitter_2, m_2, n_2, tem_1_w, 1, 1);
 

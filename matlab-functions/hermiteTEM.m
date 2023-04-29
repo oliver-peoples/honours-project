@@ -5,8 +5,8 @@ function h_m = hermiteTEM(x, w, m)
     case 1
         h_m = (2 * sqrt(2) * x) / w;
     case 2
-        h_m = (-2 * w^2 + 8 * x^2) / w^2;
+        h_m = 4 * (sqrt(2) * x / w)^2 - 2;
     case 3
-        h_m = (-12 * w^2 * x + 16 * x^3 * sqrt(2)) / w^3;
+        h_m = 8 * (sqrt(2) * x / w)^3 - 12 * (sqrt(2) * x / w);
     end
 end
