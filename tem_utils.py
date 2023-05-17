@@ -61,7 +61,7 @@ def parallelConfocalScan(emitters, light_structure, y_val, x_linspace, detector_
         r_1 = np.linalg.norm(xy_emitter_1_relative, axis=0)
         r_2 = np.linalg.norm(xy_emitter_2_relative, axis=0)
         
-        p_1 = emitters[0][1] * light_structure[2] * fastTEM(
+        p_1 = emitters[0][1] * light_structure[-1] * fastTEM(
             hermite_polynomial_m=hermite_polynomial_m,
             hermite_polynomial_n=hermite_polynomial_n,
             x=xy_emitter_1_relative[0],
@@ -71,7 +71,7 @@ def parallelConfocalScan(emitters, light_structure, y_val, x_linspace, detector_
             w=light_structure[1]
         )
         
-        p_2 = emitters[1][1] * light_structure[2] * fastTEM(
+        p_2 = emitters[1][1] * light_structure[-1] * fastTEM(
             hermite_polynomial_m=hermite_polynomial_m,
             hermite_polynomial_n=hermite_polynomial_n,
             x=xy_emitter_2_relative[0],
