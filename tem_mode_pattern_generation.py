@@ -11,10 +11,10 @@ matplotlib.rcParams['text.usetex'] = True
 
 def main() -> None:
     
-    w = 1.
+    w = 2.
     
-    grid_x = 1750
-    grid_y = 1750
+    grid_x = 1000
+    grid_y = 1000
     
     x_range = (-3.0, 3.0)
     y_range = (-3.0, 3.0)
@@ -45,15 +45,15 @@ def main() -> None:
             
             intensity_vals *= 1. / volume
                     
-            exec('plt.title(r"$\mathbf{TEM}_{' + str(m) + ',' + str(n) + '}$", fontsize=22)')
+            plt.title(r'$\mathrm{m}=' + str(m) + r',\mathrm{n}=' + str(n) + r'$', fontsize=28)
             plt.pcolormesh(x_linspace / w, y_linspace / w, intensity_vals / np.max(intensity_vals), cmap=parula.parula)
-            plt.xlabel(r"$x/w$", fontsize=20)
-            plt.ylabel(r"$y/w$", fontsize=20)
-            plt.xticks(fontsize=18)
-            plt.yticks(fontsize=18)
-            cbar = plt.colorbar()
+            plt.xlabel(r"$x/w$", fontsize=24)
+            plt.ylabel(r"$y/w$", fontsize=24)
+            plt.xticks(fontsize=22)
+            plt.yticks(fontsize=22)
+            cbar = plt.colorbar(pad=0.01)
             cbar.ax.tick_params(labelsize=18)
-            cbar.set_label(r"$I\left(x,y\right)/I_{max}$", fontsize=20, rotation=-90, labelpad=24)
+            cbar.set_label(r"$I\left(x,y\right)/I_{max}$", fontsize=24, rotation=-90, labelpad=28)
             # cbar.set_ticks
             plt.gca().set_aspect(1)
             plt.tight_layout()
