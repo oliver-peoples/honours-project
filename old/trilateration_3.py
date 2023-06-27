@@ -26,7 +26,7 @@ grid_y = 750
 
 recordings = 200
 # pm_thresh = 0.1 # emitter start location noise
-noise_thresh = 0.01
+noise_thresh = 0.05
 range_modifier = 0.5
 objective_position_noise = 0.2
 
@@ -139,9 +139,9 @@ def opt(recording_idx: int):
     x0 = np.random.uniform(low=(-emitter_separation),high=(emitter_separation), size=(5,1)).flatten()
     x0[4] = 0.5
     
-    # x0 = np.array([
-    #     *emitters[0][0],*emitters[1][0],emitters[1][1]
-    # ])
+    x0 = np.array([
+        *emitters[0].xy,*emitters[1].xy,emitters[1].relative_brightness
+    ])
     
     # print(x0)
     

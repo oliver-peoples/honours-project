@@ -11,7 +11,7 @@ matplotlib.rcParams['text.usetex'] = True
 
 def main() -> None:
     
-    w = 2.
+    w = 1.
     
     grid_x = 1000
     grid_y = 1000

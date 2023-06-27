@@ -195,8 +195,8 @@ def optimizeMe(ps_vec, detector: Detector, emitters: List[Emitter], light_struct
         # hermite_polynomial_m = physicistsHermite(light_structure[0][0])
         # hermite_polynomial_n = physicistsHermite(light_structure[0][1])
         
-        xy_emitter_1_relative = xy_emitter_1 - xy_objective
-        xy_emitter_2_relative = xy_emitter_2 - xy_objective
+        xy_emitter_1_relative = xy_emitter_1.xy - xy_objective
+        xy_emitter_2_relative = xy_emitter_2.xy - xy_objective
         
         r_1 = np.linalg.norm(xy_emitter_1_relative, axis=0)
         r_2 = np.linalg.norm(xy_emitter_2_relative, axis=0)
