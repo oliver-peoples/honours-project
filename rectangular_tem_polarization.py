@@ -60,9 +60,10 @@ def main():
     plt.ylabel(r"$y/w$", fontsize=18)
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
-    cbar = plt.colorbar(heatmap, pad=0.01)
+    cbar = plt.colorbar(heatmap, pad=0.01, ticks=[-np.pi/2,0,np.pi/2])
     cbar.ax.tick_params(labelsize=16)
     cbar.set_label(r'$\theta$', fontsize=18, rotation=0, labelpad=15)
+    
     plt.gca().set_aspect(1)
     plt.tight_layout()
     plt.savefig(f'tem_m_{m}_n_{n}_phases.png', dpi=600, bbox_inches='tight')
