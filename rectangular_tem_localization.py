@@ -16,7 +16,7 @@ recordings = 1000
 detector = qclm.Detector
 
 objective_position_noise = 0.1
-reading_noise_thresh = 0.05
+reading_noise_thresh = 0.01
 
 def main() -> None:
     
@@ -27,7 +27,9 @@ def main() -> None:
         qclm.Emitter(0.15 * np.array([0.51460,-0.5573]), 0.71367)
     ]
     
-    print(f'Emitter separation: {np.linalg.norm(emitters[0].xy - emitters[1].xy)}')
+    emitter_separation = np.linalg.norm(emitters[0].xy - emitters[1].xy)
+    
+    print(f'Emitter separation: {emitter_separation}')
     
     light_structures = [
         qclm.RectangularTEM(0, 0, 1., 0.),
@@ -45,8 +47,8 @@ def main() -> None:
     
     print(f'Plot center: {plot_center}')
     
-    x_range = (-0.5 * detector.w + plot_center[0],0.5 * detector.w + plot_center[0])
-    y_range = (-0.5 * detector.w + plot_center[1],0.5 * detector.w + plot_center[1])
+    x_range = (-0.8 * emitter_separation + plot_center[0],0.8 * emitter_separation + plot_center[0])
+    y_range = (-0.8 * emitter_separation + plot_center[1],0.8 * emitter_separation + plot_center[1])
 
     y_linspace = np.linspace(*y_range, grid_y)
     x_linspace = np.linspace(*x_range, grid_x)
@@ -203,6 +205,7 @@ def main() -> None:
     plt.gca().set_aspect(1)
     plt.tight_layout()
     plt.savefig('x_opt_prelim.png', dpi=600, bbox_inches='tight')
+    plt.close()
     
     np.savetxt('x_opt_prelim.csv', x_opt, delimiter=',')
     
@@ -286,8 +289,95 @@ def main() -> None:
     plt.gca().set_aspect(1)
     plt.tight_layout()
     plt.savefig('x_opt_position.png', dpi=600, bbox_inches='tight')
+    plt.close()
     
     np.savetxt('x_opt_position.csv', x_opt, delimiter=',')
+    
+    #============================================================================================================================================================    
+    # emitter 2 guesses
+    #============================================================================================================================================================
+
+    emitter_2_guesses = np.genfromtxt('k_means.csv', delimiter=',')
+    
+    for emitter_2_guess_idx in range(np.shape(emitter_2_guesses)[0]):
+        
+        emitter_2_guess = emitter_2_guesses[emitter_2_guess_idx,:]
+        
+        def optEmitter2Guess(recording_idx: int):
+            
+            # np.random.seed(recording_idx)
+            
+            x_0 = np.zeros(shape=(2,))
+            
+            x_0[:2] = np.random.uniform(low=(-0.2),high=(0.2), size=(1,2)).flatten()
+            # x_0[2:4] = xy_objective - (x_0[:2] - xy_objective)
+            
+            # x_0 = np.array([
+            #     *emitters[0].xy,*emitters[1].xy,emitters[1].relative_brightness
+            # ])
+        
+            
+            # print(x_0)
+            
+            print(f'Recording idx: {recording_idx}')
+            
+            noisy_g_1 = (truth_g_1 * np.random.uniform(low=(1-reading_noise_thresh),high=(1+reading_noise_thresh), size=(len(light_structures),1)))
+            noisy_g_2 = (truth_g_2 * np.random.uniform(low=(1-reading_noise_thresh),high=(1+reading_noise_thresh), size=(len(light_structures),1)))
+                
+            optimization_lambda = lambda ps_vec: qclm.optimizeMe(np.array([*ps_vec,*emitter_2_guess,opt_alpha]), detector, emitters, light_structures, xy_objective, noisy_g_1, noisy_g_2)
+            
+            x_opt = np.zeros(shape=(1,2))
+            
+            # if method == 'fminsearch':
+                
+            x_opt, _, iter, _, _ = scipy.optimize.fmin(func=optimization_lambda, x0=x_0, disp=False, full_output=True, maxiter=400)
+                
+            # else:
+                
+            #     result = scipy.optimize.minimize(fun=optimization_lambda, x_0=x_0, method=method)
+                
+            #     x_opt = result.x
+                
+            return x_opt
+        
+        # mp_pool = pmp.Pool(processes=1)
+        mp_pool = pmp.Pool(processes=int(pmp.cpu_count() / 2))
+        # mp_pool = pmp.Pool(processes=pmp.cpu_count())
+        x_opt_list = mp_pool.map(optEmitter2Guess, list(range(recordings)))
+        mp_pool.close()
+        
+        x_opt = np.zeros(shape=(recordings + 2,2))
+        
+        x_opt[0] = np.array([
+            *emitters[0].xy
+        ])
+        
+        for recording_idx in range(recordings):
+            
+            x_opt[recording_idx + 2] = x_opt_list[recording_idx]
+            
+        x_opt[1,:] = np.mean(x_opt[2:,:], 0)
+
+        plt.scatter(x_opt[2:,0],x_opt[2:,1], c='b', s=2., marker='.')
+        # plt.scatter(x_opt[2:,2],x_opt[2:,3], c='r', s=2., marker='.')
+        # plt.scatter(xy_objective[0], xy_objective[1], c='r', marker='.', s=40, linewidths=1.0, label=r'$\mathrm{Objective\;Location}$')
+        plt.scatter(max_x,max_y, c='r', marker='x', s=40, linewidths=1.0, label=r'$\mathrm{Max\;Intensity}$')
+        plt.scatter(emitters[0].xy[0],emitters[0].xy[1], c='k', marker='x', s=40, linewidths=1.0)
+        plt.scatter(emitters[1].xy[0],emitters[1].xy[1], c='k', marker='x', s=40, linewidths=1.0)
+        plt.scatter(emitter_2_guess[0],emitter_2_guess[1], c='k', s=40, marker='+', linewidths=0.5)
+        # plt.scatter(x_opt[1,2],x_opt[1,3], c='k', s=40, marker='+', linewidths=0.5)    
+        plt.xlim(*x_range)
+        plt.ylim(*y_range)
+        plt.xlabel(r"$x/w$", fontsize=18)
+        plt.ylabel(r"$y/w$", fontsize=18)
+        plt.xticks(fontsize=16)
+        plt.yticks(fontsize=16)
+        plt.gca().set_aspect(1)
+        plt.tight_layout()
+        plt.savefig(f'x_opt_emitter_2_known_{emitter_2_guess_idx}.png', dpi=600, bbox_inches='tight')
+        plt.close()
+        
+        # np.savetxt('x_opt_position.csv', x_opt, delimiter=',')
 
 if __name__ == '__main__':
     
