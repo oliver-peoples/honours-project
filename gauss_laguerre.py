@@ -1,4 +1,4 @@
-from scipy.special import genlaguerre as GenLaguerre
+from scipy.special import genlaguerre as genLaguerre
 import numpy as np
 from parula import parula
 import matplotlib.pyplot as plt
@@ -58,7 +58,7 @@ phi_meshgrid = np.arctan2(y_meshgrid, x_meshgrid)
 # plt.close()
 
 rho_meshgrid = rho(r_meshgrid, waist)
-gen_laguerre = GenLaguerre(order, index)
+gen_laguerre = genLaguerre(order, index)
 gl_tem = I_0 * (rho_meshgrid**index) * (gen_laguerre(rho_meshgrid)**2) * (np.cos(index * phi_meshgrid)**2) * np.exp(-rho_meshgrid)
 gl_tem /= np.max(gl_tem)
 
