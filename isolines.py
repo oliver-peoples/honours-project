@@ -1,61 +1,12 @@
-from scipy.special import genlaguerre as genLaguerre
+
 import numpy as np
-from dataclasses import dataclass
 from parula import parula
 import matplotlib.pyplot as plt
 import matplotlib
-from qclm import Emitter
+from qclm import Emitter, GaussLaguerre, GaussHermite, Detector
 
 matplotlib.rcParams['text.usetex'] = True
 
-@dataclass
-class GaussLaguerre:
-    
-    p: int
-    l: int
-    
-    I_0: float
-    waist: float
-    
-    center: np.ndarray = np.array([0.,0.])
-    
-    def __post_init__(self) -> None:
-        
-        self.laguerre = genLaguerre(self.p, self.l)
-        
-    def rhoFn(self, r) -> float:
-    
-        return 2. * r**2 / self.waist**2
-        
-    def intensityFn(self, x: float, y: float):
-        
-        relative_x = x - self.center[0]
-        relative_y = y - self.center[1]
-        
-        r = np.sqrt(relative_x**2 + relative_y**2)
-        phi = np.arctan2(relative_y, relative_x)
-        
-        rho = self.rhoFn(r)
-        
-        gl_tem = self.I_0 * (rho**self.l) * (self.laguerre(rho)**2) * (np.cos(self.l * phi)**2) * np.exp(-rho)
-        
-        return gl_tem
-    
-@dataclass
-class Detector:
-    
-    waist = 1.
-    
-    center: np.ndarray = np.array([0.,0.])
-    
-    def detectFn(self, x: float, y: float, p: float=1.):
-        
-        relative_x = x - self.center[0]
-        relative_y = y - self.center[1]
-        
-        r = np.sqrt(relative_x**2 + relative_y**2)
-        
-        return np.exp(-(r**2 / 2) / (2 * self.waist**2)) * p
 
 def main() -> None:
     
@@ -65,7 +16,14 @@ def main() -> None:
     
     # light structures
     
-    gl = GaussLaguerre(1, 3, 1., 1.)
+    illumination_structures = [
+        GaussHermite(3, 1, 1., 0.25, center=[-0.1,-0.1], rotation=np.pi/4),
+        GaussHermite(0, 0, 1., 0.25, center=[-0.1,-0.1], rotation=np.pi/4),
+        GaussHermite(2, 1, 1., 0.25, center=[-0.1,-0.1], rotation=np.pi/4),
+        GaussLaguerre(1, 3, 1., 0.25, center=[0.1,0.1], rotation=np.pi/6),
+        GaussLaguerre(0, 3, 1., 0.25, center=[0.1,0.1], rotation=np.pi/6),
+        GaussLaguerre(0, 2, 1., 0.25, center=[0.1,0.1], rotation=np.pi/6)
+    ]
     
     # emitters
     
@@ -81,48 +39,156 @@ def main() -> None:
     
     # plotting stuff
 
-    grid_x = 1750
-    grid_y = 1750
+    grid_x = 3750
+    grid_y = 3750
     waists = 3
     
+    x_linspace = np.linspace(-detector.waist * 0.9, detector.waist * 0.9, grid_x)
+    y_linspace = np.linspace(-detector.waist * 0.9, detector.waist * 0.9, grid_y)
+    
     x_meshgrid, y_meshgrid = np.meshgrid(
-        np.linspace(-waists * gl.waist, waists * gl.waist, grid_x),
-        np.linspace(waists * gl.waist, -waists * gl.waist, grid_y)
+        x_linspace,
+        y_linspace
     )
     
-    # true detector intensities
+    total_error = np.zeros_like(x_meshgrid)
+    
+    for illumination_structure in illumination_structures:
+        
+        print(f'{illumination_structure.modeTypeString().lower()}_{illumination_structure.orderString()}')
+        
+        # intensity field
+        
+        intensity_map = illumination_structure.intensityMap(x_meshgrid, y_meshgrid)
+        
+        volume = np.trapz(
+            y=np.asarray(
+                [np.trapz(y=intensity_row, x=x_linspace) for intensity_row in intensity_map[:]]
+            ),
+            x=y_linspace
+        )
+        
+        print(volume)
+        intensity_map /= np.abs(volume)
 
-    p_1_true = e_1.relative_brightness * gl.intensityFn(*e_1.xy)
-    p_2_true = e_2.relative_brightness * gl.intensityFn(*e_2.xy)
+        plt.title(r'$\mathrm{' + illumination_structure.modeTypeString() + r'}_{' + f'{illumination_structure.orderString()}' + r'}$', fontsize=24, pad=10)
+        plt.pcolormesh(x_meshgrid / detector.waist, y_meshgrid / detector.waist, intensity_map, cmap=parula)
+        plt.xlabel(r"$x/w$", fontsize=18)
+        plt.ylabel(r"$y/w$", fontsize=18)
+        plt.xticks(fontsize=4 + 12)
+        plt.yticks(fontsize=4 + 12)
+        cbar = plt.colorbar(pad=0.01)
+        cbar.ax.tick_params(labelsize=18)
+        cbar.set_label(r"$I_{pl}\left(\rho,\phi\right)/I_{max}$", fontsize=18, rotation=-90, labelpad=38)
+        plt.scatter(e_1.xy[0] / detector.waist, e_1.xy[1] / detector.waist, c='r', marker='x', s=40, linewidths=1)
+        plt.scatter(e_2.xy[0] / detector.waist, e_2.xy[1] / detector.waist, facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+        plt.gca().set_aspect(1)
+        plt.tight_layout()
+        plt.savefig(f'isolines/{illumination_structure.modeTypeString().lower()}_{illumination_structure.orderString()}_i_xy.png', dpi=400, bbox_inches='tight')
+        plt.close()
     
-    p_1_true = detector.detectFn(*e_1.xy, p_1_true)
-    p_2_true = detector.detectFn(*e_2.xy, p_2_true)
-    
-    g_1_true = (p_1_true + p_2_true) / (e_1.relative_brightness + e_1.relative_brightness)
-    
-    alpha = p_2_true / p_1_true
-    
-    g_2_true = (2 * alpha) / (1 + alpha)**2
-    
-    print(g_1_true, g_2_true)
-    
-    # guessed values
-    
-    
+        # true detector intensities
 
-    # plt.title(r'$\mathrm{GL}_{pl},\;p=' + str(gl.p) + r',\;l=' + str(gl.l) + r'$', fontsize=28, pad=10)
-    # plt.pcolormesh(x_meshgrid / waist, y_meshgrid / waist, gl_tem, cmap=parula)
-    # plt.xlabel(r"$x/w$", fontsize=24)
-    # plt.ylabel(r"$y/w$", fontsize=24)
-    # plt.xticks(fontsize=22)
-    # plt.yticks(fontsize=22)
-    # cbar = plt.colorbar(pad=0.01)
-    # cbar.ax.tick_params(labelsize=18)
-    # cbar.set_label(r"$I_{pl}\left(\rho,\phi\right)/I_{max}$", fontsize=24, rotation=-90, labelpad=28)
-    # plt.gca().set_aspect(1)
-    # plt.tight_layout()
-    # plt.savefig(f'gl-modes/test_p_{gl.p}_l_{gl.l}_i.png', dpi=400, bbox_inches='tight')
-    # plt.close()
+        p_1_true = e_1.relative_brightness * (illumination_structure.intensityFn(*e_1.xy) / volume)
+        p_2_true = e_2.relative_brightness * (illumination_structure.intensityFn(*e_2.xy) / volume)
+        
+        p_1_true = detector.detectFn(*e_1.xy, p_1_true)
+        p_2_true = detector.detectFn(*e_2.xy, p_2_true)
+        
+        g_1_true = (p_1_true + p_2_true) / (e_1.relative_brightness + e_2.relative_brightness)
+        
+        alpha = p_2_true / p_1_true
+        
+        g_2_true = (2 * alpha) / (1 + alpha)**2
+        
+        # guessed values
+        
+        p_2_guessed = e_2.relative_brightness * (illumination_structure.intensityFn(x_meshgrid, y_meshgrid) / volume)
+        p_2_guessed = detector.detectFn(x_meshgrid, y_meshgrid, p_2_guessed)
+        
+        g_1_guess = (p_1_true + p_2_guessed) / (e_1.relative_brightness + e_2.relative_brightness)
+        
+        plt.title(r'$\mathrm{' + illumination_structure.modeTypeString() + r'}_{' + f'{illumination_structure.orderString()}' + r'}$', fontsize=24, pad=10)
+        plt.pcolormesh(x_meshgrid / detector.waist, y_meshgrid / detector.waist, g_1_guess, cmap=parula)
+        plt.xlabel(r"$x/w$", fontsize=18)
+        plt.ylabel(r"$y/w$", fontsize=18)
+        plt.xticks(fontsize=4 + 12)
+        plt.yticks(fontsize=4 + 12)
+        cbar = plt.colorbar(pad=0.01)
+        cbar.ax.tick_params(labelsize=18)
+        cbar.set_label(r"$\mathsf{G}_{2}^{(1)}$", fontsize=18, rotation=-90, labelpad=38)
+        plt.scatter(e_1.xy[0] / detector.waist, e_1.xy[1] / detector.waist, c='r', marker='x', s=40, linewidths=1)
+        plt.scatter(e_2.xy[0] / detector.waist, e_2.xy[1] / detector.waist, facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+        plt.gca().set_aspect(1)
+        plt.tight_layout()
+        plt.savefig(f'isolines/{illumination_structure.modeTypeString().lower()}_{illumination_structure.orderString()}_g_1.png', dpi=400, bbox_inches='tight')
+        plt.close()
+        
+        alpha = p_2_guessed / p_1_true
+        
+        g_2_guess = (2 * alpha) / (1 + alpha)**2 
+        
+        plt.title(r'$\mathrm{' + illumination_structure.modeTypeString() + r'}_{' + f'{illumination_structure.orderString()}' + r'}$', fontsize=24, pad=10)
+        plt.pcolormesh(x_meshgrid / detector.waist, y_meshgrid / detector.waist, g_2_guess, cmap=parula)
+        plt.xlabel(r"$x/w$", fontsize=18)
+        plt.ylabel(r"$y/w$", fontsize=18)
+        plt.xticks(fontsize=4 + 12)
+        plt.yticks(fontsize=4 + 12)
+        cbar = plt.colorbar(pad=0.01)
+        cbar.ax.tick_params(labelsize=18)
+        cbar.set_label(r"$\mathsf{G}_{2}^{(2)}$", fontsize=18, rotation=-90, labelpad=38)
+        plt.scatter(e_1.xy[0] / detector.waist, e_1.xy[1] / detector.waist, c='r', marker='x', s=40, linewidths=1)
+        plt.scatter(e_2.xy[0] / detector.waist, e_2.xy[1] / detector.waist, facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+        plt.gca().set_aspect(1)
+        plt.tight_layout()
+        plt.savefig(f'isolines/{illumination_structure.modeTypeString().lower()}_{illumination_structure.orderString()}_g_2.png', dpi=400, bbox_inches='tight')
+        plt.close()
+        
+        g_1_guess -= g_1_true
+        g_2_guess -= g_2_true
+        
+        sum_squares = g_1_guess**2 + g_2_guess**2
+        sum_squares -= np.min(sum_squares)
+        
+        total_error += sum_squares
+        
+        plt.title(r'$\mathrm{' + illumination_structure.modeTypeString() + r'}_{' + f'{illumination_structure.orderString()}' + r'}$', fontsize=24, pad=10)
+        plt.pcolormesh(x_meshgrid / detector.waist, y_meshgrid / detector.waist, sum_squares, cmap=parula)
+        plt.xlabel(r"$x/w$", fontsize=18)
+        plt.ylabel(r"$y/w$", fontsize=18)
+        plt.xticks(fontsize=4 + 12)
+        plt.yticks(fontsize=4 + 12)
+        plt.gca().contour(x_meshgrid / detector.waist, y_meshgrid / detector.waist, sum_squares, linewidths=1, colors='k', levels=[np.min(sum_squares) + 0.00005])
+        cbar = plt.colorbar(pad=0.01)
+        cbar.ax.tick_params(labelsize=18)
+        cbar.set_label(r"$\left(\mathcal{G}_{2}^{(1)}-\mathsf{G}_{2}^{(1)}\right)^{2}+\left(\mathcal{G}_{2}^{(2)}-\mathsf{G}_{2}^{(2)}\right)^{2}$", fontsize=18, rotation=-90, labelpad=38)
+        plt.scatter(e_1.xy[0] / detector.waist, e_1.xy[1] / detector.waist, c='r', marker='x', s=40, linewidths=1)
+        plt.scatter(e_2.xy[0] / detector.waist, e_2.xy[1] / detector.waist, facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+        plt.gca().set_aspect(1)
+        plt.tight_layout()
+        plt.savefig(f'isolines/{illumination_structure.modeTypeString().lower()}_{illumination_structure.orderString()}_sum_squares.png', dpi=400, bbox_inches='tight')
+        plt.close()
+        
+    print(np.min(total_error))
+        
+    # plt.title(r'$\mathrm{' + illumination_structure.modeTypeString() + r'}_{' + f'{illumination_structure.orderString()}' + r'}$', fontsize=24, pad=10)
+    plt.pcolormesh(x_meshgrid / detector.waist, y_meshgrid / detector.waist, total_error, cmap=parula)
+    plt.xlabel(r"$x/w$", fontsize=18)
+    plt.ylabel(r"$y/w$", fontsize=18)
+    plt.xticks(fontsize=4 + 12)
+    plt.yticks(fontsize=4 + 12)
+    plt.gca().contour(x_meshgrid / detector.waist, y_meshgrid / detector.waist, total_error, linewidths=1, colors='k', levels=[np.min(total_error) + 0.0005])
+    cbar = plt.colorbar(pad=0.01)
+    cbar.ax.tick_params(labelsize=18)
+    cbar.set_label(r"$\mathrm{Sum\;Square\;Error}$", fontsize=18, rotation=-90, labelpad=38)
+    plt.scatter(e_1.xy[0] / detector.waist, e_1.xy[1] / detector.waist, c='r', marker='x', s=40, linewidths=1)
+    plt.scatter(e_2.xy[0] / detector.waist, e_2.xy[1] / detector.waist, facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+    plt.gca().set_aspect(1)
+    plt.tight_layout()
+    plt.savefig(f'isolines/total_error.png', dpi=400, bbox_inches='tight')
+    plt.close()
+        
+        
     
 if __name__ == '__main__':
     
