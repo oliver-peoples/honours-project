@@ -19,9 +19,33 @@ class GaussLaguerre:
     
     rotation: float = 0
     
+    volume: float = 1.
+    
     def __post_init__(self) -> None:
         
         self.laguerre = genLaguerre(self.p, self.l)
+        
+        grid_x = 3750
+        grid_y = 3750
+        
+        x_linspace = np.linspace(-10, 10, grid_x)
+        y_linspace = np.linspace(-10, 10, grid_y)
+        
+        x_meshgrid, y_meshgrid = np.meshgrid(
+            x_linspace,
+            y_linspace
+        )
+        
+        intensity_map = self.intensityMap(x_meshgrid, y_meshgrid)
+        
+        volume = np.trapz(
+            y=np.asarray(
+                [np.trapz(y=intensity_row, x=x_linspace) for intensity_row in intensity_map[:]]
+            ),
+            x=y_linspace
+        )
+        
+        self.volume = volume
         
     def orderString(self) -> str:
         
@@ -48,7 +72,7 @@ class GaussLaguerre:
         
         gl_tem = self.I_0 * (rho**self.l) * (self.laguerre(rho)**2) * (np.cos(self.l * phi)**2) * np.exp(-rho)
         
-        return gl_tem
+        return gl_tem / self.volume
     
     def intensityMap(self, x_meshgrid, y_meshgrid):
         
@@ -67,10 +91,34 @@ class GaussHermite:
     
     rotation: float = 0.
     
+    volume: float = 1.
+    
     def __post_init__(self) -> None:
         
         self.gh_m = genHermite(self.m)
         self.gh_n = genHermite(self.n)
+        
+        grid_x = 3750
+        grid_y = 3750
+        
+        x_linspace = np.linspace(-10, 10, grid_x)
+        y_linspace = np.linspace(-10, 10, grid_y)
+        
+        x_meshgrid, y_meshgrid = np.meshgrid(
+            x_linspace,
+            y_linspace
+        )
+        
+        intensity_map = self.intensityMap(x_meshgrid, y_meshgrid)
+        
+        volume = np.trapz(
+            y=np.asarray(
+                [np.trapz(y=intensity_row, x=x_linspace) for intensity_row in intensity_map[:]]
+            ),
+            x=y_linspace
+        )
+        
+        self.volume = volume
         
     def orderString(self) -> str:
         
@@ -94,7 +142,7 @@ class GaussHermite:
         
         norm_coeff = 1. / (2. * self.waist**2 * np.pi * [0.5, 1, 4, 24][self.m] * [0.5, 1, 4, 24][self.n])
         
-        return norm_coeff * (self.gh_m((2**0.5 * relative_x) / self.waist) * np.exp(-relative_x**2 / self.waist**2))**2 * (self.gh_n((2**0.5 * relative_y) / self.waist) * np.exp(-relative_y**2 / self.waist**2))**2
+        return (1. / self.volume) * norm_coeff * (self.gh_m((2**0.5 * relative_x) / self.waist) * np.exp(-relative_x**2 / self.waist**2))**2 * (self.gh_n((2**0.5 * relative_y) / self.waist) * np.exp(-relative_y**2 / self.waist**2))**2
     
     def intensityMap(self, x_meshgrid, y_meshgrid):
         

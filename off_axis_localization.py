@@ -2,8 +2,15 @@ import numpy as np
 from parula import parula
 import matplotlib.pyplot as plt
 import matplotlib
+
+matplotlib.rcParams['text.usetex'] = True
+
 from qclm import Emitter, GaussLaguerre, GaussHermite, Detector, Solver
 from scipy.optimize import minimize
+
+grid_x = 3750
+grid_y = 3750
+waists = 3
 
 def main() -> None:
     
@@ -11,15 +18,21 @@ def main() -> None:
     
     detector = Detector()
     
+    x_range = (-detector.waist / 2, detector.waist / 2)
+    y_range = (-detector.waist / 2, detector.waist / 2)
+    
+    x_linspace = np.linspace(*x_range, grid_x)
+    y_linspace = np.linspace(*y_range, grid_y)
+    
     # light structures
     
     illumination_structures = [
-        GaussHermite(3, 1, 1., 0.25, center=0.2 * np.random.randn(2,1), rotation=np.pi * np.random.randn()),
-        GaussHermite(0, 0, 1., 0.25, center=0.2 * np.random.randn(2,1), rotation=np.pi * np.random.randn()),
-        GaussHermite(2, 1, 1., 0.25, center=0.2 * np.random.randn(2,1), rotation=np.pi * np.random.randn()),
-        GaussLaguerre(1, 3, 1., 0.25, center=0.2 * np.random.randn(2,1), rotation=np.pi * np.random.randn()),
-        GaussLaguerre(0, 3, 1., 0.25, center=0.2 * np.random.randn(2,1), rotation=np.pi * np.random.randn()),
-        GaussLaguerre(1, 2, 1., 0.25, center=0.2 * np.random.randn(2,1), rotation=np.pi * np.random.randn())
+        GaussHermite(3, 1, 1., 0.5, center=[-0.1,-0.1], rotation=np.pi/5),
+        GaussHermite(0, 0, 1., 0.5, center=[-0.1,-0.1], rotation=np.pi/3),
+        GaussHermite(2, 1, 1., 0.5, center=[0.2,0.0], rotation=np.pi/7),
+        GaussLaguerre(1, 3, 1., 0.5, center=[0.2,0.0], rotation=np.pi),
+        GaussLaguerre(0, 3, 1., 0.5, center=[0.0,0.2], rotation=np.pi/11),
+        GaussLaguerre(0, 2, 1., 0.5, center=[0.0,0.2], rotation=np.pi/13)
     ]
     
     # emitters
@@ -31,7 +44,7 @@ def main() -> None:
 
     e_2 = Emitter(
         np.array([0.2,0.1]),
-        0.7
+        0.5
     )
     
     g_1_true = np.ndarray((len(illumination_structures),1))
@@ -71,11 +84,13 @@ def main() -> None:
         x_0 = 0.25 * np.random.randn(5,1)
         x_0[4] = 0.5
         
+        # x_0 = np.array([*e_1.xy,*e_2.xy,0.5])
+        
         opt_result = minimize(
             fun=solver.optimization_lambda,
             x0=x_0,
             method='Nelder-Mead',
-            bounds=[(-1,1),(-1,1),(-1,1),(-1,1),(0,1)]
+            bounds=[(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(0,1)]
         )
         
         x_opt[trial_idx,:] = opt_result.x
@@ -84,21 +99,17 @@ def main() -> None:
     
     plt.scatter(x_opt[0:,0],x_opt[0:,1], c='b', s=2., marker='.')
     plt.scatter(x_opt[0:,2],x_opt[0:,3], c='r', s=2., marker='.')
-    # plt.scatter(xy_objective[0], xy_objective[1], c='r', marker='.', s=40, linewidths=1.0, label=r'$\mathrm{Objective\;Location}$')
-    # plt.scatter(max_x,max_y, c='r', marker='x', s=40, linewidths=1.0, label=r'$\mathrm{Max\;Intensity}$')
-    # plt.scatter(emitters[0].xy[0],emitters[0].xy[1], c='k', marker='x', s=40, linewidths=1.0)
-    # plt.scatter(emitters[1].xy[0],emitters[1].xy[1], c='k', marker='x', s=40, linewidths=1.0)
-    # plt.scatter(x_opt[1,0],x_opt[1,1], c='k', s=40, marker='+', linewidths=0.5)
-    # plt.scatter(x_opt[1,2],x_opt[1,3], c='k', s=40, marker='+', linewidths=0.5)    
-    # plt.xlim(*x_range)
-    # plt.ylim(*y_range)
+    plt.scatter(e_1.xy[0], e_1.xy[1], c='r', marker='x', s=40, linewidths=1)
+    plt.scatter(e_2.xy[0], e_2.xy[1], facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+    plt.xlim(-detector.waist/2,detector.waist/2)
+    plt.ylim(-detector.waist/2,detector.waist/2)
     plt.xlabel(r"$x$", fontsize=18)
     plt.ylabel(r"$y$", fontsize=18)
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
     plt.gca().set_aspect(1)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f'localization-results/localization.png', dpi=400, bbox_inches='tight')
     
     
     
