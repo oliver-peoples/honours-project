@@ -3,7 +3,7 @@ import numpy as np
 from scipy.special import genlaguerre as genLaguerre
 from scipy.special import hermite as genHermite
 from scipy.special._orthogonal import orthopoly1d
-from typing import List
+from typing import List, Any
 
 
 @dataclass
@@ -174,7 +174,7 @@ class Emitter:
 @dataclass
 class Solver:
     
-    illumination_structures: List[GaussHermite | GaussLaguerre]
+    illumination_structures: List[Any]
     
     detector: Detector
     
