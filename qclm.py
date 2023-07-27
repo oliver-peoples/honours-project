@@ -214,7 +214,7 @@ class Solver:
             
             g_2_guess[is_idx] = (2 * alpha) / (1 + alpha)**2
             
-        return np.sum((self.g_1_true - g_1_guess)**2 + (self.g_2_true - g_2_guess)**2)
+        return np.sum((self.g_1_true - g_1_guess)**2) + np.sum((self.g_2_true - g_2_guess)**2)
     
 #     xy_emitter_1 = Emitter(ps_vec[0:2], 1.0)
 #     xy_emitter_2 = Emitter(ps_vec[2:4], p_0_2)

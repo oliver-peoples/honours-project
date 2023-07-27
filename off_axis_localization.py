@@ -7,6 +7,7 @@ matplotlib.rcParams['text.usetex'] = True
 
 from qclm import Emitter, GaussLaguerre, GaussHermite, Detector, Solver
 from scipy.optimize import minimize
+from scipy.optimize import fmin
 
 grid_x = 3750
 grid_y = 3750
@@ -86,14 +87,16 @@ def main() -> None:
         
         # x_0 = np.array([*e_1.xy,*e_2.xy,0.5])
         
-        opt_result = minimize(
-            fun=solver.optimization_lambda,
-            x0=x_0,
-            method='Nelder-Mead',
-            bounds=[(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(0,1)]
-        )
+        # opt_result = minimize(
+        #     fun=solver.optimization_lambda,
+        #     x0=x_0,
+        #     method='Nelder-Mead',
+        #     bounds=[(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(-detector.waist/2,detector.waist/2),(0,1)]
+        # )
+        # x_opt[trial_idx,:] = opt_result.x
         
-        x_opt[trial_idx,:] = opt_result.x
+        x_opt[trial_idx], _, _, _, _ = fmin(func=solver.optimization_lambda, x0=x_0, disp=False, full_output=True)
+        
         
     print(np.mean(x_opt, axis=0))
     
