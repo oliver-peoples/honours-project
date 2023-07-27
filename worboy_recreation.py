@@ -14,12 +14,12 @@ def main() -> None:
     
     # the three detector form
     
-    uniform_illumination = GaussHermite(0, 0, 1., 1000)
+    uniform_illumination = GaussHermite(0, 0, 1., 1000000000)
     
     detectors = [
-        Detector([0,1]),
-        Detector([-np.sin(60*np.pi/180),-np.cos(60*np.pi/180)]),
-        Detector([np.sin(60*np.pi/180),-np.cos(60*np.pi/180)])
+        Detector(center=[0,1]),
+        Detector(center=[-np.sin(60*np.pi/180),-np.cos(60*np.pi/180)]),
+        Detector(center=[np.sin(60*np.pi/180),-np.cos(60*np.pi/180)])
     ]
     
     e_1 = Emitter(
@@ -28,7 +28,7 @@ def main() -> None:
     )
 
     e_2 = Emitter(
-        np.array([0.5146,0.5573]),
+        np.array([0.5146,-0.5573]),
         0.3617
     )
     
@@ -36,15 +36,13 @@ def main() -> None:
     
     # if scan_confocally:
         
-        
-    
     g_1_true = np.ndarray((3,1))
     g_2_true = np.ndarray((3,1))
     
     for detector_idx in range(len(detectors)):
         
-        p_1 = e_1.relative_brightness * uniform_illumination.intensityFn(*e_1.xy)
-        p_2 = e_2.relative_brightness * uniform_illumination.intensityFn(*e_2.xy)
+        p_1 = e_1.relative_brightness # * uniform_illumination.intensityFn(*e_1.xy)
+        p_2 = e_2.relative_brightness # * uniform_illumination.intensityFn(*e_2.xy)
         
         p_1 = detectors[detector_idx].detectFn(*e_1.xy, p_1)
         p_2 = detectors[detector_idx].detectFn(*e_2.xy, p_2)
@@ -56,7 +54,7 @@ def main() -> None:
         
     print(g_1_true, g_2_true)
     
-    def rss(x):
+    def rss(x, g_1_truth, g_2_truth):
         
         g_1_guess = np.ndarray((3,1))
         g_2_guess = np.ndarray((3,1))
@@ -66,18 +64,18 @@ def main() -> None:
         
         for detector_idx in range(len(detectors)):
             
-            p_1 = e_1_guess.relative_brightness * uniform_illumination.intensityFn(*e_1.xy)
-            p_2 = e_2_guess.relative_brightness * uniform_illumination.intensityFn(*e_2.xy)
+            p_1 = e_1_guess.relative_brightness # * uniform_illumination.intensityFn(*e_1_guess.xy)
+            p_2 = e_2_guess.relative_brightness # * uniform_illumination.intensityFn(*e_2_guess.xy)
             
-            p_1 = detectors[detector_idx].detectFn(*e_1.xy, p_1)
-            p_2 = detectors[detector_idx].detectFn(*e_2.xy, p_2)
+            p_1 = detectors[detector_idx].detectFn(*e_1_guess.xy, p_1)
+            p_2 = detectors[detector_idx].detectFn(*e_2_guess.xy, p_2)
             
             alpha = p_2 / p_1
             
             g_1_guess[detector_idx] = (p_1 + p_2) / (e_1_guess.relative_brightness + e_2_guess.relative_brightness)
             g_2_guess[detector_idx] = (2 * alpha) / (1 + alpha)**2
             
-        return np.sum((g_1_true - g_1_guess)**2) + np.sum((g_2_true - g_2_guess)**2)
+        return np.sum((g_1_truth - g_1_guess)**2) + np.sum((g_2_truth - g_2_guess)**2)
     
     optimization_lambda = lambda guess: rss(guess)
     
@@ -93,6 +91,8 @@ def main() -> None:
     
         x_0 = 0.25 * np.random.randn(5,1)
         x_0[4] = 0.5
+        
+        # x_0 = np.array([0.276922984960890,0.0461713906311539,0.0971317812358475,0.823457828327293,0.500000000000000])
         
         # x_0 = np.array([*e_1.xy,*e_2.xy,e_2.relative_brightness])
         
@@ -111,7 +111,7 @@ def main() -> None:
     
     plt.scatter(x_opt[0:,0],x_opt[0:,1], c='b', s=2., marker='.')
     plt.scatter(x_opt[0:,2],x_opt[0:,3], c='r', s=2., marker='.')
-    plt.scatter(e_1.xy[0], e_1.xy[1], c='r', marker='x', s=40, linewidths=1)
+    plt.scatter(e_1.xy[0], e_1.xy[1], facecolors='none', edgecolors='b', marker='o', s=20, linewidths=1)
     plt.scatter(e_2.xy[0], e_2.xy[1], facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
     plt.scatter(detectors[0].center[0], detectors[0].center[1], c='k', marker='x', s=20, linewidths=1)
     plt.scatter(detectors[1].center[0], detectors[1].center[1], c='k', marker='x', s=20, linewidths=1)
