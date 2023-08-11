@@ -9,6 +9,10 @@ from qclm import Emitter, GaussLaguerre, GaussHermite, Detector, Solver
 from scipy.optimize import minimize
 from scipy.optimize import fmin
 
+import os
+
+path = os.path.dirname(__file__)
+
 grid_x = 3750
 grid_y = 3750
 waists = 3
@@ -28,12 +32,16 @@ def main() -> None:
     # light structures
     
     illumination_structures = [
-        GaussHermite(3, 1, 1., 0.5, center=[-0.1,-0.1], rotation=np.pi/5),
-        GaussHermite(0, 0, 1., 0.5, center=[-0.1,-0.1], rotation=np.pi/3),
-        GaussHermite(2, 1, 1., 0.5, center=[0.2,0.0], rotation=np.pi/7),
-        GaussLaguerre(1, 3, 1., 0.5, center=[0.2,0.0], rotation=np.pi),
-        GaussLaguerre(0, 3, 1., 0.5, center=[0.0,0.2], rotation=np.pi/11),
-        GaussLaguerre(0, 2, 1., 0.5, center=[0.0,0.2], rotation=np.pi/13)
+        GaussHermite(0, 0, 1., 0.5, center=[0.0,0.0], rotation=0),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=0),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=2*np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=3*np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=4*np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=5*np.pi/10),
+        # GaussLaguerre(1, 3, 1., 0.5, center=[0.2,0.0], rotation=np.pi),
+        # GaussLaguerre(0, 3, 1., 0.5, center=[0.0,0.2], rotation=np.pi/11),
+        # GaussLaguerre(0, 2, 1., 0.5, center=[0.0,0.2], rotation=np.pi/13)
     ]
     
     # emitters
@@ -99,6 +107,8 @@ def main() -> None:
         
         
     print(np.mean(x_opt, axis=0))
+    
+    np.savetxt(f'{}')
     
     plt.scatter(x_opt[0:,0],x_opt[0:,1], c='b', s=2., marker='.')
     plt.scatter(x_opt[0:,2],x_opt[0:,3], c='r', s=2., marker='.')
