@@ -8,12 +8,12 @@ matplotlib.rcParams['text.usetex'] = True
 
 grid_x = 1750
 grid_y = 1750
-waists = 3
+waists = 0.5
 sqrt_2 = np.sqrt(2)
 
 m = 1
-n = 3
-waist = 1.
+n = 0
+waist = 0.15
 w_0 = 1.
 I_0 = 1.
 

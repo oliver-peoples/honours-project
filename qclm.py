@@ -215,210 +215,215 @@ class Solver:
             g_2_guess[is_idx] = (2 * alpha) / (1 + alpha)**2
             
         return np.sum((self.g_1_true - g_1_guess)**2) + np.sum((self.g_2_true - g_2_guess)**2)
-    
-#     xy_emitter_1 = Emitter(ps_vec[0:2], 1.0)
-#     xy_emitter_2 = Emitter(ps_vec[2:4], p_0_2)
 
-# @dataclass
-# class Detector:
-    
-#     xy: np.array = np.array([0.,0.])
-#     w: float = 1
-    
-# # @dataclass
-# # class GaussLaguerreTEM:
-    
-# #     p: int
-# #     l: int
-# #     rho: float
+import numpy as np
 
-# def temModeFnXY(m: int, n: int, x: float, y: float, I_0: float = 1, w_0: float = 1, w: float = 1) -> float:
-    
-#     return I_0 * (w_0 / w)**2 * (physicistsHermite(m)((2**0.5 * x)/w) * np.exp(-x**2 / w**2))**2 * (physicistsHermite(n)((2**0.5 * y)/w) * np.exp(-y**2 / w**2))**2
+class Point:
+    """A point located at (x,y) in 2D space.
 
-# def fastTEM(hermite_polynomial_m: orthopoly1d, hermite_polynomial_n: orthopoly1d, x: float, y: float, I_0: float = 1, w_0: float = 1, w: float = 1) -> float:
-    
-#     return I_0 * (w_0 / w)**2 * (hermite_polynomial_m((2**0.5 * x)/w) * np.exp(-x**2 / w**2))**2 * (hermite_polynomial_n((2**0.5 * y)/w) * np.exp(-y**2 / w**2))**2
+    Each Point object may be associated with a payload object.
 
-# def parallelTEM(m: int, n: int, y_val: float, grid_x: float, x_range) -> np.ndarray:
+    """
 
-#     x_linspace = np.linspace(*x_range, grid_x)
-    
-#     intensity_vals = np.ndarray((grid_x), dtype=np.float32)
-    
-#     hermite_polynomial_m = physicistsHermite(m)
-#     hermite_polynomial_n = physicistsHermite(n)
-    
-#     for x_idx in range(0, grid_x):
-            
-#             # intensity_vals[x_idx] = temModeFnXY(m, n, x_linspace[x_idx], y_val)
-#             intensity_vals[x_idx] = fastTEM(hermite_polynomial_m, hermite_polynomial_n, x_linspace[x_idx], y_val)
-            
-#     return intensity_vals
+    def __init__(self, x, y, payload=None):
+        self.x, self.y = x, y
+        self.payload = payload
 
-# def parallelTEM_Affine(m: int, n: int, y_val: float, grid_x: float, translation: np.ndarray, rotation: np.ndarray, x_range) -> np.ndarray:
+    def __repr__(self):
+        return '{}: {}'.format(str((self.x, self.y)), repr(self.payload))
+    def __str__(self):
+        return 'P({:.2f}, {:.2f})'.format(self.x, self.y)
 
-#     x_linspace = np.linspace(*x_range, grid_x)
-    
-#     intensity_vals = np.ndarray((grid_x), dtype=np.float32)
-    
-#     hermite_polynomial_m = physicistsHermite(m)
-#     hermite_polynomial_n = physicistsHermite(n)
-    
-#     for x_idx in range(0, grid_x):
-            
-#             intensity_vals[x_idx] = fastTEM(hermite_polynomial_m, hermite_polynomial_n, x_linspace[x_idx] - translation[0], y_val - translation[1])
-            
-#     return intensity_vals
+    def distance_to(self, other):
+        try:
+            other_x, other_y = other.x, other.y
+        except AttributeError:
+            other_x, other_y = other
+        return np.hypot(self.x - other_x, self.y - other_y)
 
-# def parallelConfocalScan(emitters: List[Emitter], light_structure: RectangularTEM, y_val, x_linspace, detector_w) -> np.ndarray:
-    
-#     linspace_len = np.size(x_linspace)
-    
-#     g_1_g_2_concatenated = np.ones(2 * linspace_len, dtype=np.float64)
-    
-#     for x_idx in range(0, np.size(x_linspace)):
-        
-#         xy_objective = np.array([x_linspace[x_idx], y_val], dtype=np.float64)
-        
-#         xy_emitter_1_relative = emitters[0].xy - xy_objective
-#         xy_emitter_2_relative = emitters[1].xy - xy_objective
-        
-#         r_1 = np.linalg.norm(xy_emitter_1_relative, axis=0)
-#         r_2 = np.linalg.norm(xy_emitter_2_relative, axis=0)
-        
-#         p_1 = emitters[0].relative_brightness * light_structure.w * fastTEM(
-#             hermite_polynomial_m=light_structure.hermite_polynomial_m,
-#             hermite_polynomial_n=light_structure.hermite_polynomial_n,
-#             x=xy_emitter_1_relative[0],
-#             y=xy_emitter_1_relative[1],
-#             I_0=1,
-#             w_0=1,
-#             w=light_structure.w
-#         )
-        
-#         p_2 = emitters[1].relative_brightness * light_structure.w * fastTEM(
-#             hermite_polynomial_m=light_structure.hermite_polynomial_m,
-#             hermite_polynomial_n=light_structure.hermite_polynomial_n,
-#             x=xy_emitter_2_relative[0],
-#             y=xy_emitter_2_relative[1],
-#             I_0=1,
-#             w_0=1,
-#             w=light_structure.w
-#         )
-        
-#         p_1 = np.exp(-(r_1**2 / 2)/(2 * detector_w**2)) * p_1
-#         p_2 = np.exp(-(r_2**2 / 2)/(2 * detector_w**2)) * p_2
-            
-#         g_1_g_2_concatenated[x_idx] = (p_1 + p_2) / (emitters[0].relative_brightness + emitters[1].relative_brightness)
-        
-#         alpha = p_1 / p_2
-        
-#         g_1_g_2_concatenated[linspace_len + x_idx] = (2 * alpha) / (1 + alpha)**2
-        
-#     return g_1_g_2_concatenated
+class Rect:
+    """A rectangle centred at (cx, cy) with width w and height h."""
 
-# def groundTruthG1_G2(detector: Detector, emitters: List[Emitter], light_structures: List[RectangularTEM], xy_objective):
-    
-#     # xy_objective = np.array([0.,0.], dtype=np.float64)
-        
-#     xy_emitter_1_relative = emitters[0].xy - xy_objective
-#     xy_emitter_2_relative = emitters[1].xy - xy_objective
-    
-#     r_1 = np.linalg.norm(xy_emitter_1_relative, axis=0)
-#     r_2 = np.linalg.norm(xy_emitter_2_relative, axis=0)
-    
-#     g_1_pred = np.ndarray((len(light_structures),1), dtype=np.float64)
-#     g_2_pred = np.ndarray((len(light_structures),1), dtype=np.float64)
-    
-#     for light_structure_idx in range(len(light_structures)):
-        
-#         light_structure = light_structures[light_structure_idx]
-        
-#         # hermite_polynomial_m = physicistsHermite(light_structure[0][0])
-#         # hermite_polynomial_n = physicistsHermite(light_structure[0][1])
-        
-#         p_1 = emitters[0].relative_brightness * light_structure.norm_coeff * fastTEM(
-#             hermite_polynomial_m=light_structure.hermite_polynomial_m,
-#             hermite_polynomial_n=light_structure.hermite_polynomial_n,
-#             x=xy_emitter_1_relative[0],
-#             y=xy_emitter_1_relative[1],
-#             I_0=1,
-#             w_0=1,
-#             w=light_structure.w
-#         )
-        
-#         p_2 = emitters[1].relative_brightness * light_structure.norm_coeff * fastTEM(
-#             hermite_polynomial_m=light_structure.hermite_polynomial_m,
-#             hermite_polynomial_n=light_structure.hermite_polynomial_n,
-#             x=xy_emitter_2_relative[0],
-#             y=xy_emitter_2_relative[1],
-#             I_0=1,
-#             w_0=1,
-#             w=light_structure.w
-#         )
-        
-#         p_1 = np.exp(-(r_1**2 / 2)/(2 * detector.w**2)) * p_1
-#         p_2 = np.exp(-(r_2**2 / 2)/(2 * detector.w**2)) * p_2
-            
-#         g_1_pred[light_structure_idx] = (p_1 + p_2) / (emitters[0].relative_brightness + emitters[1].relative_brightness)
-        
-#         alpha = p_2 / p_1
-        
-#         g_2_pred[light_structure_idx] = (2 * alpha) / (1 + alpha)**2
-        
-#     return g_1_pred,g_2_pred
+    def __init__(self, cx, cy, w, h):
+        self.cx, self.cy = cx, cy
+        self.w, self.h = w, h
+        self.west_edge, self.east_edge = cx - w/2, cx + w/2
+        self.north_edge, self.south_edge = cy - h/2, cy + h/2
 
-# def optimizeMe(ps_vec, detector: Detector, emitters: List[Emitter], light_structures: List[RectangularTEM], xy_objective, noisy_g_1, noisy_g_2):
-    
-#     p_0_2 = ps_vec[4]
-    
-#     xy_emitter_1 = Emitter(ps_vec[0:2], 1.0)
-#     xy_emitter_2 = Emitter(ps_vec[2:4], p_0_2)
-    
-#     g_1_pred = np.ndarray((len(light_structures),1), dtype=np.float64)
-#     g_2_pred = np.ndarray((len(light_structures),1), dtype=np.float64)
-    
-#     for light_structure_idx in range(len(light_structures)):
-        
-#         light_structure = light_structures[light_structure_idx]
-        
-#         # hermite_polynomial_m = physicistsHermite(light_structure[0][0])
-#         # hermite_polynomial_n = physicistsHermite(light_structure[0][1])
-        
-#         xy_emitter_1_relative = xy_emitter_1.xy - xy_objective
-#         xy_emitter_2_relative = xy_emitter_2.xy - xy_objective
-        
-#         r_1 = np.linalg.norm(xy_emitter_1_relative, axis=0)
-#         r_2 = np.linalg.norm(xy_emitter_2_relative, axis=0)
-        
-#         p_1 = emitters[0].relative_brightness * light_structure.norm_coeff * fastTEM(
-#             hermite_polynomial_m=light_structure.hermite_polynomial_m,
-#             hermite_polynomial_n=light_structure.hermite_polynomial_n,
-#             x=xy_emitter_1_relative[0],
-#             y=xy_emitter_1_relative[1],
-#             I_0=1,
-#             w_0=1,
-#             w=light_structure.w
-#         )
-        
-#         p_2 = emitters[1].relative_brightness * light_structure.norm_coeff * fastTEM(
-#             hermite_polynomial_m=light_structure.hermite_polynomial_m,
-#             hermite_polynomial_n=light_structure.hermite_polynomial_n,
-#             x=xy_emitter_2_relative[0],
-#             y=xy_emitter_2_relative[1],
-#             I_0=1,
-#             w_0=1,
-#             w=light_structure.w
-#         )
-        
-#         p_1 = np.exp(-(r_1**2 / 2)/(2 * detector.w**2)) * p_1
-#         p_2 = np.exp(-(r_2**2 / 2)/(2 * detector.w**2)) * p_2
-        
-#         g_1_pred[light_structure_idx] = (p_1 + p_2) / (1. + p_0_2)
-        
-#         alpha = p_2 / p_1
-                
-#         g_2_pred[light_structure_idx] = (2 * alpha) / (1 + alpha)**2
-        
-#     return np.sum((g_1_pred - noisy_g_1)**2) + np.sum((g_2_pred - noisy_g_2)**2)
+    def __repr__(self):
+        return str((self.west_edge, self.east_edge, self.north_edge,
+                self.south_edge))
+
+    def __str__(self):
+        return '({:.2f}, {:.2f}, {:.2f}, {:.2f})'.format(self.west_edge,
+                    self.north_edge, self.east_edge, self.south_edge)
+
+    def contains(self, point):
+        """Is point (a Point object or (x,y) tuple) inside this Rect?"""
+
+        try:
+            point_x, point_y = point.x, point.y
+        except AttributeError:
+            point_x, point_y = point
+
+        return (point_x >= self.west_edge and
+                point_x <  self.east_edge and
+                point_y >= self.north_edge and
+                point_y < self.south_edge)
+
+    def intersects(self, other):
+        """Does Rect object other interesect this Rect?"""
+        return not (other.west_edge > self.east_edge or
+                    other.east_edge < self.west_edge or
+                    other.north_edge > self.south_edge or
+                    other.south_edge < self.north_edge)
+
+    def draw(self, ax, c='k', lw=0.25, **kwargs):
+        x1, y1 = self.west_edge, self.north_edge
+        x2, y2 = self.east_edge, self.south_edge
+        ax.plot([x1,x2,x2,x1,x1],[y1,y1,y2,y2,y1], c=c, lw=lw, **kwargs)
+
+
+class QuadTree:
+    """A class implementing a quadtree."""
+
+    def __init__(self, boundary, max_points=4, depth=0):
+        """Initialize this node of the quadtree.
+
+        boundary is a Rect object defining the region from which points are
+        placed into this node; max_points is the maximum number of points the
+        node can hold before it must divide (branch into four more nodes);
+        depth keeps track of how deep into the quadtree this node lies.
+
+        """
+
+        self.boundary = boundary
+        self.max_points = max_points
+        self.points = []
+        self.depth = depth
+        # A flag to indicate whether this node has divided (branched) or not.
+        self.divided = False
+
+    def __str__(self):
+        """Return a string representation of this node, suitably formatted."""
+        sp = ' ' * self.depth * 2
+        s = str(self.boundary) + '\n'
+        s += sp + ', '.join(str(point) for point in self.points)
+        if not self.divided:
+            return s
+        return s + '\n' + '\n'.join([
+                sp + 'nw: ' + str(self.nw), sp + 'ne: ' + str(self.ne),
+                sp + 'se: ' + str(self.se), sp + 'sw: ' + str(self.sw)])
+
+    def divide(self):
+        """Divide (branch) this node by spawning four children nodes."""
+
+        cx, cy = self.boundary.cx, self.boundary.cy
+        w, h = self.boundary.w / 2, self.boundary.h / 2
+        # The boundaries of the four children nodes are "northwest",
+        # "northeast", "southeast" and "southwest" quadrants within the
+        # boundary of the current node.
+        self.nw = QuadTree(Rect(cx - w/2, cy - h/2, w, h),
+                                    self.max_points, self.depth + 1)
+        self.ne = QuadTree(Rect(cx + w/2, cy - h/2, w, h),
+                                    self.max_points, self.depth + 1)
+        self.se = QuadTree(Rect(cx + w/2, cy + h/2, w, h),
+                                    self.max_points, self.depth + 1)
+        self.sw = QuadTree(Rect(cx - w/2, cy + h/2, w, h),
+                                    self.max_points, self.depth + 1)
+        self.divided = True
+
+    def insert(self, point):
+        """Try to insert Point point into this QuadTree."""
+
+        if not self.boundary.contains(point):
+            # The point does not lie inside boundary: bail.
+            return False
+        if len(self.points) < self.max_points:
+            # There's room for our point without dividing the QuadTree.
+            self.points.append(point)
+            return True
+
+        # No room: divide if necessary, then try the sub-quads.
+        if not self.divided:
+            self.divide()
+
+        return (self.ne.insert(point) or
+                self.nw.insert(point) or
+                self.se.insert(point) or
+                self.sw.insert(point))
+
+    def query(self, boundary, found_points):
+        """Find the points in the quadtree that lie within boundary."""
+
+        if not self.boundary.intersects(boundary):
+            # If the domain of this node does not intersect the search
+            # region, we don't need to look in it for points.
+            return False
+
+        # Search this node's points to see if they lie within boundary ...
+        for point in self.points:
+            if boundary.contains(point):
+                found_points.append(point)
+        # ... and if this node has children, search them too.
+        if self.divided:
+            self.nw.query(boundary, found_points)
+            self.ne.query(boundary, found_points)
+            self.se.query(boundary, found_points)
+            self.sw.query(boundary, found_points)
+        return found_points
+
+
+    def query_circle(self, boundary, centre, radius, found_points):
+        """Find the points in the quadtree that lie within radius of centre.
+
+        boundary is a Rect object (a square) that bounds the search circle.
+        There is no need to call this method directly: use query_radius.
+
+        """
+
+        if not self.boundary.intersects(boundary):
+            # If the domain of this node does not intersect the search
+            # region, we don't need to look in it for points.
+            return False
+
+        # Search this node's points to see if they lie within boundary
+        # and also lie within a circle of given radius around the centre point.
+        for point in self.points:
+            if (boundary.contains(point) and
+                    point.distance_to(centre) <= radius):
+                found_points.append(point)
+
+        # Recurse the search into this node's children.
+        if self.divided:
+            self.nw.query_circle(boundary, centre, radius, found_points)
+            self.ne.query_circle(boundary, centre, radius, found_points)
+            self.se.query_circle(boundary, centre, radius, found_points)
+            self.sw.query_circle(boundary, centre, radius, found_points)
+        return found_points
+
+    def query_radius(self, centre, radius, found_points):
+        """Find the points in the quadtree that lie within radius of centre."""
+
+        # First find the square that bounds the search circle as a Rect object.
+        boundary = Rect(*centre, 2*radius, 2*radius)
+        return self.query_circle(boundary, centre, radius, found_points)
+
+
+    def __len__(self):
+        """Return the number of points in the quadtree."""
+
+        npoints = len(self.points)
+        if self.divided:
+            npoints += len(self.nw)+len(self.ne)+len(self.se)+len(self.sw)
+        return npoints
+
+    def draw(self, ax):
+        """Draw a representation of the quadtree on Matplotlib Axes ax."""
+
+        self.boundary.draw(ax)
+        if self.divided:
+            self.nw.draw(ax)
+            self.ne.draw(ax)
+            self.se.draw(ax)
+            self.sw.draw(ax)
