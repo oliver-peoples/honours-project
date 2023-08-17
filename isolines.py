@@ -17,12 +17,11 @@ def main() -> None:
     # light structures
     
     illumination_structures = [
-        GaussHermite(3, 1, 1., 0.25, center=[-0.1,-0.1], rotation=np.pi/5),
-        GaussHermite(0, 0, 1., 0.25, center=[-0.1,-0.1], rotation=np.pi/3),
-        GaussHermite(2, 1, 1., 0.25, center=[0.2,0.0], rotation=np.pi/7),
-        GaussLaguerre(1, 3, 1., 0.25, center=[0.2,0.0], rotation=np.pi),
-        GaussLaguerre(0, 3, 1., 0.25, center=[0.0,0.2], rotation=np.pi/11),
-        GaussLaguerre(0, 2, 1., 0.25, center=[0.0,0.2], rotation=np.pi/13)
+        GaussHermite(0, 0, 1., 0.5),
+        GaussHermite(0, 1, 1., 0.5, rotation=0),
+        GaussHermite(0, 1, 1., 0.5, rotation=np.pi/6),
+        GaussHermite(0, 1, 1., 0.5, rotation=np.pi/3),
+        GaussHermite(0, 1, 1., 0.5, rotation=np.pi/2)
     ]
     
     # emitters

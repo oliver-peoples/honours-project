@@ -197,7 +197,7 @@ class Solver:
         
         e_2_guess = Emitter(
             guess[2:4],
-            guess[4]
+            1# guess[4]
         )
         
         for is_idx in range(0,len(self.illumination_structures)):
