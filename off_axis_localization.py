@@ -9,6 +9,10 @@ from qclm import Emitter, GaussLaguerre, GaussHermite, Detector, Solver
 from scipy.optimize import minimize
 from scipy.optimize import fmin
 
+import os
+
+path = os.path.dirname(__file__)
+
 grid_x = 3750
 grid_y = 3750
 waists = 3
@@ -98,6 +102,8 @@ def main() -> None:
         
         
     print(np.mean(x_opt, axis=0))
+    
+    np.savetxt(f'{}')
     
     plt.scatter(x_opt[0:,0],x_opt[0:,1], c='b', s=2., marker='.')
     plt.scatter(x_opt[0:,2],x_opt[0:,3], c='r', s=2., marker='.')
