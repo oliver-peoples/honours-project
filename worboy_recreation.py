@@ -77,9 +77,7 @@ def main() -> None:
             
         return np.sum((g_1_truth - g_1_guess)**2) + np.sum((g_2_truth - g_2_guess)**2)
     
-    optimization_lambda = lambda guess: rss(guess)
-    
-    trials = 200
+    trials = 1000
     
     x_opt = np.ndarray((trials,5))
     
@@ -88,6 +86,11 @@ def main() -> None:
         print(trial_idx)
         
         # print(trial_idx)
+        
+        g_1_noise = g_1_true + 0.1 * np.random.randn(3,1)
+        g_2_noise = g_2_true + 0.1 * np.random.randn(3,1)
+        
+        optimization_lambda = lambda guess: rss(guess, g_1_noise, g_2_noise)
     
         x_0 = 0.25 * np.random.randn(5,1)
         x_0[4] = 0.5
@@ -96,28 +99,30 @@ def main() -> None:
         
         # x_0 = np.array([*e_1.xy,*e_2.xy,e_2.relative_brightness])
         
-        # opt_result = minimize(
-        #     fun=optimization_lambda,
-        #     x0=x_0,
-        #     method='Nelder-Mead',
-        #     bounds=[(-1,1),(-1,1),(-1,1),(-1,1),(0,1)]
-        # )
+        opt_result = minimize(
+            fun=optimization_lambda,
+            x0=x_0,
+            method='Nelder-Mead',
+            # bounds=[(-1,1),(-1,1),(-1,1),(-1,1),(0,1)]
+        )
         
-        # x_opt[trial_idx,:] = opt_result.x
+        x_opt[trial_idx,:] = opt_result.x
         
-        x_opt[trial_idx], _, _, _, _ = fmin(func=optimization_lambda, x0=x_0, disp=False, full_output=True)
+        # x_opt[trial_idx], _, _, _, _ = fmin(func=optimization_lambda, x0=x_0, disp=False, full_output=True)
         
     print(np.mean(x_opt, axis=0))
     
+    x_opt_mean = np.mean(x_opt, axis=0)
+    
     plt.scatter(x_opt[0:,0],x_opt[0:,1], c='b', s=2., marker='.')
     plt.scatter(x_opt[0:,2],x_opt[0:,3], c='r', s=2., marker='.')
+    plt.scatter(x_opt_mean[0],x_opt_mean[1], c='b', s=20., linewidths=1, marker='+')
+    plt.scatter(x_opt_mean[2],x_opt_mean[3], c='r', s=20., linewidths=1, marker='+')
     plt.scatter(e_1.xy[0], e_1.xy[1], facecolors='none', edgecolors='b', marker='o', s=20, linewidths=1)
     plt.scatter(e_2.xy[0], e_2.xy[1], facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
     plt.scatter(detectors[0].center[0], detectors[0].center[1], c='k', marker='x', s=20, linewidths=1)
     plt.scatter(detectors[1].center[0], detectors[1].center[1], c='k', marker='x', s=20, linewidths=1)
     plt.scatter(detectors[2].center[0], detectors[2].center[1], c='k', marker='x', s=20, linewidths=1)
-    # plt.xlim(-detector.waist/2,detector.waist/2)
-    # plt.ylim(-detector.waist/2,detector.waist/2)
     plt.xlabel(r"$x$", fontsize=18)
     plt.ylabel(r"$y$", fontsize=18)
     plt.xticks(fontsize=16)
