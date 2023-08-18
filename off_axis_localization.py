@@ -33,22 +33,24 @@ def main() -> None:
     # light structures
     
     illumination_structures = [
-        GaussHermite(0, 0, 1., 0.5),
-        GaussHermite(0, 1, 1., 0.5, rotation=0),
-        GaussHermite(0, 1, 1., 0.5, rotation=np.pi/6),
-        GaussHermite(0, 1, 1., 0.5, rotation=np.pi/3),
-        GaussHermite(0, 1, 1., 0.5, rotation=np.pi/2)
+        GaussHermite(0, 0, 1., 0.5, center=[0.0,0.0], rotation=0),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=0*np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=1*np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=2*np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=3*np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=4*np.pi/10),
+        GaussHermite(1, 0, 1., 0.5, center=[0.0,0.0], rotation=5*np.pi/10)
     ]
     
     # emitters
     
     e_1 = Emitter(
-        np.array([0.1,0.5]),
+        np.array([-0.3,0.2]),
         1.0
     )
 
     e_2 = Emitter(
-        np.array([0.45,0.3]),
+        np.array([0.2,0.1]),
         0.5
     )
     
@@ -83,14 +85,14 @@ def main() -> None:
     
     trials = 200
     
-    x_opt = np.ndarray((trials,4))
+    x_opt = np.ndarray((trials,5))
     
     for trial_idx in range(trials):
         
         print(trial_idx)
     
-        x_0 = 0.25 * np.random.randn(4,1)
-        # x_0[4] = 0.5
+        x_0 = 0.25 * np.random.randn(5,1)
+        x_0[4] = 0.5
         
         x_opt[trial_idx], _, _, _, _ = fmin(func=solver.optimization_lambda, x0=x_0, disp=False, full_output=True)
         
