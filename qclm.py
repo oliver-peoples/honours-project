@@ -4,6 +4,7 @@ from scipy.special import genlaguerre as genLaguerre
 from scipy.special import hermite as genHermite
 from scipy.special._orthogonal import orthopoly1d
 from typing import List, Any
+from mayavi import mlab
 
 
 @dataclass
@@ -428,23 +429,29 @@ class QuadTree:
             self.se.draw(ax)
             self.sw.draw(ax)
             
-def meshgrid2(*arrs):
-    arrs = tuple(reversed(arrs))  #edit
-    lens = map(len, arrs)
-    dim = len(arrs)
+def mlab_imshowColor(im, alpha=255, **kwargs):
+    """
+    Plot a color image with mayavi.mlab.imshow.
+    im is a ndarray with dim (n, m, 3) and scale (0->255]
+    alpha is a single number or a ndarray with dim (n*m) and scale (0->255]
+    **kwargs is passed onto mayavi.mlab.imshow(..., **kwargs)
+    """
+    try:
+        alpha[0]
+    except:
+        alpha = np.ones(im.shape[0] * im.shape[1]) * alpha
+    if len(alpha.shape) != 1:
+        alpha = alpha.flatten()
 
-    sz = 1
-    for s in lens:
-        sz*=s
+    # The lut is a Nx4 array, with the columns representing RGBA
+    # (red, green, blue, alpha) coded with integers going from 0 to 255,
+    # we create it by stacking all the pixles (r,g,b,alpha) as rows.
+    myLut = np.c_[im.reshape(-1, 3), alpha]
+    myLutLookupArray = np.arange(im.shape[0] * im.shape[1]).reshape(im.shape[0], im.shape[1])
 
-    ans = []    
-    for i, arr in enumerate(arrs):
-        slc = [1]*dim
-        slc[i] = lens[i]
-        arr2 = asarray(arr).reshape(slc)
-        for j, sz in enumerate(lens):
-            if j!=i:
-                arr2 = arr2.repeat(sz, axis=j) 
-        ans.append(arr2)
+    #We can display an color image by using mlab.imshow, a lut color list and a lut lookup table.
+    theImshow = mlab.imshow(myLutLookupArray, colormap='binary', **kwargs) #temporary colormap
+    theImshow.module_manager.scalar_lut_manager.lut.table = myLut
+    mlab.draw()
 
-    return tuple(ans)
+    return theImshow
