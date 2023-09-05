@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from scipy.spatial import KDTree
 from mayavi import mlab
-# mlab.options.offscreen = True
+mlab.options.offscreen = True
 from skimage import measure
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -43,220 +43,241 @@ z_r = np.pi * w_0**2 * n_s / wavelength
 
 pm_z = z_r * 3
 
-pm_w_0 = w_0 * 1.5
+pm_w_0 = w_0 * 2.5
 
-x_samples = 200
-y_samples = 200
-z_samples = 400
+x_samples = 150
+y_samples = 150
+z_samples = 300
 
-off_nadir_angle_deg = 45
-azimuth_deg = 15
-roll_deg = 0
+off_nadir_angle_deg = 35
+azimuth_deg = 0
 
-x_linspace = np.linspace(-pm_w_0,pm_w_0,x_samples)
-y_linspace = np.linspace(-pm_w_0,pm_w_0,y_samples)
-z_linspace = np.linspace(-pm_z,pm_z,z_samples)
+roll_linspace = np.linspace(0,90,300)
 
-img_space_y_meshgrid, img_space_x_meshgrid, img_space_z_meshgrid = np.meshgrid(x_linspace, y_linspace, z_linspace)
+for roll_idx in range(len(roll_linspace)):
 
-y_rotation = Rotation.from_rotvec(off_nadir_angle_deg * np.pi / 180 * np.array([0,1,0], dtype=np.float64))
-z_rotation = Rotation.from_rotvec(azimuth_deg * np.pi / 180 * np.array([0,0,1], dtype=np.float64))
+    roll_deg = roll_linspace[roll_idx]
 
-rotation = z_rotation.as_matrix() @ y_rotation.as_matrix()
+    z_offset = 0.9 * w_0
 
-x_basis = np.array([ 1.,0.,0. ], dtype=np.float64)
-y_basis = np.array([ 0.,1.,0. ], dtype=np.float64)
-z_basis = np.array([ 0.,0.,1. ], dtype=np.float64)
+    x_linspace = np.linspace(-pm_w_0,pm_w_0,x_samples)
+    y_linspace = np.linspace(-pm_w_0,pm_w_0,y_samples)
+    z_linspace = np.linspace(-pm_z,pm_z,z_samples)
 
-beam_space_x_basis = rotation[:,0]
-beam_space_y_basis = rotation[:,1]
-beam_space_z_basis = rotation[:,2]
+    normal = np.array([0.,0.,1.], dtype=np.float64).T
 
-beam_space_x_meshgrid = img_space_x_meshgrid * beam_space_x_basis[0] + img_space_y_meshgrid * beam_space_x_basis[1] + img_space_z_meshgrid * beam_space_x_basis[2]
-beam_space_y_meshgrid = img_space_x_meshgrid * beam_space_y_basis[0] + img_space_y_meshgrid * beam_space_y_basis[1] + img_space_z_meshgrid * beam_space_y_basis[2]
-beam_space_z_meshgrid = img_space_x_meshgrid * beam_space_z_basis[0] + img_space_y_meshgrid * beam_space_z_basis[1] + img_space_z_meshgrid * beam_space_z_basis[2]
-            
-w_z_meshgrid = w_0 * np.sqrt(1 + (beam_space_z_meshgrid / z_r)**2)
+    img_space_y_meshgrid, img_space_x_meshgrid, img_space_z_meshgrid = np.meshgrid(x_linspace, y_linspace, z_linspace)
 
-h_m = gh_m(np.sqrt(2) * beam_space_x_meshgrid / w_z_meshgrid)
-h_n = gh_n(np.sqrt(2) * beam_space_y_meshgrid / w_z_meshgrid)
+    y_rotation = Rotation.from_rotvec(off_nadir_angle_deg * np.pi / 180 * np.array([0,1,0], dtype=np.float64))
+    z_rotation = Rotation.from_rotvec(azimuth_deg * np.pi / 180 * np.array([0,0,1], dtype=np.float64))
 
-scalar_comp = E_0 * w_0 / w_z_meshgrid * h_m * h_n
+    rotation = z_rotation.as_matrix() @ y_rotation.as_matrix()
 
-sum_xy_squares = beam_space_x_meshgrid**2 + beam_space_y_meshgrid**2
+    normal = rotation @ normal
 
-inv_w_squared = 1 / w_z_meshgrid**2
+    roll_rotation = Rotation.from_rotvec(roll_deg * np.pi / 180 * normal).as_matrix()
 
-inv_r = beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
+    rotation = roll_rotation @ rotation
 
-vergence_comp = 1.j * wavenumber * inv_r / 2
+    x_basis = np.array([ 1.,0.,0. ], dtype=np.float64)
+    y_basis = np.array([ 0.,1.,0. ], dtype=np.float64)
+    z_basis = np.array([ 0.,0.,1. ], dtype=np.float64)
 
-wavenumber_comp = 1.j * wavenumber * beam_space_z_meshgrid
+    beam_space_x_basis = rotation[:,0]
+    beam_space_y_basis = rotation[:,1]
+    beam_space_z_basis = rotation[:,2]
 
-gouy_phase_shift = 1.j * (n + m + 1) * np.arctan(beam_space_z_meshgrid / z_r)
+    beam_space_x_meshgrid = img_space_x_meshgrid * beam_space_x_basis[0] + img_space_y_meshgrid * beam_space_x_basis[1] + img_space_z_meshgrid * beam_space_x_basis[2]
+    beam_space_y_meshgrid = img_space_x_meshgrid * beam_space_y_basis[0] + img_space_y_meshgrid * beam_space_y_basis[1] + img_space_z_meshgrid * beam_space_y_basis[2]
+    beam_space_z_meshgrid = img_space_x_meshgrid * beam_space_z_basis[0] + img_space_y_meshgrid * beam_space_z_basis[1] + img_space_z_meshgrid * beam_space_z_basis[2]
 
-exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
+    beam_space_z_meshgrid -= z_offset
+                
+    w_z_meshgrid = w_0 * np.sqrt(1 + (beam_space_z_meshgrid / z_r)**2)
 
-intensity = np.abs(scalar_comp * exp_component)**2
+    h_m = gh_m(np.sqrt(2) * beam_space_x_meshgrid / w_z_meshgrid)
+    h_n = gh_n(np.sqrt(2) * beam_space_y_meshgrid / w_z_meshgrid)
 
-intensity /= np.max(intensity)
+    scalar_comp = E_0 * w_0 / w_z_meshgrid * h_m * h_n
 
-fig = mlab.figure(size=(2000,2000))
+    sum_xy_squares = beam_space_x_meshgrid**2 + beam_space_y_meshgrid**2
 
-src = mlab.pipeline.scalar_field(img_space_x_meshgrid * 1e9, img_space_y_meshgrid * 1e9, img_space_z_meshgrid * 1e9, intensity)
-mlab.pipeline.iso_surface(src, contours=[0.75], opacity=1, color=parula(0.75)[:3])
-# mlab.pipeline.iso_surface(src, contours=[0.5], opacity=0.5, color=parula(0.5)[:3])
-# mlab.pipeline.iso_surface(src, contours=[0.15], opacity=0.25, color=parula(0.15)[:3])
+    inv_w_squared = 1 / w_z_meshgrid**2
 
-cam_az = 45
-cam_el = 30
+    inv_r = beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
 
-cam_az_rad = np.pi * cam_az / 180
-cam_el_rad = np.pi * cam_el / 180
+    vergence_comp = 1.j * wavenumber * inv_r / 2
 
-cam = mlab.gcf().scene.camera
-pos = cam.position
-scale = 1
-cam_norm = scale * np.linalg.norm(cam.position)
+    wavenumber_comp = 1.j * wavenumber * beam_space_z_meshgrid
 
-print(pos)
+    gouy_phase_shift = 1.j * (n + m + 1) * np.arctan(beam_space_z_meshgrid / z_r)
 
-cam.position = np.array([
-    cam_norm * np.cos(cam_az_rad) * np.cos(cam_el_rad),
-    cam_norm * np.sin(cam_az_rad) * np.cos(cam_el_rad),
-    cam_norm * np.sin(cam_el_rad)
-])
+    exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
 
-# 2d slice
+    intensity = np.abs(scalar_comp * exp_component)**2
 
-img_space_y_meshgrid, img_space_x_meshgrid = np.meshgrid(
-    x_linspace,
-    y_linspace,
-)
+    max_intensity = np.max(intensity)
+    intensity /=max_intensity
 
-img_space_z_meshgrid = np.zeros_like(img_space_x_meshgrid)
+    fig = mlab.figure(size=(2000,2000))
 
-beam_space_x_meshgrid = img_space_x_meshgrid * beam_space_x_basis[0] + img_space_y_meshgrid * beam_space_x_basis[1] + img_space_z_meshgrid * beam_space_x_basis[2]
-beam_space_y_meshgrid = img_space_x_meshgrid * beam_space_y_basis[0] + img_space_y_meshgrid * beam_space_y_basis[1] + img_space_z_meshgrid * beam_space_y_basis[2]
-beam_space_z_meshgrid = img_space_x_meshgrid * beam_space_z_basis[0] + img_space_y_meshgrid * beam_space_z_basis[1] + img_space_z_meshgrid * beam_space_z_basis[2]
+    src = mlab.pipeline.scalar_field(img_space_x_meshgrid * 1e9, img_space_y_meshgrid * 1e9, img_space_z_meshgrid * 1e9, intensity)
+    mlab.pipeline.iso_surface(src, contours=[0.75], opacity=1, color=parula(0.75)[:3])
+    # mlab.pipeline.iso_surface(src, contours=[0.5], opacity=0.5, color=parula(0.5)[:3])
+    # mlab.pipeline.iso_surface(src, contours=[0.15], opacity=0.25, color=parula(0.15)[:3])
 
-w_z_meshgrid = w_0 * np.sqrt(1 + (beam_space_z_meshgrid / z_r)**2)
+    cam_az = 45
+    cam_el = 30
 
-h_m = gh_m(np.sqrt(2) * beam_space_x_meshgrid / w_z_meshgrid)
-h_n = gh_n(np.sqrt(2) * beam_space_y_meshgrid / w_z_meshgrid)
+    cam_az_rad = np.pi * cam_az / 180
+    cam_el_rad = np.pi * cam_el / 180
 
-scalar_comp = E_0 * w_0 / w_z_meshgrid * h_m * h_n
+    cam = mlab.gcf().scene.camera
+    pos = cam.position
+    scale = 0.75
+    cam_norm = scale * np.linalg.norm(cam.position)
 
-sum_xy_squares = beam_space_x_meshgrid**2 + beam_space_y_meshgrid**2
+    print(pos)
 
-inv_w_squared = 1 / w_z_meshgrid**2
+    cam.position = np.array([
+        cam_norm * np.cos(cam_az_rad) * np.cos(cam_el_rad),
+        cam_norm * np.sin(cam_az_rad) * np.cos(cam_el_rad),
+        cam_norm * np.sin(cam_el_rad)
+    ])
 
-inv_r = beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
+    # 2d slice
 
-vergence_comp = 1.j * wavenumber * inv_r / 2
+    img_space_y_meshgrid, img_space_x_meshgrid = np.meshgrid(
+        x_linspace,
+        y_linspace,
+    )
 
-wavenumber_comp = 1.j * wavenumber * beam_space_z_meshgrid
+    img_space_z_meshgrid = np.zeros_like(img_space_x_meshgrid)
 
-gouy_phase_shift = 1.j * (n + m + 1) * np.arctan(beam_space_z_meshgrid / z_r)
+    beam_space_x_meshgrid = img_space_x_meshgrid * beam_space_x_basis[0] + img_space_y_meshgrid * beam_space_x_basis[1] + img_space_z_meshgrid * beam_space_x_basis[2]
+    beam_space_y_meshgrid = img_space_x_meshgrid * beam_space_y_basis[0] + img_space_y_meshgrid * beam_space_y_basis[1] + img_space_z_meshgrid * beam_space_y_basis[2]
+    beam_space_z_meshgrid = img_space_x_meshgrid * beam_space_z_basis[0] + img_space_y_meshgrid * beam_space_z_basis[1] + img_space_z_meshgrid * beam_space_z_basis[2]
 
-exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
+    beam_space_z_meshgrid -= z_offset
 
-intensity = np.abs(scalar_comp * exp_component)**2
+    w_z_meshgrid = w_0 * np.sqrt(1 + (beam_space_z_meshgrid / z_r)**2)
 
-intensity /= np.max(intensity)
+    h_m = gh_m(np.sqrt(2) * beam_space_x_meshgrid / w_z_meshgrid)
+    h_n = gh_n(np.sqrt(2) * beam_space_y_meshgrid / w_z_meshgrid)
 
-s = parula(intensity)
+    scalar_comp = E_0 * w_0 / w_z_meshgrid * h_m * h_n
 
-s *= 255
+    sum_xy_squares = beam_space_x_meshgrid**2 + beam_space_y_meshgrid**2
 
-x_axis = np.array([
-    [ 0,0,0 ],
-    [*(x_basis * 1.5 * pm_w_0 * 1e9)]
-])
+    inv_w_squared = 1 / w_z_meshgrid**2
 
-mlab.plot3d(
-    x_axis[:,0],
-    x_axis[:,1],
-    x_axis[:,2],
-    color=(1.0,0.0,0.0),
-    tube_radius=10,
-    tube_sides=30
-)
+    inv_r = beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
 
-y_axis = np.array([
-    [ 0,0,0 ],
-    [*(y_basis * 1.5 * pm_w_0 * 1e9)]
-])
+    vergence_comp = 1.j * wavenumber * inv_r / 2
 
-mlab.plot3d(
-    y_axis[:,0],
-    y_axis[:,1],
-    y_axis[:,2],
-    color=(0.0,1.0,0.0),
-    tube_radius=10,
-    tube_sides=30
-)
+    wavenumber_comp = 1.j * wavenumber * beam_space_z_meshgrid
 
-z_axis = np.array([
-    [ 0,0,0 ],
-    [*(z_basis * 1.5 * pm_w_0 * 1e9)]
-])
+    gouy_phase_shift = 1.j * (n + m + 1) * np.arctan(beam_space_z_meshgrid / z_r)
 
-mlab.plot3d(
-    z_axis[:,0],
-    z_axis[:,1],
-    z_axis[:,2],
-    color=(0.0,0.0,1.0),
-    tube_radius=10,
-    tube_sides=30
-)
+    exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
 
+    intensity = np.abs(scalar_comp * exp_component)**2
 
+    intensity /= max_intensity
 
+    s = parula(intensity)
 
+    s *= 255
 
-beam_space_x_axis = np.array([
-    [ 0,0,0 ],
-    [*(beam_space_x_basis * 1.5 * pm_w_0 * 1e9)]
-])
+    x_axis = np.array([
+        [ 0,0,0 ],
+        [*(x_basis * 1.5 * pm_w_0 * 1e9)]
+    ])
 
-mlab.plot3d(
-    beam_space_x_axis[:,0],
-    beam_space_x_axis[:,1],
-    beam_space_x_axis[:,2],
-    color=(1.0,0.0,1.0),
-    tube_radius=10,
-    tube_sides=30
-)
+    mlab.plot3d(
+        x_axis[:,0],
+        x_axis[:,1],
+        x_axis[:,2],
+        color=(1.0,0.0,0.0),
+        tube_radius=10,
+        tube_sides=30
+    )
 
-beam_space_y_axis = np.array([
-    [ 0,0,0 ],
-    [*(beam_space_y_basis * 1.5 * pm_w_0 * 1e9)]
-])
+    y_axis = np.array([
+        [ 0,0,0 ],
+        [*(y_basis * 1.5 * pm_w_0 * 1e9)]
+    ])
 
-mlab.plot3d(
-    beam_space_y_axis[:,0],
-    beam_space_y_axis[:,1],
-    beam_space_y_axis[:,2],
-    color=(1.0,1.0,0.0),
-    tube_radius=10,
-    tube_sides=30
-)
+    mlab.plot3d(
+        y_axis[:,0],
+        y_axis[:,1],
+        y_axis[:,2],
+        color=(0.0,1.0,0.0),
+        tube_radius=10,
+        tube_sides=30
+    )
 
-beam_space_z_axis = np.array([
-    [ 0,0,0 ],
-    [*(beam_space_z_basis * 1.5 * pm_w_0 * 1e9)]
-])
+    z_axis = np.array([
+        [ 0,0,0 ],
+        [*(z_basis * 1.5 * pm_w_0 * 1e9)]
+    ])
 
-mlab.plot3d(
-    beam_space_z_axis[:,0],
-    beam_space_z_axis[:,1],
-    beam_space_z_axis[:,2],
-    color=(0.0,1.0,1.0),
-    tube_radius=10,
-    tube_sides=30
-)
+    mlab.plot3d(
+        z_axis[:,0],
+        z_axis[:,1],
+        z_axis[:,2],
+        color=(0.0,0.0,1.0),
+        tube_radius=10,
+        tube_sides=30
+    )
 
-mlab_imshowColor(s[:, :, :3], 255, extent=[-pm_w_0 * 1e9,pm_w_0 * 1e9,-pm_w_0 * 1e9,pm_w_0 * 1e9,0,0])
+    beam_space_x_axis = np.array([
+        [ 0,0,0 ],
+        [*(beam_space_x_basis * 1.5 * pm_w_0 * 1e9)]
+    ])
+
+    mlab.plot3d(
+        beam_space_x_axis[:,0],
+        beam_space_x_axis[:,1],
+        beam_space_x_axis[:,2],
+        color=(1.0,0.0,1.0),
+        tube_radius=10,
+        tube_sides=30
+    )
+
+    beam_space_y_axis = np.array([
+        [ 0,0,0 ],
+        [*(beam_space_y_basis * 1.5 * pm_w_0 * 1e9)]
+    ])
+
+    mlab.plot3d(
+        beam_space_y_axis[:,0],
+        beam_space_y_axis[:,1],
+        beam_space_y_axis[:,2],
+        color=(1.0,1.0,0.0),
+        tube_radius=10,
+        tube_sides=30
+    )
+
+    beam_space_z_axis = np.array([
+        [ 0,0,0 ],
+        [*(beam_space_z_basis * 1.5 * pm_w_0 * 1e9)]
+    ])
+
+    mlab.plot3d(
+        beam_space_z_axis[:,0],
+        beam_space_z_axis[:,1],
+        beam_space_z_axis[:,2],
+        color=(0.0,1.0,1.0),
+        tube_radius=10,
+        tube_sides=30
+    )
+
+    mlab_imshowColor(s[:, :, :3], 255, extent=[-pm_w_0 * 1e9,pm_w_0 * 1e9,-pm_w_0 * 1e9,pm_w_0 * 1e9,0,0])
     
-mlab.show()
+    f = mlab.gcf()
+    f.scene._lift()
+    # img_array = mlab.screenshot(figure=f, mode='rgba')
+    mlab.savefig(os.path.join(path,'animation-frames',f'frame_{roll_idx:03d}.png'))
+        
+    # mlab.show()
