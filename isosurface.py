@@ -119,7 +119,7 @@ for roll_idx in range(len(roll_linspace)):
     max_intensity = np.max(intensity)
     intensity /=max_intensity
 
-    fig = mlab.figure(size=(2000,2000))
+    fig = mlab.figure(size=(2000,2000), bgcolor=(1,1,1))
 
     src = mlab.pipeline.scalar_field(img_space_x_meshgrid * 1e9, img_space_y_meshgrid * 1e9, img_space_z_meshgrid * 1e9, intensity)
     mlab.pipeline.iso_surface(src, contours=[0.75], opacity=1, color=parula(0.75)[:3])

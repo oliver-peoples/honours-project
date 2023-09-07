@@ -99,8 +99,8 @@ class GaussHermite:
         self.gh_m = genHermite(self.m)
         self.gh_n = genHermite(self.n)
         
-        grid_x = 3750
-        grid_y = 3750
+        grid_x = 500
+        grid_y = 500
         
         x_linspace = np.linspace(-10, 10, grid_x)
         y_linspace = np.linspace(-10, 10, grid_y)
@@ -157,19 +157,23 @@ class Detector:
     
     center: np.ndarray = np.array([0.,0.])
     
-    def detectFn(self, x: float, y: float, p: float):
+    def detectFn(self, xyz, p: float):
         
-        relative_x = x - self.center[0]
-        relative_y = y - self.center[1]
+        # relative_x = x - self.center[0]
+        # relative_y = y - self.center[1]
         
-        r = np.sqrt(relative_x**2 + relative_y**2)
+        relative_xyz = xyz - self.center
+        
+        r = np.linalg.norm(relative_xyz)
+        
+        # r = np.sqrt(relative_x**2 + relative_y**2)
         
         return np.exp(-(r**2 / 2) / (2 * self.waist**2)) * p
 
 @dataclass
 class Emitter:
     
-    xy: np.array
+    xyz: np.array
     relative_brightness: float
     
 @dataclass
