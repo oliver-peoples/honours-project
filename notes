@@ -1,0 +1,5 @@
+- be able to calculate for arbitrary detector configuration how localization improves with addition of g2 information
+- rewrite detector class to be g1/g2 optional (bool flag)
+- illumination on all cores sequentially/individually
+- receive all cores
+- 

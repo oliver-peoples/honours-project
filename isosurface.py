@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from scipy.spatial import KDTree
 from mayavi import mlab
-mlab.options.offscreen = True
+# mlab.options.offscreen = True
 from skimage import measure
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -123,8 +123,8 @@ for roll_idx in range(len(roll_linspace)):
 
     src = mlab.pipeline.scalar_field(img_space_x_meshgrid * 1e9, img_space_y_meshgrid * 1e9, img_space_z_meshgrid * 1e9, intensity)
     mlab.pipeline.iso_surface(src, contours=[0.75], opacity=1, color=parula(0.75)[:3])
-    # mlab.pipeline.iso_surface(src, contours=[0.5], opacity=0.5, color=parula(0.5)[:3])
-    # mlab.pipeline.iso_surface(src, contours=[0.15], opacity=0.25, color=parula(0.15)[:3])
+    mlab.pipeline.iso_surface(src, contours=[0.5], opacity=0.5, color=parula(0.5)[:3])
+    mlab.pipeline.iso_surface(src, contours=[0.15], opacity=0.25, color=parula(0.15)[:3])
 
     cam_az = 45
     cam_el = 30
@@ -280,4 +280,4 @@ for roll_idx in range(len(roll_linspace)):
     # img_array = mlab.screenshot(figure=f, mode='rgba')
     mlab.savefig(os.path.join(path,'animation-frames',f'frame_{roll_idx:03d}.png'))
         
-    # mlab.show()
+    mlab.show()

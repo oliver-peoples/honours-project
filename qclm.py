@@ -6,6 +6,15 @@ from scipy.special._orthogonal import orthopoly1d
 from typing import List, Any
 from mayavi import mlab
 
+# @dataclass
+# class IlluminationFunction:
+    
+    
+
+# @dataclass
+# class FiberCore:
+    
+#     illumination_fn:
 
 @dataclass
 class GaussLaguerre:

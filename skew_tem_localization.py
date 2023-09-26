@@ -12,7 +12,7 @@ from scipy.spatial.transform import Rotation
 
 matplotlib.rcParams['text.usetex'] = True
 
-from qclm import Emitter, Detector, genHermite
+from qclm import Emitter, Detector, genHermite, QuadTree, Rect, Point
 from scipy.optimize import minimize
 from scipy.optimize import fmin
 
@@ -20,8 +20,8 @@ import os
 
 path = os.path.dirname(__file__)
 
-PLOT_3D = False
-PLOT_2D = False
+PLOT_3D = True
+PLOT_2D = True
 
 XYZ = True
 XYZ_PRIME = True
@@ -77,12 +77,21 @@ def main():
     )
     
     modes = [
-        {'name':'structure_0','mn':[0,0],'trans_deg':[35,0,0],'offset_z':(0.9 * w_0)},
-        {'name':'structure_1','mn':[1,1],'trans_deg':[55,55,0],'offset_z':(0.9 * w_0)},
-        {'name':'structure_2','mn':[1,1],'trans_deg':[55,55,10],'offset_z':(0.9 * w_0)},
-        {'name':'structure_3','mn':[1,1],'trans_deg':[55,55,20],'offset_z':(0.9 * w_0)},
-        {'name':'structure_4','mn':[1,1],'trans_deg':[55,55,30],'offset_z':(0.9 * w_0)},
-        {'name':'structure_5','mn':[1,1],'trans_deg':[55,55,40],'offset_z':(0.9 * w_0)},
+        {'name':'structure_0','mn':[0,0],'trans_deg':[35,0,0],'offset_z':(0.3 * w_0)},
+        {'name':'structure_1','mn':[1,0],'trans_deg':[55,30,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_2','mn':[1,0],'trans_deg':[55,60,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_3','mn':[1,0],'trans_deg':[55,90,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_4','mn':[1,0],'trans_deg':[55,120,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_5','mn':[1,0],'trans_deg':[55,150,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_6','mn':[1,0],'trans_deg':[55,180,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_7','mn':[1,0],'trans_deg':[55,210,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_1','mn':[1,0],'trans_deg':[90+55,30,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_2','mn':[1,0],'trans_deg':[90+55,60,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_3','mn':[1,0],'trans_deg':[90+55,90,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_4','mn':[1,0],'trans_deg':[90+55,120,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_5','mn':[1,0],'trans_deg':[90+55,150,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_6','mn':[1,0],'trans_deg':[90+55,180,0],'offset_z':(1.1 * w_0)},
+        {'name':'structure_7','mn':[1,0],'trans_deg':[90+55,210,0],'offset_z':(1.1 * w_0)},
     ]
     
     #==================================================================================================================================================================================================
@@ -222,6 +231,85 @@ def main():
     print(g2_truth)
     
     #======================================================================================================================================================================================================
+    # Optimization
+    #======================================================================================================================================================================================================
+
+    trials = 200
+    
+    x_opt = np.ndarray((trials, 5), dtype=np.float64)
+    
+    for trial_idx in range(trials):
+        
+        print(trial_idx)
+        
+        noisy_g1_truth = np.array(g1_truth) * (1 + 0.025 * np.random.randn(len(modes),1))
+        noisy_g2_truth = np.array(g2_truth) * (1 + 0.025 * np.random.randn(len(modes),1))
+        # g2_truth = np.min(g2_truth, 0.5)
+        noisy_g2_truth = np.array([min(g2,0.5) for g2 in noisy_g2_truth], dtype=np.float64)
+        
+        x_0 = np.random.randn(5,1)
+        x_0[4] = 0.5
+        
+        # x_0 = np.array([*(e_1.xyz[0:2] / w_0),*(e_2.xyz[0:2] / w_0),e_2.relative_brightness], dtype=np.float64)
+        
+        optimization_lambda = lambda guess_x: rss(guess_x, modes, g1_truth, g2_truth, detector)
+        
+        x_opt[trial_idx], _, _, _, _ = fmin(func=optimization_lambda, x0=x_0, disp=False, full_output=True)
+        
+    #======================================================================================================================================================================================================
+    # Check the outputs actually meet the RSS criteria *not using the rss(...) function*--- this is done as a sanity check
+    #======================================================================================================================================================================================================
+        
+    for trial_idx in range(trials):
+        
+        if x_opt[trial_idx,4] > 1:
+            
+            x_opt[trial_idx,4] = 1. / x_opt[trial_idx,4]
+            
+            tmp = x_opt[trial_idx,0:2]
+            
+            x_opt[trial_idx,0:2] = x_opt[trial_idx,2:4]
+            
+            x_opt[trial_idx,2:4] = tmp
+        
+    all_points = np.ndarray((trials * 2,2))
+    
+    all_points[:trials,:] = x_opt[:,:2]
+    all_points[trials:,:] = x_opt[:,2:4]
+    
+    points = [Point(*coord) for coord in all_points[:]]
+    
+    domain = Rect(0, 0, 2 * -pm_w_0 / w_0, 2 * -pm_w_0 / w_0)
+    qtree = QuadTree(domain, int(0.05 * trials))
+    for point in points:
+        qtree.insert(point)
+
+    # ax = plt.subplot()
+    # ax.set_xlim(-1,1)
+    # ax.set_ylim(-1,1)
+    qtree.draw(plt.gca())
+    
+    np.savetxt(os.path.join(path,'localization-results','positions.csv'), x_opt, delimiter=',')
+
+    plt.scatter(all_points[0:trials,0],all_points[0:trials,1], color='cyan', s=2., marker='.')
+    plt.scatter(all_points[trials:,0],all_points[trials:,1], color='magenta', s=2., marker='.')
+    # plt.scatter(e_1.xyz[0], e_1.xyz[1], c='r', marker='x', s=40, linewidths=1)
+    # plt.scatter(e_2.xyz[0], e_2.xyz[1], facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+    plt.scatter(e_1.xyz[0] / w_0, e_1.xyz[1] / w_0, c='r', marker='x', s=40, linewidths=1)
+    plt.scatter(e_2.xyz[0] / w_0, e_2.xyz[1] / w_0, facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+    plt.xlabel(r"$x/w$", fontsize=24)
+    plt.ylabel(r"$y/w$", fontsize=24)
+    plt.xlim(-pm_w_0 / w_0,pm_w_0 / w_0)
+    plt.ylim(-pm_w_0 / w_0,pm_w_0 / w_0)
+    plt.xticks(fontsize=22)
+    plt.yticks(fontsize=22)
+    # cbar.set_ticks
+    plt.gca().set_aspect(1)
+    plt.tight_layout()
+    plt.savefig(os.path.join(path,'localization-3d-tem-results','scatter.png'), dpi=400, bbox_inches='tight')
+    plt.close()
+    
+    #======================================================================================================================================================================================================
     # Plotting, if we want it
     #======================================================================================================================================================================================================
 
@@ -280,8 +368,8 @@ def main():
             cbar = plt.colorbar(pad=0.01)
             cbar.ax.tick_params(labelsize=18)
             cbar.set_label(r"$I_{mn}\left(x,y\right)/I_{max}$", fontsize=24, rotation=-90, labelpad=28)
-            plt.scatter(e_1.xy[0] / w_0, e_1.xy[1] / w_0, c='r', marker='x', s=40, linewidths=1)
-            plt.scatter(e_2.xy[0] / w_0, e_2.xy[1] / w_0, facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
+            plt.scatter(e_1.xyz[0] / w_0, e_1.xyz[1] / w_0, c='r', marker='x', s=40, linewidths=1)
+            plt.scatter(e_2.xyz[0] / w_0, e_2.xyz[1] / w_0, facecolors='none', edgecolors='r', marker='o', s=20, linewidths=1)
             plt.xlabel(r"$x/w$", fontsize=24)
             plt.ylabel(r"$y/w$", fontsize=24)
             plt.xticks(fontsize=22)
@@ -486,6 +574,119 @@ def main():
             f.scene._lift()
             # img_array = mlab.screenshot(figure=f, mode='rgba')
             mlab.savefig(os.path.join(path,'localization-3d-tem-results','beam_3d_' + modes[mode_idx]['name'] + '_' + str(modes[mode_idx]['mn'][0]) + '_' + str(modes[mode_idx]['mn'][1]) + '.png'))
+            
+def rss(guess_x, modes, g1_truth, g2_truth, detector):
+    
+    g1_guess = np.zeros_like(g1_truth)
+    g2_guess = np.zeros_like(g2_truth)
+    
+    e_1_guess = Emitter(
+        w_0 * np.array([*guess_x[:2],0], dtype=np.float64),
+        1.
+    )
+    
+    e_2_guess = Emitter(
+        w_0 * np.array([*guess_x[2:4],0], dtype=np.float64),
+        guess_x[4]
+    )
+    
+    for mode_idx in range(len(modes)):
+        
+        # e_1
+        
+        img_space_x = e_1_guess.xyz[0]
+        img_space_y = e_1_guess.xyz[1]
+        img_space_z = e_1_guess.xyz[2]
+        
+        beam_space_x_basis = modes[mode_idx]['so3transform'][:,0]
+        beam_space_y_basis = modes[mode_idx]['so3transform'][:,1]
+        beam_space_z_basis = modes[mode_idx]['so3transform'][:,2]
+
+        beam_space_x = img_space_x * beam_space_x_basis[0] + img_space_y * beam_space_x_basis[1] + img_space_z * beam_space_x_basis[2]
+        beam_space_y = img_space_x * beam_space_y_basis[0] + img_space_y * beam_space_y_basis[1] + img_space_z * beam_space_y_basis[2]
+        beam_space_z = img_space_x * beam_space_z_basis[0] + img_space_y * beam_space_z_basis[1] + img_space_z * beam_space_z_basis[2]
+
+        beam_space_z -= modes[mode_idx]['offset_z']
+        
+        w_z = w_0 * np.sqrt(1 + (beam_space_z / z_r)**2)
+            
+        h_m = modes[mode_idx]['gh_m'](np.sqrt(2) * beam_space_x / w_z)
+        h_n = modes[mode_idx]['gh_n'](np.sqrt(2) * beam_space_y / w_z)
+
+        scalar_comp = E_0 * w_0 / w_z * h_m * h_n
+
+        sum_xy_squares = beam_space_x**2 + beam_space_y**2
+
+        inv_w_squared = 1 / w_z**2
+
+        inv_r = beam_space_z / (beam_space_z**2 + z_r**2)
+
+        vergence_comp = 1.j * wavenumber * inv_r / 2
+
+        wavenumber_comp = 1.j * wavenumber * beam_space_z
+
+        gouy_phase_shift = 1.j * (modes[mode_idx]['mn'][0] + modes[mode_idx]['mn'][1] + 1) * np.arctan(beam_space_z / z_r)
+
+        exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
+        
+        e_1_guess_i = np.abs(scalar_comp * exp_component)**2
+        
+        e_1_guess_p = e_1_guess.relative_brightness * e_1_guess_i
+        
+        p_1_guess = detector.detectFn(e_1_guess.xyz, e_1_guess_p)
+        
+        # e_2
+        
+        img_space_x = e_2_guess.xyz[0]
+        img_space_y = e_2_guess.xyz[1]
+        img_space_z = e_2_guess.xyz[2]
+        
+        beam_space_x_basis = modes[mode_idx]['so3transform'][:,0]
+        beam_space_y_basis = modes[mode_idx]['so3transform'][:,1]
+        beam_space_z_basis = modes[mode_idx]['so3transform'][:,2]
+
+        beam_space_x = img_space_x * beam_space_x_basis[0] + img_space_y * beam_space_x_basis[1] + img_space_z * beam_space_x_basis[2]
+        beam_space_y = img_space_x * beam_space_y_basis[0] + img_space_y * beam_space_y_basis[1] + img_space_z * beam_space_y_basis[2]
+        beam_space_z = img_space_x * beam_space_z_basis[0] + img_space_y * beam_space_z_basis[1] + img_space_z * beam_space_z_basis[2]
+
+        beam_space_z -= modes[mode_idx]['offset_z']
+        
+        w_z = w_0 * np.sqrt(1 + (beam_space_z / z_r)**2)
+            
+        h_m = modes[mode_idx]['gh_m'](np.sqrt(2) * beam_space_x / w_z)
+        h_n = modes[mode_idx]['gh_n'](np.sqrt(2) * beam_space_y / w_z)
+
+        scalar_comp = E_0 * w_0 / w_z * h_m * h_n
+
+        sum_xy_squares = beam_space_x**2 + beam_space_y**2
+
+        inv_w_squared = 1 / w_z**2
+
+        inv_r = beam_space_z / (beam_space_z**2 + z_r**2)
+
+        vergence_comp = 1.j * wavenumber * inv_r / 2
+
+        wavenumber_comp = 1.j * wavenumber * beam_space_z
+
+        gouy_phase_shift = 1.j * (modes[mode_idx]['mn'][0] + modes[mode_idx]['mn'][1] + 1) * np.arctan(beam_space_z / z_r)
+
+        exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
+        
+        e_2_guess_i = np.abs(scalar_comp * exp_component)**2
+        
+        e_2_guess_p = e_2_guess.relative_brightness * e_2_guess_i
+        
+        p_2_guess = detector.detectFn(e_2_guess.xyz, e_2_guess_p)
+        
+        # set g1 g2
+        
+        g1_guess[mode_idx] = (p_1_guess + p_2_guess) / (e_1_guess.relative_brightness + e_2_guess.relative_brightness)
+        
+        alpha = p_2_guess / p_1_guess
+        
+        g2_guess[mode_idx] = (2 * alpha) / (1 + alpha)**2
+        
+    return np.sum((g1_truth - g1_guess)**2) + np.sum((g2_truth - g2_guess)**2)
 
 if __name__ == '__main__':
     
