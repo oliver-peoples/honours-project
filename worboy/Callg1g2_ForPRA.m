@@ -83,18 +83,17 @@ options = optimset('TolFun',1e-8);
 
 %Step over multiple experiments
 for cts = 1:NumSamples
-    noisemodel = 1 + variab*randn(1,6);
-    g1n = g1m.*noisemodel(1:3);
-    g2n = g2m.*noisemodel(4:6);
     
-    noisestore(cts,:) = noisemodel;
-
+    randn('seed',cts);
+    
+    g1n = g1m.*(1 + variab*randn(1,3));
+    g2n = g2m.*(1 + variab*randn(1,3));
 
 %numy = 101;
 %y2vals = linspace(-2,2,numy);
     %fun = @(xx)TrilatCoords(xx,g1n,g2n,x0,P01,P02,sigma);
     %Code modified so that P02 unknown
-    fun = @(xx)TrilatCoords(xx,g1m,g2m,x0,P01,sigma);
+    fun = @(xx)TrilatCoords(xx,g1n,g2n,x0,P01,sigma);
 %for ct = 1:numy
 %    x2test = [0.5,y2vals(ct)];
 %    xx = [x1(1), x1(2); x2(1),y2vals(ct)];

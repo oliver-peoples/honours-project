@@ -3,19 +3,22 @@ from parula import parula
 import matplotlib.pyplot as plt
 import matplotlib
 from scipy.spatial import KDTree
-from mayavi import mlab
-mlab.options.offscreen = True
+# from mayavi import mlab
+# mlab.options.offscreen = True
 from skimage import measure
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import scipy.optimize
 from scipy.spatial.transform import Rotation
+import os
 
 matplotlib.rcParams['text.usetex'] = True
 
-from qclm import Emitter, GaussLaguerre, GaussHermite, Detector, Solver, QuadTree, Rect, Point, genHermite, mlab_imshowColor
+# from qclm import Emitter, GaussLaguerre, GaussHermite, Detector, Solver, QuadTree, Rect, Point, genHermite, mlab_imshowColor
 from scipy.optimize import minimize
 from scipy.optimize import fmin
+
+path = os.path.dirname(__file__)
 
 #==================================================================================================
 # Configuration - edit me!
@@ -30,7 +33,7 @@ COLS = 4
 
 CORE_PSF = 1.
 
-G2_CAPABLE_IDX = [ 0,1,2 ]
+# G2_CAPABLE_IDX = [ 5,9,10 ]
 
 X_DIFF = 1.25
 
@@ -43,8 +46,10 @@ if CORE_OVERRIDE:
         [-np.sin(60*np.pi/180),-np.cos(60*np.pi/180),0],
         [np.sin(60*np.pi/180),-np.cos(60*np.pi/180),0]
     ], dtype=np.float64)
+    
+    G2_CAPABLE_IDX = [ 0,1,2 ]
 
-EMITTER_XY = np.array([
+EMITTER_XY = 0.5 * np.array([
     [-0.6300,-0.1276,0],
     [0.5146,-0.5573,0]
 ], dtype=np.float64)
@@ -98,7 +103,9 @@ def main():
 
     for emitter_idx in range(np.shape(EMITTER_XY)[0]):
         
-        emitter_distances[:,emitter_idx] = np.linalg.norm(cores - EMITTER_XY[emitter_idx,:], axis=1)
+        diffv = cores - EMITTER_XY[emitter_idx,:]
+        
+        emitter_distances[:,emitter_idx] = np.linalg.norm(diffv, axis=1)
         
     powers = np.exp(-(emitter_distances**2/2)/(2*CORE_PSF**2))
 
@@ -124,11 +131,21 @@ def main():
         x_0 = np.random.randn(5,1)
         x_0[4] = 0.5
         
+        g1_mat_measure = np.array([0.783340092207118,
+0.818150251986132,
+0.693069161471851], dtype=np.float64)
+    
+        g2_mat_measure = np.array([0.364697000122009,
+0.303173696912229,
+0.407550413831280], dtype=np.float64)
+        
+        xx0 = np.array([0.0583901331581728,0.485090888610420,0.128934147111779,0.672737850669774,0.500000000000000], dtype=np.float64)
+            
         rss_lambda = lambda guess_x: rssFn(guess_x, g1_noisy, g2_noisy)
         
         # x_opt[trial_idx,:], _, iter, _, _ = scipy.optimize.fmin(func=rss_lambda, x0=x_0, disp=False, full_output=True, maxiter=400)
         
-        result = scipy.optimize.minimize(fun=rss_lambda, x0=x_0, method='Nelder-Mead')
+        result = scipy.optimize.minimize(fun=rss_lambda, x0=x_0, method='Nelder-Mead', tol=1e-8)
             
         x_opt[trial_idx,:] = result.x
         
@@ -149,13 +166,18 @@ def main():
     all_points[:TRIALS,:] = x_opt[:,:2]
     all_points[TRIALS:,:] = x_opt[:,2:4]
     
-    plt.scatter(all_points[0:TRIALS,0],all_points[0:TRIALS,1], color='cyan', s=2., marker='.')
+    plt.scatter(x_opt[:,0], x_opt[:,1], color='cyan', s=2., marker='.')
     plt.scatter(all_points[TRIALS:,0],all_points[TRIALS:,1], color='magenta', s=2., marker='.')
     plt.scatter(cores[G1_ONLY_IDX,0], cores[G1_ONLY_IDX,1], c='b', marker='o')
     plt.scatter(cores[G2_CAPABLE_IDX,0], cores[G2_CAPABLE_IDX,1], c='b', marker='x')
     plt.scatter(EMITTER_XY[:,0], EMITTER_XY[:,1], c='r', marker='+')
+    plt.xlim(-2.5,2.5)
+    plt.ylim(-2.5,2.5)
     plt.gca().set_aspect(1)
-    plt.show()
+    plt.tight_layout()
+    plt.savefig(os.path.join(path,'bad_localization.png'), dpi=600, bbox_inches='tight')
+    # plt.show()
+    plt.close()
 
 def rssFn(x_guess, g1_noisy, g2_noisy):
     
