@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/mnt/nvme0n1p1/honours-project/c-attempt/build",
+  "command": "/usr/bin/clang++  -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -g -std=gnu++20 -o CMakeFiles/render_tem.dir/render_tem.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/render_tem.cpp",
+  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/render_tem.cpp"
+},
+{
+  "directory": "/mnt/nvme0n1p1/honours-project/c-attempt/build",
+  "command": "/usr/bin/clang++  -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -g -std=gnu++20 -o CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp",
+  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp"
+}
+]

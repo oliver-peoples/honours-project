@@ -145,15 +145,7 @@ for cts = 1:TRIALS
     plot(x2s(cts,1),x2s(cts,2),'m.')
 end
 
-for ct = 1:length(cores(G1_ONLY_CAPABLE_IDX))
-    cores_subset = cores(G1_ONLY_CAPABLE_IDX,:);
-    plot(cores_subset(ct,1),cores_subset(ct,2),'ko')
-end
 
-for ct = 1:length(cores(G2_CAPABLE_IDX))
-    cores_subset = cores(G2_CAPABLE_IDX,:);
-    plot(cores_subset(ct,1),cores_subset(ct,2),'ro')
-end
 
 % plot e1 covariance matrix
 

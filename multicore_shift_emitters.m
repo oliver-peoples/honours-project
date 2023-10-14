@@ -9,7 +9,7 @@ ConfFrac = 1 - 1/sqrt(exp(1));
 
 CORE_OVERRIDE = false;
 
-TRIALS = 250;
+TRIALS = 500;
 
 ROWS = 4;
 COLS = 4;
@@ -37,7 +37,7 @@ end
 EMITTER_XY = 0.25*[-0.6300,-0.1276,0;
     0.5146,-0.5573,0];
 
-EMITTER_BRIGHTNESS = [1.,0.3617];
+EMITTER_BRIGHTNESS = [1.,0.95];
 
 %==================================================================================================
 % Deduced configuration values - don't touch this!
@@ -91,15 +91,17 @@ end
 EMITTER_XY(:,1) = EMITTER_XY(:,1) - mean(EMITTER_XY(:,1));
 EMITTER_XY(:,2) = EMITTER_XY(:,2) - mean(EMITTER_XY(:,2));
 
-y_offset_linspace = linspace(2,-2,50);
-x_offset_linspace = linspace(-2,2,50);
+y_offset_linspace = linspace(1.5,-1.5,5);
+x_offset_linspace = linspace(-1.5,1.5,5);
 
 [x_offset_meshgrid, y_offset_meshgrid] = meshgrid(x_offset_linspace, y_offset_linspace);
 
 e_1_dets = zeros(size(x_offset_meshgrid));
 e_2_dets = zeros(size(x_offset_meshgrid));
 
-parfor config_idx=1:numel(x_offset_meshgrid)
+
+
+for config_idx=1:numel(x_offset_meshgrid)
     
     disp(config_idx)
     
@@ -149,15 +151,85 @@ parfor config_idx=1:numel(x_offset_meshgrid)
         end
     end
     
-    e_1_covs = cov(x1s);
-    e_2_covs = cov(x2s);
+    e_1_cov = cov(x1s);
+    e_2_cov = cov(x2s);
     
-    e_1_det = det(e_1_covs);
-    e_2_det = det(e_2_covs);
+    e_1_det = det(e_1_cov)
+    e_2_det = det(e_2_cov)
     
     e_1_dets(config_idx) = e_1_det;
     e_2_dets(config_idx) = e_2_det;
+
+    figure(1)
+
+    hold on
+
+    % plot e1 covariance matrix
+    % % 
+    % s = -2 * log(1 - ConfFrac);
+    % 
+    % [V, D] = eig(e_1_cov * s);
+    % 
+    % t = linspace(0, 2 * pi);
+    % a = (V * sqrt(D)) * [cos(t(:))'; sin(t(:))'];
+    % 
+    % plot(a(1, :) + mean(x1s(:,1)), a(2, :) + mean(x1s(:,2)));
+    
+    % plot e2 covariance matrix
+    
+    % s = -2 * log(1 - ConfFrac);
+    % 
+    % [V, D] = eig(e_2_cov * s);
+    % 
+    % t = linspace(0, 2 * pi);
+    % a = (V * sqrt(D)) * [cos(t(:))'; sin(t(:))'];
+    % 
+    % plot(a(1, :) + mean(x2s(:,1)), a(2, :) + mean(x2s(:,2)));
+
+    rr1 = sqrt((x1s(:,1) - mean(x1s(:,1))).^2 + (x1s(:,2) - mean(x1s(:,2))).^2);
+    RTab1 = [x1s,rr1];
+    SortTab1 = sortrows(RTab1,3);
+    FractionBoundary = ceil(ConfFrac*TRIALS);
+    xx1 = SortTab1(1:FractionBoundary,1);
+    yy1 = SortTab1(1:FractionBoundary,2);
+    k1 = boundary(SortTab1(1:FractionBoundary,1),SortTab1(1:FractionBoundary,2));
+    %Now determine area
+    Area1 = polyarea(xx1(k1),yy1(k1));
+    Weff1 = 2*sqrt(Area1/pi);
+    plot(mean(x1s(:,1)),mean(x1s(:,2)),'k+')
+    plot(xx1(k1),yy1(k1),'g-')
+    
+    rr2 = sqrt((x2s(:,1) - mean(x2s(:,1))).^2 + (x2s(:,2) - mean(x2s(:,2))).^2);
+    RTab2 = [x2s,rr2];
+    SortTab2 = sortrows(RTab2,3);
+    FractionBoundary = ceil(ConfFrac*TRIALS);
+    xx2 = SortTab2(1:FractionBoundary,1);
+    yy2 = SortTab2(1:FractionBoundary,2);
+    k2 = boundary(SortTab2(1:FractionBoundary,1),SortTab2(1:FractionBoundary,2));
+    %Now determine area
+    Area2 = polyarea(xx2(k2),yy2(k2));
+    Weff2 = 2*sqrt(Area2/pi);
+    plot(mean(x2s(:,1)),mean(x2s(:,2)),'k+')
+    plot(xx2(k2),yy2(k2),'r-')
+
+    for ct = 1:length(cores(G1_ONLY_CAPABLE_IDX))
+        cores_subset = cores(G1_ONLY_CAPABLE_IDX,:);
+        plot(cores_subset(ct,1),cores_subset(ct,2),'ko')
+    end
+
+    for ct = 1:length(cores(G2_CAPABLE_IDX))
+        cores_subset = cores(G2_CAPABLE_IDX,:);
+        plot(cores_subset(ct,1),cores_subset(ct,2),'ro')
+    end
+
+    plot(thread_local_emitter_xy(1,1),thread_local_emitter_xy(1,2),'k+')
+    plot(thread_local_emitter_xy(2,1),thread_local_emitter_xy(2,2),'k+')
+    pbaspect([1 1 1]);
+    pm_val = 2.5;
+    axis([GRID_CENTER(1)-pm_val GRID_CENTER(1)+pm_val GRID_CENTER(2)-pm_val GRID_CENTER(2)+pm_val])
+
+    drawnow
 end
 
-pcolor(x_offset_meshgrid, y_offset_meshgrid, e_1_dets); shading interp; colorbar
-hold on
+% pcolor(x_offset_meshgrid, y_offset_meshgrid, e_1_dets); shading interp; colorbar
+% hold on

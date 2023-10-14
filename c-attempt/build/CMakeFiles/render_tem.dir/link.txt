@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g CMakeFiles/render_tem.dir/render_tem.cpp.o -o ../render_tem   -L/usr/local/cuda/lib64 

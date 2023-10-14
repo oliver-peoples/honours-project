@@ -1,0 +1,4 @@
+/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/rebuild_cache.dir
+/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/edit_cache.dir
+/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/render_tem.dir
+/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/tem_localization_2d.dir
