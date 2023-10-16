@@ -1,0 +1,86 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "qclm",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "finite_time::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-finite_time-Release-42fe28a31e4d9e001eeb.json",
+					"name" : "finite_time",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "multicore_localization::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-multicore_localization-Release-7178c89ee35cb8102b77.json",
+					"name" : "multicore_localization",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "render_tem::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-render_tem-Release-cdc5a61609ed4cae29df.json",
+					"name" : "render_tem",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tem_localization_2d::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tem_localization_2d-Release-727b58a7113a0ddc472d.json",
+					"name" : "tem_localization_2d",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mnt/nvme0n1p1/honours-project/c-attempt/build",
+		"source" : "/mnt/nvme0n1p1/honours-project/c-attempt"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

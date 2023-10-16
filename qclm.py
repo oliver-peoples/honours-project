@@ -4,7 +4,17 @@ from scipy.special import genlaguerre as genLaguerre
 from scipy.special import hermite as genHermite
 from scipy.special._orthogonal import orthopoly1d
 from typing import List, Any
+from mayavi import mlab
 
+# @dataclass
+# class IlluminationFunction:
+    
+    
+
+# @dataclass
+# class FiberCore:
+    
+#     illumination_fn:
 
 @dataclass
 class GaussLaguerre:
@@ -98,8 +108,8 @@ class GaussHermite:
         self.gh_m = genHermite(self.m)
         self.gh_n = genHermite(self.n)
         
-        grid_x = 3750
-        grid_y = 3750
+        grid_x = 500
+        grid_y = 500
         
         x_linspace = np.linspace(-10, 10, grid_x)
         y_linspace = np.linspace(-10, 10, grid_y)
@@ -156,19 +166,23 @@ class Detector:
     
     center: np.ndarray = np.array([0.,0.])
     
-    def detectFn(self, x: float, y: float, p: float):
+    def detectFn(self, xyz, p: float):
         
-        relative_x = x - self.center[0]
-        relative_y = y - self.center[1]
+        # relative_x = x - self.center[0]
+        # relative_y = y - self.center[1]
         
-        r = np.sqrt(relative_x**2 + relative_y**2)
+        relative_xyz = xyz - self.center
+        
+        r = np.linalg.norm(relative_xyz)
+        
+        # r = np.sqrt(relative_x**2 + relative_y**2)
         
         return np.exp(-(r**2 / 2) / (2 * self.waist**2)) * p
 
 @dataclass
 class Emitter:
     
-    xy: np.array
+    xyz: np.array
     relative_brightness: float
     
 @dataclass
@@ -197,7 +211,7 @@ class Solver:
         
         e_2_guess = Emitter(
             guess[2:4],
-            1# guess[4]
+            guess[4]
         )
         
         for is_idx in range(0,len(self.illumination_structures)):
@@ -427,3 +441,30 @@ class QuadTree:
             self.ne.draw(ax)
             self.se.draw(ax)
             self.sw.draw(ax)
+            
+def mlab_imshowColor(im, alpha=255, **kwargs):
+    """
+    Plot a color image with mayavi.mlab.imshow.
+    im is a ndarray with dim (n, m, 3) and scale (0->255]
+    alpha is a single number or a ndarray with dim (n*m) and scale (0->255]
+    **kwargs is passed onto mayavi.mlab.imshow(..., **kwargs)
+    """
+    try:
+        alpha[0]
+    except:
+        alpha = np.ones(im.shape[0] * im.shape[1]) * alpha
+    if len(alpha.shape) != 1:
+        alpha = alpha.flatten()
+
+    # The lut is a Nx4 array, with the columns representing RGBA
+    # (red, green, blue, alpha) coded with integers going from 0 to 255,
+    # we create it by stacking all the pixles (r,g,b,alpha) as rows.
+    myLut = np.c_[im.reshape(-1, 3), alpha]
+    myLutLookupArray = np.arange(im.shape[0] * im.shape[1]).reshape(im.shape[0], im.shape[1])
+
+    #We can display an color image by using mlab.imshow, a lut color list and a lut lookup table.
+    theImshow = mlab.imshow(myLutLookupArray, colormap='binary', **kwargs) #temporary colormap
+    theImshow.module_manager.scalar_lut_manager.lut.table = myLut
+    mlab.draw()
+
+    return theImshow
