@@ -21,3 +21,7 @@ target_link_libraries(render_tem PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 add_executable(multicore_localization ${CMAKE_SOURCE_DIR}/multicore-localization/main.cpp)
 target_link_libraries(multicore_localization PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 target_compile_options(multicore_localization PUBLIC -fopenmp)
+
+add_executable(finite_time ${CMAKE_SOURCE_DIR}/finite-time/main.cpp)
+target_link_libraries(finite_time PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
+target_compile_options(finite_time PUBLIC -fopenmp)

@@ -1,6 +1,11 @@
 [
 {
   "directory": "/mnt/nvme0n1p1/honours-project/c-attempt/build",
+  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/finite_time.dir/finite-time/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp",
+  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp"
+},
+{
+  "directory": "/mnt/nvme0n1p1/honours-project/c-attempt/build",
   "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/multicore-localization/main.cpp",
   "file": "/mnt/nvme0n1p1/honours-project/c-attempt/multicore-localization/main.cpp"
 },

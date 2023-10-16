@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named finite_time
+
+# Build rule for target.
+finite_time: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 finite_time
+.PHONY : finite_time
+
+# fast build rule for target.
+finite_time/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/build
+.PHONY : finite_time/fast
+
+#=============================================================================
 # Target rules for targets named multicore_localization
 
 # Build rule for target.
@@ -154,6 +167,30 @@ tem_localization_2d: cmake_check_build_system
 tem_localization_2d/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/build
 .PHONY : tem_localization_2d/fast
+
+finite-time/main.o: finite-time/main.cpp.o
+.PHONY : finite-time/main.o
+
+# target to build an object file
+finite-time/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/finite-time/main.cpp.o
+.PHONY : finite-time/main.cpp.o
+
+finite-time/main.i: finite-time/main.cpp.i
+.PHONY : finite-time/main.i
+
+# target to preprocess a source file
+finite-time/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/finite-time/main.cpp.i
+.PHONY : finite-time/main.cpp.i
+
+finite-time/main.s: finite-time/main.cpp.s
+.PHONY : finite-time/main.s
+
+# target to generate assembly for a file
+finite-time/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/finite-time/main.cpp.s
+.PHONY : finite-time/main.cpp.s
 
 multicore-localization/main.o: multicore-localization/main.cpp.o
 .PHONY : multicore-localization/main.o
@@ -235,9 +272,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... finite_time"
 	@echo "... multicore_localization"
 	@echo "... render_tem"
 	@echo "... tem_localization_2d"
+	@echo "... finite-time/main.o"
+	@echo "... finite-time/main.i"
+	@echo "... finite-time/main.s"
 	@echo "... multicore-localization/main.o"
 	@echo "... multicore-localization/main.i"
 	@echo "... multicore-localization/main.s"
