@@ -69,29 +69,31 @@ include CMakeFiles/render_tem.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/render_tem.dir/flags.make
 
-CMakeFiles/render_tem.dir/render_tem.cpp.o: CMakeFiles/render_tem.dir/flags.make
-CMakeFiles/render_tem.dir/render_tem.cpp.o: ../render_tem.cpp
-CMakeFiles/render_tem.dir/render_tem.cpp.o: CMakeFiles/render_tem.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/render_tem.dir/render_tem.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/render_tem.dir/render_tem.cpp.o -MF CMakeFiles/render_tem.dir/render_tem.cpp.o.d -o CMakeFiles/render_tem.dir/render_tem.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/render_tem.cpp
+CMakeFiles/render_tem.dir/render_tem_gh.cpp.o: CMakeFiles/render_tem.dir/flags.make
+CMakeFiles/render_tem.dir/render_tem_gh.cpp.o: ../render_tem_gh.cpp
+CMakeFiles/render_tem.dir/render_tem_gh.cpp.o: CMakeFiles/render_tem.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/render_tem.dir/render_tem_gh.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/render_tem.dir/render_tem_gh.cpp.o -MF CMakeFiles/render_tem.dir/render_tem_gh.cpp.o.d -o CMakeFiles/render_tem.dir/render_tem_gh.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/render_tem_gh.cpp
 
-CMakeFiles/render_tem.dir/render_tem.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/render_tem.dir/render_tem.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/nvme0n1p1/honours-project/c-attempt/render_tem.cpp > CMakeFiles/render_tem.dir/render_tem.cpp.i
+CMakeFiles/render_tem.dir/render_tem_gh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/render_tem.dir/render_tem_gh.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/nvme0n1p1/honours-project/c-attempt/render_tem_gh.cpp > CMakeFiles/render_tem.dir/render_tem_gh.cpp.i
 
-CMakeFiles/render_tem.dir/render_tem.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/render_tem.dir/render_tem.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/nvme0n1p1/honours-project/c-attempt/render_tem.cpp -o CMakeFiles/render_tem.dir/render_tem.cpp.s
+CMakeFiles/render_tem.dir/render_tem_gh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/render_tem.dir/render_tem_gh.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/nvme0n1p1/honours-project/c-attempt/render_tem_gh.cpp -o CMakeFiles/render_tem.dir/render_tem_gh.cpp.s
 
 # Object files for target render_tem
 render_tem_OBJECTS = \
-"CMakeFiles/render_tem.dir/render_tem.cpp.o"
+"CMakeFiles/render_tem.dir/render_tem_gh.cpp.o"
 
 # External object files for target render_tem
 render_tem_EXTERNAL_OBJECTS =
 
-../render_tem: CMakeFiles/render_tem.dir/render_tem.cpp.o
+../render_tem: CMakeFiles/render_tem.dir/render_tem_gh.cpp.o
 ../render_tem: CMakeFiles/render_tem.dir/build.make
+../render_tem: /usr/lib64/libomp.so
+../render_tem: /usr/lib64/libpthread.so
 ../render_tem: CMakeFiles/render_tem.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../render_tem"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/render_tem.dir/link.txt --verbose=$(VERBOSE)

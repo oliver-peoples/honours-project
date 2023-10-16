@@ -7,30 +7,43 @@ ConfFrac = 1 - 1/sqrt(exp(1));
 % Configuration - edit me!
 %==================================================================================================
 
-CORE_OVERRIDE = false;
+% CORE_OVERRIDE = false;
+% 
+% TRIALS = 500;
+% 
+% ROWS = 4;
+% COLS = 4;
+% 
+% CORE_PSF = 1;
+% 
+% G2_CAPABLE_IDX = [1,5,6];
+% 
+CENTER_IDX = 0;
 
-TRIALS = 500;
-
-ROWS = 4;
-COLS = 4;
-
-CORE_PSF = 1;
-
-G2_CAPABLE_IDX = [1,5,6];
-
-CENTER_IDX = 6;
-
+cores = readmatrix('multicore-localization/core_locations.csv','Delimiter',',','NumHeaderLines',1);
+G2_CAPABLE_IDX = readmatrix('multicore-localization/g2_capable_indexes.csv','Delimiter',',','NumHeaderLines',1);
 % G2_CAPABLE_IDX = [6,10,11];
 % G2_CAPABLE_IDX = [2,3,5,7,10,11];
 % G2_CAPABLE_IDX = [ 6,7,10,11 ];
-
-X_DIFF = 1.25;
-
+CORE_OVERRIDE = false;
+% 
+% TRIALS = 500;
+% 
+% ROWS = 4;
+% COLS = 4;
+% 
+% CORE_PSF = 1;
+% 
+% G2_CAPABLE_IDX = [1,5,6];
+% 
+% CENTER_IDX = 6;
+% X_DIFF = 1.25;
+% 
 if CORE_OVERRIDE
     cores = [0,1,0;
         -sin(60*pi/180),-cos(60*pi/180),0;
         sin(60*pi/180),-cos(60*pi/180),0];
-    
+
     G2_CAPABLE_IDX = [1,2,3];
 end
 
@@ -43,50 +56,50 @@ EMITTER_BRIGHTNESS = [1.,0.95];
 % Deduced configuration values - don't touch this!
 %==================================================================================================
 
-ROW_SHIFT = X_DIFF / 2;
-
-R_VERTEX = ROW_SHIFT * 2 / 3^0.5;
-
-Y_DIFF = 1.5 * R_VERTEX;
-
-col_indexes = 0:COLS - 1;
-row_indexes = 0:ROWS - 1;
-
-if ~CORE_OVERRIDE
-
-    cores = zeros(ROWS * COLS,3);
-
-    cores(:,3) = 0;
-
-    for row=0:(ROWS-1)
-   
-        for col=0:(COLS-1)
-            
-            cores(row * COLS + 1:(row + 1) * COLS,1) = 0:(COLS-1);
-            cores(row * COLS + 1:(row + 1) * COLS,2) = row;
-        end
-    end
-
-    cores(:,1) = cores(:,1) * X_DIFF;
-    cores(:,1) = cores(:,1) + mod(cores(:,2), 2) * ROW_SHIFT;
-    cores(:,1) = cores(:,1) - (ROW_SHIFT + X_DIFF * (COLS - 1)) / 2;
-    cores(:,2) = cores(:,2) * Y_DIFF;
-    cores(:,2) = cores(:,2) - (Y_DIFF * (ROWS - 1)) / 2;
-end
-
-distances = sqrt((cores(:,1)-cores(CENTER_IDX,1)).^2 + (cores(:,2)-cores(CENTER_IDX,2)).^2);
-cores = cores(distances < 2.1,:);
-
-cores(:,1) = cores(:,1) - mean(cores(:,1));
-cores(:,2) = cores(:,2) - mean(cores(:,2));
-
-GRID_CENTER = mean(cores);
-
-G1_ONLY_CAPABLE_IDX = 1:length(cores);
-
-for g2_capable_idx_idx=1:length(G2_CAPABLE_IDX)
-    G1_ONLY_CAPABLE_IDX(G1_ONLY_CAPABLE_IDX == G2_CAPABLE_IDX(g2_capable_idx_idx)) = [];
-end
+% ROW_SHIFT = X_DIFF / 2;
+% 
+% R_VERTEX = ROW_SHIFT * 2 / 3^0.5;
+% 
+% Y_DIFF = 1.5 * R_VERTEX;
+% 
+% col_indexes = 0:COLS - 1;
+% row_indexes = 0:ROWS - 1;
+% 
+% if ~CORE_OVERRIDE
+% 
+%     cores = zeros(ROWS * COLS,3);
+% 
+%     cores(:,3) = 0;
+% 
+%     for row=0:(ROWS-1)
+% 
+%         for col=0:(COLS-1)
+% 
+%             cores(row * COLS + 1:(row + 1) * COLS,1) = 0:(COLS-1);
+%             cores(row * COLS + 1:(row + 1) * COLS,2) = row;
+%         end
+%     end
+% 
+%     cores(:,1) = cores(:,1) * X_DIFF;
+%     cores(:,1) = cores(:,1) + mod(cores(:,2), 2) * ROW_SHIFT;
+%     cores(:,1) = cores(:,1) - (ROW_SHIFT + X_DIFF * (COLS - 1)) / 2;
+%     cores(:,2) = cores(:,2) * Y_DIFF;
+%     cores(:,2) = cores(:,2) - (Y_DIFF * (ROWS - 1)) / 2;
+% end
+% 
+% distances = sqrt((cores(:,1)-cores(CENTER_IDX,1)).^2 + (cores(:,2)-cores(CENTER_IDX,2)).^2);
+% cores = cores(distances < 2.1,:);
+% 
+% cores(:,1) = cores(:,1) - mean(cores(:,1));
+% cores(:,2) = cores(:,2) - mean(cores(:,2));
+% 
+% GRID_CENTER = mean(cores);
+% 
+% G1_ONLY_CAPABLE_IDX = 1:length(cores);
+% 
+% for g2_capable_idx_idx=1:length(G2_CAPABLE_IDX)
+%     G1_ONLY_CAPABLE_IDX(G1_ONLY_CAPABLE_IDX == G2_CAPABLE_IDX(g2_capable_idx_idx)) = [];
+% end
 
 EMITTER_XY(:,1) = EMITTER_XY(:,1) - mean(EMITTER_XY(:,1));
 EMITTER_XY(:,2) = EMITTER_XY(:,2) - mean(EMITTER_XY(:,2));
@@ -98,8 +111,6 @@ x_offset_linspace = linspace(-1.5,1.5,5);
 
 e_1_dets = zeros(size(x_offset_meshgrid));
 e_2_dets = zeros(size(x_offset_meshgrid));
-
-
 
 for config_idx=1:numel(x_offset_meshgrid)
     

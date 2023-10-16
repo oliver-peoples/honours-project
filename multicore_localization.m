@@ -8,79 +8,95 @@ ConfFrac = 1 - 1/sqrt(exp(1));
 %==================================================================================================
 
 CORE_OVERRIDE = false;
-
+% 
 TRIALS = 1000;
+% 
+% ROWS = 4;
+% COLS = 4;
+% 
+% CORE_PSF = 1;
+% 
+% G2_CAPABLE_IDX = [1,5,6];
+% 
+CENTER_IDX = 0;
 
-ROWS = 4;
-COLS = 4;
-
-CORE_PSF = 1;
-
-G2_CAPABLE_IDX = [1,5,6];
-
-CENTER_IDX = 6;
-
+cores = readmatrix('multicore-localization/core_locations.csv','Delimiter',',','NumHeaderLines',1);
+cores = cores(:,2:end);
+G2_CAPABLE_IDX = readmatrix('multicore-localization/g2_capable_indexes.csv','Delimiter',',','NumHeaderLines',1);
+G2_CAPABLE_IDX = int32(G2_CAPABLE_IDX(:,2)) + 1;
 % G2_CAPABLE_IDX = [6,10,11];
 % G2_CAPABLE_IDX = [2,3,5,7,10,11];
 % G2_CAPABLE_IDX = [ 6,7,10,11 ];
-
-X_DIFF = 1.25;
+CORE_OVERRIDE = false;
+% 
+% TRIALS = 500;
+% 
+% ROWS = 4;
+% COLS = 4;
+% 
+CORE_PSF = 1;
+% 
+% G2_CAPABLE_IDX = [1,5,6];
+% 
+% CENTER_IDX = 6;
+% X_DIFF = 1.25;
+% 
 
 if CORE_OVERRIDE
     cores = [0,1,0;
         -sin(60*pi/180),-cos(60*pi/180),0;
         sin(60*pi/180),-cos(60*pi/180),0];
-    
+
     G2_CAPABLE_IDX = [1,2,3];
 end
 
 EMITTER_XY = 0.25*[-0.6300,-0.1276,0;
     0.5146,-0.5573,0];
 
-EMITTER_BRIGHTNESS = [1.,0.3617];
+EMITTER_BRIGHTNESS = [1.,0.3167];
 
 %==================================================================================================
 % Deduced configuration values - don't touch this!
 %==================================================================================================
+% 
+% ROW_SHIFT = X_DIFF / 2;
+% 
+% R_VERTEX = ROW_SHIFT * 2 / 3^0.5;
+% 
+% Y_DIFF = 1.5 * R_VERTEX;
+% 
+% col_indexes = 0:COLS - 1;
+% row_indexes = 0:ROWS - 1;
 
-ROW_SHIFT = X_DIFF / 2;
-
-R_VERTEX = ROW_SHIFT * 2 / 3^0.5;
-
-Y_DIFF = 1.5 * R_VERTEX;
-
-col_indexes = 0:COLS - 1;
-row_indexes = 0:ROWS - 1;
-
-if ~CORE_OVERRIDE
-
-    cores = zeros(ROWS * COLS,3);
-
-    cores(:,3) = 0;
-
-    for row=0:(ROWS-1)
-   
-        for col=0:(COLS-1)
-            
-            cores(row * COLS + 1:(row + 1) * COLS,1) = 0:(COLS-1);
-            cores(row * COLS + 1:(row + 1) * COLS,2) = row;
-        end
-    end
-
-    cores(:,1) = cores(:,1) * X_DIFF;
-    cores(:,1) = cores(:,1) + mod(cores(:,2), 2) * ROW_SHIFT;
-    cores(:,1) = cores(:,1) - (ROW_SHIFT + X_DIFF * (COLS - 1)) / 2;
-    cores(:,2) = cores(:,2) * Y_DIFF;
-    cores(:,2) = cores(:,2) - (Y_DIFF * (ROWS - 1)) / 2;
-end
-
-distances = sqrt((cores(:,1)-cores(CENTER_IDX,1)).^2 + (cores(:,2)-cores(CENTER_IDX,2)).^2);
-cores = cores(distances < 2.1,:);
-
+% if ~CORE_OVERRIDE
+% 
+%     cores = zeros(ROWS * COLS,3);
+% 
+%     cores(:,3) = 0;
+% 
+%     for row=0:(ROWS-1)
+% 
+%         for col=0:(COLS-1)
+% 
+%             cores(row * COLS + 1:(row + 1) * COLS,1) = 0:(COLS-1);
+%             cores(row * COLS + 1:(row + 1) * COLS,2) = row;
+%         end
+%     end
+% 
+%     cores(:,1) = cores(:,1) * X_DIFF;
+%     cores(:,1) = cores(:,1) + mod(cores(:,2), 2) * ROW_SHIFT;
+%     cores(:,1) = cores(:,1) - (ROW_SHIFT + X_DIFF * (COLS - 1)) / 2;
+%     cores(:,2) = cores(:,2) * Y_DIFF;
+%     cores(:,2) = cores(:,2) - (Y_DIFF * (ROWS - 1)) / 2;
+% end
+% 
+% distances = sqrt((cores(:,1)-cores(CENTER_IDX,1)).^2 + (cores(:,2)-cores(CENTER_IDX,2)).^2);
+% cores = cores(distances < 2.1,:);
+% 
 GRID_CENTER = mean(cores);
-
+% 
 G1_ONLY_CAPABLE_IDX = 1:length(cores);
-
+% 
 for g2_capable_idx_idx=1:length(G2_CAPABLE_IDX)
     G1_ONLY_CAPABLE_IDX(G1_ONLY_CAPABLE_IDX == G2_CAPABLE_IDX(g2_capable_idx_idx)) = [];
 end
@@ -97,6 +113,7 @@ options = optimset('TolFun',1e-8);
 x1s = zeros(TRIALS,2);
 x2s = zeros(TRIALS,2);
 P02s = zeros(TRIALS);
+tic
 %Step over multiple experiments
 for cts = 1:TRIALS
     
@@ -133,6 +150,7 @@ for cts = 1:TRIALS
     end
 %    P02s(cts) = xx(5);
 end
+toc
 
 %Make output
 figure(1)

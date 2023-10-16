@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/nvme0n1p1/honours-project/c-attempt/optim
+CXX_INCLUDES = -I/usr/include/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim
 
-CXX_FLAGS = -g -std=gnu++20
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++20
 
