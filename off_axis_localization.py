@@ -43,12 +43,12 @@ def main() -> None:
     # emitters
     
     e_1 = Emitter(
-        np.array([0.1,0.5]),
+        np.array([-0.3,0.2]),
         1.0
     )
 
     e_2 = Emitter(
-        np.array([0.45,0.3]),
+        np.array([0.2,0.1]),
         0.5
     )
     
