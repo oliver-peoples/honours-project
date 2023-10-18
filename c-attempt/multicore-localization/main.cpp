@@ -16,7 +16,8 @@ using namespace std::chrono;
 #include <optim.hpp>
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 50000;
+constexpr int TRIALS_PER_CONFIG = 10000;
+CHI2_METHOD chi_2_method = NORMALIZE;
 
 int main()
 {
@@ -24,7 +25,7 @@ int main()
     int num_cores;
 
     createConcentricCores(core_locations, 1, 1.);
-    
+   
     savePoints("multicore-localization/core_locations.csv", core_locations);
 
     Eigen::VectorXi G2_CAPABLE_IDX = Eigen::VectorXi(3,1);
@@ -43,6 +44,10 @@ int main()
     };
 
     emitter_xy *= 0.25;
+
+    emitter_xy += 0.25 * Eigen::Array<double,2,3>::Random();
+
+    emitter_xy.col(2) = 0;
 
     savePoints("multicore-localization/emitter_xy.csv", emitter_xy);
 
@@ -82,7 +87,7 @@ int main()
         xx(4) = 0.5;
 
         MulticoreData mc_data = {
-            core_locations, multicore_measure_noisy, G2_CAPABLE_IDX
+            core_locations, multicore_measure_noisy, G2_CAPABLE_IDX, chi_2_method
         };
 
         bool success = optim::nm(xx, multicoreChi2, (void*)&mc_data);
@@ -122,7 +127,10 @@ int main()
     ArrX2d x2s_convex_hull = convexHull(thresholded_x2s);
     double x2s_cvx_hull_area = polygonArea(x2s_convex_hull);
     double e2_weff = 2. * sqrt(x2s_cvx_hull_area / PI);
-    
+
+    x1s_convex_hull = loopify(x1s_convex_hull);
+    x2s_convex_hull = loopify(x2s_convex_hull);
+   
     savePoints("multicore-localization/x1s_convex_hull.csv", x1s_convex_hull);
     savePoints("multicore-localization/x2s_convex_hull.csv", x2s_convex_hull);
 
@@ -131,6 +139,7 @@ int main()
 
     printf("> fit quality emitter 1: %f, %f\n", fitQuality(x1s), e1_weff);
     printf("> fit quality emitter 2: %f, %f\n", fitQuality(x2s), e2_weff);
+    printf("> fit quality overall: %f, %f\n", 0.5 * (fitQuality(x1s) + fitQuality(x2s)), 0.5 * (e1_weff + e2_weff));
 
     return 0;
 }

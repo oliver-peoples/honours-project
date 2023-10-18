@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/finn/Documents/honours-project/c-attempt/multicore-monte-carlo/main.cpp" "CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o" "gcc" "CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o.d"
+  "/mnt/nvme0n1p1/honours-project/c-attempt/multicore-monte-carlo/main.cpp" "CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o" "gcc" "CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o.d"
   )
 
 # Targets to which this target links.

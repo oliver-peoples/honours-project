@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/finn/Documents/honours-project/c-attempt
+CMAKE_SOURCE_DIR = /mnt/nvme0n1p1/honours-project/c-attempt
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/finn/Documents/honours-project/c-attempt/build
+CMAKE_BINARY_DIR = /mnt/nvme0n1p1/honours-project/c-attempt/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/finn/Documents/honours-project/c-attempt/build/CMakeFiles /home/finn/Documents/honours-project/c-attempt/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles /mnt/nvme0n1p1/honours-project/c-attempt/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/finn/Documents/honours-project/c-attempt/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

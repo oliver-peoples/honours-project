@@ -1,1 +1,1 @@
-/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/finite_time.dir/finite-time/main.cpp.o -o ../finite_time  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/finite_time.dir/finite-time/main.cpp.o -o ../finite_time   -L/usr/local/cuda/lib64  -Wl,-rpath,/usr/local/cuda/lib64:/usr/lib64/gcc/x86_64-suse-linux/12 -lrt -ldl -lpthread /usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so /usr/lib64/libpthread.so 
