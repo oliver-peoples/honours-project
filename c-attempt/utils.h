@@ -256,7 +256,7 @@ double fitQuality(
     MatX2d centered = points.rowwise() - points.colwise().mean();
     MatX2d cov = (centered.adjoint() * centered) / double(points.rows() - 1);
 
-    return cov.determinant();
+    return 2 * sqrt(0.5 * cov.trace());
 }
 
 ArrX2d multicoreMeasure(
@@ -354,9 +354,12 @@ double multicoreChi2(
 
     multicore_measure(g2_capable_idx,1) = (2. * alpha) / (alpha_p1 * alpha_p1);
 
-    ArrX2d chi2 = multicore_measure - multicore_measure_noisy;
+    ArrX2d chi2 = (multicore_measure - multicore_measure_noisy).pow(2);
 
-    chi2 *= chi2;
+    // chi2 *= chi2;
+
+    chi2.col(0) /= multicore_measure_noisy.col(0);
+    chi2(g2_capable_idx,1) /= multicore_measure_noisy(g2_capable_idx,1);
 
     return chi2.col(0).sum() + chi2.col(1).sum();
 }

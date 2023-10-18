@@ -11,11 +11,12 @@
 #include <chrono>
 using namespace std::chrono;
 
+#define OPTIM_USE_OPENMP
 #define OPTIM_ENABLE_EIGEN_WRAPPERS
 #include <optim.hpp>
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 1000;
+constexpr int TRIALS_PER_CONFIG = 10000;
 
 int main()
 {
