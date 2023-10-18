@@ -16,7 +16,7 @@ using namespace std::chrono;
 #include <optim.hpp>
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 10000;
+constexpr int TRIALS_PER_CONFIG = 50000;
 
 int main()
 {
@@ -111,7 +111,7 @@ int main()
 
     auto duration = duration_cast<milliseconds>(stop - start);
 
-    std::cout << duration.count() << std::endl;
+    std::cout << duration.count() << ": " << (double)duration.count() / (double)TRIALS_PER_CONFIG << std::endl;
 
     ArrX2d thresholded_x1s = thresholdGuesses(x1s, 1 - 1./sqrt(exp(1.)));
     ArrX2d x1s_convex_hull = convexHull(thresholded_x1s);
