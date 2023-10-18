@@ -1,7 +1,7 @@
 #include "fast_gp.h"
 #include <cstdio>
-#include <eigen3/Eigen/Dense>
-#include <eigen3/Eigen/src/Core/Matrix.h>
+#include <Eigen/Dense>
+#include <Eigen/src/Core/Matrix.h>
 #include <omp.h>
 
 #define USE_OMP 1
