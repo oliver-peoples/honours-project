@@ -6,7 +6,7 @@
 #include <omp.h>
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 300;
+constexpr int TRIALS_PER_CONFIG = 400;
 constexpr int CONFIGS_PER_NOISE_SAMPLE = 300;
 constexpr int NOISE_SAMPLES = 150;
 
@@ -42,6 +42,8 @@ void mainNoiseResponse(void)
     Eigen::ArrayXXd w_eff_bar = Eigen::ArrayXXd(CONFIGS_PER_NOISE_SAMPLE,NOISE_SAMPLES);
     Eigen::ArrayXXd emitter_parameter_log = Eigen::ArrayXXd(TOTAL_CONFIGS,5);
 
+    printf("> Predicting a run time of %f minutes (EB)\n", PREDICTED_TIME_EB);
+    
     auto start = high_resolution_clock::now();
 
     #pragma omp parallel
