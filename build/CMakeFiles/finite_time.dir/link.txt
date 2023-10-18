@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g CMakeFiles/finite_time.dir/finite-time/main.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/finite_time   -L/usr/local/cuda/lib64  -Wl,-rpath,/usr/local/cuda/lib64 -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 

@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/multicore_monte_carlo   -L/usr/local/cuda/lib64  -Wl,-rpath,/usr/local/cuda/lib64 -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 

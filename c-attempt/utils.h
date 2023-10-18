@@ -87,6 +87,22 @@ inline void createConcentricCores(ArrX3d& core_locations, int concentric_rings, 
     }
 }
 
+inline void createWorboyCores(ArrX3d& core_locations, Eigen::VectorXi& g2_capable_idx)
+{
+    core_locations = ArrX3d(3,3);
+
+    core_locations.row(0) = Vec3d{ 0.,1.,0  };
+    core_locations.row(1) = Vec3d{ -sin(60*PI/180),-cos(60*PI/180),0 };
+    core_locations.row(2) = Vec3d{ sin(60*PI/180),-cos(60*PI/180),0 };
+
+    g2_capable_idx = Eigen::VectorXi(3);
+
+    g2_capable_idx[0] = 0;
+    g2_capable_idx[1] = 1;
+    g2_capable_idx[2] = 2;
+
+}
+
 inline void savePoints(std::string file_name, ArrX3d& points)
 {
     int num_rows = points.rows();
