@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/finn/Documents/honours-project/c-attempt/finite-time/main.cpp" "CMakeFiles/finite_time.dir/finite-time/main.cpp.o" "gcc" "CMakeFiles/finite_time.dir/finite-time/main.cpp.o.d"
+  "/home/finn/finn-data/honours-project/c-attempt/finite-time/main.cpp" "CMakeFiles/finite_time.dir/finite-time/main.cpp.o" "gcc" "CMakeFiles/finite_time.dir/finite-time/main.cpp.o.d"
   )
 
 # Targets to which this target links.

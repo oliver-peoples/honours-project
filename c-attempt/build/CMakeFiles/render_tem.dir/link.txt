@@ -1,1 +1,1 @@
-/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/render_tem.dir/render_tem_gh.cpp.o -o ../render_tem  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/render_tem.dir/render_tem_gh.cpp.o -o ../render_tem   -L/usr/local/cuda/lib64  -Wl,-rpath,/usr/local/cuda/lib64 -lrt -ldl -lpthread /usr/lib64/gcc/x86_64-suse-linux/7/libgomp.so /usr/lib64/libpthread.so 
