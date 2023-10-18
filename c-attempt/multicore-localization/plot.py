@@ -41,8 +41,6 @@ def main() -> None:
     plt.close()
 
     x1s = np.genfromtxt(os.path.join(path,'x1s.csv'), delimiter=',', skip_header=1)
-    e1_det = np.linalg.det(np.cov(x1s[:,1:]))
-    print(f'{e1_det:0.9f}')
     x2s = np.genfromtxt(os.path.join(path,'x2s.csv'), delimiter=',', skip_header=1)
 
     emitter_xy = np.genfromtxt(os.path.join(path,'emitter_xy.csv'), delimiter=',', skip_header=1)

@@ -15,7 +15,11 @@ using namespace std::chrono;
 #include <optim.hpp>
 
 constexpr double detector_w = 1.;
+<<<<<<< HEAD
 constexpr int TRIALS = 10000;
+=======
+constexpr int TRIALS_PER_CONFIG = 50000;
+>>>>>>> 02f1758d759bd457ac9de18792630689b8fb3acb
 
 int main()
 {
@@ -110,7 +114,7 @@ int main()
 
     auto duration = duration_cast<milliseconds>(stop - start);
 
-    std::cout << duration.count() << std::endl;
+    std::cout << duration.count() << ": " << (double)duration.count() / (double)TRIALS_PER_CONFIG << std::endl;
 
     savePoints("multicore-localization/x1s.csv", x1s);
     savePoints("multicore-localization/x2s.csv", x2s);
