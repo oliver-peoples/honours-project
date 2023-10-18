@@ -73,15 +73,15 @@ CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o: CMakeFiles/tem_loc
 CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o: ../tem_localization_2d.cpp
 CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o: CMakeFiles/tem_localization_2d.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -MF CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o.d -o CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -MF CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o.d -o CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp
 
 CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp > CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp > CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.i
 
 CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp -o CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp -o CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.s
 
 # Object files for target tem_localization_2d
 tem_localization_2d_OBJECTS = \

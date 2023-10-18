@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d"
+			"path" : "/mnt/nvme0n1p1/honours-project/c-attempt/render_tem"
 		}
 	],
 	"backtrace" : 1,
@@ -13,6 +13,7 @@
 			"add_executable",
 			"link_directories",
 			"find_package",
+			"target_link_libraries",
 			"include_directories"
 		],
 		"files" : 
@@ -28,7 +29,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 16,
+				"line" : 18,
 				"parent" : 0
 			},
 			{
@@ -50,11 +51,17 @@
 			{
 				"command" : 3,
 				"file" : 0,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
 				"line" : 13,
 				"parent" : 0
 			},
 			{
-				"command" : 3,
+				"command" : 4,
 				"file" : 0,
 				"line" : 14,
 				"parent" : 0
@@ -70,17 +77,21 @@
 					"fragment" : "-O3 -DNDEBUG"
 				},
 				{
-					"fragment" : "-std=gnu++20"
+					"backtrace" : 5,
+					"fragment" : "-fopenmp"
+				},
+				{
+					"fragment" : "-std=gnu++1z"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 5,
+					"backtrace" : 6,
 					"path" : "/usr/include/eigen3"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 7,
 					"path" : "/mnt/nvme0n1p1/honours-project/c-attempt/optim"
 				}
 			],
@@ -99,7 +110,7 @@
 			]
 		}
 	],
-	"id" : "tem_localization_2d::@6890427a1f51a3e7e1df",
+	"id" : "render_tem::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -116,12 +127,39 @@
 				"backtrace" : 4,
 				"fragment" : "-L/usr/local/cuda/lib64",
 				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/usr/local/cuda/lib64:/usr/lib64/gcc/x86_64-suse-linux/12",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/usr/lib64/libpthread.so",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "tem_localization_2d",
-	"nameOnDisk" : "tem_localization_2d",
+	"name" : "render_tem",
+	"nameOnDisk" : "render_tem",
 	"paths" : 
 	{
 		"build" : ".",
@@ -142,7 +180,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "tem_localization_2d.cpp",
+			"path" : "render_tem_gh.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

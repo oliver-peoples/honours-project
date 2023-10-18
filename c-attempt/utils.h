@@ -16,6 +16,12 @@ typedef Eigen::ArrayX3d ArrX3d;
 typedef Eigen::ArrayX2d ArrX2d;
 typedef Eigen::Array3d Arr3d;
 
+enum CHI2_METHOD
+{
+    NORMALIZE,
+    WORBOY
+};
+
 const double CONF_FRAC = 1 - 1/sqrt(exp(1));
 const double SQRT3 = sqrt(3.);
 
@@ -302,6 +308,7 @@ struct MulticoreData
     ArrX3d& core_locations;
     ArrX2d& multicore_measure_noisy;
     Eigen::VectorXi& g2_capable_idx;
+    CHI2_METHOD chi_2_method = NORMALIZE;
 };
 
 
@@ -358,8 +365,11 @@ double multicoreChi2(
 
     // chi2 *= chi2;
 
-    chi2.col(0) /= multicore_measure_noisy.col(0);
-    chi2(g2_capable_idx,1) /= multicore_measure_noisy(g2_capable_idx,1);
+    if ( multicore_data_ptr->chi_2_method == NORMALIZE )
+    {
+        chi2.col(0) /= multicore_measure_noisy.col(0);
+        chi2(g2_capable_idx,1) /= multicore_measure_noisy(g2_capable_idx,1);
+    }
 
     return chi2.col(0).sum() + chi2.col(1).sum();
 }
@@ -666,6 +676,16 @@ double polygonArea(ArrX2d vertexes)
     area *= 0.5;
 
     return abs(area);
+}
+
+ArrX2d loopify(ArrX2d points)
+{
+    int og_rows = points.rows();
+
+    points.conservativeResize(points.rows() + 1, points.cols());
+    points.row(points.rows() - 1) = points.row(0);
+
+    return points;
 }
 
  

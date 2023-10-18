@@ -155,11 +155,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/clang++"
+			"value" : "/usr/bin/c++"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -171,11 +171,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "LLVM archiver"
+					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "CMAKE_CXX_COMPILER_AR-NOTFOUND"
+			"value" : "/usr/bin/gcc-ar-7"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_RANLIB",
@@ -187,11 +187,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Generate index for LLVM archive"
+					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "CMAKE_CXX_COMPILER_RANLIB-NOTFOUND"
+			"value" : "/usr/bin/gcc-ranlib-7"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -287,7 +287,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/clang"
+			"value" : "/usr/bin/gcc-12"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -299,11 +299,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "LLVM archiver"
+					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "CMAKE_C_COMPILER_AR-NOTFOUND"
+			"value" : "/usr/bin/gcc-ar-12"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_RANLIB",
@@ -315,11 +315,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Generate index for LLVM archive"
+					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "CMAKE_C_COMPILER_RANLIB-NOTFOUND"
+			"value" : "/usr/bin/gcc-ranlib-12"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -1315,7 +1315,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/clang"
+			"value" : "/usr/bin/gcc-12"
 		},
 		{
 			"name" : "CUDA_NVCC_EXECUTABLE",
@@ -2039,7 +2039,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[TRUE][TRUE][c ][v5.0()]"
+			"value" : "[TRUE][TRUE][c ][v4.5()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C",
@@ -2051,7 +2051,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[-fopenmp=libomp][/usr/lib64/libomp.so][/usr/lib64/libpthread.so][v5.0()]"
+			"value" : "[-fopenmp][/usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so][/usr/lib64/libpthread.so][v4.5()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX",
@@ -2063,7 +2063,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[-fopenmp=libomp][/usr/lib64/libomp.so][/usr/lib64/libpthread.so][v5.0()]"
+			"value" : "[-fopenmp][/usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so][/usr/lib64/libpthread.so][v4.5()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Threads",
@@ -2090,7 +2090,7 @@
 			"value" : "/usr/local/lib64/cmake/opencv4"
 		},
 		{
-			"name" : "OpenMP_COMPILE_RESULT_CXX_fopenmplibomp",
+			"name" : "OpenMP_COMPILE_RESULT_CXX_fopenmp",
 			"properties" : 
 			[
 				{
@@ -2102,7 +2102,7 @@
 			"value" : "TRUE"
 		},
 		{
-			"name" : "OpenMP_COMPILE_RESULT_C_fopenmplibomp",
+			"name" : "OpenMP_COMPILE_RESULT_C_fopenmp",
 			"properties" : 
 			[
 				{
@@ -2127,7 +2127,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-fopenmp=libomp"
+			"value" : "-fopenmp"
 		},
 		{
 			"name" : "OpenMP_CXX_LIB_NAMES",
@@ -2143,7 +2143,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "omp;pthread"
+			"value" : "gomp;pthread"
 		},
 		{
 			"name" : "OpenMP_CXX_SPEC_DATE",
@@ -2155,7 +2155,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "201811"
+			"value" : "201511"
 		},
 		{
 			"name" : "OpenMP_C_FLAGS",
@@ -2171,7 +2171,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-fopenmp=libomp"
+			"value" : "-fopenmp"
 		},
 		{
 			"name" : "OpenMP_C_LIB_NAMES",
@@ -2187,7 +2187,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "omp;pthread"
+			"value" : "gomp;pthread"
 		},
 		{
 			"name" : "OpenMP_C_SPEC_DATE",
@@ -2199,7 +2199,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "201811"
+			"value" : "201511"
 		},
 		{
 			"name" : "OpenMP_SPECTEST_CXX_",
@@ -2226,7 +2226,7 @@
 			"value" : "TRUE"
 		},
 		{
-			"name" : "OpenMP_omp_LIBRARY",
+			"name" : "OpenMP_gomp_LIBRARY",
 			"properties" : 
 			[
 				{
@@ -2235,11 +2235,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Path to the omp library for OpenMP"
+					"value" : "Path to the gomp library for OpenMP"
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/lib64/libomp.so"
+			"value" : "/usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so"
 		},
 		{
 			"name" : "OpenMP_pthread_LIBRARY",

@@ -73,15 +73,15 @@ CMakeFiles/finite_time.dir/finite-time/main.cpp.o: CMakeFiles/finite_time.dir/fl
 CMakeFiles/finite_time.dir/finite-time/main.cpp.o: ../finite-time/main.cpp
 CMakeFiles/finite_time.dir/finite-time/main.cpp.o: CMakeFiles/finite_time.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/finite_time.dir/finite-time/main.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/finite_time.dir/finite-time/main.cpp.o -MF CMakeFiles/finite_time.dir/finite-time/main.cpp.o.d -o CMakeFiles/finite_time.dir/finite-time/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/finite_time.dir/finite-time/main.cpp.o -MF CMakeFiles/finite_time.dir/finite-time/main.cpp.o.d -o CMakeFiles/finite_time.dir/finite-time/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp
 
 CMakeFiles/finite_time.dir/finite-time/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/finite_time.dir/finite-time/main.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp > CMakeFiles/finite_time.dir/finite-time/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp > CMakeFiles/finite_time.dir/finite-time/main.cpp.i
 
 CMakeFiles/finite_time.dir/finite-time/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/finite_time.dir/finite-time/main.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp -o CMakeFiles/finite_time.dir/finite-time/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp -o CMakeFiles/finite_time.dir/finite-time/main.cpp.s
 
 # Object files for target finite_time
 finite_time_OBJECTS = \
@@ -92,7 +92,7 @@ finite_time_EXTERNAL_OBJECTS =
 
 ../finite_time: CMakeFiles/finite_time.dir/finite-time/main.cpp.o
 ../finite_time: CMakeFiles/finite_time.dir/build.make
-../finite_time: /usr/lib64/libomp.so
+../finite_time: /usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so
 ../finite_time: /usr/lib64/libpthread.so
 ../finite_time: CMakeFiles/finite_time.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../finite_time"

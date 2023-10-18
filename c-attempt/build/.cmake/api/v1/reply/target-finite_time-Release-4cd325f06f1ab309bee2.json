@@ -88,11 +88,7 @@
 					"fragment" : "-fopenmp"
 				},
 				{
-					"backtrace" : 5,
-					"fragment" : "-fopenmp=libomp"
-				},
-				{
-					"fragment" : "-std=gnu++20"
+					"fragment" : "-std=gnu++1z"
 				}
 			],
 			"includes" : 
@@ -140,7 +136,7 @@
 				"role" : "libraryPath"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/usr/local/cuda/lib64",
+				"fragment" : "-Wl,-rpath,/usr/local/cuda/lib64:/usr/lib64/gcc/x86_64-suse-linux/12",
 				"role" : "libraries"
 			},
 			{
@@ -159,7 +155,7 @@
 				"role" : "libraries"
 			},
 			{
-				"fragment" : "/usr/lib64/libomp.so",
+				"fragment" : "/usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so",
 				"role" : "libraries"
 			},
 			{

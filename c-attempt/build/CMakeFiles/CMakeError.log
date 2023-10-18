@@ -1,22 +1,22 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_dfd53/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_dfd53.dir/build.make CMakeFiles/cmTC_dfd53.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c416c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c416c.dir/build.make CMakeFiles/cmTC_c416c.dir/build
 gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_dfd53.dir/src.c.o
-/usr/bin/clang -DCMAKE_HAVE_LIBC_PTHREAD  -fPIC  -MD -MT CMakeFiles/cmTC_dfd53.dir/src.c.o -MF CMakeFiles/cmTC_dfd53.dir/src.c.o.d -o CMakeFiles/cmTC_dfd53.dir/src.c.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_dfd53
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dfd53.dir/link.txt --verbose=1
-/usr/bin/clang -fPIC  CMakeFiles/cmTC_dfd53.dir/src.c.o -o cmTC_dfd53 
-/usr/bin/ld: CMakeFiles/cmTC_dfd53.dir/src.c.o: in function `main':
-src.c:(.text+0x22): undefined reference to `pthread_create'
-/usr/bin/ld: src.c:(.text+0x2b): undefined reference to `pthread_detach'
-/usr/bin/ld: src.c:(.text+0x34): undefined reference to `pthread_cancel'
-/usr/bin/ld: src.c:(.text+0x41): undefined reference to `pthread_join'
-clang-15.0: error: linker command failed with exit code 1 (use -v to see invocation)
-gmake[1]: *** [CMakeFiles/cmTC_dfd53.dir/build.make:100: cmTC_dfd53] Error 1
+Building C object CMakeFiles/cmTC_c416c.dir/src.c.o
+/usr/bin/gcc-12 -DCMAKE_HAVE_LIBC_PTHREAD  -fPIC  -o CMakeFiles/cmTC_c416c.dir/src.c.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_c416c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c416c.dir/link.txt --verbose=1
+/usr/bin/gcc-12 -fPIC  CMakeFiles/cmTC_c416c.dir/src.c.o -o cmTC_c416c 
+/usr/lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/bin/ld: CMakeFiles/cmTC_c416c.dir/src.c.o: in function `main':
+src.c:(.text+0x2f): undefined reference to `pthread_create'
+/usr/lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/bin/ld: src.c:(.text+0x3b): undefined reference to `pthread_detach'
+/usr/lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/bin/ld: src.c:(.text+0x47): undefined reference to `pthread_cancel'
+/usr/lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/bin/ld: src.c:(.text+0x58): undefined reference to `pthread_join'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_c416c.dir/build.make:99: cmTC_c416c] Error 1
 gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-gmake: *** [Makefile:127: cmTC_dfd53/fast] Error 2
+gmake: *** [Makefile:127: cmTC_c416c/fast] Error 2
 
 
 Source file was:
@@ -43,18 +43,18 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d933c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d933c.dir/build.make CMakeFiles/cmTC_d933c.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_72a5c/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_72a5c.dir/build.make CMakeFiles/cmTC_72a5c.dir/build
 gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_d933c.dir/CheckFunctionExists.c.o
-/usr/bin/clang   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -MD -MT CMakeFiles/cmTC_d933c.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_d933c.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_d933c.dir/CheckFunctionExists.c.o -c /usr/share/cmake/Modules/CheckFunctionExists.c
-Linking C executable cmTC_d933c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d933c.dir/link.txt --verbose=1
-/usr/bin/clang -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_d933c.dir/CheckFunctionExists.c.o -o cmTC_d933c  -lpthreads 
-/usr/bin/ld: cannot find -lpthreads: No such file or directory
-clang-15.0: error: linker command failed with exit code 1 (use -v to see invocation)
-gmake[1]: *** [CMakeFiles/cmTC_d933c.dir/build.make:100: cmTC_d933c] Error 1
+Building C object CMakeFiles/cmTC_72a5c.dir/CheckFunctionExists.c.o
+/usr/bin/gcc-12   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_72a5c.dir/CheckFunctionExists.c.o -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_72a5c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_72a5c.dir/link.txt --verbose=1
+/usr/bin/gcc-12 -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_72a5c.dir/CheckFunctionExists.c.o -o cmTC_72a5c  -lpthreads 
+/usr/lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/bin/ld: cannot find -lpthreads: No such file or directory
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_72a5c.dir/build.make:99: cmTC_72a5c] Error 1
 gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-gmake: *** [Makefile:127: cmTC_d933c/fast] Error 2
+gmake: *** [Makefile:127: cmTC_72a5c/fast] Error 2
 
 
 

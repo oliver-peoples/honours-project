@@ -73,15 +73,15 @@ CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o: CMakeFile
 CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o: ../multicore-monte-carlo/main.cpp
 CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o: CMakeFiles/multicore_monte_carlo.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o -MF CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o.d -o CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/multicore-monte-carlo/main.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o -MF CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o.d -o CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/multicore-monte-carlo/main.cpp
 
 CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/nvme0n1p1/honours-project/c-attempt/multicore-monte-carlo/main.cpp > CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/nvme0n1p1/honours-project/c-attempt/multicore-monte-carlo/main.cpp > CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.i
 
 CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/nvme0n1p1/honours-project/c-attempt/multicore-monte-carlo/main.cpp -o CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/nvme0n1p1/honours-project/c-attempt/multicore-monte-carlo/main.cpp -o CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.s
 
 # Object files for target multicore_monte_carlo
 multicore_monte_carlo_OBJECTS = \
@@ -92,7 +92,7 @@ multicore_monte_carlo_EXTERNAL_OBJECTS =
 
 ../multicore_monte_carlo: CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o
 ../multicore_monte_carlo: CMakeFiles/multicore_monte_carlo.dir/build.make
-../multicore_monte_carlo: /usr/lib64/libomp.so
+../multicore_monte_carlo: /usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so
 ../multicore_monte_carlo: /usr/lib64/libpthread.so
 ../multicore_monte_carlo: CMakeFiles/multicore_monte_carlo.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../multicore_monte_carlo"
