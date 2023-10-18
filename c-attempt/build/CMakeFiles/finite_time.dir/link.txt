@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/finite_time.dir/finite-time/main.cpp.o -o ../finite_time  -Wl,-rpath,/usr/lib64/gcc/x86_64-suse-linux/12 -lrt -ldl -lpthread /usr/lib64/gcc/x86_64-suse-linux/12/libgomp.so /usr/lib64/libpthread.so 
