@@ -28,10 +28,10 @@ The CXX compiler identification is Clang, found in "/mnt/nvme0n1p1/honours-proje
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b013b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b013b.dir/build.make CMakeFiles/cmTC_b013b.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d4d09/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d4d09.dir/build.make CMakeFiles/cmTC_d4d09.dir/build
 gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o
-/usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Building C object CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o
+/usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
 clang version 15.0.7
 Target: x86_64-suse-linux
 Thread model: posix
@@ -46,7 +46,7 @@ Candidate multilib: .;@m64
 Selected multilib: .;@m64
 Found CUDA installation: /usr/local/cuda-12.0, version 
  (in-process)
- "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c
 clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-suse-linux
 ignoring nonexistent directory "/include"
 #include "..." search starts here:
@@ -56,9 +56,9 @@ ignoring nonexistent directory "/include"
  /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include
  /usr/include
 End of search list.
-Linking C executable cmTC_b013b
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b013b.dir/link.txt --verbose=1
-/usr/bin/clang  -v CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -o cmTC_b013b 
+Linking C executable cmTC_d4d09
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d4d09.dir/link.txt --verbose=1
+/usr/bin/clang  -v CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -o cmTC_d4d09 
 clang version 15.0.7
 Target: x86_64-suse-linux
 Thread model: posix
@@ -72,7 +72,7 @@ Selected GCC installation: /usr/bin/../lib64/gcc/x86_64-suse-linux/12
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
 Found CUDA installation: /usr/local/cuda-12.0, version 
- "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_b013b /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o
+ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_d4d09 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o
 gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
 
 
@@ -96,10 +96,10 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b013b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b013b.dir/build.make CMakeFiles/cmTC_b013b.dir/build]
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d4d09/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d4d09.dir/build.make CMakeFiles/cmTC_d4d09.dir/build]
   ignore line: [gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Building C object CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
   ignore line: [clang version 15.0.7]
   ignore line: [Target: x86_64-suse-linux]
   ignore line: [Thread model: posix]
@@ -116,7 +116,7 @@ Parsed C implicit link information from above output:
   ignore line: [@m64]
   ignore line: [Found CUDA installation: /usr/local/cuda-12.0  version ]
   ignore line: [ (in-process)]
-  ignore line: [ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
   ignore line: [clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-suse-linux]
   ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
@@ -126,9 +126,9 @@ Parsed C implicit link information from above output:
   ignore line: [ /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include]
   ignore line: [ /usr/include]
   ignore line: [End of search list.]
-  ignore line: [Linking C executable cmTC_b013b]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b013b.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang  -v CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -o cmTC_b013b ]
+  ignore line: [Linking C executable cmTC_d4d09]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d4d09.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang  -v CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -o cmTC_d4d09 ]
   ignore line: [clang version 15.0.7]
   ignore line: [Target: x86_64-suse-linux]
   ignore line: [Thread model: posix]
@@ -144,7 +144,7 @@ Parsed C implicit link information from above output:
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
   ignore line: [Found CUDA installation: /usr/local/cuda-12.0  version ]
-  link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_b013b /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o]
+  link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_d4d09 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o]
     arg [/usr/bin/ld] ==> ignore
     arg [-pie] ==> ignore
     arg [-zrelro] ==> ignore
@@ -158,7 +158,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_b013b] ==> ignore
+    arg [cmTC_d4d09] ==> ignore
     arg [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o]
     arg [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o]
     arg [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o]
@@ -169,7 +169,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib] ==> dir [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib]
     arg [-L/lib] ==> dir [/lib]
     arg [-L/usr/lib] ==> dir [/usr/lib]
-    arg [CMakeFiles/cmTC_b013b.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_d4d09.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -202,10 +202,10 @@ Parsed C implicit link information from above output:
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_33727/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_33727.dir/build.make CMakeFiles/cmTC_33727.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1c053/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1c053.dir/build.make CMakeFiles/cmTC_1c053.dir/build
 gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Building CXX object CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
 clang version 15.0.7
 Target: x86_64-suse-linux
 Thread model: posix
@@ -220,7 +220,7 @@ Candidate multilib: .;@m64
 Selected multilib: .;@m64
 Found CUDA installation: /usr/local/cuda-12.0, version 
  (in-process)
- "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/backward -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/backward -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
 clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-suse-linux
 ignoring nonexistent directory "/include"
 #include "..." search starts here:
@@ -233,9 +233,9 @@ ignoring nonexistent directory "/include"
  /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include
  /usr/include
 End of search list.
-Linking CXX executable cmTC_33727
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33727.dir/link.txt --verbose=1
-/usr/bin/clang++  -v CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_33727 
+Linking CXX executable cmTC_1c053
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c053.dir/link.txt --verbose=1
+/usr/bin/clang++  -v CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_1c053 
 clang version 15.0.7
 Target: x86_64-suse-linux
 Thread model: posix
@@ -249,7 +249,7 @@ Selected GCC installation: /usr/bin/../lib64/gcc/x86_64-suse-linux/12
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
 Found CUDA installation: /usr/local/cuda-12.0, version 
- "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_33727 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o
+ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_1c053 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o
 gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
 
 
@@ -279,10 +279,10 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_33727/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_33727.dir/build.make CMakeFiles/cmTC_33727.dir/build]
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1c053/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1c053.dir/build.make CMakeFiles/cmTC_1c053.dir/build]
   ignore line: [gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Building CXX object CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
   ignore line: [clang version 15.0.7]
   ignore line: [Target: x86_64-suse-linux]
   ignore line: [Thread model: posix]
@@ -299,7 +299,7 @@ Parsed CXX implicit link information from above output:
   ignore line: [@m64]
   ignore line: [Found CUDA installation: /usr/local/cuda-12.0  version ]
   ignore line: [ (in-process)]
-  ignore line: [ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/backward -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/backward -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
   ignore line: [clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-suse-linux]
   ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
@@ -312,9 +312,9 @@ Parsed CXX implicit link information from above output:
   ignore line: [ /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include]
   ignore line: [ /usr/include]
   ignore line: [End of search list.]
-  ignore line: [Linking CXX executable cmTC_33727]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33727.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang++  -v CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_33727 ]
+  ignore line: [Linking CXX executable cmTC_1c053]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c053.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang++  -v CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_1c053 ]
   ignore line: [clang version 15.0.7]
   ignore line: [Target: x86_64-suse-linux]
   ignore line: [Thread model: posix]
@@ -330,7 +330,7 @@ Parsed CXX implicit link information from above output:
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
   ignore line: [Found CUDA installation: /usr/local/cuda-12.0  version ]
-  link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_33727 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o]
+  link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_1c053 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o]
     arg [/usr/bin/ld] ==> ignore
     arg [-pie] ==> ignore
     arg [-zrelro] ==> ignore
@@ -344,7 +344,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_33727] ==> ignore
+    arg [cmTC_1c053] ==> ignore
     arg [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o]
     arg [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o]
     arg [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o] ==> obj [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o]
@@ -355,7 +355,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib] ==> dir [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib]
     arg [-L/lib] ==> dir [/lib]
     arg [-L/usr/lib] ==> dir [/usr/lib]
-    arg [CMakeFiles/cmTC_33727.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_1c053.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -386,10 +386,10 @@ Parsed CXX implicit link information from above output:
 Detecting C OpenMP compiler ABI info compiled with the following output:
 Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_6b14e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_6b14e.dir/build.make CMakeFiles/cmTC_6b14e.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c5d4b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c5d4b.dir/build.make CMakeFiles/cmTC_c5d4b.dir/build
 gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o
-/usr/bin/clang   -fopenmp=libomp -v -MD -MT CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -MF CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o.d -o CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c
+Building C object CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o
+/usr/bin/clang   -fopenmp=libomp -v -MD -MT CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -MF CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o.d -o CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c
 clang version 15.0.7
 Target: x86_64-suse-linux
 Thread model: posix
@@ -404,7 +404,7 @@ Candidate multilib: .;@m64
 Selected multilib: .;@m64
 Found CUDA installation: /usr/local/cuda-12.0, version 
  (in-process)
- "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name OpenMPTryFlag.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o.d -MT CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -sys-header-deps -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fopenmp -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -x c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c
+ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name OpenMPTryFlag.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o.d -MT CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -sys-header-deps -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fopenmp -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -x c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c
 clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-suse-linux
 ignoring nonexistent directory "/include"
 #include "..." search starts here:
@@ -414,9 +414,9 @@ ignoring nonexistent directory "/include"
  /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include
  /usr/include
 End of search list.
-Linking C executable cmTC_6b14e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b14e.dir/link.txt --verbose=1
-/usr/bin/clang  -fopenmp=libomp -v CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -o cmTC_6b14e  -v 
+Linking C executable cmTC_c5d4b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c5d4b.dir/link.txt --verbose=1
+/usr/bin/clang  -fopenmp=libomp -v CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -o cmTC_c5d4b  -v 
 clang version 15.0.7
 Target: x86_64-suse-linux
 Thread model: posix
@@ -430,7 +430,7 @@ Selected GCC installation: /usr/bin/../lib64/gcc/x86_64-suse-linux/12
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
 Found CUDA installation: /usr/local/cuda-12.0, version 
- "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_6b14e /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -lomp -rpath /usr/lib64 -L/usr/lib64 -lgcc --as-needed -lgcc_s --no-as-needed -lpthread -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o
+ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_c5d4b /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -lomp -rpath /usr/lib64 -L/usr/lib64 -lgcc --as-needed -lgcc_s --no-as-needed -lpthread -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o
 gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
 
 
@@ -439,10 +439,10 @@ Parsed C OpenMP implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_6b14e/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_6b14e.dir/build.make CMakeFiles/cmTC_6b14e.dir/build]
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c5d4b/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c5d4b.dir/build.make CMakeFiles/cmTC_c5d4b.dir/build]
   ignore line: [gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o]
-  ignore line: [/usr/bin/clang   -fopenmp=libomp -v -MD -MT CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -MF CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o.d -o CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c]
+  ignore line: [Building C object CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o]
+  ignore line: [/usr/bin/clang   -fopenmp=libomp -v -MD -MT CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -MF CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o.d -o CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c]
   ignore line: [clang version 15.0.7]
   ignore line: [Target: x86_64-suse-linux]
   ignore line: [Thread model: posix]
@@ -459,7 +459,7 @@ Parsed C OpenMP implicit link information from above output:
   ignore line: [@m64]
   ignore line: [Found CUDA installation: /usr/local/cuda-12.0  version ]
   ignore line: [ (in-process)]
-  ignore line: [ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name OpenMPTryFlag.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o.d -MT CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -sys-header-deps -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fopenmp -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -x c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c]
+  ignore line: [ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name OpenMPTryFlag.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o.d -MT CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -sys-header-deps -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fopenmp -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -x c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.c]
   ignore line: [clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-suse-linux]
   ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
@@ -469,9 +469,9 @@ Parsed C OpenMP implicit link information from above output:
   ignore line: [ /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include]
   ignore line: [ /usr/include]
   ignore line: [End of search list.]
-  ignore line: [Linking C executable cmTC_6b14e]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b14e.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang  -fopenmp=libomp -v CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -o cmTC_6b14e  -v ]
+  ignore line: [Linking C executable cmTC_c5d4b]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c5d4b.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang  -fopenmp=libomp -v CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -o cmTC_c5d4b  -v ]
   ignore line: [clang version 15.0.7]
   ignore line: [Target: x86_64-suse-linux]
   ignore line: [Thread model: posix]
@@ -487,7 +487,7 @@ Parsed C OpenMP implicit link information from above output:
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
   ignore line: [Found CUDA installation: /usr/local/cuda-12.0  version ]
-  link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_6b14e /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o -lomp -rpath /usr/lib64 -L/usr/lib64 -lgcc --as-needed -lgcc_s --no-as-needed -lpthread -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o]
+  link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_c5d4b /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o -lomp -rpath /usr/lib64 -L/usr/lib64 -lgcc --as-needed -lgcc_s --no-as-needed -lpthread -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o]
     arg [/usr/bin/ld] ==> ignore
     arg [-pie] ==> ignore
     arg [-zrelro] ==> ignore
@@ -501,7 +501,7 @@ Parsed C OpenMP implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_6b14e] ==> ignore
+    arg [cmTC_c5d4b] ==> ignore
     arg [-L/usr/bin/../lib64/gcc/x86_64-suse-linux/12] ==> dir [/usr/bin/../lib64/gcc/x86_64-suse-linux/12]
     arg [-L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64] ==> dir [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64]
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
@@ -509,7 +509,7 @@ Parsed C OpenMP implicit link information from above output:
     arg [-L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib] ==> dir [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib]
     arg [-L/lib] ==> dir [/lib]
     arg [-L/usr/lib] ==> dir [/usr/lib]
-    arg [CMakeFiles/cmTC_6b14e.dir/OpenMPTryFlag.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_c5d4b.dir/OpenMPTryFlag.c.o] ==> ignore
     arg [-lomp] ==> lib [omp]
     arg [-rpath] ==> ignore
     arg [/usr/lib64] ==> ignore
@@ -541,10 +541,10 @@ Parsed C OpenMP implicit link information from above output:
 Detecting CXX OpenMP compiler ABI info compiled with the following output:
 Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_07200/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_07200.dir/build.make CMakeFiles/cmTC_07200.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_511f6/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_511f6.dir/build.make CMakeFiles/cmTC_511f6.dir/build
 gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o
-/usr/bin/clang++   -fopenmp=libomp -v -std=gnu++20 -MD -MT CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -MF CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o.d -o CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp
+Building CXX object CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o
+/usr/bin/clang++   -fopenmp=libomp -v -std=gnu++20 -MD -MT CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -MF CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o.d -o CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp
 clang version 15.0.7
 Target: x86_64-suse-linux
 Thread model: posix
@@ -559,7 +559,7 @@ Candidate multilib: .;@m64
 Selected multilib: .;@m64
 Found CUDA installation: /usr/local/cuda-12.0, version 
  (in-process)
- "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name OpenMPTryFlag.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o.d -MT CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/backward -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -std=gnu++20 -fdeprecated-macro -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fopenmp -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -x c++ /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp
+ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name OpenMPTryFlag.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o.d -MT CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/backward -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -std=gnu++20 -fdeprecated-macro -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fopenmp -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -x c++ /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp
 clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-suse-linux
 ignoring nonexistent directory "/include"
 #include "..." search starts here:
@@ -572,9 +572,9 @@ ignoring nonexistent directory "/include"
  /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include
  /usr/include
 End of search list.
-Linking CXX executable cmTC_07200
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_07200.dir/link.txt --verbose=1
-/usr/bin/clang++  -fopenmp=libomp -v CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -o cmTC_07200  -v 
+Linking CXX executable cmTC_511f6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_511f6.dir/link.txt --verbose=1
+/usr/bin/clang++  -fopenmp=libomp -v CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -o cmTC_511f6  -v 
 clang version 15.0.7
 Target: x86_64-suse-linux
 Thread model: posix
@@ -588,7 +588,7 @@ Selected GCC installation: /usr/bin/../lib64/gcc/x86_64-suse-linux/12
 Candidate multilib: .;@m64
 Selected multilib: .;@m64
 Found CUDA installation: /usr/local/cuda-12.0, version 
- "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_07200 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lomp -rpath /usr/lib64 -L/usr/lib64 -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o
+ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_511f6 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lomp -rpath /usr/lib64 -L/usr/lib64 -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o
 gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
 
 
@@ -597,10 +597,10 @@ Parsed CXX OpenMP implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_07200/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_07200.dir/build.make CMakeFiles/cmTC_07200.dir/build]
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_511f6/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_511f6.dir/build.make CMakeFiles/cmTC_511f6.dir/build]
   ignore line: [gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o]
-  ignore line: [/usr/bin/clang++   -fopenmp=libomp -v -std=gnu++20 -MD -MT CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -MF CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o.d -o CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp]
+  ignore line: [Building CXX object CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o]
+  ignore line: [/usr/bin/clang++   -fopenmp=libomp -v -std=gnu++20 -MD -MT CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -MF CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o.d -o CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp]
   ignore line: [clang version 15.0.7]
   ignore line: [Target: x86_64-suse-linux]
   ignore line: [Thread model: posix]
@@ -617,7 +617,7 @@ Parsed CXX OpenMP implicit link information from above output:
   ignore line: [@m64]
   ignore line: [Found CUDA installation: /usr/local/cuda-12.0  version ]
   ignore line: [ (in-process)]
-  ignore line: [ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name OpenMPTryFlag.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o.d -MT CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/backward -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -std=gnu++20 -fdeprecated-macro -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fopenmp -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -x c++ /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp]
+  ignore line: [ "/usr/bin/clang-15.0.7" -cc1 -triple x86_64-suse-linux -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name OpenMPTryFlag.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -resource-dir /usr/lib64/clang/15.0.7 -dependency-file CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o.d -MT CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -sys-header-deps -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12 -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/backward -internal-isystem /usr/lib64/clang/15.0.7/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -std=gnu++20 -fdeprecated-macro -fdebug-compilation-dir=/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp -ferror-limit 19 -fopenmp -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -x c++ /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp]
   ignore line: [clang -cc1 version 15.0.7 based upon LLVM 15.0.7 default target x86_64-suse-linux]
   ignore line: [ignoring nonexistent directory "/include"]
   ignore line: [#include "..." search starts here:]
@@ -630,9 +630,9 @@ Parsed CXX OpenMP implicit link information from above output:
   ignore line: [ /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/include]
   ignore line: [ /usr/include]
   ignore line: [End of search list.]
-  ignore line: [Linking CXX executable cmTC_07200]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_07200.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/clang++  -fopenmp=libomp -v CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -o cmTC_07200  -v ]
+  ignore line: [Linking CXX executable cmTC_511f6]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_511f6.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/clang++  -fopenmp=libomp -v CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -o cmTC_511f6  -v ]
   ignore line: [clang version 15.0.7]
   ignore line: [Target: x86_64-suse-linux]
   ignore line: [Thread model: posix]
@@ -648,7 +648,7 @@ Parsed CXX OpenMP implicit link information from above output:
   ignore line: [Selected multilib: .]
   ignore line: [@m64]
   ignore line: [Found CUDA installation: /usr/local/cuda-12.0  version ]
-  link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_07200 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lomp -rpath /usr/lib64 -L/usr/lib64 -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o]
+  link line: [ "/usr/bin/ld" -pie -z relro --hash-style=gnu --hash-style=both --build-id --enable-new-dtags --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_511f6 /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/Scrt1.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crti.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtbeginS.o -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib -L/lib -L/usr/lib CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o -lstdc++ -lm -lomp -rpath /usr/lib64 -L/usr/lib64 -lgcc_s -lgcc -lpthread -lc -lgcc_s -lgcc /usr/bin/../lib64/gcc/x86_64-suse-linux/12/crtendS.o /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64/crtn.o]
     arg [/usr/bin/ld] ==> ignore
     arg [-pie] ==> ignore
     arg [-zrelro] ==> ignore
@@ -662,7 +662,7 @@ Parsed CXX OpenMP implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_07200] ==> ignore
+    arg [cmTC_511f6] ==> ignore
     arg [-L/usr/bin/../lib64/gcc/x86_64-suse-linux/12] ==> dir [/usr/bin/../lib64/gcc/x86_64-suse-linux/12]
     arg [-L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64] ==> dir [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../lib64]
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
@@ -670,7 +670,7 @@ Parsed CXX OpenMP implicit link information from above output:
     arg [-L/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib] ==> dir [/usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../x86_64-suse-linux/lib]
     arg [-L/lib] ==> dir [/lib]
     arg [-L/usr/lib] ==> dir [/usr/lib]
-    arg [CMakeFiles/cmTC_07200.dir/OpenMPTryFlag.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_511f6.dir/OpenMPTryFlag.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lomp] ==> lib [omp]
@@ -700,13 +700,13 @@ Parsed CXX OpenMP implicit link information from above output:
 Determining if the include file pthread.h exists passed with the following output:
 Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b95f0/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b95f0.dir/build.make CMakeFiles/cmTC_b95f0.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_daaaf/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_daaaf.dir/build.make CMakeFiles/cmTC_daaaf.dir/build
 gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b95f0.dir/CheckIncludeFile.c.o
-/usr/bin/clang   -fPIC  -MD -MT CMakeFiles/cmTC_b95f0.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_b95f0.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_b95f0.dir/CheckIncludeFile.c.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
-Linking C executable cmTC_b95f0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b95f0.dir/link.txt --verbose=1
-/usr/bin/clang -fPIC  CMakeFiles/cmTC_b95f0.dir/CheckIncludeFile.c.o -o cmTC_b95f0 
+Building C object CMakeFiles/cmTC_daaaf.dir/CheckIncludeFile.c.o
+/usr/bin/clang   -fPIC  -MD -MT CMakeFiles/cmTC_daaaf.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_daaaf.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_daaaf.dir/CheckIncludeFile.c.o -c /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_daaaf
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_daaaf.dir/link.txt --verbose=1
+/usr/bin/clang -fPIC  CMakeFiles/cmTC_daaaf.dir/CheckIncludeFile.c.o -o cmTC_daaaf 
 gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
 
 
@@ -714,13 +714,13 @@ gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMak
 Determining if the function pthread_create exists in the pthread passed with the following output:
 Change Dir: /mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_69fc0/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_69fc0.dir/build.make CMakeFiles/cmTC_69fc0.dir/build
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_e5569/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_e5569.dir/build.make CMakeFiles/cmTC_e5569.dir/build
 gmake[1]: Entering directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_69fc0.dir/CheckFunctionExists.c.o
-/usr/bin/clang   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -MD -MT CMakeFiles/cmTC_69fc0.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_69fc0.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_69fc0.dir/CheckFunctionExists.c.o -c /usr/share/cmake/Modules/CheckFunctionExists.c
-Linking C executable cmTC_69fc0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_69fc0.dir/link.txt --verbose=1
-/usr/bin/clang -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_69fc0.dir/CheckFunctionExists.c.o -o cmTC_69fc0  -lpthread 
+Building C object CMakeFiles/cmTC_e5569.dir/CheckFunctionExists.c.o
+/usr/bin/clang   -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create -MD -MT CMakeFiles/cmTC_e5569.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_e5569.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_e5569.dir/CheckFunctionExists.c.o -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_e5569
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e5569.dir/link.txt --verbose=1
+/usr/bin/clang -fPIC -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_e5569.dir/CheckFunctionExists.c.o -o cmTC_e5569  -lpthread 
 gmake[1]: Leaving directory '/mnt/nvme0n1p1/honours-project/c-attempt/build/CMakeFiles/CMakeTmp'
 
 

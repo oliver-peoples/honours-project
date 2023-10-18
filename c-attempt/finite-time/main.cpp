@@ -15,7 +15,7 @@ using namespace std::chrono;
 #include <optim.hpp>
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS = 10000;
+constexpr int TRIALS_PER_CONFIG = 10000;
 
 int main()
 {
@@ -59,17 +59,17 @@ int main()
 
     saveMeasurements("finite-time/g1_g2_measurements.csv", multicore_measure);
 
-    ArrX2d x1s = ArrX2d(TRIALS,2);
-    ArrX2d x2s = ArrX2d(TRIALS,2);
-    Eigen::Array<double,Eigen::Dynamic,1> p02s = Eigen::Array<double,Eigen::Dynamic,1>(TRIALS,1);
-    Eigen::Array<double,Eigen::Dynamic,1> chi2 = Eigen::Array<double,Eigen::Dynamic,1>(TRIALS,1);
+    ArrX2d x1s = ArrX2d(TRIALS_PER_CONFIG,2);
+    ArrX2d x2s = ArrX2d(TRIALS_PER_CONFIG,2);
+    Eigen::Array<double,Eigen::Dynamic,1> p02s = Eigen::Array<double,Eigen::Dynamic,1>(TRIALS_PER_CONFIG,1);
+    Eigen::Array<double,Eigen::Dynamic,1> chi2 = Eigen::Array<double,Eigen::Dynamic,1>(TRIALS_PER_CONFIG,1);
 
     double variab = 0.1;
 
     auto start = high_resolution_clock::now();
 
     #pragma omp parallel
-    for (int cts = omp_get_thread_num(); cts < TRIALS; cts += omp_get_num_threads())
+    for (int cts = omp_get_thread_num(); cts < TRIALS_PER_CONFIG; cts += omp_get_num_threads())
     {
         ArrX2d multicore_measure_noisy = multicore_measure;
 
@@ -112,11 +112,14 @@ int main()
 
     std::cout << duration.count() << std::endl;
 
-    ArrX2d x1s_convex_hull = convexHull(x1s);
+    ArrX2d thresholded_x1s = thresholdGuesses(x1s, 1 - 1./sqrt(exp(1.)));
+    ArrX2d x1s_convex_hull = convexHull(thresholded_x1s);
 
-    std::cout << x1s_convex_hull << std::endl;
+    ArrX2d thresholded_x2s = thresholdGuesses(x2s, 1 - 1./sqrt(exp(1.)));
+    ArrX2d x2s_convex_hull = convexHull(thresholded_x2s);
 
     savePoints("finite-time/x1s_convex_hull.csv", x1s_convex_hull);
+    savePoints("finite-time/x2s_convex_hull.csv", x2s_convex_hull);
 
     savePoints("finite-time/x1s.csv", x1s);
     savePoints("finite-time/x2s.csv", x2s);

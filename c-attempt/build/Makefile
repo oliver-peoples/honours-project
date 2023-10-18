@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named multicore_monte_carlo
+
+# Build rule for target.
+multicore_monte_carlo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 multicore_monte_carlo
+.PHONY : multicore_monte_carlo
+
+# fast build rule for target.
+multicore_monte_carlo/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/build
+.PHONY : multicore_monte_carlo/fast
+
+#=============================================================================
 # Target rules for targets named finite_time
 
 # Build rule for target.
@@ -216,6 +229,30 @@ multicore-localization/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.s
 .PHONY : multicore-localization/main.cpp.s
 
+multicore-monte-carlo/main.o: multicore-monte-carlo/main.cpp.o
+.PHONY : multicore-monte-carlo/main.o
+
+# target to build an object file
+multicore-monte-carlo/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o
+.PHONY : multicore-monte-carlo/main.cpp.o
+
+multicore-monte-carlo/main.i: multicore-monte-carlo/main.cpp.i
+.PHONY : multicore-monte-carlo/main.i
+
+# target to preprocess a source file
+multicore-monte-carlo/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.i
+.PHONY : multicore-monte-carlo/main.cpp.i
+
+multicore-monte-carlo/main.s: multicore-monte-carlo/main.cpp.s
+.PHONY : multicore-monte-carlo/main.s
+
+# target to generate assembly for a file
+multicore-monte-carlo/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.s
+.PHONY : multicore-monte-carlo/main.cpp.s
+
 render_tem_gh.o: render_tem_gh.cpp.o
 .PHONY : render_tem_gh.o
 
@@ -274,6 +311,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... finite_time"
 	@echo "... multicore_localization"
+	@echo "... multicore_monte_carlo"
 	@echo "... render_tem"
 	@echo "... tem_localization_2d"
 	@echo "... finite-time/main.o"
@@ -282,6 +320,9 @@ help:
 	@echo "... multicore-localization/main.o"
 	@echo "... multicore-localization/main.i"
 	@echo "... multicore-localization/main.s"
+	@echo "... multicore-monte-carlo/main.o"
+	@echo "... multicore-monte-carlo/main.i"
+	@echo "... multicore-monte-carlo/main.s"
 	@echo "... render_tem_gh.o"
 	@echo "... render_tem_gh.i"
 	@echo "... render_tem_gh.s"

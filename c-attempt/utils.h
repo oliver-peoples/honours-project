@@ -102,6 +102,8 @@ void savePoints(std::string file_name, ArrX3d& points)
             fprintf(f, "\n");
         }
     }
+
+    fclose(f);
 }
 
 void savePoints(std::string file_name, ArrX2d& points)
@@ -127,6 +129,8 @@ void savePoints(std::string file_name, ArrX2d& points)
             fprintf(f, "\n");
         }
     }
+
+    fclose(f);
 }
 
 void savePoints(std::string file_name, Eigen::Array<double,2,3>& points)
@@ -153,6 +157,8 @@ void savePoints(std::string file_name, Eigen::Array<double,2,3>& points)
             fprintf(f, "\n");
         }
     }
+
+    fclose(f);
 }
 
 void saveIndexes(std::string file_name, Eigen::VectorXi indexes)
@@ -177,6 +183,8 @@ void saveIndexes(std::string file_name, Eigen::VectorXi indexes)
             fprintf(f, "\n");
         }
     }
+
+    fclose(f);
 }
 
 void saveMeasurements(std::string file_name, ArrX2d measurements)
@@ -202,6 +210,43 @@ void saveMeasurements(std::string file_name, ArrX2d measurements)
             fprintf(f, "\n");
         }
     }
+
+    fclose(f);
+}
+
+template <int rows, int cols>
+void saveHeatmap(std::string file_name, Eigen::Array<double,rows,cols> measurements)
+{
+    int num_rows = measurements.rows();
+    int num_cols = measurements.cols();
+
+    FILE* f = fopen(file_name.c_str(), "w");
+
+    fprintf(f, "core_idx,g1,g2\n");
+
+    for (int row_num = 0; row_num < num_rows; row_num++)
+    {
+        for (int col_num = 0; col_num < num_cols; col_num++)
+        {
+            fprintf(f,"%f", measurements(row_num,col_num));
+
+            if ( col_num < num_cols - 1 )
+            {
+                fprintf(f, ",");
+            }
+            else
+            {
+                fprintf(f, "\n");
+            }
+        }
+
+        if ( row_num < num_rows - 1 )
+        {
+            fprintf(f, "\n");
+        }
+    }
+
+    fclose(f);
 }
 
 double fitQuality(
@@ -211,7 +256,7 @@ double fitQuality(
     MatX2d centered = points.rowwise() - points.colwise().mean();
     MatX2d cov = (centered.adjoint() * centered) / double(points.rows() - 1);
 
-    return cov.determinant();
+    return 2 * sqrt(0.5 * cov.trace());
 }
 
 ArrX2d multicoreMeasure(
@@ -309,9 +354,12 @@ double multicoreChi2(
 
     multicore_measure(g2_capable_idx,1) = (2. * alpha) / (alpha_p1 * alpha_p1);
 
-    ArrX2d chi2 = multicore_measure - multicore_measure_noisy;
+    ArrX2d chi2 = (multicore_measure - multicore_measure_noisy).pow(2);
 
-    chi2 *= chi2;
+    // chi2 *= chi2;
+
+    chi2.col(0) /= multicore_measure_noisy.col(0);
+    chi2(g2_capable_idx,1) /= multicore_measure_noisy(g2_capable_idx,1);
 
     return chi2.col(0).sum() + chi2.col(1).sum();
 }
@@ -514,7 +562,7 @@ ArrX2d convexHull(Point points[], int n)
 
     ArrX2d hull_points = ArrX2d(S.size(),2);
 
-    std::cout << S.size() << std::endl;
+    // std::cout << S.size() << std::endl;
 
     while (!S.empty())
 
@@ -525,7 +573,7 @@ ArrX2d convexHull(Point points[], int n)
         hull_points(idx,0) = p.x;
         hull_points(idx,1) = p.y;
 
-        std::cout << "(" << p.x << ", " << p.y << ")" << std::endl;
+        // std::cout << "(" << p.x << ", " << p.y << ")" << std::endl;
 
         S.pop();
 
@@ -547,6 +595,77 @@ ArrX2d convexHull(ArrX2d& optim_points)
     }
 
     return convexHull(points, n);
+}
+
+ArrX2d thresholdGuesses(ArrX2d xxs, double conf_frac)
+{
+    Eigen::VectorXd rrs = Eigen::sqrt(
+        Eigen::pow(xxs.col(0).mean() - xxs.col(0), 2)
+        +
+        Eigen::pow(xxs.col(1).mean() - xxs.col(1), 2)
+    );
+
+    // std::cout << rrs << std::endl;
+
+    int frac_boundary = conf_frac * xxs.rows();
+
+    ArrX2d thresholded_points = ArrX2d(frac_boundary,2);
+    Eigen::VectorXd thresholded_rrs = Eigen::VectorXd(frac_boundary);
+    Eigen::VectorXi thresholded_idx = Eigen::VectorXi(frac_boundary);
+
+    for (int idx = 0; idx < frac_boundary; idx++) { thresholded_idx[idx] = -1; }
+
+    double min_range = 100;
+
+    for (int range_idx = 0; range_idx < rrs.rows(); range_idx++)
+    {
+        if ( rrs[range_idx] < min_range )
+        {
+            min_range = rrs[range_idx];
+            thresholded_points.row(0) = xxs.row(range_idx);
+            thresholded_rrs[0] = rrs[range_idx];
+            thresholded_idx[0] = range_idx;
+        }
+    }
+
+    for (int row_idx = 1; row_idx < frac_boundary; row_idx++)
+    {
+        min_range = 100;
+
+        for (int range_idx = 0; range_idx < rrs.rows(); range_idx++)
+        {
+            if ( rrs[range_idx] < min_range && rrs[range_idx] > thresholded_rrs[row_idx - 1] )
+            {
+                min_range = rrs[range_idx];
+                thresholded_points.row(row_idx) = xxs.row(range_idx);
+                thresholded_rrs[row_idx] = rrs[range_idx];
+                thresholded_idx[row_idx] = range_idx;
+            }
+        }
+    }
+
+    // std::cout << thresholded_points << std::endl;
+
+    return thresholded_points;
+}
+
+double polygonArea(ArrX2d vertexes)
+{
+    int og_rows = vertexes.rows();
+
+    vertexes.conservativeResize(vertexes.rows() + 1, vertexes.cols());
+    vertexes.row(vertexes.rows() - 1) = vertexes.row(0);
+
+    double area = 0.;
+
+    for (int row_idx = 0; row_idx < og_rows; row_idx++)
+    {
+        area += (vertexes(row_idx,0) * vertexes(row_idx + 1,1)) - (vertexes(row_idx + 1,0) * vertexes(row_idx,1));
+    }
+
+    area *= 0.5;
+
+    return abs(area);
 }
 
  
