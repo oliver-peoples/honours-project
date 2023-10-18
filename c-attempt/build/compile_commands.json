@@ -1,22 +1,27 @@
 [
 {
-  "directory": "/mnt/nvme0n1p1/honours-project/c-attempt/build",
-  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/finite_time.dir/finite-time/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp",
-  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp"
+  "directory": "/home/finn/Documents/honours-project/c-attempt/build",
+  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/home/finn/Documents/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o -c /home/finn/Documents/honours-project/c-attempt/multicore-monte-carlo/main.cpp",
+  "file": "/home/finn/Documents/honours-project/c-attempt/multicore-monte-carlo/main.cpp"
 },
 {
-  "directory": "/mnt/nvme0n1p1/honours-project/c-attempt/build",
-  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/multicore-localization/main.cpp",
-  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/multicore-localization/main.cpp"
+  "directory": "/home/finn/Documents/honours-project/c-attempt/build",
+  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/home/finn/Documents/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/finite_time.dir/finite-time/main.cpp.o -c /home/finn/Documents/honours-project/c-attempt/finite-time/main.cpp",
+  "file": "/home/finn/Documents/honours-project/c-attempt/finite-time/main.cpp"
 },
 {
-  "directory": "/mnt/nvme0n1p1/honours-project/c-attempt/build",
-  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp=libomp -std=gnu++20 -o CMakeFiles/render_tem.dir/render_tem_gh.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/render_tem_gh.cpp",
-  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/render_tem_gh.cpp"
+  "directory": "/home/finn/Documents/honours-project/c-attempt/build",
+  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/home/finn/Documents/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o -c /home/finn/Documents/honours-project/c-attempt/multicore-localization/main.cpp",
+  "file": "/home/finn/Documents/honours-project/c-attempt/multicore-localization/main.cpp"
 },
 {
-  "directory": "/mnt/nvme0n1p1/honours-project/c-attempt/build",
-  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp",
-  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d.cpp"
+  "directory": "/home/finn/Documents/honours-project/c-attempt/build",
+  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/home/finn/Documents/honours-project/c-attempt/optim -O3 -DNDEBUG -fopenmp=libomp -std=gnu++20 -o CMakeFiles/render_tem.dir/render_tem_gh.cpp.o -c /home/finn/Documents/honours-project/c-attempt/render_tem_gh.cpp",
+  "file": "/home/finn/Documents/honours-project/c-attempt/render_tem_gh.cpp"
+},
+{
+  "directory": "/home/finn/Documents/honours-project/c-attempt/build",
+  "command": "/usr/bin/clang++  -I/usr/include/eigen3 -I/home/finn/Documents/honours-project/c-attempt/optim -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -c /home/finn/Documents/honours-project/c-attempt/tem_localization_2d.cpp",
+  "file": "/home/finn/Documents/honours-project/c-attempt/tem_localization_2d.cpp"
 }
 ]

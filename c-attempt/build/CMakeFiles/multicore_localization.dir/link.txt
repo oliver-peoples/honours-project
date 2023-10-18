@@ -1,1 +1,1 @@
-/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o -o ../multicore_localization   -L/usr/local/cuda/lib64  -Wl,-rpath,/usr/local/cuda/lib64 -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 
+/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o -o ../multicore_localization  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 

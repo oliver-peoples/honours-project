@@ -1,5 +1,5 @@
 CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o: \
-  /mnt/nvme0n1p1/honours-project/c-attempt/multicore-localization/main.cpp \
+  /home/finn/Documents/honours-project/c-attempt/multicore-localization/main.cpp \
   /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
   /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
   /usr/include/eigen3/Eigen/src/Core/util/Macros.h \
@@ -419,8 +419,8 @@ CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o: \
   /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/./RealQZ.h \
   /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
-  /mnt/nvme0n1p1/honours-project/c-attempt/multicore-localization/../fast_gp.h \
-  /mnt/nvme0n1p1/honours-project/c-attempt/multicore-localization/../utils.h \
+  /home/finn/Documents/honours-project/c-attempt/multicore-localization/../fast_gp.h \
+  /home/finn/Documents/honours-project/c-attempt/multicore-localization/../utils.h \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/iostream \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/stack \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/deque \
@@ -432,8 +432,8 @@ CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o: \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/ratio \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/ctime \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/bits/parse_numbers.h \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/optim.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/optim_options.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/optim.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/optim_options.hpp \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/numeric \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/bits/stl_numeric.h \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/bit \
@@ -442,90 +442,90 @@ CMakeFiles/multicore_localization.dir/multicore-localization/main.cpp.o: \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/bits/random.h \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux/bits/opt_random.h \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/bits/random.tcc \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/BaseMatrixOps.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/misc/bmo_options.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/misc/misc_math.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/bmo_core.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/abs.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/abs_max.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/accu.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/access.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/array_add.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/array_div.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/array_mult.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/as_scalar.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/cholesky.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/constant.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/cos.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/cout.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/diagmat.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/diagvec.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/dot.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/endl.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/eval.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/exp.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/eye.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/hadamard.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/is_finite.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/inv.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/log.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/log_det.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/max.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/min.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/ncol.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/norm.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/ones.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/pow.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/quad_form.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/randi.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/randn.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/randu.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/set_size.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/set_values.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/size.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/solve.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/sort.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/sqrt.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/sum.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/trace.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/transpose.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/core/zeros.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/stats/bmo_stats.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/stats/runif.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/stats/rnorm.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/stats/rind.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/bmo_extra.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/get_sort_index.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/index_min.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/reset_negative_values.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/unit_vec.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/optim_misc.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/optim_structs.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/optim_trace.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/determine_bounds_type.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/bounds_check.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/error_reporting.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/error_reporting.ipp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/jacobian_adjust.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/numerical_gradient.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/numerical_hessian.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/misc/transform_vals.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/stats/optim_stats.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/stats/seed_values.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/line_search/more_thuente.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/optim_unconstrained.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/bfgs.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/lbfgs.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/newton.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/cg.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/gd.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/gd.ipp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/de.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/de_prmm.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/nm.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/pso.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/unconstrained/pso_dv.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/constrained/sumt.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/zeros/optim_zeros.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/zeros/broyden.hpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/optim/zeros/broyden_df.hpp
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/BaseMatrixOps.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/misc/bmo_options.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/misc/misc_math.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/bmo_core.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/abs.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/abs_max.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/accu.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/access.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/array_add.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/array_div.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/array_mult.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/as_scalar.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/cholesky.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/constant.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/cos.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/cout.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/diagmat.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/diagvec.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/dot.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/endl.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/eval.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/exp.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/eye.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/hadamard.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/is_finite.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/inv.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/log.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/log_det.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/max.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/min.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/ncol.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/norm.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/ones.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/pow.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/quad_form.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/randi.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/randn.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/randu.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/set_size.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/set_values.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/size.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/solve.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/sort.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/sqrt.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/sum.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/trace.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/transpose.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/core/zeros.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/stats/bmo_stats.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/stats/runif.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/stats/rnorm.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/stats/rind.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/bmo_extra.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/get_sort_index.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/index_min.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/reset_negative_values.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/BaseMatrixOps/include/extra/unit_vec.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/optim_misc.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/optim_structs.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/optim_trace.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/determine_bounds_type.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/bounds_check.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/error_reporting.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/error_reporting.ipp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/jacobian_adjust.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/numerical_gradient.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/numerical_hessian.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/misc/transform_vals.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/stats/optim_stats.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/stats/seed_values.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/line_search/more_thuente.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/optim_unconstrained.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/bfgs.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/lbfgs.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/newton.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/cg.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/gd.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/gd.ipp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/de.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/de_prmm.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/nm.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/pso.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/unconstrained/pso_dv.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/constrained/sumt.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/zeros/optim_zeros.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/zeros/broyden.hpp \
+  /home/finn/Documents/honours-project/c-attempt/optim/zeros/broyden_df.hpp

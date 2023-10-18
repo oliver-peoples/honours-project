@@ -1,10 +1,10 @@
-from scipy.special import hermite as physicistsHermite
+# from scipy.special import hermite as physicistsHermite
 import numpy as np
 # from parula import parula
 import matplotlib.pyplot as plt
 import matplotlib
 import os
-from scipy.spatial import ConvexHull, convex_hull_plot_2d
+# from scipy.spatial import ConvexHull, convex_hull_plot_2d
 
 cm = 1/2.54
 
@@ -49,30 +49,39 @@ def main() -> None:
 
     plt.scatter(x2s[:,1],x2s[:,2], c='magenta', marker='.', s=1)
     plt.scatter(x1s[:,1],x1s[:,2], c='cyan', marker='.', s=1)
+    
+    x1s_convex_hull = np.genfromtxt(os.path.join(path, 'x1s_convex_hull.csv'), delimiter=',', skip_header=1)
+    
+    plt.plot(x1s_convex_hull[:,1],x1s_convex_hull[:,2], c='black', linewidth=0.5)
+    
+    x2s_convex_hull = np.genfromtxt(os.path.join(path, 'x2s_convex_hull.csv'), delimiter=',', skip_header=1)
+    
+    plt.plot(x2s_convex_hull[:,1],x2s_convex_hull[:,2], c='black', linewidth=0.5)
 
-    rr_1 = np.sqrt((x1s[:,1] - np.mean(x1s[:,1]))**2 + (x1s[:,2] - np.mean(x1s[:,2]))**2);
-    r_tab_1 = np.zeros((np.shape(rr_1)[0], 3))
-    r_tab_1[:,0:2] = x1s[:,1:]
-    r_tab_1[:,2] = rr_1
-    r_tab_idx = np.argsort(r_tab_1[:,2])
-    r_tab_1 = r_tab_1[r_tab_idx,:]
-    # SortTab1 = (RTab1,3);
-    frac_boundary = int(np.ceil(conf_frac*np.shape(rr_1)[0]))
-    r_tab_1 = r_tab_1[0:frac_boundary,:]
+
+    # rr_1 = np.sqrt((x1s[:,1] - np.mean(x1s[:,1]))**2 + (x1s[:,2] - np.mean(x1s[:,2]))**2);
+    # r_tab_1 = np.zeros((np.shape(rr_1)[0], 3))
+    # r_tab_1[:,0:2] = x1s[:,1:]
+    # r_tab_1[:,2] = rr_1
+    # r_tab_idx = np.argsort(r_tab_1[:,2])
+    # r_tab_1 = r_tab_1[r_tab_idx,:]
+    # # SortTab1 = (RTab1,3);
+    # frac_boundary = int(np.ceil(conf_frac*np.shape(rr_1)[0]))
+    # r_tab_1 = r_tab_1[0:frac_boundary,:]
     
-    plotConvexHull(r_tab_1[:,0:2])
+    # plotConvexHull(r_tab_1[:,0:2])
     
-    rr_2 = np.sqrt((x2s[:,1] - np.mean(x2s[:,1]))**2 + (x2s[:,2] - np.mean(x2s[:,2]))**2);
-    r_tab_2 = np.zeros((np.shape(rr_2)[0], 3))
-    r_tab_2[:,0:2] = x2s[:,1:]
-    r_tab_2[:,2] = rr_2
-    r_tab_idx = np.argsort(r_tab_2[:,2])
-    r_tab_2 = r_tab_2[r_tab_idx,:]
-    # SortTab1 = (RTab1,3);
-    frac_boundary = int(np.ceil(conf_frac*np.shape(rr_2)[0]))
-    r_tab_2 = r_tab_2[0:frac_boundary,:]
+    # rr_2 = np.sqrt((x2s[:,1] - np.mean(x2s[:,1]))**2 + (x2s[:,2] - np.mean(x2s[:,2]))**2);
+    # r_tab_2 = np.zeros((np.shape(rr_2)[0], 3))
+    # r_tab_2[:,0:2] = x2s[:,1:]
+    # r_tab_2[:,2] = rr_2
+    # r_tab_idx = np.argsort(r_tab_2[:,2])
+    # r_tab_2 = r_tab_2[r_tab_idx,:]
+    # # SortTab1 = (RTab1,3);
+    # frac_boundary = int(np.ceil(conf_frac*np.shape(rr_2)[0]))
+    # r_tab_2 = r_tab_2[0:frac_boundary,:]
     
-    plotConvexHull(r_tab_2[:,0:2])
+    # plotConvexHull(r_tab_2[:,0:2])
 
     plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
     plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
@@ -89,13 +98,13 @@ def main() -> None:
     plt.savefig(os.path.join(path,f'emitter_localizations_{np.shape(x1s)[0]}.png'), dpi=600, bbox_inches='tight')
     plt.close()
     
-def plotConvexHull(ordered_points):
+# def plotConvexHull(ordered_points):
     
-    hull = ConvexHull(ordered_points)
+#     hull = ConvexHull(ordered_points)
     
-    for simplex in hull.simplices:
+#     for simplex in hull.simplices:
 
-        plt.plot(ordered_points[simplex, 0], ordered_points[simplex, 1], color='black', linewidth=0.5)
+#         plt.plot(ordered_points[simplex, 0], ordered_points[simplex, 1], color='black', linewidth=0.5)
     
 if __name__ == '__main__':
     

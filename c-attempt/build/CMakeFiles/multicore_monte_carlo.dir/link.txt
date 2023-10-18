@@ -1,0 +1,1 @@
+/usr/bin/clang++ -O3 -DNDEBUG CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o -o ../multicore_monte_carlo  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 

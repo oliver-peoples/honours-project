@@ -1,6 +1,6 @@
 CMakeFiles/render_tem.dir/render_tem_gh.cpp.o: \
-  /mnt/nvme0n1p1/honours-project/c-attempt/render_tem_gh.cpp \
-  /mnt/nvme0n1p1/honours-project/c-attempt/fast_gp.h \
+  /home/finn/Documents/honours-project/c-attempt/render_tem_gh.cpp \
+  /home/finn/Documents/honours-project/c-attempt/fast_gp.h \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/cstdio \
   /usr/bin/../lib64/gcc/x86_64-suse-linux/12/../../../../include/c++/12/x86_64-suse-linux/bits/c++config.h \
   /usr/include/bits/wordsize.h \
