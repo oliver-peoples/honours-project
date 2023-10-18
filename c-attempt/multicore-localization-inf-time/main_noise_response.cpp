@@ -6,19 +6,18 @@
 #include <omp.h>
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 100;
-constexpr int CONFIGS_PER_NOISE_SAMPLE = 100;
-constexpr int NOISE_SAMPLES = 100;
+constexpr int TRIALS_PER_CONFIG = 250;
+constexpr int CONFIGS_PER_NOISE_SAMPLE = 200;
+constexpr int NOISE_SAMPLES = 200;
 
 // 5625 total configs took about 5 minutes on the shitbox computer @ 250 trials per config
-
 constexpr int TOTAL_CONFIGS = CONFIGS_PER_NOISE_SAMPLE * NOISE_SAMPLES;
 constexpr double PREDICTED_TIME_EB = 5. * (double)TOTAL_CONFIGS / 5625. * (double)TRIALS_PER_CONFIG / (double)250;
 constexpr int TOTAL_SAMPLES = TRIALS_PER_CONFIG * TOTAL_CONFIGS;
 
 constexpr double MAX_NOISE_PCT = 20;
 
-constexpr CHI2_METHOD chi_2_method = NORMALIZE;
+constexpr CHI2_METHOD chi_2_method = WORBOY;
 
 constexpr double MAX_R = 0.5;
 
@@ -53,6 +52,8 @@ void mainNoiseResponse(void)
     {
         int noise_sample_idx = linear_sample_idx % NOISE_SAMPLES;
         int config_sample_Idx = linear_sample_idx / NOISE_SAMPLES;
+
+        printf("> %i,%i (%i/%i)\n", noise_sample_idx, config_sample_Idx, linear_sample_idx, TOTAL_CONFIGS);
 
         double noise = 0.01 * MAX_NOISE_PCT * (double)noise_sample_idx / double(NOISE_SAMPLES - 1);
 
