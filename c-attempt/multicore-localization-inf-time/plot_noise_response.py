@@ -22,7 +22,10 @@ cores = np.genfromtxt(os.path.join(path,'core_locations.csv'), delimiter=',', sk
 pm = 2.2
 
 g2_capable = np.genfromtxt(os.path.join(path,'g2_capable_indexes.csv'), delimiter=',', dtype=np.int8, skip_header=1)
-g1_only = [ idx for idx in range(np.shape(cores)[0]) if idx not in g2_capable[:,1]]
+
+if np.shape(g2_capable)[0] != np.shape(cores)[0]:
+    g1_only = [ idx for idx in range(np.shape(cores)[0]) if idx not in g2_capable[:,1]]
+    plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
 
 # emitter_xys = np.genfromtxt(os.path.join(path,'emitter_parameter_log.csv'), delimiter=',', skip_header=1)
 
@@ -31,7 +34,7 @@ g1_only = [ idx for idx in range(np.shape(cores)[0]) if idx not in g2_capable[:,
 #     plt.plot([row[0],row[2]],[row[1],row[3]], c='magenta', linewidth=0.75, alpha=0.35)
 #     plt.scatter([row[0],row[2]],[row[1],row[3]], c='magenta', marker='.', s=20, alpha=0.35)
 
-plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
+
 plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
     
 plt.xlabel(r'$x$', fontsize=10)
@@ -51,7 +54,7 @@ w_eff_data = np.genfromtxt(os.path.join(path,'w_eff_bar.csv'), delimiter=',', sk
 configs_per = np.shape(w_eff_data)[0]
 noise_samples = np.shape(w_eff_data)[1]
 
-bins = 20
+bins = 70
 
 noise_linspace = np.linspace(0, 20, noise_samples)
 w_eff_linspace = np.linspace(0,1, bins)

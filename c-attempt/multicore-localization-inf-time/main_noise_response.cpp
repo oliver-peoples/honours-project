@@ -6,15 +6,15 @@
 #include <omp.h>
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 400;
-constexpr int CONFIGS_PER_NOISE_SAMPLE = 300;
-constexpr int NOISE_SAMPLES = 150;
+constexpr int TRIALS_PER_CONFIG = 100;
+constexpr int CONFIGS_PER_NOISE_SAMPLE = 100;
+constexpr int NOISE_SAMPLES = 100;
 
 // 5625 total configs took about 5 minutes on the shitbox computer @ 250 trials per config
 
 constexpr int TOTAL_CONFIGS = CONFIGS_PER_NOISE_SAMPLE * NOISE_SAMPLES;
 constexpr double PREDICTED_TIME_EB = 5. * (double)TOTAL_CONFIGS / 5625. * (double)TRIALS_PER_CONFIG / (double)250;
-// constexpr int TOTAL_SAMPLES = TRIALS_PER_CONFIG * CONFIGS_PER_NOISE_BIN * NOISE_BINS;
+constexpr int TOTAL_SAMPLES = TRIALS_PER_CONFIG * TOTAL_CONFIGS;
 
 constexpr double MAX_NOISE_PCT = 20;
 
@@ -25,19 +25,21 @@ constexpr double MAX_R = 0.5;
 void mainNoiseResponse(void)
 {
     ArrX3d core_locations;
+    Eigen::VectorXi g2_capable_idx;
     int num_cores;
 
-    createConcentricCores(core_locations, 1, 1.);
+    // Eigen::VectorXi G2_CAPABLE_IDX = Eigen::VectorXi(3,1);
+
+    // G2_CAPABLE_IDX(0) = 1;
+    // G2_CAPABLE_IDX(1) = 3;
+    // G2_CAPABLE_IDX(2) = 5;
+
+    // createConcentricCores(core_locations, 1, 1.);
+
+    createWorboyCores(core_locations, g2_capable_idx);
    
     savePoints("multicore-localization-inf-time/core_locations.csv", core_locations);
-
-    Eigen::VectorXi G2_CAPABLE_IDX = Eigen::VectorXi(3,1);
-
-    G2_CAPABLE_IDX(0) = 1;
-    G2_CAPABLE_IDX(1) = 3;
-    G2_CAPABLE_IDX(2) = 5;
-
-    saveIndexes("multicore-localization-inf-time/g2_capable_indexes.csv", G2_CAPABLE_IDX);
+    saveIndexes("multicore-localization-inf-time/g2_capable_indexes.csv", g2_capable_idx);
 
     Eigen::ArrayXXd w_eff_bar = Eigen::ArrayXXd(CONFIGS_PER_NOISE_SAMPLE,NOISE_SAMPLES);
     Eigen::ArrayXXd emitter_parameter_log = Eigen::ArrayXXd(TOTAL_CONFIGS,5);
@@ -95,7 +97,7 @@ void mainNoiseResponse(void)
 
         ArrX2d multicore_measure = multicoreMeasureInfTime(
             core_locations,
-            G2_CAPABLE_IDX,
+            g2_capable_idx,
             emitter_xy,
             emitter_brightness
         );
@@ -111,14 +113,14 @@ void mainNoiseResponse(void)
             ArrX2d multicore_measure_noisy = multicore_measure;
 
             multicore_measure_noisy.col(0) *= (1 + noise * Eigen::Array<double,Eigen::Dynamic,1>::Random(multicore_measure.rows(),1));
-            multicore_measure_noisy(G2_CAPABLE_IDX,1) *= (1 + noise * Eigen::Array<double,Eigen::Dynamic,1>::Random(G2_CAPABLE_IDX.rows(),1));
+            multicore_measure_noisy(g2_capable_idx,1) *= (1 + noise * Eigen::Array<double,Eigen::Dynamic,1>::Random(g2_capable_idx.rows(),1));
 
             Eigen::VectorXd xx = Eigen::Array<double,5,1>::Random(5,1);
 
             xx(4) = 0.5;
 
             MulticoreDataInfTime mc_data = {
-                core_locations, multicore_measure_noisy, G2_CAPABLE_IDX, chi_2_method
+                core_locations, multicore_measure_noisy, g2_capable_idx, chi_2_method
             };
 
             bool success = optim::nm(xx, multicoreInfTimeChi2, (void*)&mc_data);
