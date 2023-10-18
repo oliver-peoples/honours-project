@@ -18,7 +18,11 @@ add_executable(tem_localization_2d ${CMAKE_SOURCE_DIR}/tem_localization_2d.cpp)
 add_executable(render_tem ${CMAKE_SOURCE_DIR}/render_tem_gh.cpp)
 target_link_libraries(render_tem PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 
-add_executable(multicore_localization ${CMAKE_SOURCE_DIR}/multicore-localization/main.cpp)
+add_executable(multicore_localization
+    ${CMAKE_SOURCE_DIR}/multicore-localization-inf-time/main.cpp
+    ${CMAKE_SOURCE_DIR}/multicore-localization-inf-time/main_simple.cpp
+    ${CMAKE_SOURCE_DIR}/multicore-localization-inf-time/main_noise_response.cpp
+)
 target_link_libraries(multicore_localization PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 target_compile_options(multicore_localization PUBLIC -fopenmp)
 

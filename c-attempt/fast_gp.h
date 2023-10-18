@@ -2,6 +2,7 @@
 #define __FAST_GP_H__
 
 #include <cstdio>
+#include "utils.h"
 
 #ifdef __NVCC__
 #else
@@ -9,9 +10,6 @@
 #endif
 
 #include <Eigen/Dense>
-
-constexpr double SQRT2 = 1.414213562373095048801688724209;
-constexpr double PI = 3.14159265358979323846;
 
 //=================================================================================================
 // declare the polynomials

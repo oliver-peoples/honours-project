@@ -3,19 +3,22 @@
 #include <cstdlib>
 #include <cstdio>
 #include <string.h>
-#include "../fast_gp.h"
 #include "../utils.h"
+#include "../multicore_experiments.h"
+#include "../convex_hull.h"
 #include <iostream>
 #include <omp.h>
 
 #include <chrono>
 using namespace std::chrono;
 
+#define OPTIM_USE_OPENMP
 #define OPTIM_ENABLE_EIGEN_WRAPPERS
 #include <optim.hpp>
 
 constexpr double detector_w = 1.;
 constexpr int TRIALS_PER_CONFIG = 10000;
+CHI2_METHOD chi_2_method = NORMALIZE;
 
 int main()
 {
@@ -23,7 +26,7 @@ int main()
     int num_cores;
 
     createConcentricCores(core_locations, 1, 1.);
-    
+   
     savePoints("finite-time/core_locations.csv", core_locations);
 
     Eigen::VectorXi G2_CAPABLE_IDX = Eigen::VectorXi(3,1);
@@ -43,6 +46,10 @@ int main()
 
     emitter_xy *= 0.25;
 
+    emitter_xy += 0.25 * Eigen::Array<double,2,3>::Random();
+
+    emitter_xy.col(2) = 0;
+
     savePoints("finite-time/emitter_xy.csv", emitter_xy);
 
     Eigen::Array<double,2,1> emitter_brightness {
@@ -50,7 +57,7 @@ int main()
         0.3167
     };
 
-    ArrX2d multicore_measure = multicoreMeasure(
+    ArrX2d multicore_measure = multicoreMeasureInfTime(
         core_locations,
         G2_CAPABLE_IDX,
         emitter_xy,
@@ -80,11 +87,11 @@ int main()
 
         xx(4) = 0.5;
 
-        MulticoreData mc_data = {
-            core_locations, multicore_measure_noisy, G2_CAPABLE_IDX
+        MulticoreDataInfTime mc_data = {
+            core_locations, multicore_measure_noisy, G2_CAPABLE_IDX, chi_2_method
         };
 
-        bool success = optim::nm(xx, multicoreChi2, (void*)&mc_data);
+        bool success = optim::nm(xx, multicoreInfTimeChi2, (void*)&mc_data);
 
         if ( xx(4) < 1 )
         {
@@ -110,22 +117,30 @@ int main()
 
     auto duration = duration_cast<milliseconds>(stop - start);
 
-    std::cout << duration.count() << std::endl;
+    std::cout << duration.count() << ": " << (double)duration.count() / (double)TRIALS_PER_CONFIG << std::endl;
 
     ArrX2d thresholded_x1s = thresholdGuesses(x1s, 1 - 1./sqrt(exp(1.)));
     ArrX2d x1s_convex_hull = convexHull(thresholded_x1s);
+    double x1s_cvx_hull_area = polygonArea(x1s_convex_hull);
+    double e1_weff = 2. * sqrt(x1s_cvx_hull_area / PI);
 
     ArrX2d thresholded_x2s = thresholdGuesses(x2s, 1 - 1./sqrt(exp(1.)));
     ArrX2d x2s_convex_hull = convexHull(thresholded_x2s);
+    double x2s_cvx_hull_area = polygonArea(x2s_convex_hull);
+    double e2_weff = 2. * sqrt(x2s_cvx_hull_area / PI);
 
+    x1s_convex_hull = loopify(x1s_convex_hull);
+    x2s_convex_hull = loopify(x2s_convex_hull);
+   
     savePoints("finite-time/x1s_convex_hull.csv", x1s_convex_hull);
     savePoints("finite-time/x2s_convex_hull.csv", x2s_convex_hull);
 
     savePoints("finite-time/x1s.csv", x1s);
     savePoints("finite-time/x2s.csv", x2s);
 
-    printf("> fit quality emitter 1: %f\n", fitQuality(x1s));
-    printf("> fit quality emitter 2: %f\n", fitQuality(x2s));
+    printf("> fit quality emitter 1: %f, %f\n", fitQuality(x1s), e1_weff);
+    printf("> fit quality emitter 2: %f, %f\n", fitQuality(x2s), e2_weff);
+    printf("> fit quality overall: %f, %f\n", 0.5 * (fitQuality(x1s) + fitQuality(x2s)), 0.5 * (e1_weff + e2_weff));
 
     return 0;
 }
