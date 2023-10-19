@@ -5,28 +5,30 @@
 #include "../convex_hull.h"
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 500;
+constexpr int TRIALS_PER_CONFIG = 10000;
 
-constexpr CHI2_METHOD chi_2_method = NORMALIZE;
+constexpr CHI2_METHOD chi_2_method = WORBOY;
 
 void mainSimple(void)
 {
     ArrX3d core_locations;
+    Eigen::VectorXi g2_capable_idx;
     int num_cores;
 
-    createConcentricCores(core_locations, 1, 1.);
+    // Eigen::VectorXi g2_capable_idx = Eigen::VectorXi(3,1);
+
+    // g2_capable_idx(0) = 1;
+    // g2_capable_idx(1) = 3;
+    // g2_capable_idx(2) = 5;
+
+    // createConcentricCores(core_locations, 1, 1.);
+
+    createWorboyCores(core_locations, g2_capable_idx);
    
     savePoints("multicore-localization-inf-time/core_locations.csv", core_locations);
+    saveIndexes("multicore-localization-inf-time/g2_capable_indexes.csv", g2_capable_idx);
 
-    Eigen::VectorXi G2_CAPABLE_IDX = Eigen::VectorXi(3,1);
-
-    G2_CAPABLE_IDX(0) = 1;
-    G2_CAPABLE_IDX(1) = 3;
-    G2_CAPABLE_IDX(2) = 5;
-
-    saveIndexes("multicore-localization-inf-time/g2_capable_indexes.csv", G2_CAPABLE_IDX);
-
-    // std::cout << G2_CAPABLE_IDX << std::endl;
+    // std::cout << g2_capable_idx << std::endl;
 
     Eigen::Array<double,2,3> emitter_xy {
         { -0.6300,-0.1276,0 },
@@ -35,7 +37,7 @@ void mainSimple(void)
 
     emitter_xy *= 0.25;
 
-    emitter_xy += 0.25 * Eigen::Array<double,2,3>::Random();
+    // emitter_xy += 0.25 * Eigen::Array<double,2,3>::Random();
 
     emitter_xy.col(2) = 0;
 
@@ -48,7 +50,7 @@ void mainSimple(void)
 
     ArrX2d multicore_measure = multicoreMeasureInfTime(
         core_locations,
-        G2_CAPABLE_IDX,
+        g2_capable_idx,
         emitter_xy,
         emitter_brightness
     );
@@ -70,14 +72,14 @@ void mainSimple(void)
         ArrX2d multicore_measure_noisy = multicore_measure;
 
         multicore_measure_noisy.col(0) *= (1 + variab * Eigen::Array<double,Eigen::Dynamic,1>::Random(multicore_measure.rows(),1));
-        multicore_measure_noisy(G2_CAPABLE_IDX,1) *= (1 + variab * Eigen::Array<double,Eigen::Dynamic,1>::Random(G2_CAPABLE_IDX.rows(),1));
+        multicore_measure_noisy(g2_capable_idx,1) *= (1 + variab * Eigen::Array<double,Eigen::Dynamic,1>::Random(g2_capable_idx.rows(),1));
 
         Eigen::VectorXd xx = Eigen::Array<double,5,1>::Random(5,1);
 
         xx(4) = 0.5;
 
         MulticoreDataInfTime mc_data = {
-            core_locations, multicore_measure_noisy, G2_CAPABLE_IDX, chi_2_method
+            core_locations, multicore_measure_noisy, g2_capable_idx, chi_2_method
         };
 
         bool success = optim::nm(xx, multicoreInfTimeChi2, (void*)&mc_data);
@@ -113,10 +115,16 @@ void mainSimple(void)
     double x1s_cvx_hull_area = polygonArea(x1s_convex_hull);
     double e1_weff = 2. * sqrt(x1s_cvx_hull_area / PI);
 
+    double mean_e1_error_x = thresholded_x1s.col(0).mean() - emitter_xy(0,0);
+    double mean_e1_error_y = thresholded_x1s.col(1).mean() - emitter_xy(0,1);
+
     ArrX2d thresholded_x2s = thresholdGuesses(x2s, 1 - 1./sqrt(exp(1.)));
     ArrX2d x2s_convex_hull = convexHull(thresholded_x2s);
     double x2s_cvx_hull_area = polygonArea(x2s_convex_hull);
     double e2_weff = 2. * sqrt(x2s_cvx_hull_area / PI);
+
+    double mean_e2_error_x = thresholded_x2s.col(0).mean() - emitter_xy(1,0);
+    double mean_e2_error_y = thresholded_x2s.col(1).mean() - emitter_xy(1,1);
 
     x1s_convex_hull = loopify(x1s_convex_hull);
     x2s_convex_hull = loopify(x2s_convex_hull);
@@ -127,7 +135,13 @@ void mainSimple(void)
     savePoints("multicore-localization-inf-time/x1s.csv", x1s);
     savePoints("multicore-localization-inf-time/x2s.csv", x2s);
 
-    printf("> fit quality emitter 1: %f, %f\n", fitQuality(x1s), e1_weff);
-    printf("> fit quality emitter 2: %f, %f\n", fitQuality(x2s), e2_weff);
-    printf("> fit quality overall: %f, %f\n", 0.5 * (fitQuality(x1s) + fitQuality(x2s)), 0.5 * (e1_weff + e2_weff));
+    printf("> %s\n", (chi_2_method == NORMALIZE ? "normalized chi2" : "non-normalized chi2"));
+    printf("> fit quality emitter 1: %0.4f, %0.4f, %0.4f\n", fitQuality(x1s), e1_weff, sqrt(mean_e1_error_x * mean_e1_error_x + mean_e1_error_y * mean_e1_error_y));
+    printf("> fit quality emitter 2: %0.4f, %0.4f, %0.4f\n", fitQuality(x2s), e2_weff, sqrt(mean_e2_error_x * mean_e2_error_x + mean_e2_error_y * mean_e2_error_y));
+    printf("> fit quality overall: %0.4f, %0.4f\n", 0.5 * (fitQuality(x1s) + fitQuality(x2s)), 0.5 * (e1_weff + e2_weff));
+    printf(
+        "$%0.4f$ & $%0.4f$ & $%0.4f$ & $%0.4f$ & $%0.4f$ & $%0.4f$\n",
+        fitQuality(x1s), e1_weff, sqrt(mean_e1_error_x * mean_e1_error_x + mean_e1_error_y * mean_e1_error_y),
+        fitQuality(x2s), e2_weff, sqrt(mean_e2_error_x * mean_e2_error_x + mean_e2_error_y * mean_e2_error_y)
+    );
 }

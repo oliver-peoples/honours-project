@@ -1,1 +1,1 @@
-/usr/bin/clang++ -g CMakeFiles/render_tem.dir/render_tem_gh.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/render_tem   -L/usr/local/cuda/lib64  -Wl,-rpath,/usr/local/cuda/lib64 -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 
+/usr/bin/clang++ -g CMakeFiles/render_tem.dir/render_tem_gh.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/render_tem  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 

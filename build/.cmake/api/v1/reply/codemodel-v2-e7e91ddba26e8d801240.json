@@ -1,0 +1,95 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.18"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "qclm",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "finite_time::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-finite_time-Debug-73ba141745d4314bf3be.json",
+					"name" : "finite_time",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "multicore_localization::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-multicore_localization-Debug-ce9b32756bbeb7e60592.json",
+					"name" : "multicore_localization",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "multicore_monte_carlo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-multicore_monte_carlo-Debug-b41650a612dc69310904.json",
+					"name" : "multicore_monte_carlo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "render_tem::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-render_tem-Debug-f9e23903a324ca1beb97.json",
+					"name" : "render_tem",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tem_localization_2d::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tem_localization_2d-Debug-c1d8867de54a6dc01d20.json",
+					"name" : "tem_localization_2d",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/mnt/nvme0n1p1/honours-project/build",
+		"source" : "/mnt/nvme0n1p1/honours-project/c-attempt"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 2
+	}
+}

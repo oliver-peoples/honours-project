@@ -1,1 +1,1 @@
-/usr/bin/clang++ -g CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d   -L/usr/local/cuda/lib64 
+/usr/bin/clang++ -g CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/tem_localization_2d 
