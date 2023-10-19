@@ -1,5 +1,5 @@
-#ifndef __MULTICORE_EXPERIMENTS_H__
-#define __MULTICORE_EXPERIMENTS_H__
+#ifndef __ADIRS_MULTICORE_EXPERIMENTS_H__
+#define __ADIRS_MULTICORE_EXPERIMENTS_H__
 
 #include "utils.h"
 
@@ -115,16 +115,16 @@ inline double multicoreInfTimeChi2(
     return chi2.col(0).sum() + chi2.col(1).sum();
 }
 
-
 //=====================================================================================================================
-// infinite time
+// finite time
 //=====================================================================================================================
 
 inline ArrX2d multicoreMeasureFiniteTime(
     ArrX3d& core_locations,
     Eigen::VectorXi& g2_capable_idx,
     Eigen::Array<double,2,3> emitter_xy,
-    Eigen::Array<double,2,1> emitter_brightness
+    Eigen::Array<double,2,1> emitter_brightness,
+    double t
 )
 {
     Eigen::ArrayX2d distances(core_locations.rows(), 2);
@@ -143,17 +143,29 @@ inline ArrX2d multicoreMeasureFiniteTime(
     powers.col(0) *= emitter_brightness(0);
     powers.col(1) *= emitter_brightness(1);
 
+    std::cout << "powers:\n" << powers << std::endl;
+
     Eigen::ArrayX2d multicore_measure = powers;
 
-    multicore_measure.col(0) = (powers.col(0) + powers.col(1)) / (emitter_brightness(0) + emitter_brightness(1));
+    double inv_t = 1. / t;
+
+    Eigen::VectorXd c1 = poissrnd(powers.col(0) * t);
+    Eigen::VectorXd c2 = poissrnd(powers.col(1) * t);
+    Eigen::VectorXd c12 = poissrnd(powers.col(0) * powers.col(1) * t);
+
+    std::cout << "c1:\n" << c1 << std::endl; 
+    std::cout << "c2:\n" << c2 << std::endl;
+    std::cout << "c12:\n" << c12 << std::endl;
+
+    multicore_measure.col(0) = (c1 + c2) * inv_t;
 
     multicore_measure.col(1) = 0;
 
-    Eigen::Array<double,Eigen::Dynamic,1> alpha = powers(g2_capable_idx,0) / powers(g2_capable_idx,1);
+    Eigen::VectorXd c1_subset = c1(g2_capable_idx);
+    Eigen::VectorXd c2_subset = c2(g2_capable_idx);
+    Eigen::VectorXd c12_subset = c12(g2_capable_idx);
 
-    Eigen::Array<double,Eigen::Dynamic,1> alpha_p1 = alpha + 1.;
-
-    multicore_measure(g2_capable_idx,1) = (2. * alpha) / (alpha_p1 * alpha_p1);
+    multicore_measure(g2_capable_idx,1) = c12_subset.array() / (c1_subset.array() * c2_subset.array());
 
     return multicore_measure;
 }
@@ -178,6 +190,7 @@ inline double multicoreFiniteTimeChi2(
     ArrX3d& core_locations = multicore_data_ptr->core_locations;
     ArrX2d& multicore_measure_noisy = multicore_data_ptr->multicore_measure_noisy;
     Eigen::VectorXi& g2_capable_idx = multicore_data_ptr->g2_capable_idx;
+    double t = multicore_data_ptr->exposure_time;
 
     Eigen::Array<double,2,3> emitter_xy {
         { vals_inp(0),vals_inp(1),0 },
@@ -206,19 +219,23 @@ inline double multicoreFiniteTimeChi2(
 
     Eigen::ArrayX2d multicore_measure = powers;
 
-    multicore_measure.col(0) = (powers.col(0) + powers.col(1)) / (emitter_brightness(0) + emitter_brightness(1));
+    double inv_t = 1. / t;
+
+    Eigen::VectorXd c1 = poissrnd(powers.col(0) * t);
+    Eigen::VectorXd c2 = poissrnd(powers.col(1) * t);
+    Eigen::VectorXd c12 = poissrnd(powers.col(0) * powers.col(1) * t);
+
+    multicore_measure.col(0) = (c1 + c2) * inv_t;
 
     multicore_measure.col(1) = 0;
 
-    Eigen::Array<double,Eigen::Dynamic,1> alpha = powers(g2_capable_idx,0) / powers(g2_capable_idx,1);
+    Eigen::VectorXd c1_subset = c1(g2_capable_idx);
+    Eigen::VectorXd c2_subset = c2(g2_capable_idx);
+    Eigen::VectorXd c12_subset = c12(g2_capable_idx);
 
-    Eigen::Array<double,Eigen::Dynamic,1> alpha_p1 = alpha + 1.;
-
-    multicore_measure(g2_capable_idx,1) = (2. * alpha) / (alpha_p1 * alpha_p1);
+    multicore_measure(g2_capable_idx,1) = c12_subset.array() / (c1_subset.array() * c2_subset.array());
 
     ArrX2d chi2 = (multicore_measure - multicore_measure_noisy).pow(2);
-
-    // chi2 *= chi2;
 
     if ( multicore_data_ptr->chi_2_method == NORMALIZE )
     {
@@ -229,4 +246,4 @@ inline double multicoreFiniteTimeChi2(
     return chi2.col(0).sum() + chi2.col(1).sum();
 }
 
-#endif /* __MULTICORE_EXPERIMENTS_H__ */
+#endif /* __ADIRS_MULTICORE_EXPERIMENTS_H__ */

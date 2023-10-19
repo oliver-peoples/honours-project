@@ -1,11 +1,13 @@
-#ifndef __UTILS_H__
-#define __UTILS_H__
+#ifndef __ADIRS_UTILS_H__
+#define __ADIRS_UTILS_H__
 
 #include <Eigen/Dense>
 
 #include <algorithm>
 #include <cstdlib>
 #include <iostream>
+
+#include <random>
 
 constexpr double SQRT2 = 1.414213562373095048801688724209;
 constexpr double PI = 3.14159265358979323846;
@@ -392,4 +394,23 @@ inline ArrX2d loopify(ArrX2d points)
     return points;
 }
 
-#endif /* __UTILS_H__ */
+inline Eigen::Array<double,Eigen::Dynamic,1> poissrnd(Eigen::Array<double,Eigen::Dynamic,1> lambda)
+{
+    Eigen::Array<double,Eigen::Dynamic,1> counts = lambda * 0.;
+
+    // std::cout << "> lambda:\n" << lambda << std::endl;
+
+    std::default_random_engine generator;
+
+    for (int row_idx = 0; row_idx < lambda.rows(); row_idx++)
+    {
+        std::poisson_distribution<int> distribution(lambda[row_idx]);
+
+        counts[row_idx] = (double)distribution(generator);
+        // std::cout << counts[row_idx] << std::endl;
+    }
+
+    return counts;
+}
+
+#endif /* __ADIRS_UTILS_H__ */

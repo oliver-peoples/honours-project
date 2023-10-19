@@ -23,7 +23,11 @@ add_executable(multicore_localization
 target_link_libraries(multicore_localization PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 target_compile_options(multicore_localization PUBLIC -fopenmp)
 
-add_executable(finite_time ${CMAKE_SOURCE_DIR}/finite-time/main.cpp)
+add_executable(finite_time
+    ${CMAKE_SOURCE_DIR}/finite-time/main.cpp
+    ${CMAKE_SOURCE_DIR}/finite-time/main_simple.cpp
+    ${CMAKE_SOURCE_DIR}/finite-time/main_noise_response.cpp
+)
 target_link_libraries(finite_time PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 target_compile_options(finite_time PUBLIC -fopenmp)
 

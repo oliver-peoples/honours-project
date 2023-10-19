@@ -25,8 +25,8 @@ void mainSimple(void)
 
     createWorboyCores(core_locations, g2_capable_idx);
    
-    savePoints("multicore-localization-inf-time/core_locations.csv", core_locations);
-    saveIndexes("multicore-localization-inf-time/g2_capable_indexes.csv", g2_capable_idx);
+    savePoints("finite-time/core_locations.csv", core_locations);
+    saveIndexes("finite-time/g2_capable_indexes.csv", g2_capable_idx);
 
     // std::cout << g2_capable_idx << std::endl;
 
@@ -35,27 +35,30 @@ void mainSimple(void)
         { 0.5146,-0.5573,0 }
     };
 
-    emitter_xy *= 0.25;
+    // emitter_xy *= 0.25;
 
     // emitter_xy += 0.25 * Eigen::Array<double,2,3>::Random();
 
     emitter_xy.col(2) = 0;
 
-    savePoints("multicore-localization-inf-time/emitter_xy.csv", emitter_xy);
+    savePoints("finite-time/emitter_xy.csv", emitter_xy);
 
     Eigen::Array<double,2,1> emitter_brightness {
         1.,
-        0.3617
+        0.3167
     };
 
-    ArrX2d multicore_measure = multicoreMeasureInfTime(
+    double t = 100000. / (emitter_brightness[0] * emitter_brightness[1]);
+
+    ArrX2d multicore_measure = multicoreMeasureFiniteTime(
         core_locations,
         g2_capable_idx,
         emitter_xy,
-        emitter_brightness
+        emitter_brightness,
+        t
     );
 
-    saveMeasurements("multicore-localization-inf-time/g1_g2_measurements.csv", multicore_measure);
+    saveMeasurements("finite-time/g1_g2_measurements.csv", multicore_measure);
 
     ArrX2d x1s = ArrX2d(TRIALS_PER_CONFIG,2);
     ArrX2d x2s = ArrX2d(TRIALS_PER_CONFIG,2);
@@ -78,11 +81,11 @@ void mainSimple(void)
 
         xx(4) = 0.5;
 
-        MulticoreDataInfTime mc_data = {
-            core_locations, multicore_measure_noisy, g2_capable_idx, chi_2_method
+        MulticoreDataFiniteTime mc_data = {
+            core_locations, multicore_measure_noisy, g2_capable_idx, t, chi_2_method
         };
 
-        bool success = optim::nm(xx, multicoreInfTimeChi2, (void*)&mc_data);
+        bool success = optim::nm(xx, multicoreFiniteTimeChi2, (void*)&mc_data);
 
         if ( xx(4) < 1 )
         {
@@ -129,11 +132,11 @@ void mainSimple(void)
     x1s_convex_hull = loopify(x1s_convex_hull);
     x2s_convex_hull = loopify(x2s_convex_hull);
    
-    savePoints("multicore-localization-inf-time/x1s_convex_hull.csv", x1s_convex_hull);
-    savePoints("multicore-localization-inf-time/x2s_convex_hull.csv", x2s_convex_hull);
+    savePoints("finite-time/x1s_convex_hull.csv", x1s_convex_hull);
+    savePoints("finite-time/x2s_convex_hull.csv", x2s_convex_hull);
 
-    savePoints("multicore-localization-inf-time/x1s.csv", x1s);
-    savePoints("multicore-localization-inf-time/x2s.csv", x2s);
+    savePoints("finite-time/x1s.csv", x1s);
+    savePoints("finite-time/x2s.csv", x2s);
 
     printf("> %s\n", (chi_2_method == NORMALIZE ? "normalized chi2" : "non-normalized chi2"));
     printf("> fit quality emitter 1: %0.4f, %0.4f, %0.4f\n", fitQuality(x1s), e1_weff, sqrt(mean_e1_error_x * mean_e1_error_x + mean_e1_error_y * mean_e1_error_y));
