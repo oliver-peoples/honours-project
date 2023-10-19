@@ -42,6 +42,6 @@ for tem_idx=1:size(tem_details,1)
     g2_pred(tem_idx) = (2 * alpha)/((1+alpha)^2);
 end
 
-sse = sum((g1_pred - g1_meas).^2) + sum((g2_pred - g2_meas).^2);
+sse = sum(((g1_pred - g1_meas).^2)./g1_meas) + sum(((g2_pred - g2_meas).^2)./g2_meas);
 
 end

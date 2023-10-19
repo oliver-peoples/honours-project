@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/nvme0n1p1/honours-project
+# Install script for directory: /mnt/nvme0n1p1/honours-project/c-attempt
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

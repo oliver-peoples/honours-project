@@ -32,8 +32,8 @@ for ct = 1:3 %indexed over all detectors
     g2Pred(ct) = (2*alpha(ct))./(1+alpha(ct)).^2;
 end
 
-c2 = sum((g1 - g1Pred).^2) + sum((g2 - g2Pred).^2);
-
+% c2 = sum((g1 - g1Pred).^2) + sum((g2 - g2Pred).^2);
+c2 = sum(((g1 - g1Pred).^2)./g1) + sum(((g2 - g2Pred).^2)./g2);
 
 end
 

@@ -4,8 +4,9 @@
 #include <cstdio>
 #include <stdexcept>
 #include <string.h>
-#include "../fast_gp.h"
 #include "../utils.h"
+#include "../multicore_experiments.h"
+#include "../convex_hull.h"
 #include <iostream>
 #include <omp.h>
 
@@ -93,7 +94,7 @@ int main()
 
             // savePoints("multicore-monte-carlo/emitter_xy.csv", emitter_xy);
 
-            ArrX2d multicore_measure = multicoreMeasure(
+            ArrX2d multicore_measure = multicoreMeasureInfTime(
                 core_locations,
                 G2_CAPABLE_IDX,
                 emitter_xy,
@@ -129,11 +130,11 @@ int main()
 
                     xx(4) = 0.5;
 
-                    MulticoreData mc_data = {
+                    MulticoreDataInfTime mc_data = {
                         core_locations, multicore_measure_noisy, G2_CAPABLE_IDX
                     };
 
-                    bool success = optim::nm(xx, multicoreChi2, (void*)&mc_data);
+                    bool success = optim::nm(xx, multicoreInfTimeChi2, (void*)&mc_data);
 
                     if (xx.array().abs().maxCoeff() < 10)
                     {

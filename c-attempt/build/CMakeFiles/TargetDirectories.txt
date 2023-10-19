@@ -1,7 +1,0 @@
-/home/finn/Documents/honours-project/c-attempt/build/CMakeFiles/rebuild_cache.dir
-/home/finn/Documents/honours-project/c-attempt/build/CMakeFiles/edit_cache.dir
-/home/finn/Documents/honours-project/c-attempt/build/CMakeFiles/multicore_monte_carlo.dir
-/home/finn/Documents/honours-project/c-attempt/build/CMakeFiles/finite_time.dir
-/home/finn/Documents/honours-project/c-attempt/build/CMakeFiles/multicore_localization.dir
-/home/finn/Documents/honours-project/c-attempt/build/CMakeFiles/render_tem.dir
-/home/finn/Documents/honours-project/c-attempt/build/CMakeFiles/tem_localization_2d.dir

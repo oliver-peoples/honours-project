@@ -57,7 +57,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/nvme0n1p1/honours-project
+CMAKE_SOURCE_DIR = /mnt/nvme0n1p1/honours-project/c-attempt
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /mnt/nvme0n1p1/honours-project/build
@@ -117,41 +117,237 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named tem_modes
+# Target rules for targets named multicore_monte_carlo
 
 # Build rule for target.
-tem_modes: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tem_modes
-.PHONY : tem_modes
+multicore_monte_carlo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 multicore_monte_carlo
+.PHONY : multicore_monte_carlo
 
 # fast build rule for target.
-tem_modes/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_modes.dir/build.make CMakeFiles/tem_modes.dir/build
-.PHONY : tem_modes/fast
+multicore_monte_carlo/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/build
+.PHONY : multicore_monte_carlo/fast
 
-tem_modes.o: tem_modes.cu.o
-.PHONY : tem_modes.o
+#=============================================================================
+# Target rules for targets named finite_time
+
+# Build rule for target.
+finite_time: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 finite_time
+.PHONY : finite_time
+
+# fast build rule for target.
+finite_time/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/build
+.PHONY : finite_time/fast
+
+#=============================================================================
+# Target rules for targets named multicore_localization
+
+# Build rule for target.
+multicore_localization: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 multicore_localization
+.PHONY : multicore_localization
+
+# fast build rule for target.
+multicore_localization/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/build
+.PHONY : multicore_localization/fast
+
+#=============================================================================
+# Target rules for targets named render_tem
+
+# Build rule for target.
+render_tem: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 render_tem
+.PHONY : render_tem
+
+# fast build rule for target.
+render_tem/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/render_tem.dir/build.make CMakeFiles/render_tem.dir/build
+.PHONY : render_tem/fast
+
+#=============================================================================
+# Target rules for targets named tem_localization_2d
+
+# Build rule for target.
+tem_localization_2d: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tem_localization_2d
+.PHONY : tem_localization_2d
+
+# fast build rule for target.
+tem_localization_2d/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/build
+.PHONY : tem_localization_2d/fast
+
+finite-time/main.o: finite-time/main.cpp.o
+.PHONY : finite-time/main.o
 
 # target to build an object file
-tem_modes.cu.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_modes.dir/build.make CMakeFiles/tem_modes.dir/tem_modes.cu.o
-.PHONY : tem_modes.cu.o
+finite-time/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/finite-time/main.cpp.o
+.PHONY : finite-time/main.cpp.o
 
-tem_modes.i: tem_modes.cu.i
-.PHONY : tem_modes.i
+finite-time/main.i: finite-time/main.cpp.i
+.PHONY : finite-time/main.i
 
 # target to preprocess a source file
-tem_modes.cu.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_modes.dir/build.make CMakeFiles/tem_modes.dir/tem_modes.cu.i
-.PHONY : tem_modes.cu.i
+finite-time/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/finite-time/main.cpp.i
+.PHONY : finite-time/main.cpp.i
 
-tem_modes.s: tem_modes.cu.s
-.PHONY : tem_modes.s
+finite-time/main.s: finite-time/main.cpp.s
+.PHONY : finite-time/main.s
 
 # target to generate assembly for a file
-tem_modes.cu.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_modes.dir/build.make CMakeFiles/tem_modes.dir/tem_modes.cu.s
-.PHONY : tem_modes.cu.s
+finite-time/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/finite-time/main.cpp.s
+.PHONY : finite-time/main.cpp.s
+
+multicore-localization-inf-time/main.o: multicore-localization-inf-time/main.cpp.o
+.PHONY : multicore-localization-inf-time/main.o
+
+# target to build an object file
+multicore-localization-inf-time/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main.cpp.o
+.PHONY : multicore-localization-inf-time/main.cpp.o
+
+multicore-localization-inf-time/main.i: multicore-localization-inf-time/main.cpp.i
+.PHONY : multicore-localization-inf-time/main.i
+
+# target to preprocess a source file
+multicore-localization-inf-time/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main.cpp.i
+.PHONY : multicore-localization-inf-time/main.cpp.i
+
+multicore-localization-inf-time/main.s: multicore-localization-inf-time/main.cpp.s
+.PHONY : multicore-localization-inf-time/main.s
+
+# target to generate assembly for a file
+multicore-localization-inf-time/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main.cpp.s
+.PHONY : multicore-localization-inf-time/main.cpp.s
+
+multicore-localization-inf-time/main_noise_response.o: multicore-localization-inf-time/main_noise_response.cpp.o
+.PHONY : multicore-localization-inf-time/main_noise_response.o
+
+# target to build an object file
+multicore-localization-inf-time/main_noise_response.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main_noise_response.cpp.o
+.PHONY : multicore-localization-inf-time/main_noise_response.cpp.o
+
+multicore-localization-inf-time/main_noise_response.i: multicore-localization-inf-time/main_noise_response.cpp.i
+.PHONY : multicore-localization-inf-time/main_noise_response.i
+
+# target to preprocess a source file
+multicore-localization-inf-time/main_noise_response.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main_noise_response.cpp.i
+.PHONY : multicore-localization-inf-time/main_noise_response.cpp.i
+
+multicore-localization-inf-time/main_noise_response.s: multicore-localization-inf-time/main_noise_response.cpp.s
+.PHONY : multicore-localization-inf-time/main_noise_response.s
+
+# target to generate assembly for a file
+multicore-localization-inf-time/main_noise_response.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main_noise_response.cpp.s
+.PHONY : multicore-localization-inf-time/main_noise_response.cpp.s
+
+multicore-localization-inf-time/main_simple.o: multicore-localization-inf-time/main_simple.cpp.o
+.PHONY : multicore-localization-inf-time/main_simple.o
+
+# target to build an object file
+multicore-localization-inf-time/main_simple.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main_simple.cpp.o
+.PHONY : multicore-localization-inf-time/main_simple.cpp.o
+
+multicore-localization-inf-time/main_simple.i: multicore-localization-inf-time/main_simple.cpp.i
+.PHONY : multicore-localization-inf-time/main_simple.i
+
+# target to preprocess a source file
+multicore-localization-inf-time/main_simple.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main_simple.cpp.i
+.PHONY : multicore-localization-inf-time/main_simple.cpp.i
+
+multicore-localization-inf-time/main_simple.s: multicore-localization-inf-time/main_simple.cpp.s
+.PHONY : multicore-localization-inf-time/main_simple.s
+
+# target to generate assembly for a file
+multicore-localization-inf-time/main_simple.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_localization.dir/build.make CMakeFiles/multicore_localization.dir/multicore-localization-inf-time/main_simple.cpp.s
+.PHONY : multicore-localization-inf-time/main_simple.cpp.s
+
+multicore-monte-carlo/main.o: multicore-monte-carlo/main.cpp.o
+.PHONY : multicore-monte-carlo/main.o
+
+# target to build an object file
+multicore-monte-carlo/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.o
+.PHONY : multicore-monte-carlo/main.cpp.o
+
+multicore-monte-carlo/main.i: multicore-monte-carlo/main.cpp.i
+.PHONY : multicore-monte-carlo/main.i
+
+# target to preprocess a source file
+multicore-monte-carlo/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.i
+.PHONY : multicore-monte-carlo/main.cpp.i
+
+multicore-monte-carlo/main.s: multicore-monte-carlo/main.cpp.s
+.PHONY : multicore-monte-carlo/main.s
+
+# target to generate assembly for a file
+multicore-monte-carlo/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.s
+.PHONY : multicore-monte-carlo/main.cpp.s
+
+render_tem_gh.o: render_tem_gh.cpp.o
+.PHONY : render_tem_gh.o
+
+# target to build an object file
+render_tem_gh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/render_tem.dir/build.make CMakeFiles/render_tem.dir/render_tem_gh.cpp.o
+.PHONY : render_tem_gh.cpp.o
+
+render_tem_gh.i: render_tem_gh.cpp.i
+.PHONY : render_tem_gh.i
+
+# target to preprocess a source file
+render_tem_gh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/render_tem.dir/build.make CMakeFiles/render_tem.dir/render_tem_gh.cpp.i
+.PHONY : render_tem_gh.cpp.i
+
+render_tem_gh.s: render_tem_gh.cpp.s
+.PHONY : render_tem_gh.s
+
+# target to generate assembly for a file
+render_tem_gh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/render_tem.dir/build.make CMakeFiles/render_tem.dir/render_tem_gh.cpp.s
+.PHONY : render_tem_gh.cpp.s
+
+tem_localization_2d.o: tem_localization_2d.cpp.o
+.PHONY : tem_localization_2d.o
+
+# target to build an object file
+tem_localization_2d.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o
+.PHONY : tem_localization_2d.cpp.o
+
+tem_localization_2d.i: tem_localization_2d.cpp.i
+.PHONY : tem_localization_2d.i
+
+# target to preprocess a source file
+tem_localization_2d.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.i
+.PHONY : tem_localization_2d.cpp.i
+
+tem_localization_2d.s: tem_localization_2d.cpp.s
+.PHONY : tem_localization_2d.s
+
+# target to generate assembly for a file
+tem_localization_2d.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.s
+.PHONY : tem_localization_2d.cpp.s
 
 # Help Target
 help:
@@ -161,10 +357,32 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... tem_modes"
-	@echo "... tem_modes.o"
-	@echo "... tem_modes.i"
-	@echo "... tem_modes.s"
+	@echo "... finite_time"
+	@echo "... multicore_localization"
+	@echo "... multicore_monte_carlo"
+	@echo "... render_tem"
+	@echo "... tem_localization_2d"
+	@echo "... finite-time/main.o"
+	@echo "... finite-time/main.i"
+	@echo "... finite-time/main.s"
+	@echo "... multicore-localization-inf-time/main.o"
+	@echo "... multicore-localization-inf-time/main.i"
+	@echo "... multicore-localization-inf-time/main.s"
+	@echo "... multicore-localization-inf-time/main_noise_response.o"
+	@echo "... multicore-localization-inf-time/main_noise_response.i"
+	@echo "... multicore-localization-inf-time/main_noise_response.s"
+	@echo "... multicore-localization-inf-time/main_simple.o"
+	@echo "... multicore-localization-inf-time/main_simple.i"
+	@echo "... multicore-localization-inf-time/main_simple.s"
+	@echo "... multicore-monte-carlo/main.o"
+	@echo "... multicore-monte-carlo/main.i"
+	@echo "... multicore-monte-carlo/main.s"
+	@echo "... render_tem_gh.o"
+	@echo "... render_tem_gh.i"
+	@echo "... render_tem_gh.s"
+	@echo "... tem_localization_2d.o"
+	@echo "... tem_localization_2d.i"
+	@echo "... tem_localization_2d.s"
 .PHONY : help
 
 

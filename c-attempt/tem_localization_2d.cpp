@@ -1,4 +1,4 @@
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 
 #define OPTIM_ENABLE_EIGEN_WRAPPERS
 

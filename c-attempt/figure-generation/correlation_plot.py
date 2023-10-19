@@ -10,7 +10,7 @@ path = os.path.dirname(__file__)
 
 matplotlib.rcParams['text.usetex'] = True
 
-p02s = [1.,0.3167]
+p02s = [1.,0.3617]
 
 colors = ['magenta','cyan']
 

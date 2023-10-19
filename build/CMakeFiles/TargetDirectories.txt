@@ -1,3 +1,7 @@
 /mnt/nvme0n1p1/honours-project/build/CMakeFiles/rebuild_cache.dir
 /mnt/nvme0n1p1/honours-project/build/CMakeFiles/edit_cache.dir
-/mnt/nvme0n1p1/honours-project/build/CMakeFiles/tem_modes.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/multicore_monte_carlo.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/finite_time.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/multicore_localization.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/render_tem.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/tem_localization_2d.dir

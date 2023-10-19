@@ -1,7 +1,7 @@
 set(CMAKE_C_COMPILER "/usr/bin/clang")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "Clang")
-set(CMAKE_C_COMPILER_VERSION "13.0.1")
+set(CMAKE_C_COMPILER_VERSION "15.0.7")
 set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")
@@ -72,7 +72,7 @@ endif()
 
 
 
-set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/usr/lib64/clang/13.0.1/include;/usr/local/include;/usr/x86_64-suse-linux/include;/usr/include")
+set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/usr/lib64/clang/15.0.7/include;/usr/local/include;/usr/x86_64-suse-linux/include;/usr/include")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;gcc_s;c;gcc;gcc_s")
-set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/lib64/gcc/x86_64-suse-linux/10;/usr/lib64;/lib64;/usr/x86_64-suse-linux/lib;/usr/lib;/lib")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/lib64/gcc/x86_64-suse-linux/12;/usr/lib64;/lib64;/usr/x86_64-suse-linux/lib;/lib;/usr/lib")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")
