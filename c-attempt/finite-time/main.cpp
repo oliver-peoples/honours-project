@@ -5,8 +5,8 @@ void mainNoiseResponse(void);
 
 int main()
 {
-    mainSimple();
-    // mainNoiseResponse();
+    // mainSimple();
+    mainNoiseResponse();
     
     return 0;
 }

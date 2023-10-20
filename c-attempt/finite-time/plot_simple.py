@@ -18,6 +18,7 @@ def main() -> None:
     conf_frac *= 1
     
     emitter_xy = np.genfromtxt(os.path.join(path,'emitter_xy.csv'), delimiter=',', skip_header=1)
+    emitter_xy_guesses = np.genfromtxt(os.path.join(path,'emitter_guesses.csv'), delimiter=',', skip_header=1)
     
     print(np.linalg.norm(emitter_xy[0,:] - emitter_xy[1,:]))
 
@@ -52,8 +53,8 @@ def main() -> None:
 
     
 
-    plt.scatter(x2s[:,1],x2s[:,2], c='magenta', marker='.', s=0.1)
-    plt.scatter(x1s[:,1],x1s[:,2], c='cyan', marker='.', s=0.1)
+    plt.scatter(x2s[:,1],x2s[:,2], c='magenta', marker='.', s=0.75)
+    plt.scatter(x1s[:,1],x1s[:,2], c='cyan', marker='.', s=0.75)
     
     x1s_convex_hull = np.genfromtxt(os.path.join(path, 'x1s_convex_hull.csv'), delimiter=',', skip_header=1)
     
@@ -66,6 +67,7 @@ def main() -> None:
     plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
     plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
     plt.scatter(emitter_xy[:,1], emitter_xy[:,2], c='blue', marker='x', linewidths=0.5, s=10)
+    plt.scatter(emitter_xy_guesses[:,1], emitter_xy_guesses[:,2], edgecolors='blue', linewidths=0.5, facecolors='none', s=10)
     plt.xlabel(r'$x$', fontsize=10)
     plt.xlim(-2.1,2.1)
     plt.xticks(fontsize=10)

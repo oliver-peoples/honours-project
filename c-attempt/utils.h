@@ -4,6 +4,7 @@
 #include <Eigen/Dense>
 
 #include <algorithm>
+#include <cstddef>
 #include <cstdlib>
 #include <iostream>
 
@@ -398,9 +399,7 @@ inline Eigen::Array<double,Eigen::Dynamic,1> poissrnd(Eigen::Array<double,Eigen:
 {
     Eigen::Array<double,Eigen::Dynamic,1> counts = lambda * 0.;
 
-    // std::cout << "> lambda:\n" << lambda << std::endl;
-
-    std::default_random_engine generator;
+    std::default_random_engine generator(std::random_device{}());
 
     for (int row_idx = 0; row_idx < lambda.rows(); row_idx++)
     {

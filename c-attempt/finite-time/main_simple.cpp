@@ -7,7 +7,7 @@
 constexpr double detector_w = 1.;
 constexpr int TRIALS_PER_CONFIG = 10000;
 
-constexpr CHI2_METHOD chi_2_method = NORMALIZE;
+constexpr CHI2_METHOD chi_2_method = WORBOY;
 
 void mainSimple(void)
 {
@@ -15,15 +15,15 @@ void mainSimple(void)
     Eigen::VectorXi g2_capable_idx;
     int num_cores;
 
-    g2_capable_idx = Eigen::VectorXi(3,1);
+    // g2_capable_idx = Eigen::VectorXi(3,1);
 
-    g2_capable_idx(0) = 1;
-    g2_capable_idx(1) = 3;
-    g2_capable_idx(2) = 5;
+    // g2_capable_idx(0) = 1;
+    // g2_capable_idx(1) = 3;
+    // g2_capable_idx(2) = 5;
 
-    createConcentricCores(core_locations, 1, 1.);
+    // createConcentricCores(core_locations, 1, 1.);
 
-    // createWorboyCores(core_locations, g2_capable_idx);
+    createWorboyCores(core_locations, g2_capable_idx);
    
     savePoints("finite-time/core_locations.csv", core_locations);
     saveIndexes("finite-time/g2_capable_indexes.csv", g2_capable_idx);
@@ -35,7 +35,13 @@ void mainSimple(void)
         { 0.5146,-0.5573,0 }
     };
 
-    // emitter_xy *= 0.25;
+    // Eigen::Array<double,2,3> emitter_xy {
+    //     { -0.1,-0.1,0 },
+    //     { 0.1,0.1,0 }
+    // };
+
+
+    // emitter_xy *= 0.5;
 
     // emitter_xy += 0.25 * Eigen::Array<double,2,3>::Random();
 
@@ -45,20 +51,10 @@ void mainSimple(void)
 
     Eigen::Array<double,2,1> emitter_brightness {
         1.,
-        0.3167
+        0.3617
     };
 
-    double t = 10000. / (emitter_brightness[0] * emitter_brightness[1]);
-
-    ArrX2d multicore_measure = multicoreMeasureFiniteTime(
-        core_locations,
-        g2_capable_idx,
-        emitter_xy,
-        emitter_brightness,
-        t
-    );
-
-    saveMeasurements("finite-time/g1_g2_measurements.csv", multicore_measure);
+    double t = 10000. / (emitter_brightness[1]);
 
     ArrX2d x1s = ArrX2d(TRIALS_PER_CONFIG,2);
     ArrX2d x2s = ArrX2d(TRIALS_PER_CONFIG,2);
@@ -70,19 +66,27 @@ void mainSimple(void)
     auto start = high_resolution_clock::now();
 
     #pragma omp parallel
+    // for (int cts =0; cts < TRIALS_PER_CONFIG; cts++)
     for (int cts = omp_get_thread_num(); cts < TRIALS_PER_CONFIG; cts += omp_get_num_threads())
     {
-        ArrX2d multicore_measure_noisy = multicore_measure;
+        // std::cout << cts << std::endl;
 
-        multicore_measure_noisy.col(0) *= (1 + variab * Eigen::Array<double,Eigen::Dynamic,1>::Random(multicore_measure.rows(),1));
-        multicore_measure_noisy(g2_capable_idx,1) *= (1 + variab * Eigen::Array<double,Eigen::Dynamic,1>::Random(g2_capable_idx.rows(),1));
+        ArrX2d multicore_measure = multicoreMeasureFiniteTime(
+            core_locations,
+            g2_capable_idx,
+            emitter_xy,
+            emitter_brightness,
+            t
+        );
+
+        // std::cout << multicore_measure << std::endl;
 
         Eigen::VectorXd xx = Eigen::Array<double,5,1>::Random(5,1);
 
         xx(4) = 0.5;
 
         MulticoreDataFiniteTime mc_data = {
-            core_locations, multicore_measure_noisy, g2_capable_idx, t, chi_2_method
+            core_locations, multicore_measure, g2_capable_idx, 100000000, chi_2_method
         };
 
         bool success = optim::nm(xx, multicoreFiniteTimeChi2, (void*)&mc_data);
@@ -118,7 +122,9 @@ void mainSimple(void)
     double x1s_cvx_hull_area = polygonArea(x1s_convex_hull);
     double e1_weff = 2. * sqrt(x1s_cvx_hull_area / PI);
 
+    double mean_e1_x = thresholded_x1s.col(0).mean();
     double mean_e1_error_x = thresholded_x1s.col(0).mean() - emitter_xy(0,0);
+    double mean_e1_y = thresholded_x1s.col(1).mean();
     double mean_e1_error_y = thresholded_x1s.col(1).mean() - emitter_xy(0,1);
 
     ArrX2d thresholded_x2s = thresholdGuesses(x2s, 1 - 1./sqrt(exp(1.)));
@@ -126,11 +132,22 @@ void mainSimple(void)
     double x2s_cvx_hull_area = polygonArea(x2s_convex_hull);
     double e2_weff = 2. * sqrt(x2s_cvx_hull_area / PI);
 
+    double mean_e2_x = thresholded_x2s.col(0).mean();
     double mean_e2_error_x = thresholded_x2s.col(0).mean() - emitter_xy(1,0);
+    double mean_e2_y = thresholded_x2s.col(1).mean();
     double mean_e2_error_y = thresholded_x2s.col(1).mean() - emitter_xy(1,1);
 
     x1s_convex_hull = loopify(x1s_convex_hull);
     x2s_convex_hull = loopify(x2s_convex_hull);
+
+    ArrX3d emitter_guesses = emitter_xy * 0;
+
+    emitter_guesses(0,0) = mean_e1_x;
+    emitter_guesses(0,1) = mean_e1_y;
+    emitter_guesses(1,0) = mean_e2_x;
+    emitter_guesses(1,1) = mean_e2_y;
+
+    savePoints("finite-time/emitter_guesses.csv", emitter_guesses);
    
     savePoints("finite-time/x1s_convex_hull.csv", x1s_convex_hull);
     savePoints("finite-time/x2s_convex_hull.csv", x2s_convex_hull);
