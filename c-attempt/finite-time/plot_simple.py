@@ -52,8 +52,8 @@ def main() -> None:
 
     
 
-    plt.scatter(x2s[:,1],x2s[:,2], c='magenta', marker='.', s=1)
-    plt.scatter(x1s[:,1],x1s[:,2], c='cyan', marker='.', s=1)
+    plt.scatter(x2s[:,1],x2s[:,2], c='magenta', marker='.', s=0.1)
+    plt.scatter(x1s[:,1],x1s[:,2], c='cyan', marker='.', s=0.1)
     
     x1s_convex_hull = np.genfromtxt(os.path.join(path, 'x1s_convex_hull.csv'), delimiter=',', skip_header=1)
     
