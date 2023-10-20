@@ -143,29 +143,25 @@ inline ArrX2d multicoreMeasureFiniteTime(
     powers.col(0) *= emitter_brightness(0);
     powers.col(1) *= emitter_brightness(1);
 
-    std::cout << "powers:\n" << powers << std::endl;
-
     Eigen::ArrayX2d multicore_measure = powers;
 
     double inv_t = 1. / t;
 
     Eigen::VectorXd c1 = poissrnd(powers.col(0) * t);
+    Eigen::VectorXd c11 = poissrnd(powers.col(0) * powers.col(0) * t);
     Eigen::VectorXd c2 = poissrnd(powers.col(1) * t);
+    Eigen::VectorXd c22 = poissrnd(powers.col(1) * powers.col(1) * t);
     Eigen::VectorXd c12 = poissrnd(powers.col(0) * powers.col(1) * t);
-
-    std::cout << "c1:\n" << c1 << std::endl; 
-    std::cout << "c2:\n" << c2 << std::endl;
-    std::cout << "c12:\n" << c12 << std::endl;
 
     multicore_measure.col(0) = (c1 + c2) * inv_t;
 
     multicore_measure.col(1) = 0;
 
-    Eigen::VectorXd c1_subset = c1(g2_capable_idx);
-    Eigen::VectorXd c2_subset = c2(g2_capable_idx);
+    Eigen::VectorXd c11_subset = c11(g2_capable_idx);
+    Eigen::VectorXd c22_subset = c22(g2_capable_idx);
     Eigen::VectorXd c12_subset = c12(g2_capable_idx);
 
-    multicore_measure(g2_capable_idx,1) = c12_subset.array() / (c1_subset.array() * c2_subset.array());
+    multicore_measure(g2_capable_idx,1) = 2 * c12_subset.array() / (c11_subset.array() + 2 * c12_subset.array() + c22_subset.array());
 
     return multicore_measure;
 }
@@ -222,18 +218,20 @@ inline double multicoreFiniteTimeChi2(
     double inv_t = 1. / t;
 
     Eigen::VectorXd c1 = poissrnd(powers.col(0) * t);
+    Eigen::VectorXd c11 = poissrnd(powers.col(0) * powers.col(0) * t);
     Eigen::VectorXd c2 = poissrnd(powers.col(1) * t);
+    Eigen::VectorXd c22 = poissrnd(powers.col(1) * powers.col(1) * t);
     Eigen::VectorXd c12 = poissrnd(powers.col(0) * powers.col(1) * t);
 
     multicore_measure.col(0) = (c1 + c2) * inv_t;
 
     multicore_measure.col(1) = 0;
 
-    Eigen::VectorXd c1_subset = c1(g2_capable_idx);
-    Eigen::VectorXd c2_subset = c2(g2_capable_idx);
+    Eigen::VectorXd c11_subset = c11(g2_capable_idx);
+    Eigen::VectorXd c22_subset = c22(g2_capable_idx);
     Eigen::VectorXd c12_subset = c12(g2_capable_idx);
 
-    multicore_measure(g2_capable_idx,1) = c12_subset.array() / (c1_subset.array() * c2_subset.array());
+    multicore_measure(g2_capable_idx,1) = 2 * c12_subset.array() / (c11_subset.array() + 2 * c12_subset.array() + c22_subset.array());
 
     ArrX2d chi2 = (multicore_measure - multicore_measure_noisy).pow(2);
 
