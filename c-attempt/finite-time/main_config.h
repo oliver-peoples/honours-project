@@ -12,7 +12,7 @@
 #include <chrono>
 using namespace std::chrono;
 
-#define OPTIM_USE_OPENMP
+// #define OPTIM_USE_OPENMP
 #define OPTIM_ENABLE_EIGEN_WRAPPERS
 #include <optim.hpp>
 

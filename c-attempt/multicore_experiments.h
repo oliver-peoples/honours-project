@@ -163,6 +163,14 @@ inline ArrX2d multicoreMeasureFiniteTime(
 
     multicore_measure(g2_capable_idx,1) = 2 * c12_subset.array() / (c11_subset.array() + 2 * c12_subset.array() + c22_subset.array());
 
+    // for (int idx = 0; idx < g2_capable_idx.rows(); idx++)
+    // {
+    //     if (multicore_measure.row(g2_capable_idx[idx]).hasNaN())
+    //     {
+    //         multicore_measure.row(g2_capable_idx[idx]) = 0.00000001;
+    //     }
+    // }
+
     return multicore_measure;
 }
 
@@ -232,6 +240,14 @@ inline double multicoreFiniteTimeChi2(
     Eigen::VectorXd c12_subset = c12(g2_capable_idx);
 
     multicore_measure(g2_capable_idx,1) = 2 * c12_subset.array() / (c11_subset.array() + 2 * c12_subset.array() + c22_subset.array());
+
+    // for (int idx = 0; idx < g2_capable_idx.rows(); idx++)
+    // {
+    //     if (multicore_measure.row(g2_capable_idx[idx]).hasNaN())
+    //     {
+    //         multicore_measure.row(g2_capable_idx[idx]) = 0.00000001;
+    //     }
+    // }
 
     ArrX2d chi2 = (multicore_measure - multicore_measure_noisy).pow(2);
 

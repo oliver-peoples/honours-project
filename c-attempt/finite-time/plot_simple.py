@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import os
 # from scipy.spatial import ConvexHull, convex_hull_plot_2d
+from matplotlib.patches import RegularPolygon, Circle
 
 cm = 1/2.54
 
@@ -33,6 +34,15 @@ def main() -> None:
     if np.shape(g2_capable)[0] != np.shape(cores)[0]:
         g1_only = [ idx for idx in range(np.shape(cores)[0]) if idx not in g2_capable[:,1]]
         plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
+        
+    for core in cores:
+        # fix radius here
+        
+        shape = RegularPolygon((core[1], core[2]), numVertices=6, radius=0.5, alpha=0.2, edgecolor='k')
+        
+        shape = Circle((core[1],core[2]), radius=0.45, alpha=0.2, edgecolor='k')
+        
+        plt.gca().add_patch(shape)
 
     plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
     plt.scatter(emitter_xy[:,1], emitter_xy[:,2], c='blue', marker='x', linewidths=0.5, s=10)
