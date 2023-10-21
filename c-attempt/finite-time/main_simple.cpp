@@ -9,6 +9,8 @@ constexpr int TRIALS_PER_CONFIG = 10000;
 
 constexpr CHI2_METHOD chi_2_method = NORMALIZE;
 
+// spectrum conjuction analysis tool (???)
+
 void mainSimple(void)
 {
     ArrX3d core_locations;

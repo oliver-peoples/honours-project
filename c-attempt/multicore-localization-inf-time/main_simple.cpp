@@ -15,15 +15,15 @@ void mainSimple(void)
     Eigen::VectorXi g2_capable_idx;
     int num_cores;
 
-    // Eigen::VectorXi g2_capable_idx = Eigen::VectorXi(3,1);
+    g2_capable_idx = Eigen::VectorXi(3,1);
 
-    // g2_capable_idx(0) = 1;
-    // g2_capable_idx(1) = 3;
-    // g2_capable_idx(2) = 5;
+    g2_capable_idx(0) = 1;
+    g2_capable_idx(1) = 3;
+    g2_capable_idx(2) = 5;
 
-    // createConcentricCores(core_locations, 1, 1.);
+    createConcentricCores(core_locations, 3, 1.);
 
-    createWorboyCores(core_locations, g2_capable_idx);
+    // createWorboyCores(core_locations, g2_capable_idx);
    
     savePoints("multicore-localization-inf-time/core_locations.csv", core_locations);
     saveIndexes("multicore-localization-inf-time/g2_capable_indexes.csv", g2_capable_idx);
