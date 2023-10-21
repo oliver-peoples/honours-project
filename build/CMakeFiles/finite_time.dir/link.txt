@@ -1,1 +1,1 @@
-/usr/bin/clang++ -g CMakeFiles/finite_time.dir/finite-time/main.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/finite_time  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 
+/usr/bin/clang++ -g CMakeFiles/finite_time.dir/finite-time/main.cpp.o CMakeFiles/finite_time.dir/finite-time/main_simple.cpp.o CMakeFiles/finite_time.dir/finite-time/main_noise_response.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/finite_time  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 

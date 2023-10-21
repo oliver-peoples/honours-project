@@ -1,0 +1,6 @@
+775: 0.0775
+> normalized chi2
+> fit quality emitter 1: 0.1285, 0.1264, 0.0020
+> fit quality emitter 2: 0.3220, 0.3246, 0.0072
+> fit quality overall: 0.2253, 0.2255
+$0.1285$ & $0.1264$ & $0.0020$ & $0.3220$ & $0.3246$ & $0.0072$

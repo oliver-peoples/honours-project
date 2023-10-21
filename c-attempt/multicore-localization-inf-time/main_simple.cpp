@@ -7,7 +7,7 @@
 constexpr double detector_w = 1.;
 constexpr int TRIALS_PER_CONFIG = 10000;
 
-constexpr CHI2_METHOD chi_2_method = WORBOY;
+constexpr CHI2_METHOD chi_2_method = NORMALIZE;
 
 void mainSimple(void)
 {
@@ -15,13 +15,20 @@ void mainSimple(void)
     Eigen::VectorXi g2_capable_idx;
     int num_cores;
 
-    g2_capable_idx = Eigen::VectorXi(3,1);
+    // 1 1 3 5
+    // g2_capable_idx = Eigen::VectorXi(3,1);
+    // g2_capable_idx(0) = 1;
+    // g2_capable_idx(1) = 3;
+    // g2_capable_idx(2) = 5;
 
-    g2_capable_idx(0) = 1;
-    g2_capable_idx(1) = 3;
-    g2_capable_idx(2) = 5;
+    // 2 0 1 3 5
+    // g2_capable_idx = Eigen::VectorXi(4,1);
+    // g2_capable_idx(0) = 0;
+    // g2_capable_idx(1) = 1;
+    // g2_capable_idx(2) = 3;
+    // g2_capable_idx(3) = 5;
 
-    createConcentricCores(core_locations, 3, 1.);
+    createConcentricCores(core_locations, 2, 1.);
 
     // createWorboyCores(core_locations, g2_capable_idx);
    

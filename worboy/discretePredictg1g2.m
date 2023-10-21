@@ -29,13 +29,15 @@ for ct = 1:3 %indexed over all detectors
     
 %     Recieved counts (assuming below saturation)
     c1(ct) = poissrnd(P1(ct)*t);
+    c11(ct) = poissrnd(P1(ct)^2 * t);
     c2(ct) = poissrnd(P2(ct)*t);
+    c22(ct) = poissrnd(P2(ct)^2 * t);
     c12(ct) = poissrnd(P1(ct)*P2(ct)*t);
     
-    alpha(ct) = c1(ct)/c2(ct);
+%     alpha(ct) = c1(ct)/c2(ct);
 
     g1Pred(ct) = (c1(ct) + c2(ct))/t;
-    g2Pred(ct) = (2*c12(ct))./(c1(ct)+c2(ct)).^2;
+    g2Pred(ct) = (2*c12(ct))./(c11(ct)+2*c12(ct)+c22(ct));
     
     % g1Pred(ct) = (P1(ct) + P2(ct))./(P01 + P02);
     % g2Pred(ct) = (2*alpha(ct))./(1+alpha(ct)).^2;

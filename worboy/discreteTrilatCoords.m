@@ -27,18 +27,13 @@ for ct = 1:3 %indexed over all detectors
     P2(ct) = P02 * exp(-(r2(ct).^2/2)/(2*sigma^2)); % Calculating the power for emitter 2
     
     c1(ct) = poissrnd(P1(ct)*t);
+    c11(ct) = poissrnd(P1(ct)^2 * t);
     c2(ct) = poissrnd(P2(ct)*t);
+    c22(ct) = poissrnd(P2(ct)^2 * t);
     c12(ct) = poissrnd(P1(ct)*P2(ct)*t);
-    
-    % alpha(ct) = P1(ct)/P2(ct);
 
     g1Pred(ct) = (c1(ct) + c2(ct))/t;
-    g2Pred(ct) = (2*c12(ct))./(c1(ct)+c2(ct)).^2;
-
-    % alpha(ct) = c1(ct)/c2(ct);
-    % 
-    % g1Pred(ct) = (P1(ct) + P2(ct))./(P01 + P02);
-    % g2Pred(ct) = (2*alpha(ct))./(1+alpha(ct)).^2;
+    g2Pred(ct) = (2*c12(ct))./(c11(ct)+2*c12(ct)+c22(ct));
 end
 
 c2 = sum((g1 - g1Pred).^2) + sum((g2 - g2Pred).^2);
