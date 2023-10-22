@@ -7,8 +7,8 @@
 
 constexpr double detector_w = 1.;
 constexpr int TRIALS_PER_CONFIG = 200;
-constexpr int CONFIGS_PER_NOISE_SAMPLE = 400;
-constexpr int NOISE_SAMPLES = 400;
+constexpr int CONFIGS_PER_NOISE_SAMPLE = 10000;
+constexpr int NOISE_SAMPLES = 2;
 
 // 5625 total configs took about 5 minutes on the shitbox computer @ 250 trials per config
 constexpr int TOTAL_CONFIGS = CONFIGS_PER_NOISE_SAMPLE * NOISE_SAMPLES;
@@ -40,9 +40,9 @@ void mainNoiseResponse(void)
     g2_capable_idx(0) = 1;
     g2_capable_idx(1) = 3;
     g2_capable_idx(2) = 5;
-    g2_capable_idx(3) = 7;
-    g2_capable_idx(4) = 11;
-    g2_capable_idx(5) = 15;
+    g2_capable_idx(3) = 7+2;
+    g2_capable_idx(4) = 11+2;
+    g2_capable_idx(5) = 15+2;
 
     createConcentricCores(core_locations, 2, 1.);
 
