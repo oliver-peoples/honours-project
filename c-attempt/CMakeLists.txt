@@ -41,3 +41,10 @@ target_compile_options(avg_finite_time PUBLIC -fopenmp)
 add_executable(multicore_monte_carlo ${CMAKE_SOURCE_DIR}/multicore-monte-carlo/main.cpp)
 target_link_libraries(multicore_monte_carlo PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 target_compile_options(multicore_monte_carlo PUBLIC -fopenmp)
+
+add_executable(queue
+    ${CMAKE_SOURCE_DIR}/queue-inf-time/main.cpp
+    ${CMAKE_SOURCE_DIR}/queue-inf-time/noiseResponse.cpp
+)
+target_link_libraries(queue PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
+target_compile_options(queue PUBLIC -fopenmp)
