@@ -7,7 +7,7 @@
 
 constexpr double detector_w = 1.;
 constexpr int TRIALS_PER_CONFIG = 100;
-constexpr int CONFIGS_PER_EXPOSURE_TIME_SAMPLE = 10;
+constexpr int CONFIGS_PER_EXPOSURE_TIME_SAMPLE = 75;
 constexpr int EXPOSURE_TIME_SAMPLES = 30;
 
 // 5625 total configs took about 5 minutes on the shitbox computer @ 250 trials per config
@@ -15,10 +15,10 @@ constexpr int TOTAL_CONFIGS = CONFIGS_PER_EXPOSURE_TIME_SAMPLE * EXPOSURE_TIME_S
 constexpr double PREDICTED_TIME_EB = 5. * (double)TOTAL_CONFIGS / 5625. * (double)TRIALS_PER_CONFIG / (double)250;
 constexpr int TOTAL_SAMPLES = TRIALS_PER_CONFIG * TOTAL_CONFIGS;
 
-constexpr double MIN_EXPOSURE_TIME = 10;
+constexpr double MIN_EXPOSURE_TIME = 100;
 constexpr double MAX_EXPOSURE_TIME = 100000;
 
-constexpr CHI2_METHOD chi_2_method = NORMALIZE;
+constexpr CHI2_METHOD chi_2_method = WORBOY;
 
 constexpr double MAX_R = 0.5;
 
@@ -72,7 +72,7 @@ void mainNoiseResponse(void)
     std::default_random_engine generator(std::random_device{}());
 
     Eigen::Array<double,CONFIGS_PER_EXPOSURE_TIME_SAMPLE,EXPOSURE_TIME_SAMPLES> w_bar_eff;
-    Eigen::Array<double,Eigen::Dynamic,4> emitter_positions = Eigen::Array<double,Eigen::Dynamic,4>(TOTAL_SAMPLES,4);
+    Eigen::Array<double,Eigen::Dynamic,5> emitter_positions = Eigen::Array<double,Eigen::Dynamic,5>(TOTAL_SAMPLES,4);
 
     for (int linear_idx = 0; linear_idx < TOTAL_CONFIGS; linear_idx++)
     {
@@ -83,15 +83,17 @@ void mainNoiseResponse(void)
 
         exposure_time = MIN_EXPOSURE_TIME + exposure_time * (MAX_EXPOSURE_TIME - MIN_EXPOSURE_TIME);
 
-        Eigen::Array<double,2,3> emitter_xy = 0.5 * Eigen::Array<double,2,3>::Random();
+        Eigen::Array<double,2,3> emitter_xy = 0.4 * Eigen::Array<double,2,3>::Random();
+
 
         emitter_xy.col(2) = 0;
 
-        Eigen::Array<double,2,1> emitter_brightness = abs(Eigen::Array<double,2,1>::Random());
+        Eigen::Array<double,2,1> emitter_brightness = 0.9 * Eigen::Array<double,2,1>::Random().abs();
+        std::cout << Eigen::Vector<double,5>{ emitter_xy(0,0),emitter_xy(0,1),emitter_xy(1,0),emitter_xy(1,1),emitter_brightness[0]/emitter_brightness[1] }.transpose() << std::endl;
 
         emitter_brightness[0] = 1.;
 
-        emitter_positions.row(linear_idx) = Eigen::Vector4d{ emitter_xy(0,0),emitter_xy(0,1),emitter_xy(1,0),emitter_xy(1,1) };
+        emitter_positions.row(linear_idx) = Eigen::Vector<double,5>{ emitter_xy(0,0),emitter_xy(0,1),emitter_xy(1,0),emitter_xy(1,1),emitter_brightness[0]/emitter_brightness[1] };
 
         double t = exposure_time / (emitter_brightness[1]);
 
@@ -113,6 +115,8 @@ void mainNoiseResponse(void)
                 t,
                 &generator
             );
+
+            std::cout << multicore_measure << std::endl;
 
             Eigen::VectorXd xx = Eigen::Array<double,5,1>::Random(5,1);
 
@@ -148,7 +152,7 @@ void mainNoiseResponse(void)
 
         auto duration = duration_cast<milliseconds>(stop - start);
 
-        // std::cout << duration.count() << ": " << (double)duration.count() / (double)TRIALS_PER_CONFIG << std::endl;
+        std::cout << duration.count() << ": " << (double)duration.count() / (double)TRIALS_PER_CONFIG << std::endl;
 
         ArrX2d thresholded_x1s = thresholdGuesses(x1s, 1 - 1./sqrt(exp(1.)));
         ArrX2d x1s_convex_hull = convexHull(thresholded_x1s);

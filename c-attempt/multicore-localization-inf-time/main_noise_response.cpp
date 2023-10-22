@@ -6,9 +6,9 @@
 #include <omp.h>
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 150;
-constexpr int CONFIGS_PER_NOISE_SAMPLE = 300;
-constexpr int NOISE_SAMPLES = 300;
+constexpr int TRIALS_PER_CONFIG = 200;
+constexpr int CONFIGS_PER_NOISE_SAMPLE = 400;
+constexpr int NOISE_SAMPLES = 400;
 
 // 5625 total configs took about 5 minutes on the shitbox computer @ 250 trials per config
 constexpr int TOTAL_CONFIGS = CONFIGS_PER_NOISE_SAMPLE * NOISE_SAMPLES;
@@ -55,7 +55,7 @@ void mainNoiseResponse(void)
         int noise_sample_idx = linear_sample_idx % NOISE_SAMPLES;
         int config_sample_Idx = linear_sample_idx / NOISE_SAMPLES;
 
-        // printf("> %i,%i (%i/%i)\n", noise_sample_idx, config_sample_Idx, linear_sample_idx, TOTAL_CONFIGS);
+        printf("> %i,%i (%i/%i)\n", noise_sample_idx, config_sample_Idx, linear_sample_idx, TOTAL_CONFIGS);
 
         double noise = 0.01 * MAX_NOISE_PCT * (double)noise_sample_idx / double(NOISE_SAMPLES - 1);
 

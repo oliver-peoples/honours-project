@@ -14,43 +14,17 @@ path = os.path.dirname(__file__)
 matplotlib.rcParams['text.usetex'] = True
 
 def main() -> None:
+    
+    # emitter_positions = np.genfromtxt(os.path.join(path,'w_eff_bar'))
+    
+    emitter_xys = np.genfromtxt(os.path.join(path,'emitter_positions.csv'), delimiter=',', skip_header=1)
 
-    cores = np.genfromtxt(os.path.join(path,'core_locations.csv'), delimiter=',', skip_header=1)
-
-    # pm_x = np.max(np.abs(cores[:,1]))
-    # pm_y = np.max(np.abs(cores[:,2]))
-
-    # pm = np.max([pm_x, pm_y]) * 1.1
-
-    pm = 2.2
-
-    g2_capable = np.genfromtxt(os.path.join(path,'g2_capable_indexes.csv'), delimiter=',', dtype=np.int8, skip_header=1)
-
-    if np.shape(g2_capable)[0] != np.shape(cores)[0]:
-        g1_only = [ idx for idx in range(np.shape(cores)[0]) if idx not in g2_capable[:,1]]
-        plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
-
-    # emitter_xys = np.genfromtxt(os.path.join(path,'emitter_parameter_log.csv'), delimiter=',', skip_header=1)
-
-    # for row in emitter_xys:
+    for row in emitter_xys:
         
-    #     plt.plot([row[0],row[2]],[row[1],row[3]], c='magenta', linewidth=0.75, alpha=0.35)
-    #     plt.scatter([row[0],row[2]],[row[1],row[3]], c='magenta', marker='.', s=20, alpha=0.35)
-
-
-    plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
+        plt.plot([row[0],row[2]],[row[1],row[3]], c='magenta', linewidth=0.75, alpha=0.35)
+        plt.scatter([row[0],row[2]],[row[1],row[3]], c='magenta', marker='.', s=20, alpha=0.35)
         
-    plt.xlabel(r'$x$', fontsize=10)
-    plt.xlim(-pm,pm)
-    plt.xticks(fontsize=10)
-    plt.ylabel(r'$y$', fontsize=10)
-    plt.ylim(-pm,pm)
-    plt.xticks(fontsize=10)
-    plt.gca().set_aspect(1)
-    plt.tight_layout()
-    plt.gcf().set_figwidth(val=0.32 * 15.3978 * cm)
-    plt.savefig(os.path.join(path,f'core_locations.png'), dpi=600, bbox_inches='tight')
-    plt.close()
+    plt.show()
 
     w_eff_data = np.genfromtxt(os.path.join(path,'w_eff_bar.csv'), delimiter=',', skip_header=1)
 
@@ -71,8 +45,6 @@ def main() -> None:
         counts, bin_ranges = np.histogram(w_eff_data[:,col_idx], bins, range=(0,1.0))
         
         prevalence_data[:,col_idx] = 100 * counts / np.sum(counts)
-        
-    # plt.show()
     
     plt.figure()
     plt.gcf().set_figwidth(val=0.49 * 15.3978 * cm)
