@@ -35,14 +35,14 @@ def main() -> None:
         g1_only = [ idx for idx in range(np.shape(cores)[0]) if idx not in g2_capable[:,1]]
         plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
         
-    for core in cores:
-        # fix radius here
+    # for core in cores:
+    #     # fix radius here
         
-        shape = RegularPolygon((core[1], core[2]), numVertices=6, radius=0.5, alpha=0.2, edgecolor='k')
+    #     shape = RegularPolygon((core[1], core[2]), numVertices=6, radius=0.5, alpha=0.2, edgecolor='k')
         
-        shape = Circle((core[1],core[2]), radius=0.45, alpha=0.2, edgecolor='k')
+    #     shape = Circle((core[1],core[2]), radius=0.45, alpha=0.2, edgecolor='k')
         
-        plt.gca().add_patch(shape)
+    #     plt.gca().add_patch(shape)
 
     plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
     plt.scatter(emitter_xy[:,1], emitter_xy[:,2], c='blue', marker='x', linewidths=0.5, s=10)
@@ -86,8 +86,8 @@ def main() -> None:
     plt.xticks(fontsize=10)
     plt.gca().set_aspect(1)
     plt.tight_layout()
-    plt.gcf().set_figwidth(val=0.49 * 15.3978 * cm)
-    plt.savefig(os.path.join(path,f'emitter_localizations_{np.shape(x1s)[0]}.png'), dpi=600, bbox_inches='tight')
+    plt.gcf().set_figwidth(val=0.32 * 15.3978 * cm)
+    plt.savefig(os.path.join(path,f'emitter_localizations_{np.shape(x1s)[0]}.png'), dpi=400, bbox_inches='tight')
     plt.close()
 
 if __name__ == '__main__':

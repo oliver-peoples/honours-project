@@ -18,11 +18,27 @@ void mainSimple(void)
     Eigen::VectorXi g2_capable_idx;
     int num_cores;
 
-    g2_capable_idx = Eigen::VectorXi(3,1);
+    // g2_capable_idx = Eigen::VectorXi(6,1);
+
+    // g2_capable_idx(0) = 1;
+    // g2_capable_idx(1) = 2;
+    // g2_capable_idx(2) = 3;
+    // g2_capable_idx(3) = 4;
+    // g2_capable_idx(4) = 5;
+    // g2_capable_idx(5) = 6;
+
+    g2_capable_idx = Eigen::VectorXi(4,1);
 
     g2_capable_idx(0) = 1;
     g2_capable_idx(1) = 3;
     g2_capable_idx(2) = 5;
+    g2_capable_idx(3) = 0;
+
+    // g2_capable_idx = Eigen::VectorXi(3,1);
+
+    // g2_capable_idx(0) = 0;
+    // g2_capable_idx(1) = 1;
+    // g2_capable_idx(2) = 2;
 
 
     // g2_capable_idx = Eigen::VectorXi(6,1);
@@ -34,7 +50,7 @@ void mainSimple(void)
     // g2_capable_idx(4) = 11+2;
     // g2_capable_idx(5) = 15+2;
 
-    createConcentricCores(core_locations, 2, 1.);
+    createConcentricCores(core_locations, 1, 1.);
 
     // createWorboyCores(core_locations, g2_capable_idx);
    
@@ -43,23 +59,23 @@ void mainSimple(void)
 
     // std::cout << g2_capable_idx << std::endl;
 
-    Eigen::Array<double,2,3> emitter_xy {
-        { -0.6300,-0.1276,0 },
-        { 0.5146,-0.5573,0 }
-    };
+    // Eigen::Array<double,2,3> emitter_xy {
+    //     { -0.6300,-0.1276,0 },
+    //     { 0.5146,-0.5573,0 }
+    // };
 
     // Eigen::Array<double,2,3> emitter_xy {
     //     { 1.55076,-1.05042,0 },
     //     { 1.05196,-1.01593,0 }
     // };
 
-    // Eigen::Array<double,2,3> emitter_xy {
-    //     { -0.1,-0.1,0 },
-    //     { 0.1,0.1,0 }
-    // };
+    Eigen::Array<double,2,3> emitter_xy {
+        { -0.1,-0.1,0 },
+        { 0.1,0.1,0 }
+    };
 
 
-    emitter_xy *= 0.6;
+    // emitter_xy *= 0.6;
 
     // emitter_xy += 0.25 * Eigen::Array<double,2,3>::Random();
 
@@ -72,7 +88,7 @@ void mainSimple(void)
         0.3617
     };
 
-    double t = 100. / (emitter_brightness[1]);
+    double t = 1000. / (emitter_brightness[1]);
 
     ArrX2d x1s = ArrX2d(TRIALS_PER_CONFIG,2);
     ArrX2d x2s = ArrX2d(TRIALS_PER_CONFIG,2);
@@ -80,6 +96,8 @@ void mainSimple(void)
     Eigen::Array<double,Eigen::Dynamic,1> chi2 = Eigen::Array<double,Eigen::Dynamic,1>(TRIALS_PER_CONFIG,1);
 
     auto start = high_resolution_clock::now();
+
+    std::default_random_engine generator(std::random_device{}());
 
     #pragma omp parallel
     for (int cts = omp_get_thread_num(); cts < TRIALS_PER_CONFIG; cts += omp_get_num_threads())
@@ -99,7 +117,8 @@ void mainSimple(void)
             g2_capable_idx,
             emitter_xy,
             emitter_brightness,
-            t
+            t,
+            &generator
         );
 
         //     // valid = true;
@@ -121,7 +140,7 @@ void mainSimple(void)
         xx(4) = 0.5;
 
         MulticoreDataFiniteTime mc_data = {
-            core_locations, multicore_measure, g2_capable_idx, 100000000, chi_2_method
+            core_locations, multicore_measure, g2_capable_idx, 100000000, chi_2_method, &generator
         };
 
         bool success = optim::nm(xx, multicoreFiniteTimeChi2, (void*)&mc_data);
@@ -193,7 +212,7 @@ void mainSimple(void)
     printf("> %s\n", (chi_2_method == NORMALIZE ? "normalized chi2" : "non-normalized chi2"));
     printf("> fit quality emitter 1: %0.4f, %0.4f, %0.4f\n", fitQuality(x1s), e1_weff, sqrt(mean_e1_error_x * mean_e1_error_x + mean_e1_error_y * mean_e1_error_y));
     printf("> fit quality emitter 2: %0.4f, %0.4f, %0.4f\n", fitQuality(x2s), e2_weff, sqrt(mean_e2_error_x * mean_e2_error_x + mean_e2_error_y * mean_e2_error_y));
-    printf("> fit quality overall: %0.4f, %0.4f\n", 0.5 * (fitQuality(x1s) + fitQuality(x2s)), 0.5 * (e1_weff + e2_weff));
+    printf("> fit quality overall: %0.4f, %0.4f, SF: %f\n", 0.5 * (fitQuality(x1s) + fitQuality(x2s)), 0.5 * (e1_weff + e2_weff), 1./ (0.5 * (e1_weff + e2_weff)));
     printf(
         "$%0.4f$ & $%0.4f$ & $%0.4f$ & $%0.4f$ & $%0.4f$ & $%0.4f$\n",
         fitQuality(x1s), e1_weff, sqrt(mean_e1_error_x * mean_e1_error_x + mean_e1_error_y * mean_e1_error_y),

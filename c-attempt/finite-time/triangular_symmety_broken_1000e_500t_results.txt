@@ -1,0 +1,6 @@
+3838: 7.676
+> non-normalized chi2
+> fit quality emitter 1: 0.2138, 0.0794, 0.0059
+> fit quality emitter 2: 0.3418, 0.1746, 0.0131
+> fit quality overall: 0.2778, 0.1270, SF: 7.874983
+$0.2138$ & $0.0794$ & $0.0059$ & $0.3418$ & $0.1746$ & $0.0131$

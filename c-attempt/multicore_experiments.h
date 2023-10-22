@@ -2,6 +2,7 @@
 #define __ADIRS_MULTICORE_EXPERIMENTS_H__
 
 #include "utils.h"
+#include <random>
 
 //=====================================================================================================================
 // infinite time
@@ -124,7 +125,8 @@ inline ArrX2d multicoreMeasureFiniteTime(
     Eigen::VectorXi& g2_capable_idx,
     Eigen::Array<double,2,3> emitter_xy,
     Eigen::Array<double,2,1> emitter_brightness,
-    double t
+    double t,
+    std::default_random_engine* generator
 )
 {
     Eigen::ArrayX2d distances(core_locations.rows(), 2);
@@ -147,21 +149,20 @@ inline ArrX2d multicoreMeasureFiniteTime(
 
     double inv_t = 1. / t;
 
-    Eigen::VectorXd c1 = poissrnd(powers.col(0) * t);
-    Eigen::VectorXd c11 = poissrnd(powers.col(0) * powers.col(0) * t);
-    Eigen::VectorXd c2 = poissrnd(powers.col(1) * t);
-    Eigen::VectorXd c22 = poissrnd(powers.col(1) * powers.col(1) * t);
-    Eigen::VectorXd c12 = poissrnd(powers.col(0) * powers.col(1) * t);
+    Eigen::VectorXd c1 = poissrnd(powers.col(0) * t, generator);
+    Eigen::VectorXd c2 = poissrnd(powers.col(1) * t, generator);
 
     multicore_measure.col(0) = (c1 + c2) * inv_t;
 
     multicore_measure.col(1) = 0;
 
-    Eigen::VectorXd c11_subset = c11(g2_capable_idx);
-    Eigen::VectorXd c22_subset = c22(g2_capable_idx);
-    Eigen::VectorXd c12_subset = c12(g2_capable_idx);
+    // only g2 capable cores from here on out
 
-    multicore_measure(g2_capable_idx,1) = 2 * c12_subset.array() / (c11_subset.array() + 2 * c12_subset.array() + c22_subset.array());
+    Eigen::VectorXd c11 = poissrnd(powers(g2_capable_idx,0) * powers(g2_capable_idx,0) * t, generator);
+    Eigen::VectorXd c22 = poissrnd(powers(g2_capable_idx,1) * powers(g2_capable_idx,1) * t, generator);
+    Eigen::VectorXd c12 = poissrnd(powers(g2_capable_idx,0) * powers(g2_capable_idx,1) * t, generator);
+
+    multicore_measure(g2_capable_idx,1) = 2 * c12.array() / (c11.array() + 2 * c12.array() + c22.array());
 
     // for (int idx = 0; idx < g2_capable_idx.rows(); idx++)
     // {
@@ -181,6 +182,7 @@ struct MulticoreDataFiniteTime
     Eigen::VectorXi& g2_capable_idx;
     double exposure_time;
     CHI2_METHOD chi_2_method = NORMALIZE;
+    std::default_random_engine* generator;
 };
 
 inline double multicoreFiniteTimeChi2(
@@ -225,21 +227,20 @@ inline double multicoreFiniteTimeChi2(
 
     double inv_t = 1. / t;
 
-    Eigen::VectorXd c1 = poissrnd(powers.col(0) * t);
-    Eigen::VectorXd c11 = poissrnd(powers.col(0) * powers.col(0) * t);
-    Eigen::VectorXd c2 = poissrnd(powers.col(1) * t);
-    Eigen::VectorXd c22 = poissrnd(powers.col(1) * powers.col(1) * t);
-    Eigen::VectorXd c12 = poissrnd(powers.col(0) * powers.col(1) * t);
+    Eigen::VectorXd c1 = poissrnd(powers.col(0) * t, multicore_data_ptr->generator);
+    Eigen::VectorXd c2 = poissrnd(powers.col(1) * t, multicore_data_ptr->generator);
 
     multicore_measure.col(0) = (c1 + c2) * inv_t;
 
     multicore_measure.col(1) = 0;
 
-    Eigen::VectorXd c11_subset = c11(g2_capable_idx);
-    Eigen::VectorXd c22_subset = c22(g2_capable_idx);
-    Eigen::VectorXd c12_subset = c12(g2_capable_idx);
+    // only g2 capable cores from here on out
 
-    multicore_measure(g2_capable_idx,1) = 2 * c12_subset.array() / (c11_subset.array() + 2 * c12_subset.array() + c22_subset.array());
+    Eigen::VectorXd c11 = poissrnd(powers(g2_capable_idx,0) * powers(g2_capable_idx,0) * t, multicore_data_ptr->generator);
+    Eigen::VectorXd c22 = poissrnd(powers(g2_capable_idx,1) * powers(g2_capable_idx,1) * t, multicore_data_ptr->generator);
+    Eigen::VectorXd c12 = poissrnd(powers(g2_capable_idx,0) * powers(g2_capable_idx,1) * t, multicore_data_ptr->generator);
+
+    multicore_measure(g2_capable_idx,1) = 2 * c12.array() / (c11.array() + 2 * c12.array() + c22.array());
 
     // for (int idx = 0; idx < g2_capable_idx.rows(); idx++)
     // {
