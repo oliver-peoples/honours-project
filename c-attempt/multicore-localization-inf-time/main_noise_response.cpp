@@ -17,7 +17,7 @@ constexpr int TOTAL_SAMPLES = TRIALS_PER_CONFIG * TOTAL_CONFIGS;
 
 constexpr double MAX_NOISE_PCT = 20;
 
-constexpr CHI2_METHOD chi_2_method = WORBOY;
+constexpr CHI2_METHOD chi_2_method = NORMALIZE;
 
 constexpr double MAX_R = 0.5;
 
@@ -35,9 +35,18 @@ void mainNoiseResponse(void)
     // G2_CAPABLE_IDX(1) = 3;
     // G2_CAPABLE_IDX(2) = 5;
 
-    // createConcentricCores(core_locations, 1, 1.);
+    g2_capable_idx = Eigen::VectorXi(6,1);
 
-    createWorboyCores(core_locations, g2_capable_idx);
+    g2_capable_idx(0) = 1;
+    g2_capable_idx(1) = 3;
+    g2_capable_idx(2) = 5;
+    g2_capable_idx(3) = 7;
+    g2_capable_idx(4) = 11;
+    g2_capable_idx(5) = 15;
+
+    createConcentricCores(core_locations, 2, 1.);
+
+    // createWorboyCores(core_locations, g2_capable_idx);
    
     savePoints("multicore-localization-inf-time/core_locations.csv", core_locations);
     saveIndexes("multicore-localization-inf-time/g2_capable_indexes.csv", g2_capable_idx);
