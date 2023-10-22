@@ -17,7 +17,7 @@ constexpr int TOTAL_SAMPLES = TRIALS_PER_CONFIG * TOTAL_CONFIGS;
 
 constexpr double MAX_NOISE_PCT = 20;
 
-constexpr CHI2_METHOD chi_2_method = NORMALIZE;
+constexpr CHI2_METHOD chi_2_method = WORBOY;
 
 constexpr double MAX_R = 0.5;
 
