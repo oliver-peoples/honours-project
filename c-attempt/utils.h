@@ -90,6 +90,67 @@ inline void createConcentricCores(ArrX3d& core_locations, int concentric_rings, 
     }
 }
 
+inline ArrX3d createConcentricCores(int concentric_rings, double intercore_dist=1.)
+{
+    // H(n) = n^3 - (n-1)^3 = 3n(n-1)+1 = 3n^2 - 3n +1.
+
+    int n = concentric_rings + 1;
+
+    int num_cores = 3 * (n * n) - 3 * n + 1;
+
+    ArrX3d core_locations = ArrX3d(num_cores, 3);
+
+    core_locations.row(0) = Vec3d{ 0,0,0 };
+
+    int idx_accumulator = 1;
+
+    for(int ring_num = 1; ring_num < n; ring_num++)
+    {
+        int ring_points = (
+            (3 * ((ring_num + 1) * (ring_num + 1)) - 3 * (ring_num + 1) + 1)
+            -
+            (3 * (ring_num * ring_num) - 3 * ring_num + 1)
+        );
+
+        int bridge_points = ((ring_points - 6) / 6);
+
+        Eigen::Vector2d bl_vertex = { -0.5,-0.5 * SQRT3 };
+    
+        bl_vertex *= (double)ring_num;
+
+        for (int vertex_point_num = 0; vertex_point_num < 6; vertex_point_num++)
+        {
+            Eigen::Matrix2d rotation_mat {
+                { cos((double)vertex_point_num * PI / 3),-sin((double)vertex_point_num * PI / 3) },
+                { sin((double)vertex_point_num * PI / 3),cos((double)vertex_point_num * PI / 3) }
+            };
+
+            Eigen::Vector2d vertex_point = rotation_mat * bl_vertex;
+
+            core_locations.row(idx_accumulator) = Vec3d{ vertex_point.x(),vertex_point.y(),0 };
+            core_locations.row(idx_accumulator) *= intercore_dist;
+
+            idx_accumulator++;
+
+            for (int non_vertex_point = 0; non_vertex_point < bridge_points; non_vertex_point++)
+            {
+                Eigen::Vector2d base_position = bl_vertex;
+
+                base_position.x() += (double)ring_num * double(non_vertex_point + 1) * 1. / double(bridge_points + 1);
+
+                Eigen::Vector2d side_point = rotation_mat * base_position;
+
+                core_locations.row(idx_accumulator) = Vec3d{ side_point.x(),side_point.y(),0. };
+                core_locations.row(idx_accumulator) *= intercore_dist;
+
+                idx_accumulator++;
+            }
+        }
+    }
+
+    return core_locations;
+}
+
 inline void createWorboyCores(ArrX3d& core_locations, Eigen::VectorXi& g2_capable_idx)
 {
     core_locations = ArrX3d(3,3);
