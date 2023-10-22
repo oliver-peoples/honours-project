@@ -19,14 +19,14 @@ void mainSimple(void)
     Eigen::VectorXi g2_capable_idx;
     int num_cores;
 
-    // g2_capable_idx = Eigen::VectorXi(6,1);
+    g2_capable_idx = Eigen::VectorXi(6,1);
 
-    // g2_capable_idx(0) = 1;
-    // g2_capable_idx(1) = 2;
-    // g2_capable_idx(2) = 3;
-    // g2_capable_idx(3) = 4;
-    // g2_capable_idx(4) = 5;
-    // g2_capable_idx(5) = 6;
+    g2_capable_idx(0) = 1;
+    g2_capable_idx(1) = 2;
+    g2_capable_idx(2) = 3;
+    g2_capable_idx(3) = 4;
+    g2_capable_idx(4) = 5;
+    g2_capable_idx(5) = 6;
 
     // g2_capable_idx = Eigen::VectorXi(3,1);
 
@@ -34,11 +34,11 @@ void mainSimple(void)
     // g2_capable_idx(1) = 1;
     // g2_capable_idx(2) = 2;
 
-    g2_capable_idx = Eigen::VectorXi(3,1);
+    // g2_capable_idx = Eigen::VectorXi(3,1);
 
-    g2_capable_idx(0) = 1;
-    g2_capable_idx(1) = 3;
-    g2_capable_idx(2) = 5;
+    // g2_capable_idx(0) = 1;
+    // g2_capable_idx(1) = 3;
+    // g2_capable_idx(2) = 5;
 
     // g2_capable_idx = Eigen::VectorXi(4,1);
 
@@ -56,7 +56,7 @@ void mainSimple(void)
     // g2_capable_idx(4) = 11+2;
     // g2_capable_idx(5) = 15+2;
 
-    createConcentricCores(core_locations, 2, 1.);
+    createConcentricCores(core_locations, 1, 1.);
 
     // createWorboyCores(core_locations, g2_capable_idx);
    
