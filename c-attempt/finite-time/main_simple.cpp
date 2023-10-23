@@ -5,7 +5,7 @@
 #include "../convex_hull.h"
 #include "misc/optim_structs.hpp"
 
-constexpr double detector_w = 1.;
+constexpr double detector_w = 0.635;
 constexpr int TRIALS_PER_CONFIG = 500;
 
 constexpr CHI2_METHOD chi_2_method = WORBOY;
@@ -50,7 +50,7 @@ void mainSimple(void)
     // g2_capable_idx(4) = 11+2;
     // g2_capable_idx(5) = 15+2;
 
-    createConcentricCores(core_locations, 1, 1.);
+    createConcentricCores(core_locations, 1, 2.);
 
     // createWorboyCores(core_locations, g2_capable_idx);
    
@@ -59,20 +59,20 @@ void mainSimple(void)
 
     // std::cout << g2_capable_idx << std::endl;
 
-    // Eigen::Array<double,2,3> emitter_xy {
-    //     { -0.6300,-0.1276,0 },
-    //     { 0.5146,-0.5573,0 }
-    // };
+    Eigen::Array<double,2,3> emitter_xy {
+        { -0.6300,-0.1276,0 },
+        { 0.5146,-0.5573,0 }
+    };
 
     // Eigen::Array<double,2,3> emitter_xy {
     //     { 1.55076,-1.05042,0 },
     //     { 1.05196,-1.01593,0 }
     // };
 
-    Eigen::Array<double,2,3> emitter_xy {
-        { -0.1,-0.1,0 },
-        { 0.1,0.1,0 }
-    };
+    // Eigen::Array<double,2,3> emitter_xy {
+    //     { -0.1,-0.1,0 },
+    //     { 0.1,0.1,0 }
+    // };
 
 
     // emitter_xy *= 0.6;
@@ -88,7 +88,7 @@ void mainSimple(void)
         0.3617
     };
 
-    double t = 1000. / (emitter_brightness[1]);
+    double t = 1000000. / (emitter_brightness[1]);
 
     ArrX2d x1s = ArrX2d(TRIALS_PER_CONFIG,2);
     ArrX2d x2s = ArrX2d(TRIALS_PER_CONFIG,2);
