@@ -11,7 +11,8 @@ inline ArrX2d temMeasureInfTime(
     Eigen::Array<double,2,1> emitter_brightness,
     double wl,
     double w0,
-    double wn
+    double wn,
+    double detector_w
 )
 {
     emitter_xy *= w0;
@@ -38,21 +39,21 @@ inline ArrX2d temMeasureInfTime(
         field_intensity(row_num,0) = beams[row_num].tem(
             beams[row_num].mapTo(emitter_xy.row(0)),
             wl,
-            w0,
+            beams[row_num].w0,
             wn
         );
 
         field_intensity(row_num,1) = beams[row_num].tem(
             beams[row_num].mapTo(emitter_xy.row(1)),
             wl,
-            w0,
+            beams[row_num].w0,
             wn
         );
     }
 
     // std:: cout << field_intensity << std::endl;
 
-    Eigen::ArrayX2d powers = field_intensity * Eigen::exp(-(distances * distances / 2)/(2 * (1 * 1)));
+    Eigen::ArrayX2d powers = field_intensity * Eigen::exp(-(distances * distances / 2)/(2 * (detector_w * detector_w)));
 
     powers.col(0) *= emitter_brightness(0);
     powers.col(1) *= emitter_brightness(1);
@@ -79,6 +80,7 @@ struct TemDataInfTime
     double wl;
     double w0;
     double wn;
+    double detector_w;
     CHI2_METHOD chi_2_method = NORMALIZE;
 };
 
@@ -97,6 +99,7 @@ inline double temInfTimeChi2(
     double wl = tem_data_ptr->wl;
     double w0 = tem_data_ptr->w0;
     double wn = tem_data_ptr->wn;
+    double detector_w = tem_data_ptr->detector_w;
 
     Eigen::Array<double,2,3> emitter_xy {
         { vals_inp(0),vals_inp(1),0 },
@@ -131,21 +134,21 @@ inline double temInfTimeChi2(
         field_intensity(row_num,0) = beams[row_num].tem(
             beams[row_num].mapTo(emitter_xy.row(0)),
             wl,
-            w0,
+            beams[row_num].w0,
             wn
         );
 
         field_intensity(row_num,1) = beams[row_num].tem(
             beams[row_num].mapTo(emitter_xy.row(1)),
             wl,
-            w0,
+            beams[row_num].w0,
             wn
         );
     }
 
     // std:: cout << field_intensity << std::endl;
 
-    Eigen::ArrayX2d powers = field_intensity * Eigen::exp(-(distances * distances / 2)/(2 * (1 * 1)));
+    Eigen::ArrayX2d powers = field_intensity * Eigen::exp(-(distances * distances / 2)/(2 * (detector_w * detector_w)));
 
     powers.col(0) *= emitter_brightness(0);
     powers.col(1) *= emitter_brightness(1);
@@ -163,6 +166,12 @@ inline double temInfTimeChi2(
     tem_measure.col(1) = (2. * alpha) / (alpha_p1 * alpha_p1);
 
     ArrX2d chi2 = (tem_measure - tem_measure_noisy).pow(2);
+
+    if ( tem_data_ptr->chi_2_method == NORMALIZE )
+    {
+        chi2.col(0) /= tem_measure_noisy.col(0);
+        chi2.col(1) /= tem_measure_noisy.col(1);
+    }
 
     return chi2.col(0).sum() + chi2.col(1).sum();
 }

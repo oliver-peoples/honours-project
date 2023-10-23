@@ -1,0 +1,54 @@
+Date : 2023-10-23 22:56:49
+Directory : /home/finn/finn-data/honours-project/c-attempt
+Total : 22 files,  2314 codes, 0 comments, 837 blanks, all 3151 lines
+
+Languages
++-------------+------------+------------+------------+------------+------------+
+| language    | files      | code       | comment    | blank      | total      |
++-------------+------------+------------+------------+------------+------------+
+| MagicPython |         22 |      2,314 |          0 |        837 |      3,151 |
++-------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                  | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                     |         22 |      2,314 |          0 |        837 |      3,151 |
+| . (Files)                                                                                             |          2 |        592 |          0 |        140 |        732 |
+| figure-generation                                                                                     |         11 |      1,036 |          0 |        451 |      1,487 |
+| finite-time                                                                                           |          2 |        141 |          0 |         53 |        194 |
+| multicore-localization-inf-time                                                                       |          2 |        159 |          0 |         57 |        216 |
+| multicore-monte-carlo                                                                                 |          1 |         62 |          0 |         24 |         86 |
+| queue-inf-time                                                                                        |          1 |        103 |          0 |         32 |        135 |
+| tem-localization                                                                                      |          1 |         59 |          0 |         24 |         83 |
+| tem-render                                                                                            |          2 |        162 |          0 |         56 |        218 |
++-------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------+-------------+------------+------------+------------+------------+
+| filename                                                                                              | language    | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------+-------------+------------+------------+------------+------------+
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/alpha_plot.py                        | MagicPython |         23 |          0 |          6 |         29 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/confocal_scan.py                     | MagicPython |         89 |          0 |         37 |        126 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/correlation_plot.py                  | MagicPython |         30 |          0 |         10 |         40 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/g2_ring_comparison.py                | MagicPython |         81 |          0 |         53 |        134 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/gouy_phase.py                        | MagicPython |         22 |          0 |          6 |         28 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/hexagonal_cores.py                   | MagicPython |        142 |          0 |         84 |        226 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/isolines.py                          | MagicPython |        149 |          0 |         46 |        195 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/isosurface.py                        | MagicPython |        395 |          0 |        170 |        565 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/peanut.py                            | MagicPython |         45 |          0 |         16 |         61 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/resolution_degradation.py            | MagicPython |         15 |          0 |          7 |         22 |
+| /home/finn/finn-data/honours-project/c-attempt/figure-generation/worboy_scan.py                       | MagicPython |         45 |          0 |         16 |         61 |
+| /home/finn/finn-data/honours-project/c-attempt/finite-time/plot_noise_response.py                     | MagicPython |         74 |          0 |         25 |         99 |
+| /home/finn/finn-data/honours-project/c-attempt/finite-time/plot_simple.py                             | MagicPython |         67 |          0 |         28 |         95 |
+| /home/finn/finn-data/honours-project/c-attempt/multicore-localization-inf-time/plot_noise_response.py | MagicPython |        100 |          0 |         33 |        133 |
+| /home/finn/finn-data/honours-project/c-attempt/multicore-localization-inf-time/plot_simple.py         | MagicPython |         59 |          0 |         24 |         83 |
+| /home/finn/finn-data/honours-project/c-attempt/multicore-monte-carlo/plot_debug.py                    | MagicPython |         62 |          0 |         24 |         86 |
+| /home/finn/finn-data/honours-project/c-attempt/parula.py                                              | MagicPython |        260 |          0 |          2 |        262 |
+| /home/finn/finn-data/honours-project/c-attempt/qclm.py                                                | MagicPython |        332 |          0 |        138 |        470 |
+| /home/finn/finn-data/honours-project/c-attempt/queue-inf-time/plot_noise_response.py                  | MagicPython |        103 |          0 |         32 |        135 |
+| /home/finn/finn-data/honours-project/c-attempt/tem-localization/plot_simple.py                        | MagicPython |         59 |          0 |         24 |         83 |
+| /home/finn/finn-data/honours-project/c-attempt/tem-render/force_isos.py                               | MagicPython |        130 |          0 |         46 |        176 |
+| /home/finn/finn-data/honours-project/c-attempt/tem-render/render_tem.py                               | MagicPython |         32 |          0 |         10 |         42 |
+| Total                                                                                                 |             |      2,314 |          0 |        837 |      3,151 |
++-------------------------------------------------------------------------------------------------------+-------------+------------+------------+------------+------------+

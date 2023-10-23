@@ -16,53 +16,130 @@ using namespace std::chrono;
 #include "../convex_hull.h"
 
 constexpr double wl = 633e-9;
-constexpr double w0 = 400e-9;
+constexpr double w0 = 633e-9;
 constexpr double wn = 2 * PI / wl;
 
 constexpr double detector_w = 1.;
 constexpr int TRIALS_PER_CONFIG = 500;
 
-constexpr CHI2_METHOD chi_2_method = WORBOY;
+constexpr CHI2_METHOD chi_2_method = NORMALIZE;
 
 std::vector<Beam> beams = {
+    // {
+    //     fastTEM_GH<0,0>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // },
+    // {
+    //     fastTEM_GH<0,0>,
+    //     1000000,
+    //     { 0.0 * w0,1.0 * w0 },
+    //     0,
+    //     0,
+    //     0,
+    // },
     {
-        fastTEM_GL<0,0>,
-        { 0.0 * w0,0.0 * w0 },
+        fastTEM_GL<0,2>,
+        2.*w0,
+        { 0.0 * w0,1.0 * w0 },
         0,
         0,
         0
     },
     {
-        fastTEM_GH<0,1>,
-        { 0.0 * w0,0.0 * w0 },
+        fastTEM_GL<0,2>,
+        2.*w0,
+        { cos(PI * -30/180) * w0,sin(PI * -30/180) * w0 },
         0,
         0,
         0
     },
-    {
-        fastTEM_GH<1,0>,
-        { 0.0 * w0,0.0 * w0 },
+        {
+        fastTEM_GL<0,2>,
+        2.*w0,
+        { -cos(PI * -30/180) * w0,sin(PI * -30/180) * w0 },
         0,
-        0,
+        -0,
         0
     },
-    {
-        fastTEM_GH<1,1>,
-        { 0.0 * w0,0.0 * w0 },
-        0,
-        0,
-        0
-    },
+    // {
+    //     fastTEM_GH<1,0>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // },
+    // {
+    //     fastTEM_GH<1,1>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // },
+    // {
+    //     fastTEM_GH<1,2>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // },
+    // {
+    //     fastTEM_GH<2,1>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // }
+    // {
+    //     fastTEM_GH<2,2>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // }
+    // {
+    //     fastTEM_GL<1+0,2+1>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // },
+    // {
+    //     fastTEM_GL<1+1,2+0>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // },
+    // {
+    //     fastTEM_GL<1+1,2+1>,
+    //     { 0.0 * w0,0.0 * w0 },
+    //     0,
+    //     0,
+    //     0
+    // },
 };
 
 int main()
 {
+    ArrX3d beam_centers = ArrX3d(beams.size(),3);
+
+    for (int beam_idx = 0; beam_idx < beams.size(); beam_idx++)
+    {
+        beam_centers.row(beam_idx) = (1. / w0) * Eigen::Vector3d{ beams[beam_idx].center.x(),beams[beam_idx].center.y(),0. };
+    }
+
+    savePoints("tem-localization/beam_centers.csv", beam_centers);
     // position is in terms of w0
 
     Eigen::Array<double,2,3> emitter_xy {
         { -0.6300,-0.1276,0 },
         { 0.5146,-0.5573,0 }
     };
+
+    // emitter_xy *= 0.25;
     
     Eigen::Array<double,2,1> emitter_brightness {
         1.,
@@ -84,7 +161,8 @@ int main()
         emitter_brightness,
         wl,
         w0,
-        wn
+        wn,
+        detector_w
     );
 
     // std::cout << tem_measure << std::endl;
@@ -92,6 +170,7 @@ int main()
     saveMeasurements("tem-localization/g1_g2_measurements.csv", tem_measure);
 
     double variab = 0.1;
+    double variab_2 = 1.;
 
     auto start = high_resolution_clock::now();
 
@@ -103,11 +182,13 @@ int main()
         tem_measure_noisy *= (1 + variab * Eigen::Array<double,Eigen::Dynamic,2>::Random(tem_measure.rows(),2));
 
         Eigen::VectorXd xx = Eigen::Array<double,5,1>::Random(5,1);
+        // Eigen::VectorXd xx = Eigen::Array<double,5,1>{ emitter_xy(0,0),emitter_xy(0,1),emitter_xy(1,0),emitter_xy(1,1),emitter_brightness[1] };
+        // xx.array() *= (1 + variab_2 * Eigen::Array<double,5,1>::Random());
 
         xx(4) = 0.5;
 
         TemDataInfTime tem_data = {
-            beams, tem_measure_noisy, wl, w0, wn, NORMALIZE
+            beams, tem_measure_noisy, wl, w0, wn, detector_w, NORMALIZE
         };
 
         bool success = optim::nm(xx, temInfTimeChi2, (void*)&tem_data);
