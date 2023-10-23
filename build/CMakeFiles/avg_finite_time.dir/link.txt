@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g CMakeFiles/avg_finite_time.dir/avg-finite-time/main.cpp.o CMakeFiles/avg_finite_time.dir/avg-finite-time/main_simple.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/avg_finite_time  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 

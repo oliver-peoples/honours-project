@@ -33,9 +33,9 @@ const double SQRT3 = sqrt(3.);
 
 constexpr int factorial(int x)
 {
-    int accumulate = x;
+    int accumulate = 1;
 
-    for (int idx = x - 1; x > 0; x--)
+    for (int idx = 2;  idx <= x; idx++)
     {
         accumulate *= idx;
     }

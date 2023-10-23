@@ -21,17 +21,17 @@ constexpr int N = 3;
 
 constexpr int NUM_SAMPLES = NUM_X * NUM_Y;
 
-constexpr int factorial(int x)
-{
-    int accumulate = x;
+// constexpr int factorial(int x)
+// {
+//     int accumulate = x;
 
-    for (int idx = x - 1; x > 0; x--)
-    {
-        accumulate *= idx;
-    }
+//     for (int idx = x - 1; x > 0; x--)
+//     {
+//         accumulate *= idx;
+//     }
 
-    return accumulate;
-}
+//     return accumulate;
+// }
 
 constexpr int m_fact = factorial(M);
 constexpr int n_fact = factorial(N);

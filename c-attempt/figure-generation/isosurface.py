@@ -64,7 +64,7 @@ def glPlot() -> None:
 
     pm_w_0 = w_0 * 3.
 
-    x_samples = 150
+    x_samples = 200
     y_samples = 150
     z_samples = 300
 

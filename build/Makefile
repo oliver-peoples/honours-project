@@ -130,6 +130,32 @@ multicore_monte_carlo/fast:
 .PHONY : multicore_monte_carlo/fast
 
 #=============================================================================
+# Target rules for targets named queue
+
+# Build rule for target.
+queue: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 queue
+.PHONY : queue
+
+# fast build rule for target.
+queue/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/queue.dir/build.make CMakeFiles/queue.dir/build
+.PHONY : queue/fast
+
+#=============================================================================
+# Target rules for targets named avg_finite_time
+
+# Build rule for target.
+avg_finite_time: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 avg_finite_time
+.PHONY : avg_finite_time
+
+# fast build rule for target.
+avg_finite_time/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/avg_finite_time.dir/build.make CMakeFiles/avg_finite_time.dir/build
+.PHONY : avg_finite_time/fast
+
+#=============================================================================
 # Target rules for targets named finite_time
 
 # Build rule for target.
@@ -156,30 +182,65 @@ multicore_localization/fast:
 .PHONY : multicore_localization/fast
 
 #=============================================================================
-# Target rules for targets named render_tem
+# Target rules for targets named tem_render_3d
 
 # Build rule for target.
-render_tem: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 render_tem
-.PHONY : render_tem
+tem_render_3d: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tem_render_3d
+.PHONY : tem_render_3d
 
 # fast build rule for target.
-render_tem/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/render_tem.dir/build.make CMakeFiles/render_tem.dir/build
-.PHONY : render_tem/fast
+tem_render_3d/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_render_3d.dir/build.make CMakeFiles/tem_render_3d.dir/build
+.PHONY : tem_render_3d/fast
 
-#=============================================================================
-# Target rules for targets named tem_localization_2d
+avg-finite-time/main.o: avg-finite-time/main.cpp.o
+.PHONY : avg-finite-time/main.o
 
-# Build rule for target.
-tem_localization_2d: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tem_localization_2d
-.PHONY : tem_localization_2d
+# target to build an object file
+avg-finite-time/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/avg_finite_time.dir/build.make CMakeFiles/avg_finite_time.dir/avg-finite-time/main.cpp.o
+.PHONY : avg-finite-time/main.cpp.o
 
-# fast build rule for target.
-tem_localization_2d/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/build
-.PHONY : tem_localization_2d/fast
+avg-finite-time/main.i: avg-finite-time/main.cpp.i
+.PHONY : avg-finite-time/main.i
+
+# target to preprocess a source file
+avg-finite-time/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/avg_finite_time.dir/build.make CMakeFiles/avg_finite_time.dir/avg-finite-time/main.cpp.i
+.PHONY : avg-finite-time/main.cpp.i
+
+avg-finite-time/main.s: avg-finite-time/main.cpp.s
+.PHONY : avg-finite-time/main.s
+
+# target to generate assembly for a file
+avg-finite-time/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/avg_finite_time.dir/build.make CMakeFiles/avg_finite_time.dir/avg-finite-time/main.cpp.s
+.PHONY : avg-finite-time/main.cpp.s
+
+avg-finite-time/main_simple.o: avg-finite-time/main_simple.cpp.o
+.PHONY : avg-finite-time/main_simple.o
+
+# target to build an object file
+avg-finite-time/main_simple.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/avg_finite_time.dir/build.make CMakeFiles/avg_finite_time.dir/avg-finite-time/main_simple.cpp.o
+.PHONY : avg-finite-time/main_simple.cpp.o
+
+avg-finite-time/main_simple.i: avg-finite-time/main_simple.cpp.i
+.PHONY : avg-finite-time/main_simple.i
+
+# target to preprocess a source file
+avg-finite-time/main_simple.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/avg_finite_time.dir/build.make CMakeFiles/avg_finite_time.dir/avg-finite-time/main_simple.cpp.i
+.PHONY : avg-finite-time/main_simple.cpp.i
+
+avg-finite-time/main_simple.s: avg-finite-time/main_simple.cpp.s
+.PHONY : avg-finite-time/main_simple.s
+
+# target to generate assembly for a file
+avg-finite-time/main_simple.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/avg_finite_time.dir/build.make CMakeFiles/avg_finite_time.dir/avg-finite-time/main_simple.cpp.s
+.PHONY : avg-finite-time/main_simple.cpp.s
 
 finite-time/main.o: finite-time/main.cpp.o
 .PHONY : finite-time/main.o
@@ -349,53 +410,77 @@ multicore-monte-carlo/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/multicore_monte_carlo.dir/build.make CMakeFiles/multicore_monte_carlo.dir/multicore-monte-carlo/main.cpp.s
 .PHONY : multicore-monte-carlo/main.cpp.s
 
-render_tem_gh.o: render_tem_gh.cpp.o
-.PHONY : render_tem_gh.o
+queue-inf-time/main.o: queue-inf-time/main.cpp.o
+.PHONY : queue-inf-time/main.o
 
 # target to build an object file
-render_tem_gh.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/render_tem.dir/build.make CMakeFiles/render_tem.dir/render_tem_gh.cpp.o
-.PHONY : render_tem_gh.cpp.o
+queue-inf-time/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/queue.dir/build.make CMakeFiles/queue.dir/queue-inf-time/main.cpp.o
+.PHONY : queue-inf-time/main.cpp.o
 
-render_tem_gh.i: render_tem_gh.cpp.i
-.PHONY : render_tem_gh.i
+queue-inf-time/main.i: queue-inf-time/main.cpp.i
+.PHONY : queue-inf-time/main.i
 
 # target to preprocess a source file
-render_tem_gh.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/render_tem.dir/build.make CMakeFiles/render_tem.dir/render_tem_gh.cpp.i
-.PHONY : render_tem_gh.cpp.i
+queue-inf-time/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/queue.dir/build.make CMakeFiles/queue.dir/queue-inf-time/main.cpp.i
+.PHONY : queue-inf-time/main.cpp.i
 
-render_tem_gh.s: render_tem_gh.cpp.s
-.PHONY : render_tem_gh.s
+queue-inf-time/main.s: queue-inf-time/main.cpp.s
+.PHONY : queue-inf-time/main.s
 
 # target to generate assembly for a file
-render_tem_gh.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/render_tem.dir/build.make CMakeFiles/render_tem.dir/render_tem_gh.cpp.s
-.PHONY : render_tem_gh.cpp.s
+queue-inf-time/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/queue.dir/build.make CMakeFiles/queue.dir/queue-inf-time/main.cpp.s
+.PHONY : queue-inf-time/main.cpp.s
 
-tem_localization_2d.o: tem_localization_2d.cpp.o
-.PHONY : tem_localization_2d.o
+queue-inf-time/noiseResponse.o: queue-inf-time/noiseResponse.cpp.o
+.PHONY : queue-inf-time/noiseResponse.o
 
 # target to build an object file
-tem_localization_2d.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.o
-.PHONY : tem_localization_2d.cpp.o
+queue-inf-time/noiseResponse.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/queue.dir/build.make CMakeFiles/queue.dir/queue-inf-time/noiseResponse.cpp.o
+.PHONY : queue-inf-time/noiseResponse.cpp.o
 
-tem_localization_2d.i: tem_localization_2d.cpp.i
-.PHONY : tem_localization_2d.i
+queue-inf-time/noiseResponse.i: queue-inf-time/noiseResponse.cpp.i
+.PHONY : queue-inf-time/noiseResponse.i
 
 # target to preprocess a source file
-tem_localization_2d.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.i
-.PHONY : tem_localization_2d.cpp.i
+queue-inf-time/noiseResponse.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/queue.dir/build.make CMakeFiles/queue.dir/queue-inf-time/noiseResponse.cpp.i
+.PHONY : queue-inf-time/noiseResponse.cpp.i
 
-tem_localization_2d.s: tem_localization_2d.cpp.s
-.PHONY : tem_localization_2d.s
+queue-inf-time/noiseResponse.s: queue-inf-time/noiseResponse.cpp.s
+.PHONY : queue-inf-time/noiseResponse.s
 
 # target to generate assembly for a file
-tem_localization_2d.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization_2d.dir/build.make CMakeFiles/tem_localization_2d.dir/tem_localization_2d.cpp.s
-.PHONY : tem_localization_2d.cpp.s
+queue-inf-time/noiseResponse.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/queue.dir/build.make CMakeFiles/queue.dir/queue-inf-time/noiseResponse.cpp.s
+.PHONY : queue-inf-time/noiseResponse.cpp.s
+
+tem-render/tem_render_3d.o: tem-render/tem_render_3d.cpp.o
+.PHONY : tem-render/tem_render_3d.o
+
+# target to build an object file
+tem-render/tem_render_3d.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_render_3d.dir/build.make CMakeFiles/tem_render_3d.dir/tem-render/tem_render_3d.cpp.o
+.PHONY : tem-render/tem_render_3d.cpp.o
+
+tem-render/tem_render_3d.i: tem-render/tem_render_3d.cpp.i
+.PHONY : tem-render/tem_render_3d.i
+
+# target to preprocess a source file
+tem-render/tem_render_3d.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_render_3d.dir/build.make CMakeFiles/tem_render_3d.dir/tem-render/tem_render_3d.cpp.i
+.PHONY : tem-render/tem_render_3d.cpp.i
+
+tem-render/tem_render_3d.s: tem-render/tem_render_3d.cpp.s
+.PHONY : tem-render/tem_render_3d.s
+
+# target to generate assembly for a file
+tem-render/tem_render_3d.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_render_3d.dir/build.make CMakeFiles/tem_render_3d.dir/tem-render/tem_render_3d.cpp.s
+.PHONY : tem-render/tem_render_3d.cpp.s
 
 # Help Target
 help:
@@ -405,11 +490,18 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... avg_finite_time"
 	@echo "... finite_time"
 	@echo "... multicore_localization"
 	@echo "... multicore_monte_carlo"
-	@echo "... render_tem"
-	@echo "... tem_localization_2d"
+	@echo "... queue"
+	@echo "... tem_render_3d"
+	@echo "... avg-finite-time/main.o"
+	@echo "... avg-finite-time/main.i"
+	@echo "... avg-finite-time/main.s"
+	@echo "... avg-finite-time/main_simple.o"
+	@echo "... avg-finite-time/main_simple.i"
+	@echo "... avg-finite-time/main_simple.s"
 	@echo "... finite-time/main.o"
 	@echo "... finite-time/main.i"
 	@echo "... finite-time/main.s"
@@ -431,12 +523,15 @@ help:
 	@echo "... multicore-monte-carlo/main.o"
 	@echo "... multicore-monte-carlo/main.i"
 	@echo "... multicore-monte-carlo/main.s"
-	@echo "... render_tem_gh.o"
-	@echo "... render_tem_gh.i"
-	@echo "... render_tem_gh.s"
-	@echo "... tem_localization_2d.o"
-	@echo "... tem_localization_2d.i"
-	@echo "... tem_localization_2d.s"
+	@echo "... queue-inf-time/main.o"
+	@echo "... queue-inf-time/main.i"
+	@echo "... queue-inf-time/main.s"
+	@echo "... queue-inf-time/noiseResponse.o"
+	@echo "... queue-inf-time/noiseResponse.i"
+	@echo "... queue-inf-time/noiseResponse.s"
+	@echo "... tem-render/tem_render_3d.o"
+	@echo "... tem-render/tem_render_3d.i"
+	@echo "... tem-render/tem_render_3d.s"
 .PHONY : help
 
 

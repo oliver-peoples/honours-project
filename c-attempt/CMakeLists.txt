@@ -49,3 +49,7 @@ add_executable(queue
 )
 target_link_libraries(queue PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 target_compile_options(queue PUBLIC -fopenmp)
+
+add_executable(tem_localization ${CMAKE_SOURCE_DIR}/tem-localization/main.cpp)
+target_link_libraries(tem_localization PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
+target_compile_options(tem_localization PUBLIC -fopenmp)
