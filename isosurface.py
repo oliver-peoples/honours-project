@@ -114,7 +114,7 @@ for roll_idx in range(len(roll_linspace)):
 
     exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
 
-    intensity = np.abs(scalar_comp * exp_component)**2
+    intensity = np.abs((scalar_comp * exp_component)**2)
 
     max_intensity = np.max(intensity)
     intensity /=max_intensity
