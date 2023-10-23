@@ -88,7 +88,7 @@ void mainSimple(void)
         0.3617
     };
 
-    double t = 1000000. / (emitter_brightness[1]);
+    double t = 10000. / (emitter_brightness[1]);
 
     ArrX2d x1s = ArrX2d(TRIALS_PER_CONFIG,2);
     ArrX2d x2s = ArrX2d(TRIALS_PER_CONFIG,2);
