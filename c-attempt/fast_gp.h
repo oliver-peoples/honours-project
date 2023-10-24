@@ -249,6 +249,7 @@ inline __HOST_DEVICE__ double fastTEM_GH(Eigen::Vector3d xyz, const double wl, c
 struct Beam
 {
     double (*tem)(Eigen::Vector3d xyz,const double wl, const double w0, const double wn);
+    double w0;
 
     Eigen::Vector2d center = { 0,0 };
 

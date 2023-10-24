@@ -26,6 +26,7 @@ constexpr long num_samples = x_samples * y_samples * z_samples;
 
 Beam beam = {
     fastTEM_GH<1,1>,
+    w0,
     { 0.0 * w0,0.0 * w0 },
     40,
     45,
