@@ -3,7 +3,8 @@
 #include <Eigen/Dense>
 #include <Eigen/src/Core/Matrix.h>
 #include <omp.h>
-#include <math.h>
+// #include <math.h>
+#include <cmath>
 #include "utils.h"
 
 #define USE_OMP 1
@@ -20,18 +21,6 @@ constexpr int M = 3;
 constexpr int N = 3;
 
 constexpr int NUM_SAMPLES = NUM_X * NUM_Y;
-
-constexpr int factorial(int x)
-{
-    int accumulate = x;
-
-    for (int idx = x - 1; x > 0; x--)
-    {
-        accumulate *= idx;
-    }
-
-    return accumulate;
-}
 
 constexpr int m_fact = factorial(M);
 constexpr int n_fact = factorial(N);

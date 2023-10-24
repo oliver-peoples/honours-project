@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g CMakeFiles/tem_render_3d.dir/tem-render/tem_render_3d.cpp.o -o /mnt/nvme0n1p1/honours-project/c-attempt/tem_render_3d  -lrt -ldl -lpthread /usr/lib64/libomp.so /usr/lib64/libpthread.so 

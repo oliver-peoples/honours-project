@@ -130,6 +130,8 @@ class GaussHermite:
         
         self.volume = volume
         
+        print(f'normalized with {self.volume}')
+        
     def orderString(self) -> str:
         
         return str(self.m) + str(self.n)
@@ -216,11 +218,11 @@ class Solver:
         
         for is_idx in range(0,len(self.illumination_structures)):
     
-            p_1_guess = e_1_guess.relative_brightness * (self.illumination_structures[is_idx].intensityFn(*e_1_guess.xy))
-            p_2_guess = e_2_guess.relative_brightness * (self.illumination_structures[is_idx].intensityFn(*e_2_guess.xy))
+            p_1_guess = e_1_guess.relative_brightness * (self.illumination_structures[is_idx].intensityFn(*e_1_guess.xyz))
+            p_2_guess = e_2_guess.relative_brightness * (self.illumination_structures[is_idx].intensityFn(*e_2_guess.xyz))
             
-            p_1_guess = self.detector.detectFn(*e_1_guess.xy, p_1_guess)
-            p_2_guess = self.detector.detectFn(*e_2_guess.xy, p_2_guess)
+            p_1_guess = self.detector.detectFn(e_1_guess.xyz, p_1_guess)
+            p_2_guess = self.detector.detectFn(e_2_guess.xyz, p_2_guess)
             
             g_1_guess[is_idx] = (p_1_guess + p_2_guess) / (e_1_guess.relative_brightness + e_2_guess.relative_brightness)
             

@@ -31,6 +31,18 @@ enum CHI2_METHOD
 const double CONF_FRAC = 1 - 1/sqrt(exp(1));
 const double SQRT3 = sqrt(3.);
 
+constexpr int factorial(int x)
+{
+    int accumulate = 1;
+
+    for (int idx = 2;  idx <= x; idx++)
+    {
+        accumulate *= idx;
+    }
+
+    return accumulate;
+}
+
 inline void createConcentricCores(ArrX3d& core_locations, int concentric_rings, double intercore_dist=1.)
 {
     // H(n) = n^3 - (n-1)^3 = 3n(n-1)+1 = 3n^2 - 3n +1.

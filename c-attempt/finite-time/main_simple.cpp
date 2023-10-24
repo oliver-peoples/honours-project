@@ -5,7 +5,7 @@
 #include "../convex_hull.h"
 #include "misc/optim_structs.hpp"
 
-constexpr double detector_w = 0.635;
+constexpr double detector_w = 1.;
 constexpr int TRIALS_PER_CONFIG = 500;
 
 constexpr CHI2_METHOD chi_2_method = WORBOY;

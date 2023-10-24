@@ -87,8 +87,13 @@ def glPlot() -> None:
 
     pm_w_0 = w_0 * 3.
 
+<<<<<<< HEAD
     x_samples = 300
     y_samples = 300
+=======
+    x_samples = 200
+    y_samples = 150
+>>>>>>> 43de0cd09a69de1d6f57e0b65648bbaf7d210df0
     z_samples = 300
 
     off_nadir_angle_deg = 35

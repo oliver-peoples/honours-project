@@ -3,6 +3,11 @@ cmake_minimum_required(VERSION 3.18)
 project(qclm)
 
 set(CMAKE_CXX_STANDARD_REQUIRED 20)
+<<<<<<< HEAD
+=======
+set(CMAKE_CXX_STANDARD 20)
+
+>>>>>>> 43de0cd09a69de1d6f57e0b65648bbaf7d210df0
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 find_package(OpenMP REQUIRED)
@@ -10,10 +15,9 @@ find_package(OpenMP REQUIRED)
 include_directories(${CMAKE_SOURCE_DIR}/eigen3)
 include_directories(${CMAKE_SOURCE_DIR}/optim)
 
-# add_executable(tem_localization_2d ${CMAKE_SOURCE_DIR}/tem_localization_2d.cpp)
-
-# add_executable(render_tem ${CMAKE_SOURCE_DIR}/render_tem_gh.cpp)
-# target_link_libraries(render_tem PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
+add_executable(tem_render_3d ${CMAKE_SOURCE_DIR}/tem-render/tem_render_3d.cpp)
+target_link_libraries(tem_render_3d PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
+target_compile_options(tem_render_3d PUBLIC -fopenmp)
 
 add_executable(multicore_localization
     ${CMAKE_SOURCE_DIR}/multicore-localization-inf-time/main.cpp
@@ -48,3 +52,7 @@ add_executable(queue
 )
 target_link_libraries(queue PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 target_compile_options(queue PUBLIC -fopenmp)
+
+add_executable(tem_localization ${CMAKE_SOURCE_DIR}/tem-localization/main.cpp)
+target_link_libraries(tem_localization PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
+target_compile_options(tem_localization PUBLIC -fopenmp)
