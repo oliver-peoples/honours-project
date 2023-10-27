@@ -6,7 +6,7 @@
 #include "misc/optim_structs.hpp"
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 500;
+constexpr int TRIALS_PER_CONFIG = 10000;
 
 constexpr CHI2_METHOD chi_2_method = WORBOY;
 
@@ -27,12 +27,12 @@ void mainSimple(void)
     // g2_capable_idx(4) = 5;
     // g2_capable_idx(5) = 6;
 
-    g2_capable_idx = Eigen::VectorXi(4,1);
+    // g2_capable_idx = Eigen::VectorXi(4,1);
 
-    g2_capable_idx(0) = 1;
-    g2_capable_idx(1) = 3;
-    g2_capable_idx(2) = 5;
-    g2_capable_idx(3) = 0;
+    // g2_capable_idx(0) = 1;
+    // g2_capable_idx(1) = 3;
+    // g2_capable_idx(2) = 5;
+    // g2_capable_idx(3) = 0;
 
     // g2_capable_idx = Eigen::VectorXi(3,1);
 
@@ -50,9 +50,9 @@ void mainSimple(void)
     // g2_capable_idx(4) = 11+2;
     // g2_capable_idx(5) = 15+2;
 
-    createConcentricCores(core_locations, 1, 2.);
+    // createConcentricCores(core_locations, 1, 2.);
 
-    // createWorboyCores(core_locations, g2_capable_idx);
+    createWorboyCores(core_locations, g2_capable_idx);
    
     savePoints("finite-time/core_locations.csv", core_locations);
     saveIndexes("finite-time/g2_capable_indexes.csv", g2_capable_idx);
@@ -60,8 +60,8 @@ void mainSimple(void)
     // std::cout << g2_capable_idx << std::endl;
 
     Eigen::Array<double,2,3> emitter_xy {
-        { -0.6300,-0.1276,0 },
-        { 0.5146,-0.5573,0 }
+        { -0.25,-0.126,0 },
+        { 0.15,0.17,0 }
     };
 
     // Eigen::Array<double,2,3> emitter_xy {
@@ -85,7 +85,7 @@ void mainSimple(void)
 
     Eigen::Array<double,2,1> emitter_brightness {
         1.,
-        0.3617
+        0.5
     };
 
     double t = 10000. / (emitter_brightness[1]);

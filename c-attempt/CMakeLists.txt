@@ -3,11 +3,8 @@ cmake_minimum_required(VERSION 3.18)
 project(qclm)
 
 set(CMAKE_CXX_STANDARD_REQUIRED 20)
-<<<<<<< HEAD
-=======
-set(CMAKE_CXX_STANDARD 20)
+# set(CMAKE_CXX_STANDARD 20)
 
->>>>>>> 43de0cd09a69de1d6f57e0b65648bbaf7d210df0
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 find_package(OpenMP REQUIRED)

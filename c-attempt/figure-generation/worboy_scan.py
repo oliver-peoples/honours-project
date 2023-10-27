@@ -18,7 +18,7 @@ scale = 0.5
 
 pm = 3
 
-e_1_xy = scale * np.array([-0.5,-0.25])
+e_1_xy = scale * np.array([-0.,-0.25])
 e_2_xy = scale * np.array([0.5,0.25])
 
 r = np.linalg.norm(e_1_xy - e_2_xy)
