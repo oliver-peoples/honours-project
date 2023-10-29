@@ -28,9 +28,9 @@ void mainSimple(void)
     // g2_capable_idx(2) = 3;
     // g2_capable_idx(3) = 5;
 
-    createConcentricCores(core_locations, 2, 1.);
+    // createConcentricCores(core_locations, 2, 1.);
 
-    // createWorboyCores(core_locations, g2_capable_idx);
+    createWorboyCores(core_locations, g2_capable_idx);
    
     savePoints("multicore-localization-inf-time/core_locations.csv", core_locations);
     saveIndexes("multicore-localization-inf-time/g2_capable_indexes.csv", g2_capable_idx);
@@ -42,7 +42,7 @@ void mainSimple(void)
         { 0.5146,-0.5573,0 }
     };
 
-    emitter_xy *= 0.25;
+    // emitter_xy *= 0.25;
 
     // emitter_xy += 0.25 * Eigen::Array<double,2,3>::Random();
 

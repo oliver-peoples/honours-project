@@ -19,7 +19,7 @@ def main() -> None:
     
     emitter_xy = np.genfromtxt(os.path.join(path,'emitter_xy.csv'), delimiter=',', skip_header=1)
     
-    print(np.linalg.norm(emitter_xy[0,:] - emitter_xy[1,:]))
+    print(np.linalg.norm(emitter_xy[0,1:] - emitter_xy[1,1:]))
 
     cores = np.genfromtxt(os.path.join(path,'core_locations.csv'), delimiter=',', skip_header=1)
 

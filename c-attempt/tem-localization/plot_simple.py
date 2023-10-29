@@ -52,9 +52,9 @@ def main() -> None:
 
     plt.scatter(x2s[:,1],x2s[:,2], c='magenta', marker='.', s=1)
     plt.scatter(x1s[:,1],x1s[:,2], c='cyan', marker='.', s=1)
-    plt.scatter(beam_centers[:,1],beam_centers[:,2], c='k', marker='+', s=10, linewidths=0.5)
+    # plt.scatter(beam_centers[:,1],beam_centers[:,2], c='k', marker='+', s=10, linewidths=0.5)
     
-    x1s_convex_hull = np.genfromtxt(os.path.join(path, 'x1s_convex_hull.csv'), delimiter=',', skip_header=1)
+    # x1s_convex_hull = np.genfromtxt(os.path.join(path, 'x1s_convex_hull.csv'), delimiter=',', skip_header=1)
     
     # plt.plot(x1s_convex_hull[:,1],x1s_convex_hull[:,2], c='black', linewidth=0.5)
     
@@ -66,6 +66,7 @@ def main() -> None:
     # 1_only,2], c='black', marker='.', s=10)
     # plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
     plt.scatter(emitter_xy[:,1], emitter_xy[:,2], c='blue', marker='x', linewidths=0.5, s=10)
+    # plt.scatter(emitter_xy[1,1], emitter_xy[1,2], c='red', marker='+', linewidths=2.5, s=30)
     plt.xlabel(r'$x$', fontsize=10)
     plt.xlim(-1.5,1.5)
     plt.xticks(fontsize=10)
