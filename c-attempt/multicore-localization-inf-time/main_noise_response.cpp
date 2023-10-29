@@ -7,8 +7,8 @@
 
 constexpr double detector_w = 1.;
 constexpr int TRIALS_PER_CONFIG = 200;
-constexpr int CONFIGS_PER_NOISE_SAMPLE = 10000;
-constexpr int NOISE_SAMPLES = 2;
+constexpr int CONFIGS_PER_NOISE_SAMPLE =400;
+constexpr int NOISE_SAMPLES = 400;
 
 // 5625 total configs took about 5 minutes on the shitbox computer @ 250 trials per config
 constexpr int TOTAL_CONFIGS = CONFIGS_PER_NOISE_SAMPLE * NOISE_SAMPLES;

@@ -16,7 +16,8 @@ matplotlib.rcParams['text.usetex'] = True
 
 # radial_counts
 
-radial_strat = np.genfromtxt(os.path.join(path,'data','w_eff_bar_2_19_1,3,5,7,11,15.csv'), delimiter=',', skip_header=1)
+# radial_strat = np.genfromtxt(os.path.join(path,'data','w_eff_bar_2_19_1,3,5,7,11,15.csv'), delimiter=',', skip_header=1)
+radial_strat = np.genfromtxt(os.path.join(path,'data','chi2_w_eff_bar_normed.csv'), delimiter=',', skip_header=1)
 
 configs_per = np.shape(radial_strat)[0]
 noise_samples = np.shape(radial_strat)[1]
@@ -36,6 +37,9 @@ for col_idx in range(noise_samples):
     
     radial_frequencies[:,col_idx] = 100 * counts / np.sum(counts)
 
+lt_thresh = np.where(w_eff_linspace < 0.05)[0]
+radial_frequencies_thresh = radial_frequencies[lt_thresh,:]
+print(radial_frequencies_thresh[:,0])
 radial_frequencies_normed = radial_frequencies[:,-1]
 # radial_frequencies_normed /= np.max(radial_frequencies_normed)
    
@@ -43,7 +47,8 @@ radial_frequencies_normed = radial_frequencies[:,-1]
     
 # shift_counts
 
-shift_strat = np.genfromtxt(os.path.join(path,'data','w_eff_bar_2_19_1,3,5,9,13,17.csv'), delimiter=',', skip_header=1)
+# shift_strat = np.genfromtxt(os.path.join(path,'data','w_eff_bar_2_19_1,3,5,9,13,17.csv'), delimiter=',', skip_header=1)
+shift_strat = np.genfromtxt(os.path.join(path,'data','chi2_w_eff_bar_worboy.csv'), delimiter=',', skip_header=1)
 
 configs_per = np.shape(shift_strat)[0]
 noise_samples = np.shape(shift_strat)[1]
@@ -62,7 +67,10 @@ for col_idx in range(noise_samples):
     counts, bin_ranges = np.histogram(shift_strat[:,col_idx], bins, range=(0,1.0))
     
     shift_frequencies[:,col_idx] = 100 * counts / np.sum(counts)
-    
+
+lt_thresh = np.where(w_eff_linspace < 0.05)[0]
+shift_frequencies_thresh = shift_frequencies[lt_thresh,:]
+print(shift_frequencies_thresh[:,0])
 shift_frequencies_normed = shift_frequencies[:,-1]
 # shift_frequencies_normed /= np.max(shift_frequencies_normed)
 
@@ -116,7 +124,10 @@ for col_idx in range(noise_samples):
     counts, bin_ranges = np.histogram(fine_shift_strat[:,col_idx], bins, range=(0,1.0))
     
     fine_shift_frequencies[:,col_idx] = 100 * counts / np.sum(counts)
-    
+
+lt_thresh = np.where(w_eff_linspace < 0.05)[0]
+fine_shift_frequencies_thresh = fine_shift_frequencies[lt_thresh,:]
+print(fine_shift_frequencies_thresh[:,0])
 fine_shift_frequencies_normed = fine_shift_frequencies[:,-1]
 # fine_shift_frequencies_normed /= np.max(fine_shift_frequencies_normed)
     

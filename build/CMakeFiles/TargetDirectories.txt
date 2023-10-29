@@ -3,6 +3,8 @@
 /mnt/nvme0n1p1/honours-project/build/CMakeFiles/multicore_monte_carlo.dir
 /mnt/nvme0n1p1/honours-project/build/CMakeFiles/queue.dir
 /mnt/nvme0n1p1/honours-project/build/CMakeFiles/avg_finite_time.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/tem_localization.dir
 /mnt/nvme0n1p1/honours-project/build/CMakeFiles/finite_time.dir
+/mnt/nvme0n1p1/honours-project/build/CMakeFiles/xy_form_tem.dir
 /mnt/nvme0n1p1/honours-project/build/CMakeFiles/multicore_localization.dir
 /mnt/nvme0n1p1/honours-project/build/CMakeFiles/tem_render_3d.dir

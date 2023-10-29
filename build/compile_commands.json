@@ -26,6 +26,11 @@
 },
 {
   "directory": "/mnt/nvme0n1p1/honours-project/build",
+  "command": "/usr/bin/clang++  -I/mnt/nvme0n1p1/honours-project/c-attempt/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -g -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/tem_localization.dir/tem-localization/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/tem-localization/main.cpp",
+  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/tem-localization/main.cpp"
+},
+{
+  "directory": "/mnt/nvme0n1p1/honours-project/build",
   "command": "/usr/bin/clang++  -I/mnt/nvme0n1p1/honours-project/c-attempt/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -g -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/finite_time.dir/finite-time/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp",
   "file": "/mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main.cpp"
 },
@@ -38,6 +43,11 @@
   "directory": "/mnt/nvme0n1p1/honours-project/build",
   "command": "/usr/bin/clang++  -I/mnt/nvme0n1p1/honours-project/c-attempt/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -g -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/finite_time.dir/finite-time/main_noise_response.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main_noise_response.cpp",
   "file": "/mnt/nvme0n1p1/honours-project/c-attempt/finite-time/main_noise_response.cpp"
+},
+{
+  "directory": "/mnt/nvme0n1p1/honours-project/build",
+  "command": "/usr/bin/clang++  -I/mnt/nvme0n1p1/honours-project/c-attempt/eigen3 -I/mnt/nvme0n1p1/honours-project/c-attempt/optim -g -fopenmp -fopenmp=libomp -std=gnu++20 -o CMakeFiles/xy_form_tem.dir/xy-form-tem/main.cpp.o -c /mnt/nvme0n1p1/honours-project/c-attempt/xy-form-tem/main.cpp",
+  "file": "/mnt/nvme0n1p1/honours-project/c-attempt/xy-form-tem/main.cpp"
 },
 {
   "directory": "/mnt/nvme0n1p1/honours-project/build",

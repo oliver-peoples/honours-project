@@ -156,6 +156,19 @@ avg_finite_time/fast:
 .PHONY : avg_finite_time/fast
 
 #=============================================================================
+# Target rules for targets named tem_localization
+
+# Build rule for target.
+tem_localization: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tem_localization
+.PHONY : tem_localization
+
+# fast build rule for target.
+tem_localization/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization.dir/build.make CMakeFiles/tem_localization.dir/build
+.PHONY : tem_localization/fast
+
+#=============================================================================
 # Target rules for targets named finite_time
 
 # Build rule for target.
@@ -167,6 +180,19 @@ finite_time: cmake_check_build_system
 finite_time/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/finite_time.dir/build.make CMakeFiles/finite_time.dir/build
 .PHONY : finite_time/fast
+
+#=============================================================================
+# Target rules for targets named xy_form_tem
+
+# Build rule for target.
+xy_form_tem: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 xy_form_tem
+.PHONY : xy_form_tem
+
+# fast build rule for target.
+xy_form_tem/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xy_form_tem.dir/build.make CMakeFiles/xy_form_tem.dir/build
+.PHONY : xy_form_tem/fast
 
 #=============================================================================
 # Target rules for targets named multicore_localization
@@ -458,6 +484,30 @@ queue-inf-time/noiseResponse.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/queue.dir/build.make CMakeFiles/queue.dir/queue-inf-time/noiseResponse.cpp.s
 .PHONY : queue-inf-time/noiseResponse.cpp.s
 
+tem-localization/main.o: tem-localization/main.cpp.o
+.PHONY : tem-localization/main.o
+
+# target to build an object file
+tem-localization/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization.dir/build.make CMakeFiles/tem_localization.dir/tem-localization/main.cpp.o
+.PHONY : tem-localization/main.cpp.o
+
+tem-localization/main.i: tem-localization/main.cpp.i
+.PHONY : tem-localization/main.i
+
+# target to preprocess a source file
+tem-localization/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization.dir/build.make CMakeFiles/tem_localization.dir/tem-localization/main.cpp.i
+.PHONY : tem-localization/main.cpp.i
+
+tem-localization/main.s: tem-localization/main.cpp.s
+.PHONY : tem-localization/main.s
+
+# target to generate assembly for a file
+tem-localization/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_localization.dir/build.make CMakeFiles/tem_localization.dir/tem-localization/main.cpp.s
+.PHONY : tem-localization/main.cpp.s
+
 tem-render/tem_render_3d.o: tem-render/tem_render_3d.cpp.o
 .PHONY : tem-render/tem_render_3d.o
 
@@ -482,6 +532,30 @@ tem-render/tem_render_3d.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tem_render_3d.dir/build.make CMakeFiles/tem_render_3d.dir/tem-render/tem_render_3d.cpp.s
 .PHONY : tem-render/tem_render_3d.cpp.s
 
+xy-form-tem/main.o: xy-form-tem/main.cpp.o
+.PHONY : xy-form-tem/main.o
+
+# target to build an object file
+xy-form-tem/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xy_form_tem.dir/build.make CMakeFiles/xy_form_tem.dir/xy-form-tem/main.cpp.o
+.PHONY : xy-form-tem/main.cpp.o
+
+xy-form-tem/main.i: xy-form-tem/main.cpp.i
+.PHONY : xy-form-tem/main.i
+
+# target to preprocess a source file
+xy-form-tem/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xy_form_tem.dir/build.make CMakeFiles/xy_form_tem.dir/xy-form-tem/main.cpp.i
+.PHONY : xy-form-tem/main.cpp.i
+
+xy-form-tem/main.s: xy-form-tem/main.cpp.s
+.PHONY : xy-form-tem/main.s
+
+# target to generate assembly for a file
+xy-form-tem/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/xy_form_tem.dir/build.make CMakeFiles/xy_form_tem.dir/xy-form-tem/main.cpp.s
+.PHONY : xy-form-tem/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -495,7 +569,9 @@ help:
 	@echo "... multicore_localization"
 	@echo "... multicore_monte_carlo"
 	@echo "... queue"
+	@echo "... tem_localization"
 	@echo "... tem_render_3d"
+	@echo "... xy_form_tem"
 	@echo "... avg-finite-time/main.o"
 	@echo "... avg-finite-time/main.i"
 	@echo "... avg-finite-time/main.s"
@@ -529,9 +605,15 @@ help:
 	@echo "... queue-inf-time/noiseResponse.o"
 	@echo "... queue-inf-time/noiseResponse.i"
 	@echo "... queue-inf-time/noiseResponse.s"
+	@echo "... tem-localization/main.o"
+	@echo "... tem-localization/main.i"
+	@echo "... tem-localization/main.s"
 	@echo "... tem-render/tem_render_3d.o"
 	@echo "... tem-render/tem_render_3d.i"
 	@echo "... tem-render/tem_render_3d.s"
+	@echo "... xy-form-tem/main.o"
+	@echo "... xy-form-tem/main.i"
+	@echo "... xy-form-tem/main.s"
 .PHONY : help
 
 

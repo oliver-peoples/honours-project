@@ -53,3 +53,7 @@ target_compile_options(queue PUBLIC -fopenmp)
 add_executable(tem_localization ${CMAKE_SOURCE_DIR}/tem-localization/main.cpp)
 target_link_libraries(tem_localization PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
 target_compile_options(tem_localization PUBLIC -fopenmp)
+
+add_executable(xy_form_tem ${CMAKE_SOURCE_DIR}/xy-form-tem/main.cpp)
+target_link_libraries(xy_form_tem PUBLIC OpenMP::OpenMP_CXX rt dl pthread)
+target_compile_options(xy_form_tem PUBLIC -fopenmp)
