@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.spatial.transform import Rotation
 matplotlib.rcParams['text.usetex'] = True
+import cv2
+import glob
 
 import os
 
@@ -32,13 +34,34 @@ TEM_MODE = GL
 
 def main() -> None:
     
-    if TEM_MODE == GH:
+    # if TEM_MODE == GH:
         
-        ghPlot()
+    #     ghPlot()
         
-    else:
+    # else:
+            # if TEM_MODE == GH:
         
-        glPlot()
+    #     ghPlot()
+        
+    # else:
+        
+    #     glPlot()
+    #     glPlot()
+    
+    pic_paths = glob.glob(os.path.join(path,'isosurfaces','*.png'))
+    
+    for pic_path in pic_paths:
+        
+        img = cv2.imread(pic_path)
+        
+        img = img[10:1850,400:1600]
+        
+        cv2.imwrite(pic_path.split('.png')[0] + '_new.png', img)
+        
+        middle_idx = np.shape(img)
+        print(middle_idx)
+        # cv2.imshow('test',img)
+        # cv2.waitKey(0)
         
 def glPlot() -> None:
     
@@ -64,20 +87,25 @@ def glPlot() -> None:
 
     pm_w_0 = w_0 * 3.
 
+<<<<<<< HEAD
+    x_samples = 300
+    y_samples = 300
+=======
     x_samples = 200
     y_samples = 150
+>>>>>>> 43de0cd09a69de1d6f57e0b65648bbaf7d210df0
     z_samples = 300
 
-    off_nadir_angle_deg = 0
-    azimuth_deg = 0
+    off_nadir_angle_deg = 35
+    azimuth_deg = -15
 
     # roll_linspace = np.linspace(0,90,300)
 
     # for roll_idx in range(len(roll_linspace)):
 
-    roll_deg = 0.
+    roll_deg = 20
 
-    z_offset = 0.0 * w_0
+    z_offset = 1. * wavelength
 
     x_linspace = np.linspace(-pm_w_0,pm_w_0,x_samples)
     y_linspace = np.linspace(-pm_w_0,pm_w_0,y_samples)
@@ -179,6 +207,8 @@ def glPlot() -> None:
     beam_space_y_meshgrid = img_space_x_meshgrid * beam_space_y_basis[0] + img_space_y_meshgrid * beam_space_y_basis[1] + img_space_z_meshgrid * beam_space_y_basis[2]
     beam_space_z_meshgrid = img_space_x_meshgrid * beam_space_z_basis[0] + img_space_y_meshgrid * beam_space_z_basis[1] + img_space_z_meshgrid * beam_space_z_basis[2]
 
+    beam_space_z_meshgrid -= z_offset
+    
     beam_space_r_meshgrid = np.sqrt(beam_space_x_meshgrid**2 + beam_space_y_meshgrid**2)
     beam_space_psi_meshgrid = np.arctan2(beam_space_y_meshgrid, beam_space_x_meshgrid)
                 

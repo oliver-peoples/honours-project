@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 from scipy.spatial import KDTree
 from mayavi import mlab
-# mlab.options.offscreen = True
+mlab.options.offscreen = True
 from skimage import measure
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D

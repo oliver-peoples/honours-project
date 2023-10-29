@@ -24,11 +24,11 @@ def fmt(x):
 def main() -> None:
 
     emitter_xy = np.array([
-        [-0.6300,-0.1276],
-        [0.5146,-0.5573]
+        [-0.25,-0.12],
+        [0.15,0.17]
     ], dtype=np.float64)
 
-    emitter_brightness = [ 1.0,0.3617 ]
+    emitter_brightness = [ 1.0,0.5 ]
 
     #=========================================================================
 
@@ -87,7 +87,8 @@ def main() -> None:
     ax.set_aspect(1)
     divider = make_axes_locatable(ax)
     cax = divider.append_axes('right', size='5%', pad=0.05)
-    contours = ax.contour(x_meshgrid, y_meshgrid, g2, linewidths=1, colors='k', levels=[0.2,0.25,0.3,0.35,0.4,0.45])
+    levels = np.linspace(np.min(g2) * 1.05, np.max(g2) * 0.95, 5)
+    contours = ax.contour(x_meshgrid, y_meshgrid, g2, linewidths=1, colors='k', levels=levels)
     
     positions = []
     

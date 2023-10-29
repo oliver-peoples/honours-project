@@ -37,9 +37,14 @@ void mainSimple(void)
 
     // std::cout << g2_capable_idx << std::endl;
 
+    // Eigen::Array<double,2,3> emitter_xy {
+    //     { -0.6300,-0.1276,0 },
+    //     { 0.5146,-0.5573,0 }
+    // };
+
     Eigen::Array<double,2,3> emitter_xy {
-        { -0.6300,-0.1276,0 },
-        { 0.5146,-0.5573,0 }
+        { -0.25,-0.126,0 },
+        { 0.15,0.17,0 }
     };
 
     // emitter_xy *= 0.25;
