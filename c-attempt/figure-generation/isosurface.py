@@ -34,32 +34,34 @@ TEM_MODE = GL
 
 def main() -> None:
     
-    # if TEM_MODE == GH:
+    if TEM_MODE == GH:
         
-    #     ghPlot()
+        ghPlot()
         
-    # else:
+    else:
             # if TEM_MODE == GH:
         
-    #     ghPlot()
+        glPlot()
         
     # else:
-        
-    #     glPlot()
-    #     glPlot()
+        # 
+        # glPlot()
+        # glPlot()
     
     pic_paths = glob.glob(os.path.join(path,'isosurfaces','*.png'))
     
     for pic_path in pic_paths:
         
-        img = cv2.imread(pic_path)
+        if 'new' not in pic_path:
         
-        img = img[10:1850,400:1600]
-        
-        cv2.imwrite(pic_path.split('.png')[0] + '_new.png', img)
-        
-        middle_idx = np.shape(img)
-        print(middle_idx)
+            img = cv2.imread(pic_path)
+            
+            img = img[10:1850,400:1600]
+            
+            cv2.imwrite(pic_path.split('.png')[0] + '_new.png', img)
+            
+            middle_idx = np.shape(img)
+            print(middle_idx)
         # cv2.imshow('test',img)
         # cv2.waitKey(0)
         
@@ -87,25 +89,20 @@ def glPlot() -> None:
 
     pm_w_0 = w_0 * 3.
 
-<<<<<<< HEAD
     x_samples = 300
     y_samples = 300
-=======
-    x_samples = 200
-    y_samples = 150
->>>>>>> 43de0cd09a69de1d6f57e0b65648bbaf7d210df0
     z_samples = 300
 
     off_nadir_angle_deg = 35
-    azimuth_deg = -15
+    azimuth_deg = 14
 
     # roll_linspace = np.linspace(0,90,300)
 
     # for roll_idx in range(len(roll_linspace)):
 
-    roll_deg = 20
+    roll_deg = 54
 
-    z_offset = 1. * wavelength
+    z_offset = 0. * wavelength
 
     x_linspace = np.linspace(-pm_w_0,pm_w_0,x_samples)
     y_linspace = np.linspace(-pm_w_0,pm_w_0,y_samples)
@@ -165,16 +162,23 @@ def glPlot() -> None:
     intensity = np.real(C_lg * E_field)**2
 
     max_intensity = np.max(intensity)
+    
     print(max_intensity)
-    intensity /= max_intensity
+    
+    first_thresh = 0.75 * max_intensity
+    second_thresh = 0.5 * max_intensity
+    third_thresh = 0.15 * max_intensity
+    
+    print(f'1st: {first_thresh}, 2nd: {second_thresh}, 3rd: {third_thresh}')
+    # intensity /=max_intensity
 
     fig = mlab.figure(size=(2000,2000), bgcolor=(1,1,1))
 
     src = mlab.pipeline.scalar_field(img_space_x_meshgrid * 1e9, img_space_y_meshgrid * 1e9, img_space_z_meshgrid * 1e9, intensity)
-    mlab.pipeline.iso_surface(src, contours=[0.75], opacity=1, color=parula(0.75)[:3])
-    mlab.pipeline.iso_surface(src, contours=[0.5], opacity=0.5, color=parula(0.5)[:3])
-    # mlab.pipeline.iso_surface(src, contours=[0.15], opacity=0.25, color=parula(0.15)[:3])
-
+    mlab.pipeline.iso_surface(src, contours=[first_thresh], opacity=1, color=parula(0.75)[:3])
+    mlab.pipeline.iso_surface(src, contours=[second_thresh], opacity=0.5, color=parula(0.5)[:3])
+    mlab.pipeline.iso_surface(src, contours=[third_thresh], opacity=0.25, color=parula(0.15)[:3])
+    
     cam_az = 45
     cam_el = 30
 
@@ -334,6 +338,8 @@ def ghPlot() -> None:
 
     m = 1
     n = 1
+    
+    norm_factor = pow(2.,-(n+m)/2.) * np.sqrt(2. / (np.pi * np.math.factorial(n) * np.math.factorial(m)))
 
     gh_m = genHermite(m)
     gh_n = genHermite(n)
@@ -359,7 +365,7 @@ def ghPlot() -> None:
     y_samples = 150
     z_samples = 300
 
-    off_nadir_angle_deg = 35
+    off_nadir_angle_deg = 0
     azimuth_deg = 0
 
     # roll_linspace = np.linspace(0,90,300)
@@ -368,7 +374,7 @@ def ghPlot() -> None:
 
     roll_deg = 0.
 
-    z_offset = 0.9 * w_0
+    z_offset = 0.0 * w_0
 
     x_linspace = np.linspace(-pm_w_0,pm_w_0,x_samples)
     y_linspace = np.linspace(-pm_w_0,pm_w_0,y_samples)
@@ -424,17 +430,23 @@ def ghPlot() -> None:
 
     exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
 
-    intensity = np.abs(scalar_comp * exp_component)**2
+    intensity = np.abs(norm_factor * scalar_comp * exp_component)**2
 
     max_intensity = np.max(intensity)
-    intensity /=max_intensity
+    
+    first_thresh = 0.75 * max_intensity
+    second_thresh = 0.5 * max_intensity
+    third_thresh = 0.15 * max_intensity
+    
+    print(f'1st: {first_thresh}, 2nd: {second_thresh}, 3rd: {third_thresh}')
+    # intensity /=max_intensity
 
     fig = mlab.figure(size=(2000,2000), bgcolor=(1,1,1))
 
     src = mlab.pipeline.scalar_field(img_space_x_meshgrid * 1e9, img_space_y_meshgrid * 1e9, img_space_z_meshgrid * 1e9, intensity)
-    mlab.pipeline.iso_surface(src, contours=[0.75], opacity=1, color=parula(0.75)[:3])
-    mlab.pipeline.iso_surface(src, contours=[0.5], opacity=0.5, color=parula(0.5)[:3])
-    mlab.pipeline.iso_surface(src, contours=[0.15], opacity=0.25, color=parula(0.15)[:3])
+    mlab.pipeline.iso_surface(src, contours=[first_thresh], opacity=1, color=parula(0.75)[:3])
+    mlab.pipeline.iso_surface(src, contours=[second_thresh], opacity=0.5, color=parula(0.5)[:3])
+    mlab.pipeline.iso_surface(src, contours=[third_thresh], opacity=0.25, color=parula(0.15)[:3])
 
     cam_az = 45
     cam_el = 30
@@ -491,7 +503,7 @@ def ghPlot() -> None:
 
     exp_component = np.exp(-sum_xy_squares * (inv_w_squared + vergence_comp) - wavenumber_comp - gouy_phase_shift)
 
-    intensity = np.abs(scalar_comp * exp_component)**2
+    intensity = np.abs(norm_factor * scalar_comp * exp_component)**2
 
     intensity /= max_intensity
 
