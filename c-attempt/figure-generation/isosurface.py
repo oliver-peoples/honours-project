@@ -65,8 +65,8 @@ def main() -> None:
         
 def glPlot() -> None:
     
-    p = 2
-    l = 4
+    p = 0
+    l = 0
 
     gl_poly = genLaguerre(p,l)
 
@@ -87,23 +87,18 @@ def glPlot() -> None:
 
     pm_w_0 = w_0 * 3.
 
-<<<<<<< HEAD
     x_samples = 300
     y_samples = 300
-=======
-    x_samples = 200
-    y_samples = 150
->>>>>>> 43de0cd09a69de1d6f57e0b65648bbaf7d210df0
     z_samples = 300
 
-    off_nadir_angle_deg = 35
-    azimuth_deg = -15
+    off_nadir_angle_deg = 0
+    azimuth_deg = 0
 
     # roll_linspace = np.linspace(0,90,300)
 
     # for roll_idx in range(len(roll_linspace)):
 
-    roll_deg = 20
+    roll_deg = 0
 
     z_offset = 1. * wavelength
 
@@ -328,7 +323,13 @@ def glPlot() -> None:
     f = mlab.gcf()
     f.scene._lift()
     # img_array = mlab.screenshot(figure=f, mode='rgba')
-    mlab.savefig(os.path.join(path,'isosurfaces',f'tem_p_{p}_l_{l}.png'))
+    if ( p+l == 0 ):
+
+        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_gaussian.png'))
+
+    else:
+    
+        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_p_{p}_l_{l}.png'))
         
 def ghPlot() -> None:
 
@@ -588,7 +589,13 @@ def ghPlot() -> None:
     f = mlab.gcf()
     f.scene._lift()
     # img_array = mlab.screenshot(figure=f, mode='rgba')
-    mlab.savefig(os.path.join(path,'isosurfaces',f'tem_m_{m}_n_{n}.png'))
+    if ( m+n == 0 ):
+
+        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_gaussian.png'))
+
+    else:
+    
+        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_m_{m}_n_{n}.png'))
     
 if __name__ == '__main__':
     
