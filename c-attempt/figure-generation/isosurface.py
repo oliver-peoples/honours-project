@@ -144,7 +144,7 @@ def glPlot() -> None:
 
     inv_2r = 0.5 * beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
     
-    gouy_phase_shift = 1.j * (l + p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
+    gouy_phase_shift = 1.j * (l + 2*p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
     
     comp_1 = (beam_space_r_meshgrid * np.sqrt(2)/w_z_meshgrid)**l
     comp_2 = np.exp(-beam_space_r_meshgrid**2 / w_z_meshgrid**2)
