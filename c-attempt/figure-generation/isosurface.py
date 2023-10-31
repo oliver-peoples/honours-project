@@ -67,8 +67,8 @@ def main() -> None:
         
 def glPlot() -> None:
     
-    p = 2
-    l = 4
+    p = 0
+    l = 0
 
     gl_poly = genLaguerre(p,l)
 
@@ -93,14 +93,14 @@ def glPlot() -> None:
     y_samples = 300
     z_samples = 300
 
-    off_nadir_angle_deg = 35
-    azimuth_deg = 14
+    off_nadir_angle_deg = 0
+    azimuth_deg = 0
 
     # roll_linspace = np.linspace(0,90,300)
 
     # for roll_idx in range(len(roll_linspace)):
 
-    roll_deg = 54
+    roll_deg = 0
 
     z_offset = 0. * wavelength
 
@@ -146,7 +146,7 @@ def glPlot() -> None:
 
     inv_2r = 0.5 * beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
     
-    gouy_phase_shift = 1.j * (l + p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
+    gouy_phase_shift = 1.j * (l + 2*p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
     
     comp_1 = (beam_space_r_meshgrid * np.sqrt(2)/w_z_meshgrid)**l
     comp_2 = np.exp(-beam_space_r_meshgrid**2 / w_z_meshgrid**2)
@@ -159,7 +159,7 @@ def glPlot() -> None:
     
     C_lg = np.sqrt(2 * np.math.factorial(p) / (np.pi * np.math.factorial(p + l)))
 
-    intensity = np.real(C_lg * E_field)**2
+    intensity = np.abs(C_lg * E_field)**2
 
     max_intensity = np.max(intensity)
     
@@ -222,7 +222,7 @@ def glPlot() -> None:
 
     inv_2r = 0.5 * beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
     
-    gouy_phase_shift = (l + p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
+    gouy_phase_shift = (l + 2*p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
     
     comp_1 = (beam_space_r_meshgrid * np.sqrt(2)/w_z_meshgrid)**l
     comp_2 = np.exp(-beam_space_r_meshgrid**2 / w_z_meshgrid**2)
@@ -235,7 +235,7 @@ def glPlot() -> None:
     
     C_lg = np.sqrt(2 * np.math.factorial(p) / (np.pi * np.math.factorial(p + l)))
 
-    intensity = np.real(C_lg * E_field)**2
+    intensity = np.abs(C_lg * E_field)**2
 
     intensity /= max_intensity
 
@@ -332,12 +332,18 @@ def glPlot() -> None:
     f = mlab.gcf()
     f.scene._lift()
     # img_array = mlab.screenshot(figure=f, mode='rgba')
-    mlab.savefig(os.path.join(path,'isosurfaces',f'tem_p_{p}_l_{l}.png'))
+    if ( p+l == 0 ):
+
+        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_gaussian.png'))
+
+    else:
+    
+        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_p_{p}_l_{l}.png'))
         
 def ghPlot() -> None:
 
-    m = 1
-    n = 1
+    m = 0
+    n = 0
     
     norm_factor = pow(2.,-(n+m)/2.) * np.sqrt(2. / (np.pi * np.math.factorial(n) * np.math.factorial(m)))
 
@@ -600,7 +606,13 @@ def ghPlot() -> None:
     f = mlab.gcf()
     f.scene._lift()
     # img_array = mlab.screenshot(figure=f, mode='rgba')
-    mlab.savefig(os.path.join(path,'isosurfaces',f'tem_m_{m}_n_{n}.png'))
+    if ( m+n == 0 ):
+
+        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_gaussian.png'))
+
+    else:
+    
+        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_m_{m}_n_{n}.png'))
     
 if __name__ == '__main__':
     
