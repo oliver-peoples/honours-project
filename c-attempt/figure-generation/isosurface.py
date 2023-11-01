@@ -65,8 +65,8 @@ def main() -> None:
         
 def glPlot() -> None:
     
-    p = 0
-    l = 0
+    p = 2
+    l = 4
 
     gl_poly = genLaguerre(p,l)
 
@@ -87,8 +87,8 @@ def glPlot() -> None:
 
     pm_w_0 = w_0 * 3.
 
-    x_samples = 300
-    y_samples = 300
+    x_samples = 200
+    y_samples = 150
     z_samples = 300
 
     off_nadir_angle_deg = 0
@@ -144,7 +144,7 @@ def glPlot() -> None:
 
     inv_2r = 0.5 * beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
     
-    gouy_phase_shift = 1.j * (l + p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
+    gouy_phase_shift = 1.j * (l + 2*p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
     
     comp_1 = (beam_space_r_meshgrid * np.sqrt(2)/w_z_meshgrid)**l
     comp_2 = np.exp(-beam_space_r_meshgrid**2 / w_z_meshgrid**2)
@@ -213,7 +213,7 @@ def glPlot() -> None:
 
     inv_2r = 0.5 * beam_space_z_meshgrid / (beam_space_z_meshgrid**2 + z_r**2)
     
-    gouy_phase_shift = (l + p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
+    gouy_phase_shift = (l + 2*p + 1) * np.arctan(beam_space_z_meshgrid / z_r)
     
     comp_1 = (beam_space_r_meshgrid * np.sqrt(2)/w_z_meshgrid)**l
     comp_2 = np.exp(-beam_space_r_meshgrid**2 / w_z_meshgrid**2)
@@ -323,13 +323,7 @@ def glPlot() -> None:
     f = mlab.gcf()
     f.scene._lift()
     # img_array = mlab.screenshot(figure=f, mode='rgba')
-    if ( p+l == 0 ):
-
-        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_gaussian.png'))
-
-    else:
-    
-        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_p_{p}_l_{l}.png'))
+    mlab.savefig(os.path.join(path,'isosurfaces',f'tem_p_{p}_l_{l}.png'))
         
 def ghPlot() -> None:
 
@@ -589,13 +583,7 @@ def ghPlot() -> None:
     f = mlab.gcf()
     f.scene._lift()
     # img_array = mlab.screenshot(figure=f, mode='rgba')
-    if ( m+n == 0 ):
-
-        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_gaussian.png'))
-
-    else:
-    
-        mlab.savefig(os.path.join(path,'isosurfaces',f'tem_m_{m}_n_{n}.png'))
+    mlab.savefig(os.path.join(path,'isosurfaces',f'tem_m_{m}_n_{n}.png'))
     
 if __name__ == '__main__':
     
