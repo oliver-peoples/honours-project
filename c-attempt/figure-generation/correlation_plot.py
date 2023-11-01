@@ -10,9 +10,9 @@ path = os.path.dirname(__file__)
 
 matplotlib.rcParams['text.usetex'] = True
 
-p02s = [1.,0.3617]
+p02s = [1.,0.25,0.05]
 
-colors = ['magenta','cyan']
+colors = ['magenta','cyan','green']
 
 for p02s_idx in range(len(p02s)):
     P_1 = 1.
@@ -26,13 +26,13 @@ for p02s_idx in range(len(p02s)):
     plt.plot(gamma_tau, g_2_2, c=colors[p02s_idx], linewidth=0.75, label=r'$\alpha=' + f'{alpha}' + '$')
 
 # plt.title(r'$\alpha=' + str(alpha) + r'$', fontsize=20)
-plt.legend(fontsize=10, ncols=2)
+plt.legend(fontsize=11)
 plt.xlim(-5,5)
-plt.xticks(fontsize=10)
-plt.xlabel(r'$\mathrm{Normalized\;Time\;Lag}\;\tau\Gamma$', fontsize=10)
+plt.xticks(fontsize=11)
+plt.xlabel(r'$\mathrm{Normalized\;Time\;Lag}\;\tau\Gamma$', fontsize=11)
 plt.ylim(0.,1.0)
-plt.yticks([0.,0.5,1.0], fontsize=10)
-plt.ylabel(r'$g_{2}^{(2)}$', fontsize=10)
+plt.yticks([0.,0.5,1.0], fontsize=11)
+plt.ylabel(r'$g_{2}^{(2)}$', fontsize=11)
 plt.gca().set_aspect(10 / (3 * 1.0))
 plt.tight_layout()
 plt.gcf().set_figwidth(val=0.75 * 15.3978 * cm)

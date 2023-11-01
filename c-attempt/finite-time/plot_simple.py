@@ -33,7 +33,7 @@ def main() -> None:
     
     if np.shape(g2_capable)[0] != np.shape(cores)[0]:
         g1_only = [ idx for idx in range(np.shape(cores)[0]) if idx not in g2_capable[:,1]]
-        plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
+        # plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
         
     # for core in cores:
     #     # fix radius here
@@ -44,8 +44,8 @@ def main() -> None:
         
     #     plt.gca().add_patch(shape)
 
-    plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
-    plt.scatter(emitter_xy[:,1], emitter_xy[:,2], c='blue', marker='x', linewidths=0.5, s=10)
+    # plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
+    # plt.scatter(emitter_xy[:,1], emitter_xy[:,2], c='blue', marker='x', linewidths=0.5, s=10)
     plt.xlabel(r'$x/\sigma$', fontsize=10)
     plt.xlim(-pm,pm)
     plt.xticks(fontsize=10)
@@ -74,20 +74,20 @@ def main() -> None:
     
     plt.plot(x2s_convex_hull[:,1],x2s_convex_hull[:,2], c='black', linewidth=0.5)
 
-    plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
-    plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
+    # plt.scatter(cores[g1_only,1], cores[g1_only,2], c='black', marker='.', s=10)
+    # plt.scatter(cores[g2_capable[:,1],1], cores[g2_capable[:,1],2], c='black', marker='+', linewidths=0.5, s=10)
     plt.scatter(emitter_xy[:,1], emitter_xy[:,2], c='blue', marker='x', linewidths=0.5, s=10)
     plt.scatter(emitter_xy_guesses[:,1], emitter_xy_guesses[:,2], edgecolors='blue', linewidths=0.5, facecolors='none', s=10)
     plt.xlabel(r'$x$', fontsize=10)
-    plt.xlim(-2.1,2.1)
+    plt.xlim(-0.5,0.5)
     plt.xticks(fontsize=10)
     plt.ylabel(r'$y$', fontsize=10)
-    plt.ylim(-2.1,2.1)
+    plt.ylim(-0.5,0.5)
     plt.xticks(fontsize=10)
     plt.gca().set_aspect(1)
     plt.tight_layout()
     plt.gcf().set_figwidth(val=0.32 * 15.3978 * cm)
-    plt.savefig(os.path.join(path,f'emitter_localizations_{np.shape(x1s)[0]}.png'), dpi=400, bbox_inches='tight')
+    plt.savefig(os.path.join(path,f'emitter_localizations_{np.shape(x1s)[0]}.png'), dpi=800, bbox_inches='tight')
     plt.close()
 
 if __name__ == '__main__':

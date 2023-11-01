@@ -6,7 +6,7 @@
 #include "misc/optim_structs.hpp"
 
 constexpr double detector_w = 1.;
-constexpr int TRIALS_PER_CONFIG = 10000;
+constexpr int TRIALS_PER_CONFIG = 1000;
 
 constexpr CHI2_METHOD chi_2_method = WORBOY;
 
@@ -18,14 +18,14 @@ void mainSimple(void)
     Eigen::VectorXi g2_capable_idx;
     int num_cores;
 
-    // g2_capable_idx = Eigen::VectorXi(6,1);
+    g2_capable_idx = Eigen::VectorXi(6,1);
 
-    // g2_capable_idx(0) = 1;
-    // g2_capable_idx(1) = 2;
-    // g2_capable_idx(2) = 3;
-    // g2_capable_idx(3) = 4;
-    // g2_capable_idx(4) = 5;
-    // g2_capable_idx(5) = 6;
+    g2_capable_idx(0) = 1;
+    g2_capable_idx(1) = 2;
+    g2_capable_idx(2) = 3;
+    g2_capable_idx(3) = 4;
+    g2_capable_idx(4) = 5;
+    g2_capable_idx(5) = 6;
 
     // g2_capable_idx = Eigen::VectorXi(4,1);
 
@@ -50,9 +50,9 @@ void mainSimple(void)
     // g2_capable_idx(4) = 11+2;
     // g2_capable_idx(5) = 15+2;
 
-    // createConcentricCores(core_locations, 1, 2.);
+    createConcentricCores(core_locations, 1, 2.);
 
-    createWorboyCores(core_locations, g2_capable_idx);
+    // createWorboyCores(core_locations, g2_capable_idx);
    
     savePoints("finite-time/core_locations.csv", core_locations);
     saveIndexes("finite-time/g2_capable_indexes.csv", g2_capable_idx);
@@ -88,7 +88,7 @@ void mainSimple(void)
         0.5
     };
 
-    double t = 10000. / (emitter_brightness[1]);
+    double t = 750. / (emitter_brightness[1]);
 
     ArrX2d x1s = ArrX2d(TRIALS_PER_CONFIG,2);
     ArrX2d x2s = ArrX2d(TRIALS_PER_CONFIG,2);
